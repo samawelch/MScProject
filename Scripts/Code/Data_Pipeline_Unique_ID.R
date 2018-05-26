@@ -1,5 +1,5 @@
 # Sam Welch
-# A script that produces a unique stressor combination ID, fills in a binary matrix based on it, then generates dummy growth data.
+# A script that produces a unique stressor combination ID, fills in a binary matrix based on it, then generates dummy growth data. Boolean version.
 # 26th May 2018
 rm(list=ls())
 
@@ -64,3 +64,7 @@ for (k in 1:107) {
 
 # And finally, can we construct a linear model to explain variation in mean growth with stressor absence/presence?
 summary(comb_tibble)
+comb_tibble_tidy <- gather(comb_tibble, Rep, Growth, 10:14) # I believe this is a better format for the data. But I'm not sure?
+
+
+  
