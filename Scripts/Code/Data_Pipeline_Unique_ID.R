@@ -3,7 +3,7 @@
 # 26th May 2018
 rm(list=ls())
 
-library(tibble)
+library(tidyverse)
 
 vector_stressors <- c("1","2","3","4","5","6","7","8")
 
@@ -25,14 +25,14 @@ vector_combn <- c(vector_combn_one, vector_combn_two, vector_combn_four, vector_
 # Create a tibble of unique combination IDs, presence/absence of stressors and five replicates of growth
 comb_tibble <- tibble(
   vector_combn,
-  `s1` = 0,
-  `s2` = 0,
-  `s3` = 0,
-  `s4` = 0,
-  `s5` = 0,
-  `s6` = 0,
-  `s7` = 0,
-  `s8` = 0,
+  `s1` = FALSE,
+  `s2` = FALSE,
+  `s3` = FALSE,
+  `s4` = FALSE,
+  `s5` = FALSE,
+  `s6` = FALSE,
+  `s7` = FALSE,
+  `s8` = FALSE,
   `GrowthA` = 0,
   `GrowthB` = 0,
   `GrowthC` = 0,
@@ -46,9 +46,21 @@ for (i in 1:107) {
   comb <- comb_tibble[i,1]            # For each combination ID: assign to the variable comb
   for (j in 1:8) {                    # Loop across comb for j = 1:8
     if (grepl(toString(j),comb)) {    # if comb contains the string of j, 
-      comb_tibble[i, j + 1] = 1       # change the value in the relevant position of the tibble to 1
+      comb_tibble[i, j + 1] = TRUE    # change the value in the relevant position of the tibble to 1
     }
     j <- j + 1
   }
   i <- i + 1
 }
+
+# Another loop to stick some random data into the growth columns. Can this be done more elegantly with apply?
+for (k in 1:107) {
+  for (l in 10:14){
+    comb_tibble[k,l] = runif(1, min=0, max=100)
+    l <- l + 1
+  }
+  k <- k + 1
+}
+
+# And finally, can we construct a linear model to explain variation in mean growth with stressor absence/presence?
+summary(comb_tibble)
