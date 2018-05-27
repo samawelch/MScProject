@@ -62,9 +62,21 @@ for (k in 1:107) {
   k <- k + 1
 }
 
-# And finally, can we construct a linear model to explain variation in mean growth with stressor absence/presence?
+# Add a means column.
 summary(comb_tibble)
-comb_tibble_tidy <- gather(comb_tibble, Rep, Growth, 10:14) # I believe this is a better format for the data. But I'm not sure?
+comb_tibble <- mutate(comb_tibble,GrowthAvg = rowMeans(comb_tibble[,10:14]))
 
+# What I've read online suggests a multiple linear regression or a non-linear multiple regression - so I'm going to try both...
 
-  
+# Multiple linear regression
+mlr <- lm(
+  formula = GrowthAvg ~ s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8,
+  data = comb_tibble)
+summary(mlr)
+plot(mlr)
+# I can't remember how to interpret any of this, but at least I'll have a choice when it comes to working with the real data...
+
+# Non-linear multiple regression - doesn't work because I don't understand it...
+nlmr <- nls(
+  formula = GrowthAvg ~ s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8, # This is the wrong sort of formula for nls()
+  data = comb_tibble)
