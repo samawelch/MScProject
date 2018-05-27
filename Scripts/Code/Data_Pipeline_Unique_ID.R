@@ -4,6 +4,7 @@
 rm(list=ls())
 
 library(tidyverse)
+library(ggplot2)
 
 vector_stressors <- c("1","2","3","4","5","6","7","8")
 
@@ -77,6 +78,15 @@ plot(mlr)
 # I can't remember how to interpret any of this, but at least I'll have a choice when it comes to working with the real data...
 
 # Non-linear multiple regression - doesn't work because I don't understand it...
-nlmr <- nls(
-  formula = GrowthAvg ~ s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8, # This is the wrong sort of formula for nls()
-  data = comb_tibble)
+# nlmr <- nls(
+#  formula = GrowthAvg ~ s1 + s2 + s3 + s4 + s5 + s6 + s7 + s8, # This is the wrong sort of formula for nls()
+#  data = comb_tibble)
+
+# Boxplot of average growth by stressor
+comb_tibble_tidy <- gather(comb_tibble, Rep, Growth, 10:14) # Gathering the data for a boxplot of all stressors containing s1
+ggplot(
+      subset(comb_tibble_tidy, s1 != FALSE),
+      aes(
+      x = vector_combn,
+      y = Growth
+      )) + geom_boxplot()
