@@ -90,3 +90,6 @@ ggplot(
       x = vector_combn,
       y = Growth
       )) + geom_boxplot()
+
+# Run an ANOVA/ANCOVA?
+anova(mlr)
