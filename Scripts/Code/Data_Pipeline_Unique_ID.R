@@ -26,6 +26,8 @@ vector_combn <- c(vector_combn_one, vector_combn_two, vector_combn_four, vector_
 # Create a tibble of unique combination IDs, presence/absence of stressors and five replicates of growth
 comb_tibble <- tibble(
   vector_combn,
+  species = 0,
+  legacy = 0,
   `s1` = FALSE,
   `s2` = FALSE,
   `s3` = FALSE,
@@ -47,7 +49,7 @@ for (i in 1:107) {
   comb <- comb_tibble[i,1]            # For each combination ID: assign to the variable comb
   for (j in 1:8) {                    # Loop across comb for j = 1:8
     if (grepl(toString(j),comb)) {    # if comb contains the string of j, 
-      comb_tibble[i, j + 1] = TRUE    # change the value in the relevant position of the tibble to 1
+      comb_tibble[i, j + 3] = TRUE    # change the value in the relevant position of the tibble to 1
     }
     j <- j + 1
   }
@@ -56,7 +58,7 @@ for (i in 1:107) {
 
 # Another loop to stick some random data into the growth columns. Can this be done more elegantly with apply?
 for (k in 1:107) {
-  for (l in 10:14){
+  for (l in 12:16){
     comb_tibble[k,l] = runif(1, min=0, max=100)
     l <- l + 1
   }
@@ -65,7 +67,7 @@ for (k in 1:107) {
 
 # Add a means column.
 summary(comb_tibble)
-comb_tibble <- mutate(comb_tibble,GrowthAvg = rowMeans(comb_tibble[,10:14]))
+comb_tibble <- mutate(comb_tibble,GrowthAvg = rowMeans(comb_tibble[,12:16]))
 
 # What I've read online suggests a multiple linear regression or a non-linear multiple regression - so I'm going to try both...
 
@@ -83,7 +85,7 @@ plot(mlr)
 #  data = comb_tibble)
 
 # Boxplot of average growth by stressor
-comb_tibble_tidy <- gather(comb_tibble, Rep, Growth, 10:14) # Gathering the data for a boxplot of all stressors containing s1
+comb_tibble_tidy <- gather(comb_tibble, Rep, Growth, 12:16) # Gathering the data for a boxplot of all stressors containing s1
 ggplot(
       subset(comb_tibble_tidy, s1 != FALSE),
       aes(
