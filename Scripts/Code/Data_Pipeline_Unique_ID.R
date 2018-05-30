@@ -93,7 +93,10 @@ stepAIC(lm2)
 # Make your life easier by automating your X-way interaction formulae
 as.formula(c("growth~",paste("s",1:10, sep="")))
 
-
+# Iterate for each species - do we get the same answers? How would you illustate this?
+# We also want to know if there are groups of stressors that are acting similarly:
+# hyp: synergy between stressors from different functional groups, etc. -  need to lit search this...
+# e.g. negative interactions on growth when they're from the same functional group?
 
 # I can't remember how to interpret any of this, but at least I'll have a choice when it comes to working with the real data...
 
