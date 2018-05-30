@@ -28,14 +28,14 @@ comb_tibble <- tibble(
   vector_combn,
   species = 0,
   legacy = 0,
-  `s1` = FALSE,
-  `s2` = FALSE,
-  `s3` = FALSE,
-  `s4` = FALSE,
-  `s5` = FALSE,
-  `s6` = FALSE,
-  `s7` = FALSE,
-  `s8` = FALSE,
+  `s1` = 0,
+  `s2` = 0,
+  `s3` = 0,
+  `s4` = 0,
+  `s5` = 0,
+  `s6` = 0,
+  `s7` = 0,
+  `s8` = 0,
   `GrowthA` = 0,
   `GrowthB` = 0,
   `GrowthC` = 0,
@@ -49,7 +49,7 @@ for (i in 1:107) {
   comb <- comb_tibble[i,1]            # For each combination ID: assign to the variable comb
   for (j in 1:8) {                    # Loop across comb for j = 1:8
     if (grepl(toString(j),comb)) {    # if comb contains the string of j, 
-      comb_tibble[i, j + 3] = TRUE    # change the value in the relevant position of the tibble to 1
+      comb_tibble[i, j + 3] = 1    # change the value in the relevant position of the tibble to 1
     }
     j <- j + 1
   }
@@ -77,6 +77,24 @@ mlr <- lm(
   data = comb_tibble)
 summary(mlr)
 plot(mlr)
+
+# row sums is an easier way to look at interaction by stressor richness
+plot(comb_tibble$GrowthAvg~rowSums(comb_tibble[,4:11]))
+
+
+lm0=lm(growth~s1+s2+s3)
+lm1=lm(growth~s1+s2+s3+s1:s2+s1:s3+s2:s3)
+lm2=lm(growth~s1+s2+s3+s1:s2+s1:s3+s2:s3+s1:s2:s3)
+
+anova(lm0,lm1,lm2)
+
+stepAIC(lm2)
+
+# Make your life easier by automating your X-way interaction formulae
+as.formula(c("growth~",paste("s",1:10, sep="")))
+
+
+
 # I can't remember how to interpret any of this, but at least I'll have a choice when it comes to working with the real data...
 
 # Non-linear multiple regression - doesn't work because I don't understand it...
@@ -87,7 +105,7 @@ plot(mlr)
 # Boxplot of average growth by stressor
 comb_tibble_tidy <- gather(comb_tibble, Rep, Growth, 12:16) # Gathering the data for a boxplot of all stressors containing s1
 ggplot(
-      subset(comb_tibble_tidy, s1 != FALSE),
+      subset(comb_tibble_tidy, s1 = 1),
       aes(
       x = vector_combn,
       y = Growth
