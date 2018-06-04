@@ -5,23 +5,32 @@ rm(list=ls())
 
 library(tidyverse)
 library(ggplot2)
+library(pwr)
 
 vector_stressors <- c("1","2","3","4","5","6","7","8")
 
 # Generate matrices of every 1-, 2-, 4-, and 8- combination of stressors.
 matrix_combn_eight <- combn(vector_stressors,8)
+matrix_combn_seven <- combn(vector_stressors,7)
+matrix_combn_six <- combn(vector_stressors,6)
+matrix_combn_five <- combn(vector_stressors,5)
 matrix_combn_four <- combn(vector_stressors,4)
+matrix_combn_three <- combn(vector_stressors,3)
 matrix_combn_two <- combn(vector_stressors,2)
 matrix_combn_one <- combn(vector_stressors,1)
 
 # Turn matrices into vectors of strings of combinations
 vector_combn_eight <- apply(matrix_combn_eight,2, paste, collapse="")
+vector_combn_seven <- apply(matrix_combn_seven,2, paste, collapse="")
+vector_combn_six <- apply(matrix_combn_six,2, paste, collapse="")
+vector_combn_five <- apply(matrix_combn_five,2, paste, collapse="")
 vector_combn_four <- apply(matrix_combn_four,2, paste, collapse="")
+vector_combn_three <- apply(matrix_combn_three,2, paste, collapse="")
 vector_combn_two <- apply(matrix_combn_two,2, paste, collapse="")
 vector_combn_one <- apply(matrix_combn_one,2, paste, collapse="")
 
 # Combine them into one vector of length 107
-vector_combn <- c(vector_combn_one, vector_combn_two, vector_combn_four, vector_combn_eight)
+vector_combn <- c(vector_combn_one, vector_combn_two, vector_combn_three, vector_combn_four, vector_combn_five, vector_combn_six, vector_combn_seven, vector_combn_eight)
 
 # Create a tibble of unique combination IDs, presence/absence of stressors and five replicates of growth
 comb_tibble <- tibble(
@@ -45,7 +54,7 @@ comb_tibble <- tibble(
 
 # Loop over all combination IDs and assign stressors as present
 # Yes, I am aware of the inefficiency here - I just don't know how to do it better.
-for (i in 1:107) {
+for (i in 1:255) {
   comb <- comb_tibble[i,1]            # For each combination ID: assign to the variable comb
   for (j in 1:8) {                    # Loop across comb for j = 1:8
     if (grepl(toString(j),comb)) {    # if comb contains the string of j, 
@@ -57,7 +66,7 @@ for (i in 1:107) {
 }
 
 # Another loop to stick some random data into the growth columns. Can this be done more elegantly with apply?
-for (k in 1:107) {
+for (k in 1:255) {
   for (l in 12:16){
     comb_tibble[k,l] = runif(1, min=0, max=100)
     l <- l + 1
@@ -116,3 +125,7 @@ ggplot(
 
 # Run an ANOVA/ANCOVA?
 anova(mlr)
+
+# Power Analysis?
+pwr.anova.test(k = 255, n=4, power = 0.1)
+
