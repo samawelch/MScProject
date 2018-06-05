@@ -1,5 +1,5 @@
 # Sam Welch
-# A script that produces a unique stressor combination ID, fills in a binary matrix based on it, then generates dummy growth data. Boolean version.
+# A script that produces a unique stressor combination ID, fills in a binary matrix based on it, then generates dummy growth data. 
 # 26th May 2018
 rm(list=ls())
 
@@ -128,4 +128,3 @@ anova(mlr)
 
 # Power Analysis?
 pwr.anova.test(k = 255, n=4, power = 0.1)
-
