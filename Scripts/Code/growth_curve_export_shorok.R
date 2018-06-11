@@ -1,24 +1,23 @@
 rm(list=ls())
 
-setwd("~/Dropbox/Experiments/Isolate profiles/Antibiotic screen") #this wd should only contain the growth csv
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/Control_Curves/dummy_wd/") #this wd should only contain the growth csv
 
-window=5 #how many time points to look at at one time
+window= 5#how many time points to look at at one time
 max.running.average=c() # after this calculate the average of all of the window, it takes the max, which is the max OD
 max.slopes=c() #this calculates the slope of the of all of the window, it takes the max, which is the max slope- it wont include any negatives because it takes the max
 well=c() #location well
 plate.dir=c() #plate ID name from the dir
 plate=c() #plate number
-
-for(k in 1:length(dir())){
   
-dd=read.csv(dir()[k],header=T,row.names=1)
-time=seq(from=0,to=ncol(dd)/2,by=0.5) # this is because the reads are every 30 minutes so it takes the number of cols and divides by 2
-time=time[1:ncol(dd)]
+dd = read.csv("Control_curves_cleaned.csv",header=T,row.names=1)
+dd = dd[c(1:4, 13:16, 25:28, 37:40),] # Subset to only wells with contents.
+time = seq(from=0,to=ncol(dd),by=0.5) # edited code to hopefully reflect that reads are every hour for my protocol
+time = time[1:ncol(dd)]
 
-name<-as.character(dir()[k])
+name = as.character(1)
 
-setwd("~/Dropbox/Experiments/Isolate profiles/Graph") #you need to set this to a new wd for your graphs to go into, make sure your graphs dont go into the wd with the csv
-pdf(sprintf('antibiotic.growth_%s.pdf',k),paper='a4r')
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Results/Control_Curves/") #you need to set this to a new wd for your graphs to go into, make sure your graphs dont go into the wd with the csv
+pdf(sprintf('control_curve_%s.pdf', 1),paper='a4r')
 
 for(j in 1:nrow(dd)){
   #making the calculations
@@ -44,14 +43,10 @@ for(j in 1:nrow(dd)){
 
 dev.off()
 #switch back to the dir that contains the csv
-setwd("~/Dropbox/Experiments/Isolate profiles/Antibiotic screen")
-#counter to know how many its done
-print(k/length(dir()))
-
-}
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/Control_Curves/dummy_wd/")
 
 #bind all the data together to make a dataframe
 growth.curve<-cbind(max.running.average,max.slopes, well, plate)
 
 #write the csv file
-write.csv(growth.curve, "growth.curve.csv")
+write.csv(growth.curve, "growth_curve.csv")
