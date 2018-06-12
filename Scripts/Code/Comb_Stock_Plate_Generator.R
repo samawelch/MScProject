@@ -29,7 +29,7 @@ vector_combn_three <- apply(matrix_combn_three,2, paste, collapse="")
 vector_combn_two <- apply(matrix_combn_two,2, paste, collapse="")
 vector_combn_one <- apply(matrix_combn_one,2, paste, collapse="")
 
-# Combine them into one vector of length 107
+# Combine them into one vector of length 255. Sort so that the robot doesn't have to move around too much.
 vector_combn <- c(vector_combn_one, vector_combn_two, vector_combn_three, vector_combn_four, vector_combn_five, vector_combn_six, vector_combn_seven, vector_combn_eight)
 vector_combn <- sort(vector_combn, decreasing = FALSE)
 
@@ -38,27 +38,24 @@ comb_stock_plate_1 = tibble(A = 1:12 * 0, B = 0, C = 0, D = 0, E = 0, F = 0, G =
 comb_stock_plate_2 = comb_stock_plate_1
 comb_stock_plate_3 = comb_stock_plate_2
 
-l = 1
-for (i in 1:3)
+l = 1 # Tracks progress across the stressor vector
+for (i in 1:3) # Loops across plate tibbles
 {
-  for (j in 1:8)
+  for (j in 1:8) # Loops across columns
   {
-    for (k in 1:12)
+    for (k in 1:12) # Loops across rows
     {
-      if (i == 1)
+      if (i == 1) # Nested (else)/if statements to assign combinations to cells
       {
         comb_stock_plate_1[k,j] <- vector_combn[l]
-        print(c(vector_combn[i], "plate 1"))
       }
       else if (i == 2)
       {
         comb_stock_plate_2[k,j] <- vector_combn[l]
-        print(c(vector_combn[i], "plate 2"))
       }
       else if (i == 3)
       {
         comb_stock_plate_3[k,j] <- vector_combn[l]
-        print(c(vector_combn[i], "plate 3"))
       }
       l = l + 1
     }
