@@ -32,7 +32,7 @@ rm(list=ls())
 
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/")
 
-dd=read.csv("sam_plate.csv",header=T)
+dd=read.csv("256comb_8bact_plate.csv",header=T)
 
 #nb randomise here
 #dd.randomise=sample(size=nrow(dd),x=1:nrow(dd),replace=FALSE)
@@ -52,7 +52,6 @@ vol.source=1000
 
 #SAM NEW: volume of each stressor pipetted
 vol.stressor=10
-
 
 #volume required per isolate
 vol.per.isolate=c()
@@ -110,34 +109,40 @@ worklist=c()
 #loop through the i each microcosm
 for(i in 1:nrow(dd)){
 
+  
 	#identify which isolates are in the microcosm
 	sp=which(dd[i,]==1)
 
-	#vol.i = volume of ith microcosm
-	vol.i=vol.stressor
-
-	#loop through each species in the microcosm
-	for(j in 1:length(sp)){
-	
-		#add volume to sp[j] source.volume.tracker
-		source.volume.tracker[sp[j]]=source.volume.tracker[sp[j]]-vol.i
+	# only do the next bit if there are actually stressors going in this well - or else it breaks...
+  if(length(sp) != 0)
+  {
 		
-		#check to see if we have only 10% of the volume remaining; if so, move to next source well and reset the volume tracker
-		if(source.volume.tracker[sp[j]]<=250){
-			source.increment[sp[j]]=source.increment[sp[j]]+1
-			source.volume.tracker[sp[j]]=vol.source-vol.i
-		}
+	  #vol.i = volume of ith microcosm
+	  vol.i=vol.stressor
 
-		worklist=rbind(worklist,c(
-			source.plate[sp.start[sp[j]]+source.increment[sp[j]]],
-			source.rows[sp.start[sp[j]]+source.increment[sp[j]]],
-			source.cols[sp.start[sp[j]]+source.increment[sp[j]]],
-			destination.plate[i],
-			destination.rows[i],
-			destination.cols[i],
-			vol.stressor)
-			)
-	}
+	  #loop through each species in the microcosm
+	  for(j in 1:length(sp)){
+	
+		  #add volume to sp[j] source.volume.tracker
+		  source.volume.tracker[sp[j]]=source.volume.tracker[sp[j]] - vol.i
+		
+		  #check to see if we have only 10% of the volume remaining; if so, move to next source well and reset the volume tracker
+		  if(source.volume.tracker[sp[j]]<=250){
+		  	source.increment[sp[j]]=source.increment[sp[j]]+1
+	  		source.volume.tracker[sp[j]]=vol.source-vol.i
+		  }
+
+		  worklist=rbind(worklist,c(
+		  	source.plate[sp.start[sp[j]]+source.increment[sp[j]]],
+			  source.rows[sp.start[sp[j]]+source.increment[sp[j]]],
+			  source.cols[sp.start[sp[j]]+source.increment[sp[j]]],
+		  	destination.plate[i],
+			  destination.rows[i],
+		  	destination.cols[i],
+			  vol.stressor)
+			  )
+	  }
+  }
 
 if(max(source.increment)>min(reps.sp)){print("WARNING: you have insufficient replication of your source isolates!!")}
 
@@ -162,8 +167,8 @@ write.csv(worklist,"../Results/Robot_Worklists/comb_worklist.csv")
 #total volume in microcosm
 total.vol=100
 
-#extend richness by 72 10s - a total bodge but should fix the media worklist by ensuring that '10' richness wells contain no media
-richness_ext <- c(richness, rep(10, 72))
+#extend richness by ~72 10s - a total bodge but should fix the media worklist by ensuring that '10' richness wells contain no media
+richness_ext <- c(richness, rep(10, length(destination.plate) - length(richness)))
 
 media.rows=destination.rows
 media.cols=destination.cols
