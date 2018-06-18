@@ -30,11 +30,9 @@
 
 rm(list=ls())
 
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/")
 
-dd=read.table("Data/comb_tibble.txt",header=T)
-
-dd=dd[,1:(ncol(dd)-3)]
+dd=read.csv("sam_plate.csv",header=T)
 
 #nb randomise here
 #dd.randomise=sample(size=nrow(dd),x=1:nrow(dd),replace=FALSE)
@@ -52,34 +50,38 @@ n.microcosms=nrow(dd)
 #volume in the source plate
 vol.source=1000
 
+#SAM NEW: volume of each stressor pipetted
+vol.stressor=10
+
+
 #volume required per isolate
 vol.per.isolate=c()
 for(i in 1:n.sp){
-	vol.per.isolate=c(vol.per.isolate,sum((1/richness)*24*10*dd[,i]))
+	vol.per.isolate=c(vol.per.isolate,sum(dd[,i]*vol.stressor))
 	}
 
 #get number of destination plates
-n.dest.plates=nrow(dd)/60 #nb /60 because we're just using the central wells
+n.dest.plates=nrow(dd)/96 #nb /60 because we're just using the central wells
 
 #if number of destination plates is an integer, remove the decimal part and add one
-if(all.equal(nrow(dd)/60,as.integer(nrow(dd)/60))==FALSE){
-n.dest.plates=(as.integer(nrow(dd)/60)+1)}
+
+n.dest.plates=(as.integer(nrow(dd)/96)+1)
 
 #make sure it's an integer
 n.dest.plates=as.integer(n.dest.plates)
 
-#nb using only central wells
-destination.rows=rep(rep(LETTERS[2:7],10),n.dest.plates)
-destination.cols=rep(rep(2:11,each=6),n.dest.plates)
-destination.plate=rep(1:n.dest.plates,each=60)
+#SAM NEW: using all 96 wells, not just central wells
+destination.rows=rep(rep(LETTERS[1:8],12),n.dest.plates)
+destination.cols=rep(rep(1:12,each=8),n.dest.plates)
+destination.plate=rep(1:n.dest.plates,each=96)
 
-#define destination plates using every well of 4 destination plates
+#define source plates using every well of 4 destination plates
 source.rows=rep(rep(LETTERS[1:8],12),4)
 source.cols=rep(rep(1:12,each=8),4)
 source.plate=rep(1:4,each=96)
 
 #reps.sp = number of times the species is replicated in the source plate
-reps.sp=16
+reps.sp=24
 #number of wells of each isolate required in the experiment. Allow 30% extra (so *1.3)
 #reps.sp=as.integer((vol.per.isolate/vol.source)*1.4)+1
 
@@ -113,7 +115,7 @@ for(i in 1:nrow(dd)){
 	sp=which(dd[i,]==1)
 
 	#vol.i = volume of ith microcosm
-	vol.i=(1/richness[i])*24*10
+	vol.i=vol.stressor
 
 	#loop through each species in the microcosm
 	for(j in 1:length(sp)){
@@ -134,7 +136,7 @@ for(i in 1:nrow(dd)){
 			destination.plate[i],
 			destination.rows[i],
 			destination.cols[i],
-			(1/richness[i])*24*10)
+			vol.stressor)
 			)
 	}
 
@@ -145,21 +147,21 @@ if(max(source.increment)>min(reps.sp)){print("WARNING: you have insufficient rep
 colnames(worklist)=c("source.plate","source.row","source.column","destination.plate","destination.row","destination.column","vol.ul")
 worklist=as.data.frame(worklist)
 
+#SAM NEW: what's this?
 tapply(as.numeric(as.matrix(worklist$vol.ul)),INDEX=list(worklist$source.row,worklist$source.column,worklist$source.plate),FUN=function(x){sum(x,na.rm=T)})
 
-write.csv(worklist,"Results/worklist-invasion_expt_15-06-2018.csv")
+write.csv(worklist,"../Results/worklist-invasion_expt_15-06-2018.csv")
 
 #media worklist
 
-outer.rows=c(rep(LETTERS[1],12),rep(LETTERS[2:7],each=2),rep(LETTERS[8],12))
-outer.cols=c(1:12,rep(c(1,12),6),1:12)
-dest.plates=1:n.dest.plates
+#total volume in microcosm
+total.vol=100
 
-media.rows=rep(outer.rows,n.dest.plates)
-media.cols=rep(outer.cols,n.dest.plates)
-media.plates=rep(dest.plates,each=length(outer.rows))
+media.rows=destination.rows
+media.cols=destination.cols
+media.plates=destination.plate
 
-media.worklist=cbind(media.plates,media.rows,media.cols,rep(240,length(media.cols)))
+media.worklist=cbind(media.plates,media.rows,media.cols,total.vol-(richness*vol.stressor))
 colnames(media.worklist)=c("destination.plate","destination.row","destination.column","media.vol.ul")
 write.csv(media.worklist,file="Results/media-worklist-expt_16-05-2018.csv")
 
