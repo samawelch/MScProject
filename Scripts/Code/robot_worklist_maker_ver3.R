@@ -30,9 +30,11 @@
 
 rm(list=ls())
 
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/")
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data")
 
-dd=read.csv("256comb_8bact_plate.csv",header=T)
+dd=read.csv("Robot_Worklists/256comb_8bact_plate.csv",header=T)
+
+library(dplyr)
 
 #nb randomise here
 #dd.randomise=sample(size=nrow(dd),x=1:nrow(dd),replace=FALSE)
@@ -145,7 +147,6 @@ for(i in 1:nrow(dd)){
   }
 
 if(max(source.increment)>min(reps.sp)){print("WARNING: you have insufficient replication of your source isolates!!")}
-
 }
 
 colnames(worklist)=c("source.plate","source.row","source.column","destination.plate","destination.row","destination.column","vol.ul")
@@ -158,7 +159,7 @@ tapply(as.numeric
           INDEX=list(worklist$source.row,
           worklist$source.column,
           worklist$source.plate),
-          FUN=function(x){sum(x,na.rm=T)}) # I have no idea, but right now it doesn't do anything?
+          FUN=function(x){sum(x,na.rm=T)})
 
 write.csv(worklist,"../Results/Robot_Worklists/comb_worklist.csv")
 
@@ -176,7 +177,12 @@ media.plates=destination.plate
 
 media.worklist=cbind(media.plates,media.rows,media.cols,total.vol-(richness_ext*vol.stressor))
 colnames(media.worklist)=c("destination.plate","destination.row","destination.column","media.vol.ul")
+
+# horrible filter to strip out the media volumes from the 32 buffer wells that are currently keeping every set of 3 plates to 1 isolate
+#media.worklist <- as_tibble(media.worklist)
+#media.worklist <- filter(media.worklist, ((row_number() %% 288 == 1 ) || (media.vol.ul = 100))) # this doesn't work properly. I should probably just do it by hand?
+media.worklist <- media.worklist[c(1:256, 289:544, 577:832, 865:1120, 1153:1408, 1441:1696, 1729:1984, 2017:2272),] # the ineglegant solution
+# I don't even understand the maths at this point but I've checked the output and it all looks good to me
+# NOTE: Last well in use on the third plate per isolate is H10
+
 write.csv(media.worklist,file="../Results/Robot_Worklists/media_worklist_comb_exp.csv")
-
-
-
