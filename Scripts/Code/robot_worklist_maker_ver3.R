@@ -166,7 +166,7 @@ write.csv(worklist,"../Results/Robot_Worklists/comb_worklist.csv")
 #media worklist
 
 #total volume in microcosm
-total.vol=100
+total.vol=90
 
 #extend richness by ~72 10s - a total bodge but should fix the media worklist by ensuring that '10' richness wells contain no media
 richness_ext <- c(richness, rep(10, length(destination.plate) - length(richness)))

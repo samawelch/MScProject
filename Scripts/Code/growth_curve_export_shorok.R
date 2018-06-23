@@ -30,7 +30,7 @@ for(j in 1:nrow(dd)){
     average.time=c(average.time,mean(as.numeric(time[i:(i+5)])))
   }
  #makes the graph so you can check if it worked
-  plot(as.numeric(dd[j,])~time,type="l",xlab="",ylab="",axes=F,ylim=range(dd));box()
+  plot(as.numeric(dd[j,])~time,type="l",xlab="",ylab="OD",axes=F,ylim=range(dd));box()
   lines(running.average~average.time,col="red")
   par(new=T)
   plot(slopes~average.time,col="blue",type="l",ylab="",axes=F,ylim=c(-0.2,0.2));box()
