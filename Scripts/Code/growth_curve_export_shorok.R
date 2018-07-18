@@ -10,7 +10,7 @@ plate.dir=c() #plate ID name from the dir
 plate=c() #plate number
   
 dd = read.csv("Control_curves_cleaned.csv",header=T,row.names=1)
-dd = dd[c(1:4, 13:16, 25:28, 37:40),] # Subset to only wells with contents.
+dd = dd[c(1:4, 13:16, 25:28, 37:40, 49:52, 61:64),] # Subset to only wells with contents.
 time = seq(from=0,to=ncol(dd),by=0.5) # edited code to hopefully reflect that reads are every hour for my protocol
 time = time[1:ncol(dd)]
 
