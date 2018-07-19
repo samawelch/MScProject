@@ -3,6 +3,8 @@ library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(growthcurver)
+library(gridBase)
+library(gridExtra)
 
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
@@ -13,6 +15,12 @@ plate_layout <- read.csv("Data/Final_Pipeline/256comb_8bact_plate.csv") %>%
 
 # How many plates are there?
 plate_count = 0 
+
+# Make a vector of isolates
+isolates_vector <- as.vector(unique(plate_layout$Isolate))
+
+# Make a vector of stressors
+stressors_vector <- as.vector(colnames(plate_layout[1:8]))
 
 # Load in plate .CSVs from a seperate folder using a for loop. Make a tibble to contain the data.
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/Final_Pipeline/Read_Plates")
@@ -106,7 +114,114 @@ growthXrichness_auc_e
 dev.off()
 
 # We can also graph the effects of different single stressors on bacteria. For instance:
-KUE4_10_single_stress <- tidy_growth_data %>%
-  filter(Isolate == "KUE4_10") %>%
+isolate_single_stress <- tidy_data %>%
   filter((Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) <= 1) %>%
-  select(-location, -Isolate)
+  select(-location) %>%
+  mutate(Stressor = "None")
+
+# A for loop to turn presence/absence data into a single variable (only works for single stressors). This took a stupidly long time to implement. 
+for (m in 1:nrow(isolate_single_stress))
+{
+  for (n in 1:8)
+  {
+    if (isolate_single_stress[m,n+2] == 1)
+    {
+      isolate_single_stress[m,12] = colnames(isolate_single_stress[,n+2])
+    }
+  }
+}
+
+# Get rid of the presence/absence stressor data
+isolate_single_stress <- isolate_single_stress %>%
+  select(-(3:10))
+
+# for loop across the 8 isolates to produce a 4x2 lattice of graphs
+for (o in 1:8)
+{
+  temp_isolate <- isolates_vector[o]
+  temp_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes(time, OD)) +
+    geom_point(aes(colour = Stressor), size = 1, shape = 16, alpha = 0.5) +
+    theme(legend.position="none") +
+    ylim(0,0.65) +
+    scale_shape_identity() +
+    geom_smooth(aes(colour = Stressor), method = "loess", se = FALSE) +
+    ggtitle(temp_isolate)
+  temp_plot_name <- paste("p", o ,sep = "")
+  assign(temp_plot_name, temp_plot)   
+}
+
+# grab a function that allows shared legends
+# source: https://github.com/tidyverse/ggplot2/wiki/share-a-legend-between-two-ggplot2-graphs
+# credit: baptiste
+grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
+  plots <- list(...)
+  position <- match.arg(position)
+  g <- ggplotGrob(plots[[1]] + 
+                    theme(legend.position = position))$grobs
+  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+  lheight <- sum(legend$height)
+  lwidth <- sum(legend$width)
+  gl <- lapply(plots, function(x) x +
+                 theme(legend.position = "none"))
+  gl <- c(gl, ncol = ncol, nrow = nrow)
+  
+  combined <- switch(position,
+                     "bottom" = arrangeGrob(do.call(arrangeGrob, gl), 
+                                            legend,ncol = 1,
+                                            heights = unit.c(unit(1, "npc") - lheight, lheight)),
+                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                           legend, ncol = 2,
+                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
+  
+  grid.newpage()
+  grid.draw(combined)
+  
+  # return gtable invisibly
+  invisible(combined)
+}
+
+# Arange the plots 4x2 with a shared legend
+pdf("Results/Final_Pipeline/single_stressor_plots.pdf", width = 16, height = 8, onefile = FALSE) # setting onefile to false prevents a blank leading page
+ss_plots <- grid_arrange_shared_legend(p1,p2,p3,p4,p5,p6,p7,p8,ncol = 4, nrow = 2, position = "right")
+dev.off()
+
+# How can we look for additivism vs synergism and antagonism? which is the whole point..
+example_stressor_growth_data <- tidy_growth_data %>%
+  mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
+  select(-Growth_k,-Growth_r,-Growth_n0, -Growth_sigma, -location) %>%
+  filter(Richness <= 2) %>%
+  filter(Isolate == "KUE4_10") # keep life simple for the time being
+
+# Calculate a baseline from controls
+control_baseline <- as.numeric(example_stressor_growth_data %>%
+  filter(Richness == 0) %>%
+  summarise_at("Growth_auc_e",funs(mean)))
+
+# A tibble of single stressors
+single_stressor_growth_data <- example_stressor_growth_data %>%
+  filter(Richness == 1) %>%
+  mutate(Effect_Size = Growth_auc_e - control_baseline) %>%
+  select(Effect_Size) %>%
+  mutate(stressor = as.list((stressors_vector)))
+
+# And binary mixtures
+binary_stressor_growth_data <- example_stressor_growth_data %>%
+  filter(Richness == 2) %>%
+  mutate(Effect_Size = Growth_auc_e - control_baseline) %>%
+  mutate(Summed_Effect = 0)
+
+# Can we for loop through the binary mixtures?
+for (p in 1:nrow(binary_stressor_growth_data))
+{
+  for (q in 1:8)
+  {
+    if (binary_stressor_growth_data[p,q] == 1)
+    {
+      # If a stressor is present, add the relevant effect from single_stressor_growth_data
+      binary_stressor_growth_data[p,13] <- binary_stressor_growth_data[p,13] + single_stressor_growth_data[q,1]
+    }
+  }
+}
+
+interaction_binary_stressor_growth_data <- binary_stressor_growth_data %>%
+  
