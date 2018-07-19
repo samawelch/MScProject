@@ -3,7 +3,6 @@ library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(growthcurver)
-library(knitr)
 
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
@@ -24,12 +23,24 @@ for (k in 1:length(dir()))
   # Make a df for each plate with a numbered name
   temp_plate_name <- paste("plate", k ,sep = "_")
   temp_plate_df <- read.csv(dir()[k])
-  temp_plate_df$time <- as.numeric(substr(temp_plate_df$time, 1, 2))
+  temp_plate_df$time <- as.numeric(substr(temp_plate_df$time, 1, 2)) # turn the reader's odd time format in to something useful
+  temp_plate_width <- 97 # hacky way to get gather on line 42 to work properly
+  # we need to remove the last 32 wells from every third plate. This is complicated because it's plates 9,10,11 & 12...
+  if ((k %% 3) == 0)
+  {
+    temp_plate_df <- temp_plate_df %>%
+      select(-contains("9")) %>%
+      select(-contains("10")) %>%
+      select(-contains("11")) %>%
+      select(-contains("12"))
+    temp_plate_width <- 65 # if it's a third plate it'll have 64 wells (and thus 65 columns including time)
+  }
   assign(temp_plate_name, temp_plate_df)                         # turn our temporary df into a real df with a for-loop-generated name
   
   # let's also make a massive tidy dataset that's better able to store stressor presence/absence and isolate species
+  temp_plate_width <- 
   temp_plate_tidy <- as.tibble(temp_plate_df) %>%
-    gather(well, OD, 2:97) %>%                       # gather the data from wide to tall
+    gather(well, OD, 2:temp_plate_width) %>%                       # gather the data from wide to tall
     mutate(plate = k) %>%                            # add a plate column based on where we are in the for loop
     unite(location, well, plate, sep = ".")          # bring the location naming scheme in line with plate_layout
   tidy_data <- bind_rows(tidy_data, temp_plate_tidy)       # add the temporary data to our massive dataset
@@ -90,12 +101,12 @@ growthXrichness_auc_e <- ggplot(richness_growth_data, aes(Richness, Growth_auc_e
   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
   geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE)
 # We can do some linear modelling later and obtain some idea of the statistical soundness behind our measurements...
-pdf("growthXrichness_auc_e.pdf")
-growthXrichness_auc_e.pdf
+pdf("Results/Final_Pipeline/growthXrichness_auc_e.pdf")
+growthXrichness_auc_e
 dev.off()
 
 # We can also graph the effects of different single stressors on bacteria. For instance:
 KUE4_10_single_stress <- tidy_growth_data %>%
   filter(Isolate == "KUE4_10") %>%
-  filter((Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) == 1) %>%
+  filter((Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) <= 1) %>%
   select(-location, -Isolate)
