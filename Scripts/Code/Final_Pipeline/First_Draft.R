@@ -21,6 +21,8 @@ isolates_vector <- as.vector(unique(plate_layout$Isolate))
 
 # Make a vector of stressors
 stressors_vector <- as.vector(colnames(plate_layout[1:8]))
+# And a colour vector for consistent colouring
+stressor_colours <- c("Copper" = "red3", "Nickel" = "firebrick", "Chloramphenicol" = "plum", "Ampicillin" = "plum4", "Atrazine" = "darkgreen", "Metaldehyde" = "forestgreen", "Tebuconazole" = "steelblue", "Azoxystrobin" = "lightblue3", "None" = "black")
 
 # Load in plate .CSVs from a seperate folder using a for loop. Make a tibble to contain the data.
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/Final_Pipeline/Read_Plates")
@@ -144,8 +146,9 @@ for (o in 1:8)
     theme(legend.position="none") +
     ylim(0,0.65) +
     scale_shape_identity() +
-    geom_smooth(aes(colour = Stressor), method = "loess", se = FALSE) +
-    ggtitle(temp_isolate)
+    geom_smooth(aes(colour = Stressor), method="loess", se = FALSE) +
+    ggtitle(temp_isolate) +
+    scale_colour_manual(values = stressor_colours)
   temp_plot_name <- paste("p", o ,sep = "")
   assign(temp_plot_name, temp_plot)   
 }
@@ -208,20 +211,57 @@ single_stressor_growth_data <- example_stressor_growth_data %>%
 binary_stressor_growth_data <- example_stressor_growth_data %>%
   filter(Richness == 2) %>%
   mutate(Effect_Size = Growth_auc_e - control_baseline) %>%
-  mutate(Summed_Effect = 0)
+  mutate(Summed_Effect = 0) %>%
+  mutate(S1 = "") %>%
+  mutate(S2 = "")
 
 # Can we for loop through the binary mixtures?
 for (p in 1:nrow(binary_stressor_growth_data))
 {
+  binary_counter = 1
   for (q in 1:8)
   {
     if (binary_stressor_growth_data[p,q] == 1)
     {
       # If a stressor is present, add the relevant effect from single_stressor_growth_data
       binary_stressor_growth_data[p,13] <- binary_stressor_growth_data[p,13] + single_stressor_growth_data[q,1]
+      # And assign it to either S1 or S2 depending on if it's the first or second stressor
+      if (binary_counter == 1)
+      {
+        binary_stressor_growth_data[p,14] <- colnames(binary_stressor_growth_data[q])
+        binary_counter = binary_counter + 1
+      }
+      else
+      {
+        binary_stressor_growth_data[p,15] <- colnames(binary_stressor_growth_data[q])
+      }
     }
   }
 }
 
 interaction_binary_stressor_growth_data <- binary_stressor_growth_data %>%
-  
+  mutate(delta_growth = Effect_Size - Summed_Effect) %>%
+  mutate(interaction = "") %>%
+  select(Effect_Size, Summed_Effect, S1, S2, delta_growth, interaction)
+
+# Loop across the rows of interaction_binary_stressor_growth_data, assigning interaction categories by the direction and magnitude of delta_growth
+for (r in 1:nrow(interaction_binary_stressor_growth_data))
+{
+  if (interaction_binary_stressor_growth_data[r,1] >interaction_binary_stressor_growth_data[r,2])
+  {
+    interaction_binary_stressor_growth_data[r,6] <- "Synergistic"
+  }
+  else if (interaction_binary_stressor_growth_data[r,1] < interaction_binary_stressor_growth_data[r,2])
+  {
+    interaction_binary_stressor_growth_data[r,6] <- "Antagonistic"
+  }
+  else
+  {
+    interaction_binary_stressor_growth_data[r,6] <- "Additive"
+  }
+}
+
+ggplot(interaction_binary_stressor_growth_data, aes(x = S1, y = S2, size = delta_growth, colour = interaction)) +
+  geom_point()
+
+
