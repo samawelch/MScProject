@@ -25,14 +25,16 @@ stressors_vector <- as.vector(colnames(plate_layout[1:8]))
 stressor_colours <- c("Copper" = "red3", "Nickel" = "firebrick", "Chloramphenicol" = "plum", "Ampicillin" = "plum4", "Atrazine" = "darkgreen", "Metaldehyde" = "forestgreen", "Tebuconazole" = "steelblue", "Azoxystrobin" = "lightblue3", "None" = "black")
 
 # Load in plate .CSVs from a seperate folder using a for loop. Make a tibble to contain the data.
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/Final_Pipeline/Read_Plates")
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/Final_Pipeline/Run_2/csvs")
+# Make sure your plates are correctly ordered in the wd. You will need leading 0s on your plate numbers for the below loop to read them in order.
 tidy_data <- tibble()
 
 for (k in 1:length(dir()))
 {
   # Make a df for each plate with a numbered name
-  temp_plate_name <- paste("plate", k ,sep = "_")
+  temp_plate_name <- paste("plate", str_pad(k, 2, pad = "0") ,sep = "_") # pad plate names with leading 0s so R orders them properly
   temp_plate_df <- read.csv(dir()[k])
+  colnames(temp_plate_df)[1] <- "time" # fix a pesky capitalisation mismatch
   temp_plate_df$time <- as.numeric(substr(temp_plate_df$time, 1, 2)) # turn the reader's odd time format in to something useful
   temp_plate_width <- 97 # hacky way to get gather on line 42 to work properly
   # we need to remove the last 32 wells from every third plate. This is complicated because it's plates 9,10,11 & 12...
@@ -81,6 +83,7 @@ for (l in 1:wells_count)
   temp_data_growth_1 <- SummarizeGrowth(temp_data_growth_0$time, temp_data_growth_0$OD)                                # Generate a logistic model for this well's growth
   temp_data_growth_2 <- bind_cols(location = temp_data_growth_0[[1,2]],
                                   Growth_auc_e = temp_data_growth_1$vals$auc_e,
+                                  Growth_auc_l = temp_data_growth_1$vals$auc_l,
                                   Growth_k = temp_data_growth_1$vals$k,
                                   Growth_r = temp_data_growth_1$vals$r,
                                   Growth_n0 = temp_data_growth_1$vals$n0,
@@ -102,17 +105,28 @@ for (l in 1:wells_count)
 # First things first: transmute stressor presence/absence to a single richness column
 richness_growth_data <- tidy_growth_data %>%
   mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
-  select(location, Richness, Growth_auc_e, Isolate)
+  select(location, Richness, Isolate, Growth_auc_e, Growth_auc_l)
 
 # And graph growth against richness, by species of bacteria
 growthXrichness_auc_e <- ggplot(richness_growth_data, aes(Richness, Growth_auc_e)) +
   geom_point(aes(colour = Isolate, shape = 1)) +
   scale_shape_identity() +
   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
-  geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE)
+  geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
+  ggtitle("auc_e")
+
+# Same for auc_l
+growthXrichness_auc_l <- ggplot(richness_growth_data, aes(Richness, Growth_auc_l)) +
+  geom_point(aes(colour = Isolate, shape = 1)) +
+  scale_shape_identity() +
+  geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
+  geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
+  ggtitle("auc_l")
+
 # We can do some linear modelling later and obtain some idea of the statistical soundness behind our measurements...
-pdf("Results/Final_Pipeline/growthXrichness_auc_e.pdf")
+pdf("Results/Final_Pipeline/growthXrichness.pdf")
 growthXrichness_auc_e
+growthXrichness_auc_l
 dev.off()
 
 # We can also graph the effects of different single stressors on bacteria. For instance:
@@ -191,7 +205,7 @@ dev.off()
 # How can we look for additivism vs synergism and antagonism? which is the whole point..
 example_stressor_growth_data <- tidy_growth_data %>%
   mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
-  select(-Growth_k,-Growth_r,-Growth_n0, -Growth_sigma, -location) %>%
+  select(-location, -Growth_k, -Growth_r, -Growth_n0, -Growth_sigma, -Growth_auc_l) %>%
   filter(Richness <= 2) %>%
   filter(Isolate == "KUE4_10") # keep life simple for the time being
 
@@ -261,7 +275,17 @@ for (r in 1:nrow(interaction_binary_stressor_growth_data))
   }
 }
 
-ggplot(interaction_binary_stressor_growth_data, aes(x = S1, y = S2, size = delta_growth, colour = interaction)) +
-  geom_point()
+# Make sure our stressor levels are ordered properly
+interaction_binary_stressor_growth_data$S1 <- factor(interaction_binary_stressor_growth_data$S1, levels = stressors_vector)
+interaction_binary_stressor_growth_data$S2 <- factor(interaction_binary_stressor_growth_data$S2, levels = stressors_vector)
+
+# And make a bubble plot of interaction and effect size against a combination matrix
+pdf("Results/Final_Pipeline/KUE4_10_interactions.pdf", width = 8, height = 8) 
+KUE4_10_interaction_bubble <- ggplot(interaction_binary_stressor_growth_data, aes(x = S1, y = S2, size = abs(delta_growth), colour = interaction)) +
+  geom_point()  +
+  geom_text(aes(label = round(delta_growth, digits = 2), size = 1), colour = "black", show.legend = FALSE) +
+  scale_size_area(max_size = 20)
+KUE4_10_interaction_bubble
+dev.off()
 
 
