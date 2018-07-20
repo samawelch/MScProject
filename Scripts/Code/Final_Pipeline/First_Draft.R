@@ -18,6 +18,8 @@ plate_count = 0
 
 # Make a vector of isolates
 isolates_vector <- as.vector(unique(plate_layout$Isolate))
+isolates_species_vector <- c("KUE4_10 - S. acidaminiphila", "NUE1_1 - B. muralis", "LUF4_5 - L. rhizovicinus", "NUF1_3 - V. paradoxus", "KUB5_13 - V. paradoxus", "KUE4_4 - B. muralis", "E. coli OP50", "Nash's Field Soil Community")
+  
 
 # Make a vector of stressors
 stressors_vector <- as.vector(colnames(plate_layout[1:8]))
@@ -69,7 +71,7 @@ glimpse(tidy_data)
 # How many wells do we have?
 wells_count <- length(unique(tidy_data$location)) # this should be 6240
 # How many time points do we have?
-timepoints_count <- length(unique(tidy_data$time)) + 1 # should be 49 (but is 54 here); needs a +1 as it seems to ignore 0?
+timepoints_count <- length(unique(tidy_data$time))  # should be 49 
 # How many plates
 plate_count
 
@@ -100,6 +102,7 @@ for (l in 1:wells_count)
   tidy_growth_data <- bind_rows(tidy_growth_data, temp_data_growth_2)
   # append the area under the empirical curve (auc_e, etc. to tidy_growth_data)
 }
+# TODO: Add max growth and max slope here, graph against richness, rate of death (?)
 
 # Let's graph a bunch of growth parameters against stressor richness 
 # First things first: transmute stressor presence/absence to a single richness column
@@ -135,7 +138,7 @@ isolate_single_stress <- tidy_data %>%
   select(-location) %>%
   mutate(Stressor = "None")
 
-# A for loop to turn presence/absence data into a single variable (only works for single stressors). This took a stupidly long time to implement. 
+# A for loop to turn presence/absence data into a single variable (only works for single stressors). I am not proud of how long this took to implement.
 for (m in 1:nrow(isolate_single_stress))
 {
   for (n in 1:8)
@@ -152,6 +155,7 @@ isolate_single_stress <- isolate_single_stress %>%
   select(-(3:10))
 
 # for loop across the 8 isolates to produce a 4x2 lattice of graphs
+# TODO: add control baselines
 for (o in 1:8)
 {
   temp_isolate <- isolates_vector[o]
@@ -161,8 +165,8 @@ for (o in 1:8)
     ylim(0,0.65) +
     scale_shape_identity() +
     geom_smooth(aes(colour = Stressor), method="loess", se = FALSE) +
-    ggtitle(temp_isolate) +
-    scale_colour_manual(values = stressor_colours)
+    ggtitle(isolates_species_vector[o]) 
+    #scale_colour_manual(values = stressor_colours)
   temp_plot_name <- paste("p", o ,sep = "")
   assign(temp_plot_name, temp_plot)   
 }
@@ -203,89 +207,106 @@ ss_plots <- grid_arrange_shared_legend(p1,p2,p3,p4,p5,p6,p7,p8,ncol = 4, nrow = 
 dev.off()
 
 # How can we look for additivism vs synergism and antagonism? which is the whole point..
-example_stressor_growth_data <- tidy_growth_data %>%
-  mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
-  select(-location, -Growth_k, -Growth_r, -Growth_n0, -Growth_sigma, -Growth_auc_l) %>%
-  filter(Richness <= 2) %>%
-  filter(Isolate == "KUE4_10") # keep life simple for the time being
-
-# Calculate a baseline from controls
-control_baseline <- as.numeric(example_stressor_growth_data %>%
-  filter(Richness == 0) %>%
-  summarise_at("Growth_auc_e",funs(mean)))
-
-# A tibble of single stressors
-single_stressor_growth_data <- example_stressor_growth_data %>%
-  filter(Richness == 1) %>%
-  mutate(Effect_Size = Growth_auc_e - control_baseline) %>%
-  select(Effect_Size) %>%
-  mutate(stressor = as.list((stressors_vector)))
-
-# And binary mixtures
-binary_stressor_growth_data <- example_stressor_growth_data %>%
-  filter(Richness == 2) %>%
-  mutate(Effect_Size = Growth_auc_e - control_baseline) %>%
-  mutate(Summed_Effect = 0) %>%
-  mutate(S1 = "") %>%
-  mutate(S2 = "")
-
-# Can we for loop through the binary mixtures?
-for (p in 1:nrow(binary_stressor_growth_data))
+# And generalise the specific implementation with a massive for loop
+for (s in 1:8)
 {
-  binary_counter = 1
-  for (q in 1:8)
+  example_stressor_growth_data <- tidy_growth_data %>%
+    mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
+    select(-location, -Growth_k, -Growth_r, -Growth_n0, -Growth_sigma, -Growth_auc_l) %>%
+    filter(Richness <= 2) %>%
+    filter(Isolate == isolates_vector[s]) # keep life simple for the time being
+  
+  # Calculate a baseline from controls
+  control_baseline <- as.numeric(example_stressor_growth_data %>%
+                                   filter(Richness == 0) %>%
+                                   summarise_at("Growth_auc_e",funs(mean)))
+  
+  # A tibble of single stressors
+  single_stressor_growth_data <- example_stressor_growth_data %>%
+    filter(Richness == 1) %>%
+    mutate(Effect_Size = Growth_auc_e - control_baseline) %>%
+    select(Effect_Size) %>%
+    mutate(stressor = as.list((stressors_vector)))
+  
+  # And binary mixtures
+  binary_stressor_growth_data <- example_stressor_growth_data %>%
+    filter(Richness == 2) %>%
+    mutate(Effect_Size = Growth_auc_e - control_baseline) %>%
+    mutate(Summed_Effect = 0) %>%
+    mutate(S1 = "") %>%
+    mutate(S2 = "")
+  
+  # Can we for loop through the binary mixtures?
+  for (p in 1:nrow(binary_stressor_growth_data))
   {
-    if (binary_stressor_growth_data[p,q] == 1)
+    binary_counter = 1
+    for (q in 1:8)
     {
-      # If a stressor is present, add the relevant effect from single_stressor_growth_data
-      binary_stressor_growth_data[p,13] <- binary_stressor_growth_data[p,13] + single_stressor_growth_data[q,1]
-      # And assign it to either S1 or S2 depending on if it's the first or second stressor
-      if (binary_counter == 1)
+      if (binary_stressor_growth_data[p,q] == 1)
       {
-        binary_stressor_growth_data[p,14] <- colnames(binary_stressor_growth_data[q])
-        binary_counter = binary_counter + 1
-      }
-      else
-      {
-        binary_stressor_growth_data[p,15] <- colnames(binary_stressor_growth_data[q])
+        # If a stressor is present, add the relevant effect from single_stressor_growth_data
+        binary_stressor_growth_data[p,13] <- binary_stressor_growth_data[p,13] + single_stressor_growth_data[q,1]
+        # And assign it to either S1 or S2 depending on if it's the first or second stressor
+        if (binary_counter == 1)
+        {
+          binary_stressor_growth_data[p,14] <- colnames(binary_stressor_growth_data[q])
+          binary_counter = binary_counter + 1
+        }
+        else
+        {
+          binary_stressor_growth_data[p,15] <- colnames(binary_stressor_growth_data[q])
+        }
       }
     }
   }
+  
+  interaction_binary_stressor_growth_data <- binary_stressor_growth_data %>%
+    mutate(delta_growth = Effect_Size - Summed_Effect) %>%
+    mutate(interaction = "") %>%
+    select(Effect_Size, Summed_Effect, S1, S2, delta_growth, interaction)
+  
+  # Loop across the rows of interaction_binary_stressor_growth_data, assigning interaction categories by the direction and magnitude of delta_growth
+  for (r in 1:nrow(interaction_binary_stressor_growth_data))
+  {
+    if (interaction_binary_stressor_growth_data[r,1] >interaction_binary_stressor_growth_data[r,2])
+    {
+      interaction_binary_stressor_growth_data[r,6] <- "Synergistic"
+    }
+    else if (interaction_binary_stressor_growth_data[r,1] < interaction_binary_stressor_growth_data[r,2])
+    {
+      interaction_binary_stressor_growth_data[r,6] <- "Antagonistic"
+    }
+    else
+    {
+      interaction_binary_stressor_growth_data[r,6] <- "Additive"
+    }
+  }
+  
+  # Make sure our stressor levels are ordered properly
+  interaction_binary_stressor_growth_data$S1 <- factor(interaction_binary_stressor_growth_data$S1, levels = stressors_vector)
+  interaction_binary_stressor_growth_data$S2 <- fct_rev(factor(interaction_binary_stressor_growth_data$S2, levels = stressors_vector))
+  
+  # And generate our plots
+  temp_plot <- ggplot(interaction_binary_stressor_growth_data, aes(x = S1, y = S2, size = abs(delta_growth), colour = interaction)) +
+    geom_point()  +
+    geom_text(aes(label = round(delta_growth, digits = 2), size = 1), colour = "black", show.legend = FALSE) +
+    scale_size_area(max_size = 10) +
+    ggtitle(isolates_species_vector[s]) +
+    theme(axis.title.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.title.y=element_blank(),
+          axis.ticks.y=element_blank()) +
+    scale_x_discrete(labels = abbreviate) +
+    scale_y_discrete(labels = abbreviate)
+
+  temp_plot_name <- paste("bubble", s ,sep = "")
+  assign(temp_plot_name, temp_plot)
 }
 
-interaction_binary_stressor_growth_data <- binary_stressor_growth_data %>%
-  mutate(delta_growth = Effect_Size - Summed_Effect) %>%
-  mutate(interaction = "") %>%
-  select(Effect_Size, Summed_Effect, S1, S2, delta_growth, interaction)
 
-# Loop across the rows of interaction_binary_stressor_growth_data, assigning interaction categories by the direction and magnitude of delta_growth
-for (r in 1:nrow(interaction_binary_stressor_growth_data))
-{
-  if (interaction_binary_stressor_growth_data[r,1] >interaction_binary_stressor_growth_data[r,2])
-  {
-    interaction_binary_stressor_growth_data[r,6] <- "Synergistic"
-  }
-  else if (interaction_binary_stressor_growth_data[r,1] < interaction_binary_stressor_growth_data[r,2])
-  {
-    interaction_binary_stressor_growth_data[r,6] <- "Antagonistic"
-  }
-  else
-  {
-    interaction_binary_stressor_growth_data[r,6] <- "Additive"
-  }
-}
-
-# Make sure our stressor levels are ordered properly
-interaction_binary_stressor_growth_data$S1 <- factor(interaction_binary_stressor_growth_data$S1, levels = stressors_vector)
-interaction_binary_stressor_growth_data$S2 <- factor(interaction_binary_stressor_growth_data$S2, levels = stressors_vector)
-
-# And make a bubble plot of interaction and effect size against a combination matrix
-pdf("Results/Final_Pipeline/KUE4_10_interactions.pdf", width = 8, height = 8) 
-KUE4_10_interaction_bubble <- ggplot(interaction_binary_stressor_growth_data, aes(x = S1, y = S2, size = abs(delta_growth), colour = interaction)) +
-  geom_point()  +
-  geom_text(aes(label = round(delta_growth, digits = 2), size = 1), colour = "black", show.legend = FALSE) +
-  scale_size_area(max_size = 20)
-KUE4_10_interaction_bubble
+# Print bubble1 to bubble8 in a grid with a shared legend
+pdf("Results/Final_Pipeline/bubble_interactions.pdf", width = 16, height = 8) 
+ss_plots <- grid_arrange_shared_legend(bubble1, bubble2, bubble3, bubble4, bubble5, bubble6, bubble7, bubble8, ncol = 4, nrow = 2)
 dev.off()
 
 
