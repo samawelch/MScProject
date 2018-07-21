@@ -16,11 +16,13 @@ plate_layout <- read.csv("Data/Final_Pipeline/256comb_8bact_plate.csv") %>%
 # How many plates are there?
 plate_count = 0 
 
+# How many of the growth curves are bad or questionable fits?
+bad_fit_count = 0 
+
 # Make a vector of isolates
 isolates_vector <- as.vector(unique(plate_layout$Isolate))
 isolates_species_vector <- c("KUE4_10 - S. acidaminiphila", "NUE1_1 - B. muralis", "LUF4_5 - L. rhizovicinus", "NUF1_3 - V. paradoxus", "KUB5_13 - V. paradoxus", "KUE4_4 - B. muralis", "E. coli OP50", "Nash's Field Soil Community")
   
-
 # Make a vector of stressors
 stressors_vector <- as.vector(colnames(plate_layout[1:8]))
 # And a colour vector for consistent colouring
@@ -75,6 +77,8 @@ timepoints_count <- length(unique(tidy_data$time))  # should be 49
 # How many plates
 plate_count
 
+# Let's represent all the growth curves of all the wells on all the plates!
+
 # Can we just calculate a general growth stat for all the wells, keeping stressor and isolate data
 tidy_growth_data <- tidy_data[0,] %>%
   select(-time, -OD)
@@ -86,10 +90,11 @@ for (l in 1:wells_count)
   temp_data_growth_2 <- bind_cols(location = temp_data_growth_0[[1,2]],
                                   Growth_auc_e = temp_data_growth_1$vals$auc_e,
                                   Growth_auc_l = temp_data_growth_1$vals$auc_l,
-                                  Growth_k = temp_data_growth_1$vals$k,
+                                  Growth_k = temp_data_growth_1$vals$k, # TODO: Carrying capacity == max growth?
                                   Growth_r = temp_data_growth_1$vals$r,
                                   Growth_n0 = temp_data_growth_1$vals$n0,
                                   Growth_sigma = temp_data_growth_1$vals$sigma,
+                                  Fit_notes = temp_data_growth_1$vals$note,
                                   Copper = temp_data_growth_0[[1,4]],
                                   Nickel = temp_data_growth_0[[1,5]],
                                   Chloramphenicol = temp_data_growth_0[[1,6]],
@@ -101,14 +106,23 @@ for (l in 1:wells_count)
                                   Isolate = temp_data_growth_0[[1,12]])
   tidy_growth_data <- bind_rows(tidy_growth_data, temp_data_growth_2)
   # append the area under the empirical curve (auc_e, etc. to tidy_growth_data)
+  # count bad fits 
+  if (temp_data_growth_1$vals$note != "")
+  {
+    bad_fit_count = bad_fit_count + 1
+  }
 }
 # TODO: Add max growth and max slope here, graph against richness, rate of death (?)
+
+# Just to give an idea of how goo the fits are...
+cat("bad fits: ", bad_fit_count)
+cat("of total wells: ", wells_count)
 
 # Let's graph a bunch of growth parameters against stressor richness 
 # First things first: transmute stressor presence/absence to a single richness column
 richness_growth_data <- tidy_growth_data %>%
   mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
-  select(location, Richness, Isolate, Growth_auc_e, Growth_auc_l)
+  select(location, Richness, Isolate, Growth_auc_e, Growth_auc_l, Growth_k)
 
 # And graph growth against richness, by species of bacteria
 growthXrichness_auc_e <- ggplot(richness_growth_data, aes(Richness, Growth_auc_e)) +
@@ -126,10 +140,20 @@ growthXrichness_auc_l <- ggplot(richness_growth_data, aes(Richness, Growth_auc_l
   geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
   ggtitle("auc_l")
 
+# Same for k (max growth?)
+growthXrichness_k <- ggplot(richness_growth_data, aes(Richness, Growth_k)) +
+  geom_point(aes(colour = Isolate, shape = 1)) +
+  scale_shape_identity() +
+  geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
+  geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
+  ylim(0, 3E3) + # TODO: What's going on here? More of the Ks = 0
+  ggtitle("carrying capacity")
+
 # We can do some linear modelling later and obtain some idea of the statistical soundness behind our measurements...
 pdf("Results/Final_Pipeline/growthXrichness.pdf")
 growthXrichness_auc_e
 growthXrichness_auc_l
+growthXrichness_k
 dev.off()
 
 # We can also graph the effects of different single stressors on bacteria. For instance:
