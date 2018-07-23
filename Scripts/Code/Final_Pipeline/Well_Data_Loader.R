@@ -27,6 +27,7 @@ isolates_species_vector <- c("KUE4_10 - S. acidaminiphila", "NUE1_1 - B. muralis
   
 # Make a vector of stressors
 stressors_vector <- as.vector(colnames(plate_layout[1:8]))
+stressors_vector_short <- abbreviate(stressors_vector, minlength = 2)
 # And a colour vector for consistent colouring
 stressor_colours <- c("Copper" = "red3", "Nickel" = "firebrick", "Chloramphenicol" = "plum", "Ampicillin" = "plum4", "Atrazine" = "darkgreen", "Metaldehyde" = "forestgreen", "Tebuconazole" = "steelblue", "Azoxystrobin" = "lightblue3", "None" = "black")
 

@@ -1,17 +1,16 @@
 # Modifies tidy_data to produce isolate_single_stress, which is limited to growth data by isolate by stressor. Prints to pdf.
-# Requires Well_Data_Loader.R, Growth_Curve_Loop.R, and grid_arrange_shared_legend.R
+# Requires Well_Data_Loader.R, and Growth_Curve_Loop.R
 # TODO: Save growth curve models with well data for use in future graphics
 # TODO: Implement rendering growth curve graphics for all wells.
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
+
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(growthcurver)
 library(gridBase)
 library(gridExtra)
-source('grid_arrange_shared_legend.R')
-
-
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
+library(ggpubr)
 
 # We can also graph the effects of different single stressors on bacteria. For instance:
 isolate_single_stress <- tidy_data %>%
@@ -46,13 +45,19 @@ for (o in 1:8)
     ylim(0,0.65) +
     scale_shape_identity() +
     geom_smooth(aes(colour = Stressor), method="loess", se = FALSE) +
-    ggtitle(isolates_species_vector[o]) 
+    ggtitle(isolates_species_vector[o]) +
+    theme(axis.title.x=element_blank(),
+          axis.title.y=element_blank()) +
+    # Add a control line
+    geom_hline(yintercept = 0.05, colour = "grey")
   #scale_colour_manual(values = stressor_colours)
   temp_plot_name <- paste("p", o ,sep = "")
   assign(temp_plot_name, temp_plot)   
 }
 
 # Arange the plots 4x2 with a shared legend
+ss_plots <- ggarrange(p1,p2,p3,p4,p5,p6,p7,p8,ncol = 4, nrow = 2, common.legend = TRUE, legend = "right")
+# Print to PDF
 pdf("Results/Final_Pipeline/single_stressor_plots.pdf", width = 16, height = 8, onefile = FALSE) # setting onefile to false prevents a blank leading page
-ss_plots <- grid_arrange_shared_legend(p1,p2,p3,p4,p5,p6,p7,p8,ncol = 4, nrow = 2, position = "right")
+ss_plots
 dev.off()

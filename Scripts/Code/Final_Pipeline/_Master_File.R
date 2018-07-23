@@ -2,6 +2,8 @@
 # No, because:
 # a) I can't get source to work properly
 # b) Apparently it's a bad idea? I'm not really clear on why.
+# TODO: What's the difference between require and library
+
 rm(list=ls())
 library(dplyr)
 library(tidyverse)
@@ -16,10 +18,12 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 ### DATA MANIPULATION ###
 #########################
 
+# TODO: None of this currently works. I don't know why...
+
 # Load well data from source .CSVs
 source("Well_Data_Loader.R")
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
-# Make a tibble of growth curve parameters per well
+# Make a tibble of growth curve parameters per well. Currently also plots all the growth curves from plate 1, 2 and 3. Very slow due to a reliance on long for loops.
 source("Growth_Curve_Loop.R")
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
 
