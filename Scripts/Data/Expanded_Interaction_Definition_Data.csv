@@ -1,0 +1,25 @@
+Label,Interaction,Value,Example
+CT,Control,35,1
+A,A,25,1
+B,B,20,1
+A + B,Additive,10,1
+A + B,+ Synergy,37,1
+A + B,- Synergy,5,1
+A + B,+ Antagonism,0,1
+A + B,- Antagonism,20,1
+CT,Control,25,2
+A,A,30,2
+B,B,10,2
+A + B,Additive,15,2
+A + B,+ Synergy,35,2
+A + B,- Synergy,5,2
+A + B,+ Antagonism,15,2
+A + B,- Antagonism,20,2
+CT,Control,5,3
+A,A,10,3
+B,B,15,3
+A + B,Additive,20,3
+A + B,+ Synergy,30,3
+A + B,- Synergy,5,3
+A + B,+ Antagonism,10,3
+A + B,- Antagonism,0,3

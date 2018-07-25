@@ -10,16 +10,6 @@ library(gridExtra)
 library(cowplot)
 library(growthmodels)
 
-# lm(formula = as.matrix(tidy_growth_data$Growth_auc_e) ~ 
-#   as.matrix(tidy_growth_data$Copper) ~ 
-#   as.matrix(tidy_growth_data$Nickel) ~ 
-#   as.matrix(tidy_growth_data$Chloramphenicol) ~ 
-#   as.matrix(tidy_growth_data$Ampicillin) ~ 
-#   as.matrix(tidy_growth_data$Metaldehyde) ~ 
-#   as.matrix(tidy_growth_data$Atrazine) ~ 
-#   as.matrix(tidy_growth_data$Tebuconazole),
-#   data = tidy_growth_data)
-
 ss_mlr <- lm(formula = Growth_auc_e ~ Copper + Nickel + Chloramphenicol + Ampicillin + Metaldehyde + Atrazine + Tebuconazole, data = tidy_growth_data)
 
 # Make a list of 2-stressor combinations we can plug into a linear model

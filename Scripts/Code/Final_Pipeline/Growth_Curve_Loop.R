@@ -1,14 +1,14 @@
 # Loops across tidy_data from Well_Data_Loader.R to produce tidy_growth_data, which contains various growth metrics against stressor and isolate data.
-# TODO: Save growth curve models with well data for use in future graphics
 # TODO: Implement rendering growth curve graphics for all wells.
 # TODO: OPTIMISE, OPTIMISE, OPTIMISE
+
 library(dplyr)
-library(tidyverse)
+library(tibble)
+library(tidyr)
 library(ggplot2)
 library(growthcurver)
 library(gridBase)
 library(gridExtra)
-library(cowplot)
 library(growthmodels)
 
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
@@ -17,10 +17,15 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 well_curve_plot_vector <- vector("list", length = 2144)
 
 # When do we want to cut off growth data. Logistic curves don't fit well on parabolas. 
-time_cutoff <- 50
+time_cutoff <- 28
+# Every how many hours do we want to take a reading?
+read_rate <- 4
 
 # Not actually a list, despite its name. TODO: Find a more graceful solution.
 temp_well_stressor_list <- 0
+
+# Some idiot forgot to reset the bad fit count to 0 at the start of the script...
+bad_fit_count <- 0
 
 # Can we just calculate a general growth stat for all the wells, keeping stressor and isolate data
 tidy_growth_data <- tidy_data[0,] %>%
@@ -28,10 +33,12 @@ tidy_growth_data <- tidy_data[0,] %>%
 # We can use a for loop to calculate empirical area under the curve (auc_e) (for example) for every well
 for (l in 1:wells_count)
 {
-  temp_data_growth_0 <- tidy_data[((l-1) * timepoints_count + 1):(l * timepoints_count),]                             # Turn every timepoints_count measurements into a single df
+  temp_data_growth_0 <- tidy_data[((l-1) * timepoints_count + 1):(l * timepoints_count),]      # Turn every timepoints_count measurements into a single df
   temp_data_growth_0 <- filter(temp_data_growth_0, time <= time_cutoff)
-  temp_data_growth_1 <- SummarizeGrowth(temp_data_growth_0$time, temp_data_growth_0$OD)                                # Generate a logistic model for this well's growth
-  temp_data_growth_2 <- bind_cols(location = temp_data_growth_0[[1,2]],
+  temp_data_growth_0 <- filter(temp_data_growth_0, (time %% read_rate) == 0)                   # Filter your data set down to readings ever n hours                      
+  temp_data_growth_1 <- SummarizeGrowth(temp_data_growth_0$time, temp_data_growth_0$OD)        # Generate a logistic model for this well's growth
+  temp_data_growth_2 <- bind_cols(location = temp_data_growth_0$location[[1]],
+                                  Run = temp_data_growth_0$Run[[1]],
                                   Growth_auc_e = temp_data_growth_1$vals$auc_e,
                                   Growth_auc_l = temp_data_growth_1$vals$auc_l,
                                   Growth_k = temp_data_growth_1$vals$k, # TODO: Change coordinates to colnames.
@@ -39,15 +46,15 @@ for (l in 1:wells_count)
                                   Growth_n0 = temp_data_growth_1$vals$n0,
                                   Growth_sigma = temp_data_growth_1$vals$sigma,
                                   Fit_notes = temp_data_growth_1$vals$note,
-                                  Copper = temp_data_growth_0[[1,4]],
-                                  Nickel = temp_data_growth_0[[1,5]],
-                                  Chloramphenicol = temp_data_growth_0[[1,6]],
-                                  Ampicillin = temp_data_growth_0[[1,7]],
-                                  Metaldehyde = temp_data_growth_0[[1,8]],
-                                  Atrazine = temp_data_growth_0[[1,9]],
-                                  Tebuconazole = temp_data_growth_0[[1,10]],
-                                  Azoxystrobin = temp_data_growth_0[[1,11]],
-                                  Isolate = temp_data_growth_0[[1,12]])
+                                  Copper = temp_data_growth_0$Copper[[1]],
+                                  Nickel = temp_data_growth_0$Nickel[[1]],
+                                  Chloramphenicol = temp_data_growth_0$Chloramphenicol[[1]],
+                                  Ampicillin = temp_data_growth_0$Ampicillin[[1]],
+                                  Metaldehyde = temp_data_growth_0$Metaldehyde[[1]],
+                                  Atrazine = temp_data_growth_0$Atrazine[[1]],
+                                  Tebuconazole = temp_data_growth_0$Tebuconazole[[1]],
+                                  Azoxystrobin = temp_data_growth_0$Azoxystrobin[[1]],
+                                  Isolate = temp_data_growth_0$Isolate[[1]])
   tidy_growth_data <- bind_rows(tidy_growth_data, temp_data_growth_2)
   # append the area under the empirical curve (auc_e, etc. to tidy_growth_data)
   # count bad fits 
@@ -82,7 +89,8 @@ for (l in 1:wells_count)
         axis.title.y=element_blank(),
         axis.ticks.y=element_blank()) +
       ylim(0,1) +
-      annotate("text", x = 25, y = 0.5, label = temp_well_stressor_list, colour = "deepskyblue1")
+      annotate("text", x = 10, y = 0.5, label = temp_well_stressor_list, colour = "deepskyblue1") +
+      annotate("text", x = 10, y = 0.7, label = temp_data_growth_1$vals$note, colour = "deepskyblue1")
   }
   else
   {
@@ -105,76 +113,5 @@ for (l in 1:wells_count)
 # TODO: Add max growth and max slope here, graph against richness, rate of death (?)
 
 # Just to give an idea of how good the fits are...
-cat("bad fits: ", bad_fit_count)
-cat("of total wells: ", wells_count)
-
-# And a terrifyingly big grid of well plots... The for loop doesn't actually work though so we'll crank the wheel by hand
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Results/Final_Pipeline/Plate_Plots")
-# Poor man's for loop...
-b = 1
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
-
-b = 2
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
-
-b = 3
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
-
-b = 4
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
-
-b = 5
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
-
-b = 6
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
-
-b = 7
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
-
-b = 8
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
-# Please don't tell anyone how I code...
-# Delete out plots for the sake of R and the user's sanity.
-rm(list = ls()[grep("^well_curve", ls())])
-# Isn't that so much nicer!?
+cat("bad fits: \n", bad_fit_count, "\n")
+cat("of total wells: \n", wells_count, "\n")

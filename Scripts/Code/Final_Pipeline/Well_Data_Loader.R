@@ -1,14 +1,18 @@
-# Loads modified Synergy 2 well data as CSVs. Compiles into a tidy dataset of OD by time, well, stressor presence/absence and isolate. 
-# Also implements a number of counters needed by future for loops.
-# TODO: Implement the ability to handle data replicates.
+# Loads modified Synergy 2 well data as CSVs from Run_X folders. Compiles into a tidy dataset of OD by time, well, stressor presence/absence and isolate. 
+# Also implements a number of counters needed by future for loops. Can (theoretically) handle as many replicates as needed.
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
 library(growthcurver)
 library(gridBase)
 library(gridExtra)
+library(here)
 
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
+setwd(here("Scripts")) # Hopefully a slighly more rational way to handle WDs. Run here() for project directory. 
+# See https://www.rdocumentation.org/packages/here/versions/0.1 for here package documentations.
+
+#Start from a tabula rasa
+rm(list=ls())
 
 # Load in the plate layout csv for combination and isolate location data
 plate_layout <- read.csv("Data/Final_Pipeline/256comb_8bact_plate.csv") %>%
@@ -20,6 +24,9 @@ plate_count = 0
 
 # How many of the growth curves are bad or questionable fits?
 bad_fit_count = 0 
+
+# How many timepoints does your data have?
+read_timepoints <- 49
 
 # Make a vector of isolates
 isolates_vector <- as.vector(unique(plate_layout$Isolate))
@@ -36,35 +43,49 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 # Make sure your plates are correctly ordered in the wd. You will need leading 0s on your plate numbers for the below loop to read them in order.
 tidy_data <- tibble()
 
-for (k in 1:length(dir()))
+
+load_run_data <- function(run_number)
 {
-  # Make a df for each plate with a numbered name
-  temp_plate_name <- paste("plate", str_pad(k, 2, pad = "0") ,sep = "_") # pad plate names with leading 0s so R orders them properly
-  temp_plate_df <- read.csv(dir()[k])
-  colnames(temp_plate_df)[1] <- "time" # fix a pesky capitalisation mismatch
-  temp_plate_df$time <- as.numeric(substr(temp_plate_df$time, 1, 2)) # turn the reader's odd time format in to something useful
-  temp_plate_width <- 97 # hacky way to get gather on line 42 to work properly
-  # we need to remove the last 32 wells from every third plate. This is complicated because it's plates 9,10,11 & 12...
-  if ((k %% 3) == 0)
+  # run_number is just the run number, as an integer. Your run folders should be in the format "Run_X", with the .csvs in a nested folder "csvs"
+  setwd(here("Scripts", "Data", "Final_Pipeline", paste("Run_", run_number, sep = ""), "csvs"))
+  for (k in 1:length(dir()))
   {
-    temp_plate_df <- temp_plate_df %>%
-      select(-contains("9")) %>%
-      select(-contains("10")) %>%
-      select(-contains("11")) %>%
-      select(-contains("12"))
-    temp_plate_width <- 65 # if it's a third plate it'll have 64 wells (and thus 65 columns including time)
+    # Make a df for each plate with a numbered name
+    temp_plate_name <- paste("plate", str_pad(k, 2, pad = "0") ,sep = "_") # pad plate names with leading 0s so R orders them properly
+    temp_plate_df <- read.csv(dir()[k])
+    colnames(temp_plate_df)[1] <- "time" # fix a pesky capitalisation mismatch
+    # turn the reader's odd time format in to something useful
+    temp_plate_df$time <- as.numeric(substr(temp_plate_df$time, 1, 2)) # turn the reader's odd time format in to something useful
+    # trim down each well to the number of time points set in read_timepoints
+    temp_plate_df <- filter(temp_plate_df, time <= read_timepoints)
+    temp_plate_width <- 97 # hacky way to get gather on line 73 to work properly TODO: Less hacky.
+    # we need to remove the last 32 wells from every third plate. This is complicated because it's plates 9,10,11 & 12...
+    if ((k %% 3) == 0)
+    {
+      temp_plate_df <- temp_plate_df %>%
+        select(-contains("9")) %>%
+        select(-contains("10")) %>%
+        select(-contains("11")) %>%
+        select(-contains("12"))
+      temp_plate_width <- 65 # if it's a third plate it'll have 64 wells (and thus 65 columns including time)
+    }
+    assign(temp_plate_name, temp_plate_df)                         # turn our temporary df into a real df with a for-loop-generated name
+    
+    # let's also make a massive tidy dataset that's better able to store stressor presence/absence and isolate species
+      temp_plate_tidy <- as.tibble(temp_plate_df) %>%
+      gather(well, OD, 2:temp_plate_width) %>%                       # gather the data from wide to tall
+      mutate(plate = k) %>%                            # add a plate column based on where we are in the for loop
+      unite(location, well, plate, sep = ".") %>%      # bring the location naming scheme in line with plate_layout
+      mutate(Run = run_number)
+      
+    tidy_data <<- bind_rows(tidy_data, temp_plate_tidy)       # add the temporary data to our massive dataset (global assign as we're now in a function)
+    plate_count <<- plate_count + 1
   }
-  assign(temp_plate_name, temp_plate_df)                         # turn our temporary df into a real df with a for-loop-generated name
-  
-  # let's also make a massive tidy dataset that's better able to store stressor presence/absence and isolate species
-  temp_plate_width <- 
-  temp_plate_tidy <- as.tibble(temp_plate_df) %>%
-    gather(well, OD, 2:temp_plate_width) %>%                       # gather the data from wide to tall
-    mutate(plate = k) %>%                            # add a plate column based on where we are in the for loop
-    unite(location, well, plate, sep = ".")          # bring the location naming scheme in line with plate_layout
-  tidy_data <- bind_rows(tidy_data, temp_plate_tidy)       # add the temporary data to our massive dataset
-  plate_count = plate_count + 1
 }
+
+# Load run data per run and append it to tidy_data. Starts at 2, because Run 1 was a write-off.
+load_run_data(2)
+load_run_data(3)
 
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
@@ -73,10 +94,11 @@ tidy_data <- left_join(tidy_data, plate_layout, by = "location")
 
 # A few checks
 glimpse(tidy_data)
-# How many wells do we have?
-wells_count <- length(unique(tidy_data$location)) # this should be 6240
 # How many time points do we have?
 timepoints_count <- length(unique(tidy_data$time))  # should be 49 
+timepoints_count
+# How many wells do we have?
+wells_count <- nrow(tidy_data) / timepoints_count # this should be 2240 * your number of runs
+wells_count
 # How many plates
 plate_count
-

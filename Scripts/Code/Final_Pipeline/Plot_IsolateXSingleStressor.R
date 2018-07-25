@@ -5,7 +5,8 @@
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
 library(dplyr)
-library(tidyverse)
+library(tibble)
+library(tidyr)
 library(ggplot2)
 library(growthcurver)
 library(gridBase)

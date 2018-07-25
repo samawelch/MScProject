@@ -7,6 +7,7 @@ library(ggplot2)
 library(growthcurver)
 library(gridBase)
 library(gridExtra)
+library(ggpubr)
 
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 

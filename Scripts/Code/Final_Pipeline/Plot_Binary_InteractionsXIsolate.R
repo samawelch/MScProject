@@ -7,7 +7,8 @@
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
 library(dplyr)
-library(tidyverse)
+library(tibble)
+library(tidyr)
 library(ggplot2)
 library(growthcurver)
 library(gridBase)
@@ -127,4 +128,3 @@ bs_plots <- annotate_figure(
 pdf("Results/Final_Pipeline/binary_bubble_interactions.pdf", width = 16, height = 8, onefile = FALSE) # setting onefile to false prevents a blank leading page
 bs_plots
 dev.off()
-
