@@ -28,6 +28,10 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 source("Growth_Curve_Loop.R")
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
 
+# Create a new tibble of mean and SD from tidy_growth_data using any given metric of bacterial growth
+source("Summarise_Growth_Data.R")
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
+
 #########################
 ### GRAPHICAL OUTPUTS ###
 #########################

@@ -17,12 +17,18 @@ library(ggpubr)
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Results/Final_Pipeline/Plate_Plots")
 # Poor man's for loop...
 b = 1
-temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
-pdf(temp_page_name, height = 16, width = 24)
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
-annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
-dev.off()
+
+# TODO: Implement this so that it actually works...
+pdf_well_growth <- function(b, r)
+{
+  temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")
+  pdf(temp_page_name, height = 16, width = 24)
+  annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(1 + 256 * (b - 1)):(96 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
+  annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(97 + 256 * (b - 1)): (192 + 256 * (b - 1))], ncol = 12), top = text_grob(isolates_species_vector[b]))
+  annotate_figure(plot_grid(plotlist = well_curve_plot_vector[(193 + 256 * (b - 1)):(b * 256)], ncol = 8), top = text_grob(isolates_species_vector[b]))
+  dev.off()
+}
+
 
 b = 2
 temp_page_name <- paste("plot_isolate", isolates_species_vector[b], ".pdf" ,sep = "_")

@@ -1,6 +1,6 @@
-# Modifies tidy_growth_data to produce datasets of binary stressor interaction effect vs predicted effect (additive null hypothesis)
-# Prints bubble plots per isolate to pdf depicting size and duration of interactions by isolate
-# Requires Well_Data_Loader.R, Growth_Curve_Loop.R, and grid_arrange_shared_legend.R
+# Modifies tidier_growth_data to produce datasets of binary stressor interaction effect vs predicted effect (additive null hypothesis)
+# Prints bubble plots per isolate to pdf depicting size and direction of interactions by isolate
+# Requires Well_Data_Loader.R, Growth_Curve_Loop.R, and Summarise_Growth_Data.R
 # TODO: Add a properly defined concept of additivism vs synergism vs antagonism
 # TODO: Work out how to measure and represent the statistical validity of these things
 # TODO: Add Piggott and Schafer's updaded interaction defintions
@@ -14,35 +14,35 @@ library(growthcurver)
 library(gridBase)
 library(gridExtra)
 
-# What metric of growth do we want to use for our comparison? Make sure it's included in tidy_growth_data!
-growth_metric <- "Growth_r"
+# This script now uses whatever metric you selected in Summarise_Growth_Data.R
 
 # How can we look for additivism vs synergism and antagonism? which is the whole point...
 # And generalise the specific implementation with a massive for loop
 for (s in 1:8)
 {
-  example_stressor_growth_data <- tidy_growth_data %>%
+  example_stressor_growth_data <- tidier_growth_data %>%
     mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
-    select(Copper, Nickel, Chloramphenicol, Ampicillin, Metaldehyde, Atrazine, Tebuconazole, Azoxystrobin, Isolate, growth_metric, Fit_notes, Richness) %>%
+    select(Copper, Nickel, Chloramphenicol, Ampicillin, Metaldehyde, Atrazine, Tebuconazole, Azoxystrobin, Isolate, Mean, SD, Richness) %>%
     filter(Richness <= 2) %>%
-    filter(Isolate == isolates_vector[s])
+    filter(Isolate == isolates_vector[s]) %>%
+    ungroup()
   
   # Calculate a baseline from controls
-  control_baseline <- as.numeric(example_stressor_growth_data %>%
-                                   filter(Richness == 0) %>%
-                                   summarise_at(growth_metric,funs(mean)))
+  control_baseline <- example_stressor_growth_data %>%
+                        filter(Richness == 0) %>%
+                        select(Isolate, Mean, SD)
   
   # A tibble of single stressors
   single_stressor_growth_data <- example_stressor_growth_data %>%
     filter(Richness == 1) %>%
-    mutate(observed_effect := UQ(rlang::sym(growth_metric)) - control_baseline) %>% # What a lot of extra stuff to get growth_metric to update dynamically...
+    mutate(observed_effect = Mean - control_baseline$Mean) %>% 
     select(observed_effect) %>%
     mutate(stressor = as.list((stressors_vector)))
   
   # And binary mixtures
   binary_stressor_growth_data <- example_stressor_growth_data %>%
     filter(Richness == 2) %>%
-    mutate(observed_effect := UQ(rlang::sym(growth_metric)) - control_baseline) %>%
+    mutate(observed_effect = Mean - control_baseline$Mean) %>%
     mutate(predicted_effect = 0) %>%
     mutate(S1 = "") %>%
     mutate(S2 = "")
@@ -101,7 +101,7 @@ for (s in 1:8)
   temp_plot <- ggplot(interaction_binary_stressor_growth_data) +
     geom_point(aes(x = S1, y = S2, size = abs(delta_growth), colour = interaction))  +
     geom_text(aes(x = S1, y = S2, label = round(delta_growth, digits = 2), size = 0.5), colour = "black", show.legend = FALSE) +
-    scale_size_continuous(limit = c(0,20), range = c(1,15)) +
+    scale_size_continuous(limit = c(0,10), range = c(1,15)) +
     ggtitle(isolates_species_vector[s]) +
     theme(axis.title.x=element_blank(),
           axis.ticks.x=element_blank(),
@@ -123,7 +123,7 @@ bs_plots <- annotate_figure(
             nrow = 2,
             common.legend = TRUE,
             legend = "bottom"), 
-            top = growth_metric)
+            top = mean)
 
 pdf("Results/Final_Pipeline/binary_bubble_interactions.pdf", width = 16, height = 8, onefile = FALSE) # setting onefile to false prevents a blank leading page
 bs_plots

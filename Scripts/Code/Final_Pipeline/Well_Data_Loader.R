@@ -14,19 +14,30 @@ setwd(here("Scripts")) # Hopefully a slighly more rational way to handle WDs. Ru
 #Start from a tabula rasa
 rm(list=ls())
 
+#######################
+### SET INPUTS HERE ###
+#######################
+
+# How many timepoints does your data have?
+read_timepoints <- 49
+
+# How many runs are you importing? (Run importing will start from 2 as run 1 was a write-off)
+run_count <- 2
+
 # Load in the plate layout csv for combination and isolate location data
 plate_layout <- read.csv("Data/Final_Pipeline/256comb_8bact_plate.csv") %>%
   unite(loc, Dest.Row, Dest.Column, sep = "") %>%
   unite(location, loc, plate, sep = ".")
+
+#######################
+
+# Misc counters:
 
 # How many plates are there?
 plate_count = 0 
 
 # How many of the growth curves are bad or questionable fits?
 bad_fit_count = 0 
-
-# How many timepoints does your data have?
-read_timepoints <- 49
 
 # Make a vector of isolates
 isolates_vector <- as.vector(unique(plate_layout$Isolate))
@@ -43,6 +54,9 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 # Make sure your plates are correctly ordered in the wd. You will need leading 0s on your plate numbers for the below loop to read them in order.
 tidy_data <- tibble()
 
+#######################
+##### Main Script #####
+#######################
 
 load_run_data <- function(run_number)
 {
@@ -84,8 +98,10 @@ load_run_data <- function(run_number)
 }
 
 # Load run data per run and append it to tidy_data. Starts at 2, because Run 1 was a write-off.
-load_run_data(2)
-load_run_data(3)
+for (r in 2:(run_count + 1))
+{
+  load_run_data(r)
+}
 
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
