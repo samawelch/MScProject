@@ -49,64 +49,105 @@ for (l in 1:wells_count)
   temp_data_growth_0 <- 
     tidy_data[((l-1) * timepoints_count + 1):(l * timepoints_count),] %>%     # Turn every timepoints_count measurements into a single df
     filter(time <= time_cutoff) %>%
-    filter((time %% read_rate) == 0)                   # Filter your data set down to readings ever n hours                      
+    filter((time %% read_rate) == 0)                                          # Filter your data set down to readings ever n hours                      
   temp_data_growth_1 <- SummarizeGrowth(temp_data_growth_0$time, temp_data_growth_0$OD)        # Generate a logistic model for this well's growth
-
-  # Save good fits, discard bad fits if we have nothing else.
-    if (temp_data_growth_1$vals$note == "" || length(grepl(temp_data_growth_0$location[[1]], tidy_growth_data$location)) != 0)
+  
+  # Are there not any existing models for this well?
+  if (length(grepl(temp_data_growth_0$location[[1]], tidy_growth_data$location)) == 0)
+  {
+    # if not, it gets to go in tidy_data as a replicate
+    temp_data_growth_2 <- bind_cols(location = temp_data_growth_0$location[[1]],
+                                    Run = temp_data_growth_0$Run[[1]],
+                                    Growth_auc_e = temp_data_growth_1$vals$auc_e,
+                                    Growth_auc_l = temp_data_growth_1$vals$auc_l,
+                                    Growth_k = temp_data_growth_1$vals$k, # TODO: Change coordinates to colnames.
+                                    Growth_r = temp_data_growth_1$vals$r,
+                                    Growth_n0 = temp_data_growth_1$vals$n0,
+                                    Growth_sigma = temp_data_growth_1$vals$sigma,
+                                    Fit_notes = temp_data_growth_1$vals$note,
+                                    Copper = temp_data_growth_0$Copper[[1]],
+                                    Nickel = temp_data_growth_0$Nickel[[1]],
+                                    Chloramphenicol = temp_data_growth_0$Chloramphenicol[[1]],
+                                    Ampicillin = temp_data_growth_0$Ampicillin[[1]],
+                                    Metaldehyde = temp_data_growth_0$Metaldehyde[[1]],
+                                    Atrazine = temp_data_growth_0$Atrazine[[1]],
+                                    Tebuconazole = temp_data_growth_0$Tebuconazole[[1]],
+                                    Azoxystrobin = temp_data_growth_0$Azoxystrobin[[1]],
+                                    Isolate = temp_data_growth_0$Isolate[[1]])
+    
+    tidy_growth_data <- bind_rows(tidy_growth_data, temp_data_growth_2)
+  } else
+  {
+    # Is the existing model bad? Or rather, does a tibble of all the good rows for this location have 0 rows
+    if (nrow(tidy_growth_data %>%
+      filter(location == temp_data_growth_0$location[[1]]) %>%
+      filter(Fit_notes == "")) == 0)
     {
-      # if so, it gets to go in tidy_data as a replicate
-      temp_data_growth_2 <- bind_cols(location = temp_data_growth_0$location[[1]],
-                                      Run = temp_data_growth_0$Run[[1]],
-                                      Growth_auc_e = temp_data_growth_1$vals$auc_e,
-                                      Growth_auc_l = temp_data_growth_1$vals$auc_l,
-                                      Growth_k = temp_data_growth_1$vals$k, # TODO: Change coordinates to colnames.
-                                      Growth_r = temp_data_growth_1$vals$r,
-                                      Growth_n0 = temp_data_growth_1$vals$n0,
-                                      Growth_sigma = temp_data_growth_1$vals$sigma,
-                                      Fit_notes = temp_data_growth_1$vals$note,
-                                      Copper = temp_data_growth_0$Copper[[1]],
-                                      Nickel = temp_data_growth_0$Nickel[[1]],
-                                      Chloramphenicol = temp_data_growth_0$Chloramphenicol[[1]],
-                                      Ampicillin = temp_data_growth_0$Ampicillin[[1]],
-                                      Metaldehyde = temp_data_growth_0$Metaldehyde[[1]],
-                                      Atrazine = temp_data_growth_0$Atrazine[[1]],
-                                      Tebuconazole = temp_data_growth_0$Tebuconazole[[1]],
-                                      Azoxystrobin = temp_data_growth_0$Azoxystrobin[[1]],
-                                      Isolate = temp_data_growth_0$Isolate[[1]])
-      tidy_growth_data <- bind_rows(tidy_growth_data, temp_data_growth_2)
-      # append the area under the empirical curve (auc_e, etc. to tidy_growth_data)
-      # count bad fits 
-      if (temp_data_growth_1$vals$note != "")
-      {
-        bad_fit_count = bad_fit_count + 1
-      }
-      # Cannabalised for loop to generate a text string of stressors present, to annotate growth curve printouts. Ugly and fragile.
-      for (q in 4:11)
-      {
-        if (temp_data_growth_0[1,q] == 1)
-        {
-          # If a stressor is present, append it to the cell name
-          temp_well_stressor_list <- paste(temp_well_stressor_list,abbreviate(colnames(temp_data_growth_0[q]), minlength = 2), sep = "")
-        }
-      }
-      # # we can also generate plate curve graphics:
-      # temp_data_growth_4 <- as.tibble(temp_data_growth_1$data)
-      # # TODO: Fix this horrible if statement.
-      # if (is.character(temp_data_growth_1$model) == FALSE) 
-      #   # Apparently if growthcurver can't fit a curve it returns a character instead. This is hardly helpful. So we need an if/else statement to catch these.
-      # {
-      #   temp_predict <- data.frame(time = temp_data_growth_0$time, pred.wt = predict(temp_data_growth_1$model, sigma = temp_data_growth_1$model$sigma))
-      #   
-      #   # Render a temporary plot of the data points and the logistic curve from growthcurver (stored in temp_predict)
-      #   temp_plot <- ggplot(temp_data_growth_0, aes(x = time, y = OD)) +
-      #     geom_point() +
-      #     geom_line(data = temp_predict, aes(x = time, y = pred.wt), colour = "deepskyblue1") +
-      #     ggtitle(temp_data_growth_2$location) +
-      #     theme(axis.title.x=element_blank(),
-      #           axis.ticks.x=element_blank(),
-      #           axis.title.y=element_blank(),
-      #           axis.ticks.y=element_blank()) +
+      # If so, remove the existing row. 
+      tidy_growth_data <- tidy_growth_data %>%
+        filter((location != temp_data_growth_0$location[[1]] && Fit_notes != ""))
+      # And put it in
+    }
+    # Regardless, append the new model
+    temp_data_growth_2 <- bind_cols(location = temp_data_growth_0$location[[1]],
+                                    Run = temp_data_growth_0$Run[[1]],
+                                    Growth_auc_e = temp_data_growth_1$vals$auc_e,
+                                    Growth_auc_l = temp_data_growth_1$vals$auc_l,
+                                    Growth_k = temp_data_growth_1$vals$k, 
+                                    Growth_r = temp_data_growth_1$vals$r,
+                                    Growth_n0 = temp_data_growth_1$vals$n0,
+                                    Growth_sigma = temp_data_growth_1$vals$sigma,
+                                    Fit_notes = temp_data_growth_1$vals$note,
+                                    Copper = temp_data_growth_0$Copper[[1]],
+                                    Nickel = temp_data_growth_0$Nickel[[1]],
+                                    Chloramphenicol = temp_data_growth_0$Chloramphenicol[[1]],
+                                    Ampicillin = temp_data_growth_0$Ampicillin[[1]],
+                                    Metaldehyde = temp_data_growth_0$Metaldehyde[[1]],
+                                    Atrazine = temp_data_growth_0$Atrazine[[1]],
+                                    Tebuconazole = temp_data_growth_0$Tebuconazole[[1]],
+                                    Azoxystrobin = temp_data_growth_0$Azoxystrobin[[1]],
+                                    Isolate = temp_data_growth_0$Isolate[[1]])
+    
+    tidy_growth_data <- bind_rows(tidy_growth_data, temp_data_growth_2)
+  }
+# 
+# 
+#   # Delete bad fits for the well if we now have a good one
+#   tidy_growth_data <- tidy_growth_data %>%
+#     filter(((location != temp_data_growth_0$location[[1]]) && (temp_data_growth_1$vals$note != "")))
+    
+  # append the area under the empirical curve (auc_e, etc. to tidy_growth_data)
+  # count bad fits 
+  if (temp_data_growth_1$vals$note != "")
+  {
+    bad_fit_count = bad_fit_count + 1
+  }
+  # Cannabalised for loop to generate a text string of stressors present, to annotate growth curve printouts. Ugly and fragile.
+  # for (q in 4:11)
+  # {
+  #   if (temp_data_growth_0[1,q] == 1)
+  #   {
+  #     # If a stressor is present, append it to the cell name
+  #     temp_well_stressor_list <- paste(temp_well_stressor_list,abbreviate(colnames(temp_data_growth_0[q]), minlength = 2), sep = "")
+  #   }
+  # }
+  # # we can also generate plate curve graphics:
+  # temp_data_growth_4 <- as.tibble(temp_data_growth_1$data)
+  # # TODO: Fix this horrible if statement.
+  # if (is.character(temp_data_growth_1$model) == FALSE) 
+  #   # Apparently if growthcurver can't fit a curve it returns a character instead. This is hardly helpful. So we need an if/else statement to catch these.
+  # {
+  #   temp_predict <- data.frame(time = temp_data_growth_0$time, pred.wt = predict(temp_data_growth_1$model, sigma = temp_data_growth_1$model$sigma))
+  #   
+  #   # Render a temporary plot of the data points and the logistic curve from growthcurver (stored in temp_predict)
+  #   temp_plot <- ggplot(temp_data_growth_0, aes(x = time, y = OD)) +
+  #     geom_point() +
+  #     geom_line(data = temp_predict, aes(x = time, y = pred.wt), colour = "deepskyblue1") +
+  #     ggtitle(temp_data_growth_2$location) +
+  #     theme(axis.title.x=element_blank(),
+  #           axis.ticks.x=element_blank(),
+  #           axis.title.y=element_blank(),
+  #           axis.ticks.y=element_blank()) +
       #     ylim(0,1) +
       #     annotate("text", x = 10, y = 0.5, label = temp_well_stressor_list, colour = "deepskyblue1") +
       #     annotate("text", x = 10, y = 0.7, label = temp_data_growth_1$vals$note, colour = "deepskyblue1") +
@@ -130,8 +171,8 @@ for (l in 1:wells_count)
       # assign(temp_plot_name, temp_plot)
       # well_curve_plot_vector[[l]] <- temp_plot
       # temp_well_stressor_list <- "" # Don't forget to clear it here...
-  }
 }
+
 
     
 # Just to give an idea of how good the fits are...

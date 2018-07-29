@@ -24,23 +24,30 @@ for (m in 1:nrow(isolate_single_stress))
 {
   for (n in 1:8)
   {
-    if (isolate_single_stress[m,n+2] == 1)
+    if (isolate_single_stress[m,n+3] == 1)
     {
-      isolate_single_stress[m,12] = colnames(isolate_single_stress[,n+2])
+      isolate_single_stress$Stressor[m] = colnames(isolate_single_stress[,n+3])
     }
   }
 }
 
 # Get rid of the presence/absence stressor data
 isolate_single_stress <- isolate_single_stress %>%
-  select(-(3:10))
+  select(-Copper, -Nickel, -Chloramphenicol, -Ampicillin, -Metaldehyde, -Atrazine, -Tebuconazole, -Azoxystrobin, -Run)
+
+# Calculates one mean and SD for every combination of isolate, stressor and time point
+isolate_single_stress <- isolate_single_stress %>%
+  group_by(Isolate, Stressor, time) %>%
+  summarise(Mean_OD = mean(OD), SD_OD = sd(OD)) %>%
+  distinct() %>%
+  filter(time < 26)
 
 # for loop across the 8 isolates to produce a 4x2 lattice of graphs
-# TODO: add control baselines
+# TODO: still needs logistic curves fitted
 for (o in 1:8)
 {
   temp_isolate <- isolates_vector[o]
-  temp_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes(time, OD)) +
+  temp_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes(time, Mean_OD)) +
     geom_point(aes(colour = Stressor), size = 1, shape = 16, alpha = 0.5) +
     theme(legend.position="none") +
     ylim(0,0.65) +
