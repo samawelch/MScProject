@@ -13,6 +13,7 @@ library(gridBase)
 library(gridExtra)
 library(ggpubr)
 
+
 # We can also graph the effects of different single stressors on bacteria. For instance:
 isolate_single_stress <- tidy_data %>%
   filter((Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) <= 1) %>%
@@ -64,7 +65,7 @@ for (o in 1:8)
 }
 
 # Arange the plots 4x2 with a shared legend
-ss_plots <- ggarrange(p1,p2,p3,p4,p5,p6,p7,p8,ncol = 4, nrow = 2, common.legend = TRUE, legend = "right")
+ss_plots <- ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, ncol = 4, nrow = 2, common.legend = TRUE, legend = "right")
 # Print to PDF
 pdf("Results/Final_Pipeline/single_stressor_plots.pdf", width = 16, height = 8, onefile = FALSE) # setting onefile to false prevents a blank leading page
 ss_plots
