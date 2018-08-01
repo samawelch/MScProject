@@ -11,6 +11,7 @@ library(gridBase)
 library(gridExtra)
 library(viridis)
 
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
 # For loop through 2-7 way interactions and graph them out
 for (i in 1:8)
@@ -22,15 +23,20 @@ for (i in 1:8)
     scale_colour_viridis(discrete = FALSE) +
     geom_abline(slope = 1, intercept = 0, colour = "grey", size = 1) +
     ggtitle(isolates_species_vector[i]) +
-    # Consistent scaling loses too much 
+    # Consistent scaling isn't great...
     scale_x_continuous(limits = c(-15, 15)) +
     scale_y_continuous(limits = c(-6, 6)) +
     xlab(label = "Predicted Additive Mean") +
-    ylab(label = "Observed Mean")
+    ylab(label = "Observed Mean") +
+    annotate("text", x = -13.5, y = 6, label = "Synergy", colour = "grey") +
+    annotate("text", x = 12.5, y = -6, label = "Antagonism", colour = "grey")
   
   temp_plot_name <- paste("p", i , sep = "")
   assign(temp_plot_name, plot_i_temp)
 }
 
 # Plot together, aligned by species
-ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, ncol = 4, nrow = 2, common.legend = TRUE, legend = "bottom")
+pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 18, height = 8, onefile = FALSE)
+ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, ncol = 4, nrow = 2, common.legend = TRUE, legend = "right")
+dev.off()
+

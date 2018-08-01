@@ -8,7 +8,7 @@ library(tibble)
 library(tidyr)
 library(ggplot2)
 library(growthcurver)
-source("Code/Final_Pipeline/t.test2.R")
+source("t.test2.R")
 
 # Set your p-cutoff for additivism here
 p_cutoff <- 0.05

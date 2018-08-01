@@ -24,12 +24,16 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 source("Well_Data_Loader.R")
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
 
-# Make a tibble of growth curve parameters per well. Currently also plots all the growth curves from plate 1, 2 and 3. Very slow due to a reliance on long for loops.
+# Make a tibble of growth curve parameters per well. Plotting currently commented out.
 source("Growth_Curve_Loop.R")
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
 
 # Create a new tibble of mean and SD from tidy_growth_data using any given metric of bacterial growth
 source("Summarise_Growth_Data.R")
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
+
+# Calculate control baselines per isolate, then single stressor effects, which are used to qualify and quantify interactions
+source("Define_Interaction.R")
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
 
 #########################
@@ -48,6 +52,23 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 source("Plot_Binary_interactionsXIsolate.R")
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
 
-# Lay well growth curves produced by Growth_Curve_Loop out across pdfs, one page per well
+# Lay well growth curves produced by Growth_Curve_Loop out across pdfs, one page per well. Doesn't currently work (intentionally)
 source("Plot_Plate_Growth_Curves.R")
 setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
+
+# Plot observed effect against predicted effect by isolate, to a pdf. 
+source("Plot_ObsXPred_Effect.R")
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
+
+#########################
+#### MISC. FUNCTIONS ####
+#########################
+
+# Borrowed variant t-test
+source("t.test2.R")
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
+
+# Take a tibble with stressor presence/absence data and isolate names, convert to functional group presence (0-2) and species name
+source("aggregate_functional_groups")
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
+

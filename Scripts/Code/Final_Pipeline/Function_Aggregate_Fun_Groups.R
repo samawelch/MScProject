@@ -6,7 +6,7 @@ aggregate_functional_groups <- function(input_tibble, clear_columns = FALSE)
 {
   # Turn isolate into species first
   input_tibble <- input_tibble %>%
-    mutate(Species = "")
+    mutate(Species = as.character(Isolate))
   # Ugly for loop w/ if statements to assign species based on isolate. I tried to do this in a nicer way, but it was not to be.
   for (q in 1:nrow(input_tibble))
   {
@@ -25,7 +25,7 @@ aggregate_functional_groups <- function(input_tibble, clear_columns = FALSE)
     mutate(AB = 0) %>%
     mutate(Pesti = 0) %>%
     mutate(Fungi = 0) 
-    
+  
   for (m in 1:nrow(input_tibble))
   {
     # This is ugly but I tried quasiquotation and it didn't work.
@@ -56,5 +56,3 @@ aggregate_functional_groups <- function(input_tibble, clear_columns = FALSE)
   
   return(input_tibble)
 }
-
-test_tibble <- aggregate_functional_groups(tidier_growth_data, clear_columns = FALSE)

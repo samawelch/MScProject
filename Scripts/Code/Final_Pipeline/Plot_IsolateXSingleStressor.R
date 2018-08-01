@@ -1,8 +1,5 @@
 # Modifies tidy_data to produce isolate_single_stress, which is limited to growth data by isolate by stressor. Prints to pdf.
 # Requires Well_Data_Loader.R, and Growth_Curve_Loop.R
-# TODO: Save growth curve models with well data for use in future graphics
-# TODO: Implement rendering growth curve graphics for all wells.
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
 library(dplyr)
 library(tibble)
@@ -12,10 +9,13 @@ library(growthcurver)
 library(gridBase)
 library(gridExtra)
 library(ggpubr)
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
+source('Function_Aggregate_Fun_Groups.R')
+setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
 
 
-# We can also graph the effects of different single stressors on bacteria. For instance:
-isolate_single_stress <- tidy_data %>%
+# We can graph the effects of different single stressors on bacteria. For instance:
+isolate_single_stress <- aggregate_functional_groups(tidy_data) %>%
   filter((Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) <= 1) %>%
   select(-location) %>%
   mutate(Stressor = "None")
