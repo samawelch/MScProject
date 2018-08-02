@@ -38,8 +38,19 @@ for (b in 1:8)
 }
 
 # Can we pick out the models that best explain the variation
-anova(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
-AIC(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
+anova <- anova(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
+# Is a multivariate analysis of variance more appropriate? No.
+my_manova <- manova(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
+
+aic <- AIC(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
 # And then pick out interactions on the basis of effect size/statistical significance...
 summary(lm_1)
+anova(lm_1)
+# Currently dealing with model saturation. Needs work.
 
+aic_tib <- as.tibble(aic) %>%
+  bind_cols(lm = c("lm1","lm2","lm3","lm4","lm5","lm6","lm7","lm8")) 
+
+ggplot(data = aic_tib, aes(x = lm, y = AIC)) +
+  geom_point(aes(size = df))
+# Lower AIC is better? 

@@ -15,34 +15,31 @@ library(gridBase)
 library(gridExtra)
 
 # What metric of growth do we want to use for our comparison? Make sure it's included in tidy_growth_data!
-growth_metric <- "Growth_r"
 
 # How can we look for additivism vs synergism and antagonism? which is the whole point...
 # And generalise the specific implementation with a massive for loop
 for (s in 1:8)
 {
-  example_stressor_growth_data <- tidy_growth_data %>%
-    mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
-    select(Copper, Nickel, Chloramphenicol, Ampicillin, Metaldehyde, Atrazine, Tebuconazole, Azoxystrobin, Isolate, growth_metric, Fit_notes, Richness) %>%
+  example_stressor_growth_data <- tidier_growth_data %>%
+    select(Copper, Nickel, Chloramphenicol, Ampicillin, Metaldehyde, Atrazine, Tebuconazole, Azoxystrobin, Isolate, Mean, Richness) %>%
     filter(Richness <= 2) %>%
     filter(Isolate == isolates_vector[s])
   
   # Calculate a baseline from controls
-  control_baseline <- as.numeric(example_stressor_growth_data %>%
-                                   filter(Richness == 0) %>%
-                                   summarise_at(growth_metric,funs(mean)))
+  control_baseline <- as.numeric(example_stressor_growth_data) %>%
+                                   filter(Richness == 0)
   
   # A tibble of single stressors
   single_stressor_growth_data <- example_stressor_growth_data %>%
     filter(Richness == 1) %>%
-    mutate(observed_effect := UQ(rlang::sym(growth_metric)) - control_baseline) %>% # What a lot of extra stuff to get growth_metric to update dynamically...
+    mutate(observed_effect = Mean - control_baseline) %>% # What a lot of extra stuff to get growth_metric to update dynamically...
     select(observed_effect) %>%
     mutate(stressor = as.list((stressors_vector)))
   
   # And binary mixtures
   binary_stressor_growth_data <- example_stressor_growth_data %>%
     filter(Richness == 2) %>%
-    mutate(observed_effect := UQ(rlang::sym(growth_metric)) - control_baseline) %>%
+    mutate(observed_effect = Mean - control_baseline) %>%
     mutate(predicted_effect = 0) %>%
     mutate(S1 = "") %>%
     mutate(S2 = "")

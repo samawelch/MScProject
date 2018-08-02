@@ -20,6 +20,10 @@ rm(list=ls())
 
 # How many timepoints does your data have?
 read_timepoints <- 49
+# This is no longer usable for a bncuh of stuff because runs 4 & 5 only read every 4 hours
+
+# Every how many hours do we want to take a reading?
+read_rate <- 4
 
 # How many runs are you importing? (Run importing will start from 2 as run 1 was a write-off)
 run_count <- 2
@@ -72,7 +76,7 @@ load_run_data <- function(run_number)
     temp_plate_df$time <- as.numeric(substr(temp_plate_df$time, 1, 2)) # turn the reader's odd time format in to something useful
     # trim down each well to the number of time points set in read_timepoints
     temp_plate_df <- filter(temp_plate_df, time <= read_timepoints)
-    temp_plate_width <- 97 # hacky way to get gather on line 73 to work properly TODO: Less hacky.
+    temp_plate_width <- 97
     # we need to remove the last 32 wells from every third plate. This is complicated because it's plates 9,10,11 & 12...
     if ((k %% 3) == 0)
     {
@@ -108,13 +112,19 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 # Join isolate/stressor data to growth data by observations
 tidy_data <- left_join(tidy_data, plate_layout, by = "location")
 
+# If we filter reads down to every 4 hours here we can save some thinking in Growth_Curve_Loop.R
+tidy_data <- tidy_data %>%
+  filter((time %% read_rate) == 0) 
+# Now:
+timepoints_count <- 13
+
 # A few checks
 glimpse(tidy_data)
 # How many time points do we have?
 timepoints_count <- length(unique(tidy_data$time))  # should be 49 
 timepoints_count
 # How many wells do we have?
-wells_count <- nrow(tidy_data) / timepoints_count # this should be 2240 * your number of runs
+wells_count <- nrow(tidy_data) / timepoints_count # run count * 2144
 wells_count
 # How many plates
 plate_count

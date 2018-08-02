@@ -19,8 +19,6 @@ setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/
 
 # When do we want to cut off growth data. Logistic curves don't fit well on parabolas. 
 time_cutoff <- 28
-# Every how many hours do we want to take a reading?
-read_rate <- 4
 
 # Misc counters:
 
