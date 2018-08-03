@@ -1,7 +1,6 @@
 # Groups isolates by species and stressors by tenuous functional group.
 # Takes a tibble of stuff as an input. Needs to have a categoric isolate column and 8 stressor presence/absence columns
 
-
 aggregate_functional_groups <- function(input_tibble, clear_columns = FALSE)
 {
   # Turn isolate into species first
