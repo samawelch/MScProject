@@ -68,16 +68,18 @@ load_run_data <- function(run_number)
   setwd(here("Scripts", "Data", "Final_Pipeline", paste("Run_", run_number, sep = ""), "csvs"))
   for (k in 1:length(dir()))
   {
-    # Make a df for each plate with a numbered name
-    temp_plate_name <- paste("plate", str_pad(k, 2, pad = "0") ,sep = "_") # pad plate names with leading 0s so R orders them properly
+    # Make a df for each plate with a numbered name & pad plate names with leading 0s so R orders them properly
+    temp_plate_name <- paste("plate", str_pad(k, 2, pad = "0") ,sep = "_")
     temp_plate_df <- read.csv(dir()[k])
-    colnames(temp_plate_df)[1] <- "time" # fix a pesky capitalisation mismatch
+    # fix a pesky capitalisation mismatch
+    colnames(temp_plate_df)[1] <- "time" 
     # turn the reader's odd time format in to something useful
-    temp_plate_df$time <- as.numeric(substr(temp_plate_df$time, 1, 2)) # turn the reader's odd time format in to something useful
+    temp_plate_df$time <- as.numeric(substr(temp_plate_df$time, 1, 2)) 
+    # turn the reader's odd time format in to something useful
     # trim down each well to the number of time points set in read_timepoints
     temp_plate_df <- filter(temp_plate_df, time <= read_timepoints)
     temp_plate_width <- 97
-    # we need to remove the last 32 wells from every third plate. This is complicated because it's plates 9,10,11 & 12...
+    # we need to remove the last 32 wells from every third plate. This is complicated because it's rows 9,10,11 & 12...
     if ((k %% 3) == 0)
     {
       temp_plate_df <- temp_plate_df %>%
@@ -128,3 +130,6 @@ wells_count <- nrow(tidy_data) / timepoints_count # run count * 2144
 wells_count
 # How many plates
 plate_count
+
+
+# TODO: Intermediate output .csvs
