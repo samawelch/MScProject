@@ -26,7 +26,7 @@ read_timepoints <- 49
 read_rate <- 4
 
 # How many runs are you importing? (Run importing will start from 2 as run 1 was a write-off)
-run_count <- 2
+run_count <- 4
 
 # Load in the plate layout csv for combination and isolate location data
 plate_layout <- read.csv("Data/Final_Pipeline/256comb_8bact_plate.csv") %>%
@@ -54,7 +54,6 @@ stressors_vector_short <- abbreviate(stressors_vector, minlength = 2)
 stressor_colours <- c("Copper" = "red3", "Nickel" = "firebrick", "Chloramphenicol" = "plum", "Ampicillin" = "plum4", "Atrazine" = "darkgreen", "Metaldehyde" = "forestgreen", "Tebuconazole" = "steelblue", "Azoxystrobin" = "lightblue3", "None" = "black")
 
 # Load in plate .CSVs from a seperate folder using a for loop. Make a tibble to contain the data.
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Data/Final_Pipeline/Run_2/csvs")
 # Make sure your plates are correctly ordered in the wd. You will need leading 0s on your plate numbers for the below loop to read them in order.
 tidy_data <- tibble()
 
@@ -109,7 +108,7 @@ for (r in 2:(run_count + 1))
   load_run_data(r)
 }
 
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
+setwd(here("Scripts"))
 
 # Join isolate/stressor data to growth data by observations
 tidy_data <- left_join(tidy_data, plate_layout, by = "location")
@@ -125,7 +124,7 @@ glimpse(tidy_data)
 # How many time points do we have?
 timepoints_count <- length(unique(tidy_data$time))  # should be 49 
 timepoints_count
-# How many wells do we have?
+# How many wells do we have? this is wrong for runs 4 & 5
 wells_count <- nrow(tidy_data) / timepoints_count # run count * 2144
 wells_count
 # How many plates

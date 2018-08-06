@@ -9,11 +9,9 @@ library(gridBase)
 library(gridExtra)
 library(ggpubr)
 
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts/Code/Final_Pipeline")
+setwd(here("Scripts"))
 
-source('Function_Aggregate_Fun_Groups.R')
-
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
+source('Code/Final_Pipeline/Function_Aggregate_Fun_Groups.R')
 
 # Let's graph a bunch of growth parameters against stressor richness 
 # First things first: transmute stressor presence/absence to a single richness column
@@ -39,7 +37,7 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(Richnes
   scale_shape_identity() +
   geom_smooth(aes(group = Species, colour = Species), method = "lm", se = FALSE) +
   geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
-  ggtitle("Mean auc_e by Functional Group")
+  ggtitle("Mean auc_e by Species")
 
 # # Same for auc_l
 # growthXrichness_auc_l <- ggplot(richness_growth_data, aes(Richness, Growth_auc_l)) +

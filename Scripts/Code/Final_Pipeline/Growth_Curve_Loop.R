@@ -11,7 +11,7 @@ library(gridBase)
 library(gridExtra)
 library(growthmodels)
 
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
+setwd(here("Scripts"))
 
 #######################
 ### SET INPUTS HERE ###
