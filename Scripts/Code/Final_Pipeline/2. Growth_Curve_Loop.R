@@ -23,7 +23,8 @@ time_cutoff <- 28
 # Misc counters:
 
 # This'll be useful later... I think.
-well_curve_plot_vector <- vector("list", length = (2144 * run_count))
+# Actually it's broken now, which makes it even less useful...
+# well_curve_plot_vector <- vector("list", length = (2144 * run_count))
 
 # Not actually a list, despite its name. TODO: Find a more graceful solution.
 temp_well_stressor_list <- 0

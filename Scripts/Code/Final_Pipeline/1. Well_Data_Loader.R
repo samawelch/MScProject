@@ -1,7 +1,7 @@
 # Loads modified Synergy 2 well data as CSVs from Run_X folders. Compiles into a tidy dataset of OD by time, well, stressor presence/absence and isolate. 
 # Also implements a number of counters needed by future for loops. Can (theoretically) handle as many replicates as needed.
 library(dplyr)
-library(tidyverse)
+library(tidyr)
 library(ggplot2)
 library(growthcurver)
 library(gridBase)
@@ -25,8 +25,8 @@ read_timepoints <- 49
 # Every how many hours do we want to take a reading?
 read_rate <- 4
 
-# How many runs are you importing? (Run importing will start from 2 as run 1 was a write-off)
-run_count <- 4
+# Which ones do we actually want to include
+runs_vector <- c(2,3,4,5)
 
 # Load in the plate layout csv for combination and isolate location data
 plate_layout <- read.csv("Data/Final_Pipeline/256comb_8bact_plate.csv") %>%
@@ -45,13 +45,11 @@ bad_fit_count = 0
 
 # Make a vector of isolates
 isolates_vector <- as.vector(unique(plate_layout$Isolate))
-isolates_species_vector <- c("KUE4_10 - S. acidaminiphila", "NUE1_1 - B. muralis", "LUF4_5 - L. rhizovicinus", "NUF1_3 - V. paradoxus", "KUB5_13 - V. paradoxus", "KUE4_4 - B. muralis", "E. coli OP50", "Nash's Field Soil Community")
+isolates_species_vector <- c("KUE4_10 - S. acidaminiphila", "NUE1_1 - B. simplex", "LUF4_5 - L. rhizovicinus", "NUF1_3 - V. paradoxus", "KUB5_13 - V. paradoxus", "KUE4_4 - B. simplex", "E. coli OP50", "Nash's Field Soil Community")
   
 # Make a vector of stressors
 stressors_vector <- as.vector(colnames(plate_layout[1:8]))
 stressors_vector_short <- abbreviate(stressors_vector, minlength = 2)
-# And a colour vector for consistent colouring
-stressor_colours <- c("Copper" = "red3", "Nickel" = "firebrick", "Chloramphenicol" = "plum", "Ampicillin" = "plum4", "Atrazine" = "darkgreen", "Metaldehyde" = "forestgreen", "Tebuconazole" = "steelblue", "Azoxystrobin" = "lightblue3", "None" = "black")
 
 # Load in plate .CSVs from a seperate folder using a for loop. Make a tibble to contain the data.
 # Make sure your plates are correctly ordered in the wd. You will need leading 0s on your plate numbers for the below loop to read them in order.
@@ -103,7 +101,7 @@ load_run_data <- function(run_number)
 }
 
 # Load run data per run and append it to tidy_data. Starts at 2, because Run 1 was a write-off.
-for (r in 2:(run_count + 1))
+for (r in runs_vector)
 {
   load_run_data(r)
 }
@@ -130,5 +128,4 @@ wells_count
 # How many plates
 plate_count
 
-
-# TODO: Intermediate output .csvs
+setwd(here())

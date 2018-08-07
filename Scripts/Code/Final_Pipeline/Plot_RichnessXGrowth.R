@@ -65,9 +65,8 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(Richnes
 #   ggtitle("growth rate")
 
 # We can do some linear modelling later and obtain some idea of the statistical soundness behind our measurements...
-pdf("Results/Final_Pipeline/growthXrichness.pdf", width = 16, height = 8)
+png("Results/Final_Pipeline/growthXrichness.png", width = 1600, height = 800)
 # ggarrange(growthXrichness_auc_e, growthXrichness_auc_l, growthXrichness_k, growthXrichness_r, common.legend = TRUE, legend = "right", ncol = 2, nrow = 2)
-growthXrichness_mean
 growthXfunc_richness_mean
 dev.off()
 
@@ -86,3 +85,5 @@ summary(lm_MxR_F)
 
 # Basically species and isolate currently explain variation well, and richness doesn't. Which doesn't seem right...
 lm_anova <- anova(lm_MxR, lm_MxR_F)
+
+setwd(here())

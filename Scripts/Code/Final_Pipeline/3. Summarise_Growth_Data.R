@@ -10,8 +10,6 @@ library(gridBase)
 library(gridExtra)
 library(growthmodels)
 
-setwd(here("Scripts"))
-
 #######################
 ### SET INPUTS HERE ###
 #######################
@@ -61,3 +59,10 @@ tidier_growth_data <- bind_rows(tidier_growth_data, temp_control_means)
 # How many problems are we likely to have with poor replication (spoiler: lots)
 paste("bad wells", nrow(filter(tidier_growth_data, n == 1)))
 paste("total wells", nrow(tidier_growth_data))
+
+# Calculate sample size range for each isolate
+sample_size <- tidier_growth_data %>%
+  group_by(Isolate) %>%
+  summarise(Mean_n = mean(n), SD_n = sd(n)) 
+
+write.csv(sample_size, "Results/Final_Pipeline/sample_sizes_table.csv")

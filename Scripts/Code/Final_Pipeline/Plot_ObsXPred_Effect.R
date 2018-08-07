@@ -9,9 +9,10 @@ library(ggplot2)
 library(growthcurver)
 library(gridBase)
 library(gridExtra)
+library(ggpubr)
 library(viridis)
 
-setwd("C:/Users/Sam Welch/Google Drive/ICL Ecological Applications/Project/Work/Scripts")
+setwd(here("Scripts"))
 
 # For loop through 2-7 way interactions and graph them out
 for (i in 1:8)
@@ -21,6 +22,7 @@ for (i in 1:8)
   plot_i_temp <- ggplot(interactions_temp, aes(x = pred_mean, y = obs_mean)) +
     geom_point(aes(colour = Richness), size = 2, alpha = 0.9, shape = 16) +
     scale_colour_viridis(discrete = FALSE) +
+    theme(legend.position="none") +
     geom_abline(slope = 1, intercept = 0, colour = "grey", size = 1) +
     ggtitle(isolates_species_vector[i]) +
     # Consistent scaling isn't great...
@@ -36,7 +38,7 @@ for (i in 1:8)
 }
 
 # Plot together, aligned by species
-pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 18, height = 8, onefile = FALSE)
+png("Results/Final_Pipeline/ObservedXPredicted.png", width = 1800, height = 800)
 ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, ncol = 4, nrow = 2, common.legend = TRUE, legend = "right")
 dev.off()
 

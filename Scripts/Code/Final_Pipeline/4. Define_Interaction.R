@@ -9,14 +9,20 @@ library(tidyr)
 library(ggplot2)
 library(growthcurver)
 library(data.table)
+library(viridis)
+library(forcats)
+
 setwd(here("Scripts"))
 source("Code/Final_Pipeline/t.test2.R")
+source("Code/Final_Pipeline/Function_Aggregate_Fun_Groups.R")
 
 # Set your p-cutoff for additivism here
 p_cutoff <- 0.05
 
 # Calculate the effect of individual stressors relative to controls, by isolate
 all_interactions_tibble <- tibble()
+# A big single stressor tibble that we can use in other scripts
+big_single_stressor_data <- tibble()
 
 for (s in 1:8)
 {
@@ -58,6 +64,7 @@ for (s in 1:8)
   # This ugly boy here reorders the single stressor data to stressors_vector so I don't accidentally predict using the wrong data!
   single_stressor_growth_data$Stressor <- factor(single_stressor_growth_data$Stressor, levels = stressors_vector)
   single_stressor_growth_data <- single_stressor_growth_data[order(single_stressor_growth_data$Stressor),]
+  big_single_stressor_data <- bind_rows(big_single_stressor_data, single_stressor_growth_data)
   
   # And all mixtures
   mixture_tidier_growth_data <- isolate_tidier_growth_data %>%
@@ -75,6 +82,7 @@ for (s in 1:8)
   for (p in 1:nrow(mixture_tidier_growth_data))
   {
     mixture_counter <- 0
+    temp_stressors <- vector(mode = "numeric", length = 8)
     for (q in 1:8)
     {
       if ((mixture_tidier_growth_data[p,q] == 1) && (mixture_counter < mixture_tidier_growth_data$Richness[p]))
@@ -85,6 +93,8 @@ for (s in 1:8)
         mixture_tidier_growth_data$pred_sd[p] <- sqrt((mixture_tidier_growth_data$pred_sd[p] ^ 2) + (single_stressor_growth_data$sd_effect[q] ^ 2))
         mixture_tidier_growth_data$pred_n[p] <- mixture_tidier_growth_data$pred_n[p] + single_stressor_growth_data$n_effect[q]
         mixture_counter <- mixture_counter + 1
+        # And append the stressor effect to temp_stressors so we can calculate the regions of Piggott synergy and antagonism
+        temp_stressors[q] <- single_stressor_growth_data$mean_effect[q]
       } 
       if (mixture_counter == mixture_tidier_growth_data$Richness[p])
       {
@@ -98,26 +108,49 @@ for (s in 1:8)
                                  mixture_tidier_growth_data$pred_sd[p], mixture_tidier_growth_data$obs_sd[p],
                                  mixture_tidier_growth_data$pred_n[p], mixture_tidier_growth_data$obs_n[p])
         # We also need to catch NaNs and NAs
+        # Set some upper and lower bounds of synergies for cleaner code
+        upper_bound <- max(mixture_tidier_growth_data$pred_mean[p], temp_stressors, 0)
+        lower_bound <- min(mixture_tidier_growth_data$pred_mean[p], temp_stressors, 0)
         if (is.na(additive_test[4]) || is.nan(additive_test[4]))
           {
-            mixture_tidier_growth_data$Interaction[p] <- "Error"
+            mixture_tidier_growth_data$Interaction[p] <- "T-test error"
           } else if (additive_test[4] >= p_cutoff)
           {
             mixture_tidier_growth_data$Interaction[p] <- "Additive"
-          } else if (mixture_tidier_growth_data$obs_mean[p] > mixture_tidier_growth_data$pred_mean[p])
+          } else if (mixture_tidier_growth_data$obs_mean[p] > upper_bound)
           {
-            mixture_tidier_growth_data$Interaction[p] <- "Synergy"
+            mixture_tidier_growth_data$Interaction[p] <- "+ Synergy"
+          } else if (mixture_tidier_growth_data$obs_mean[p] < lower_bound)
+          {
+            mixture_tidier_growth_data$Interaction[p] <- "- Synergy"
           } else if (mixture_tidier_growth_data$obs_mean[p] < mixture_tidier_growth_data$pred_mean[p])
           {
-            mixture_tidier_growth_data$Interaction[p] <- "Antagonism"
+            mixture_tidier_growth_data$Interaction[p] <- "- Antagonism"
+          } else if (mixture_tidier_growth_data$obs_mean[p] > mixture_tidier_growth_data$pred_mean[p])
+          {
+            mixture_tidier_growth_data$Interaction[p] <- "+ Antagonism"
+          } else
+          {
+            mixture_tidier_growth_data$Interaction[p] <- "Classification Error"
           }
-        # This is crude, but does it work?
+        # This is crude, I think it works.
           mixture_counter <- 0
         }
       }
     }
     all_interactions_tibble <- bind_rows(all_interactions_tibble, mixture_tidier_growth_data)
   }
+# Think of this as a diagnostic plot.
+interaction_order <- c("+ Synergy", "- Antagonism", "Additive", "+ Antagonism", "- Synergy", "T-test error") 
 
-ggplot(data = filter(all_interactions_tibble), aes(x = Isolate, fill = Interaction)) +
-  geom_bar()
+all_interactions_tibble$Interaction <- factor(all_interactions_tibble$Interaction, levels = interaction_order)
+
+ggplot(data = all_interactions_tibble, aes(x = Isolate, fill = Interaction)) +
+  scale_colour_viridis_d(aesthetics = "fill", option = "viridis", direction = -1, drop = FALSE) +
+  geom_bar(position = "stack") +
+  ggtitle(paste("p <", p_cutoff))
+# Diagnosis: a bad dataset.
+
+meh <- ggplot(data = all_interactions_tibble, aes(x = pred_mean, y = obs_mean, colour = Interaction)) +
+  geom_point() +
+  scale_colour_viridis_d()
