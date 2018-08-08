@@ -2,11 +2,14 @@
 # Also implements a number of counters needed by future for loops. Can (theoretically) handle as many replicates as needed.
 library(dplyr)
 library(tidyr)
+library(tibble)
 library(ggplot2)
 library(growthcurver)
 library(gridBase)
 library(gridExtra)
 library(here)
+library(stringr)
+
 
 setwd(here("Scripts")) # Hopefully a slighly more rational way to handle WDs. Run here() for project directory. 
 # See https://www.rdocumentation.org/packages/here/versions/0.1 for here package documentations.

@@ -41,7 +41,7 @@ isolate_single_stress <- isolate_single_stress %>%
 # Calculates one mean and SD for every combination of isolate, stressor and time point
 isolate_single_stress <- isolate_single_stress %>%
   group_by(Isolate, Stressor, time) %>%
-  summarise(Mean_OD = mean(OD), SD_OD = sd(OD)) %>%
+  summarise(Mean_OD = mean(OD), SD_OD = sd(OD), n = n()) %>%
   distinct() %>%
   filter(time < 26)
 

@@ -8,7 +8,7 @@ library(tidyverse)
 isolate_lm <- lm(Growth_auc_e ~ Isolate, tidy_growth_data)
 summary(isolate_lm)
 
-# I tried a for loop and it was bad, so by hand:
+# It's another nested for loop.
 for (b in 1:8)
 {
   test0 <- combn(stressors_vector, b)
@@ -38,7 +38,7 @@ for (b in 1:8)
 }
 
 # Can we pick out the models that best explain the variation
-anova <- anova(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
+lm_anova <- anova(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
 # Is a multivariate analysis of variance more appropriate? No.
 my_manova <- manova(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
 
@@ -53,4 +53,7 @@ aic_tib <- as.tibble(aic) %>%
 
 ggplot(data = aic_tib, aes(x = lm, y = AIC)) +
   geom_point(aes(size = df))
-# Lower AIC is better? 
+# Lower AIC is better?
+
+write.csv(lm_anova, "Results/Final_Pipeline/lm_anova_results.csv")
+write.csv(aic_tib, "Results/Final_Pipeline/aic_results.csv")

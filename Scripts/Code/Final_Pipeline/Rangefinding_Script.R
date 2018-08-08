@@ -4,7 +4,6 @@ library(tidyr)
 library(growthcurver)
 library(dplyr)
 library(stringr)
-library(drc)
 
 #######################
 
@@ -89,6 +88,14 @@ for (k in 1:8)
     filter(Stressor == names(concentration_stressor_vector[k])) %>%
     group_by(Isolate, Concentration, Stressor) %>%
     summarise(Mean_growth = mean(Growth_auc_e))
+  
+  # Add mean growth
+  temp_rangefinding <- temp_rangefinding %>%
+    bind_rows(temp_rangefinding %>% 
+                group_by(Concentration, Stressor) %>% 
+                summarise(Mean_growth = mean(Mean_growth)) %>% 
+                mutate(Isolate = "Mean"))
+  
   temp_plot_name <- paste("p", k, sep = "")
   
   temp_plot <- 
@@ -98,7 +105,14 @@ for (k in 1:8)
       colour = Isolate)) +
     geom_point() +
     ggtitle(label = names(concentration_stressor_vector[k])) +
-    geom_smooth(method="loess", se=FALSE)
+    geom_smooth(method="loess", se=FALSE) +
+    geom_vline(xintercept = log(concentration_stressor_vector[k]), colour = "grey", linetype = "dashed") +
+    annotate("text", 
+             label = paste("Target concentration = ", concentration_stressor_vector[k], " μg/L", sep = ""), 
+             hjust = 1,
+             vjust = 1,
+             color = "grey",
+             angle = 90)
   
   assign(temp_plot_name, temp_plot)
 }

@@ -32,12 +32,14 @@ growthXrichness_mean <- ggplot(richness_growth_data, aes(Richness, Mean)) +
   geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
   ggtitle("Mean auc_e")
 
-growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(Richness, Mean)) +
-  geom_jitter(aes(colour = Species, shape = 16), width = 0.3) +
+growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.factor(Richness), Mean)) +
+  geom_jitter(aes(colour = Species, shape = 16, alpha = 0.75), width = 0.3) +
   scale_shape_identity() +
   geom_smooth(aes(group = Species, colour = Species), method = "lm", se = FALSE) +
   geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
-  ggtitle("Mean auc_e by Species")
+  ggtitle("Mean auc_e by Species") +
+  xlab("Mixture Complexity") +
+  ylab("Mean Growth")
 
 # # Same for auc_l
 # growthXrichness_auc_l <- ggplot(richness_growth_data, aes(Richness, Growth_auc_l)) +
