@@ -94,10 +94,10 @@ for (i in 1:8)
       } else if (additive_test[4] >= p_cutoff)
       {
         temp_ho_emergent_interaction_tibble$pred_comp_interaction[r] <- "Predicted"
-      } else if (additive_test[3] > 0)
+      } else if (additive_test[1] < 0)
       {
         temp_ho_emergent_interaction_tibble$pred_comp_interaction[r] <- "Emergent Synergy"
-      } else if (additive_test[3] < 0)
+      } else if (additive_test[1] > 0)
       {
         temp_ho_emergent_interaction_tibble$pred_comp_interaction[r] <- "Emergent Antagonism"
       } else
@@ -108,10 +108,32 @@ for (i in 1:8)
       emergent_interactions_tibble_app <- bind_rows(emergent_interactions_tibble_app, temp_ho_emergent_interaction_tibble[r,])
     }
   }
+  # Plot time!
+  interaction_order <- c("Emergent Synergy", "Predicted", "Emergent Antagonism", "T-test error") 
+  
+  emergent_interactions_tibble_app$pred_comp_interaction <- factor(emergent_interactions_tibble_app$pred_comp_interaction, levels = interaction_order)
+  
+  temp_plot <- 
+    ggplot(data = filter(emergent_interactions_tibble_app, Isolate == isolates_vector[i]), 
+           aes(x = as.factor(Richness), 
+               fill = pred_comp_interaction)) +
+    
+    scale_colour_viridis_d(aesthetics = "fill", 
+                           option = "viridis", 
+                           direction = -1, 
+                           drop = FALSE, 
+                           begin = 0,
+                           end = 1) +
+    
+    geom_bar(position = "stack") +
+    
+    ggtitle(paste(isolates_species_vector[i])) +
+    xlab("Mixture Complexity") +
+    ylab("Count")
+  
+  temp_plot_name <- paste("p", i , sep = "")
+  assign(temp_plot_name, temp_plot)
 }
 # Diagnostics.
 
-ggplot(data = emergent_interactions_tibble_app, aes(x = Isolate, fill = pred_comp_interaction)) +
-  scale_colour_viridis_d(aesthetics = "fill", option = "viridis", direction = -1, drop = FALSE) +
-  geom_bar(position = "stack") +
-  ggtitle(paste("p <", p_cutoff))
+annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, common.legend = TRUE, legend = "right"), top = p_cutoff)

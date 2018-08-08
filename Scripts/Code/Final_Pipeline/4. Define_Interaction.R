@@ -10,7 +10,9 @@ library(ggplot2)
 library(growthcurver)
 library(data.table)
 library(viridis)
-library(forcats)
+library(forcats) # sadly nothing to do with cats
+library(ggpubr)
+library(here)
 
 setwd(here("Scripts"))
 source("Code/Final_Pipeline/t.test2.R")
@@ -139,16 +141,36 @@ for (s in 1:8)
       }
     }
     all_interactions_tibble <- bind_rows(all_interactions_tibble, mixture_tidier_growth_data)
-  }
+    
+    # Plot a rather ugly bar chart of interactions by richness, by isolate
+    
+    interaction_order <- c("+ Synergy", "- Antagonism", "Additive", "+ Antagonism", "- Synergy", "T-test error") 
+    
+    all_interactions_tibble$Interaction <- factor(all_interactions_tibble$Interaction, levels = interaction_order)
+    
+    temp_plot <- 
+      ggplot(data = filter(all_interactions_tibble, Isolate == isolates_vector[s]), 
+             aes(x = as.factor(Richness), 
+                 fill = Interaction)) +
+      
+      scale_colour_viridis_d(aesthetics = "fill", 
+                             option = "viridis", 
+                             direction = -1, 
+                             drop = FALSE) +
+      
+      geom_bar(position = "stack") +
+      
+      ggtitle(paste(isolates_species_vector[s])) +
+      xlab("Mixture Complexity") +
+      ylab("Count")
+    
+    temp_plot_name <- paste("p", s , sep = "")
+    assign(temp_plot_name, temp_plot)
+}
 # Think of this as a diagnostic plot.
-interaction_order <- c("+ Synergy", "- Antagonism", "Additive", "+ Antagonism", "- Synergy", "T-test error") 
 
-all_interactions_tibble$Interaction <- factor(all_interactions_tibble$Interaction, levels = interaction_order)
+annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, common.legend = TRUE, legend = "right"), top = p_cutoff)
 
-ggplot(data = all_interactions_tibble, aes(x = Isolate, fill = Interaction)) +
-  scale_colour_viridis_d(aesthetics = "fill", option = "viridis", direction = -1, drop = FALSE) +
-  geom_bar(position = "stack") +
-  ggtitle(paste("p <", p_cutoff))
 # Diagnosis: a bad dataset.
 
 meh <- ggplot(data = all_interactions_tibble, aes(x = pred_mean, y = obs_mean, colour = Interaction)) +
