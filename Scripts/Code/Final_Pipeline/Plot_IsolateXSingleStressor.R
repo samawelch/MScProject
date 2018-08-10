@@ -42,8 +42,7 @@ isolate_single_stress <- isolate_single_stress %>%
 isolate_single_stress <- isolate_single_stress %>%
   group_by(Isolate, Stressor, time) %>%
   summarise(Mean_OD = mean(OD), SD_OD = sd(OD), n = n()) %>%
-  distinct() %>%
-  filter(time < 26)
+  distinct() 
 
 # for loop across the 8 isolates to produce a 4x2 lattice of graphs
 # TODO: still needs logistic curves fitted
