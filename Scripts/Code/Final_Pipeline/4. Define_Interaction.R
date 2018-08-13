@@ -13,6 +13,8 @@ library(viridis)
 library(forcats) # sadly nothing to do with cats
 library(ggpubr)
 library(here)
+library(plotly)
+
 
 setwd(here("Scripts"))
 source("Code/Final_Pipeline/t.test2.R")
@@ -162,17 +164,24 @@ for (s in 1:8)
       
       ggtitle(paste(isolates_species_vector[s])) +
       xlab("Mixture Complexity") +
-      ylab("Count")
+      ylab("Count") +
+      theme(legend.position = "none")
     
     temp_plot_name <- paste("p", s , sep = "")
     assign(temp_plot_name, temp_plot)
 }
-# Think of this as a diagnostic plot.
+dummy_legend <- get_legend(
+  temp_plot +
+    theme(legend.position = "right")
+  
+)
 
-annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, common.legend = TRUE, legend = "right"), top = p_cutoff)
+annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend), top = p_cutoff)
 
 # Diagnosis: a bad dataset.
 
 meh <- ggplot(data = all_interactions_tibble, aes(x = pred_mean, y = obs_mean, colour = Interaction)) +
   geom_point() +
   scale_colour_viridis_d()
+
+ggplotly(meh)

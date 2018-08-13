@@ -8,6 +8,8 @@ library(growthcurver)
 library(gridBase)
 library(gridExtra)
 library(ggpubr)
+library(tikzDevice)
+library(here)
 
 setwd(here("Scripts"))
 
@@ -33,11 +35,9 @@ growthXrichness_mean <- ggplot(richness_growth_data, aes(Richness, Mean)) +
   ggtitle("Mean auc_e")
 
 growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.factor(Richness), Mean)) +
-  geom_jitter(aes(colour = Species, shape = 16, alpha = 0.75), width = 0.3) +
-  scale_shape_identity() +
   geom_smooth(aes(group = Species, colour = Species), method = "lm", se = FALSE) +
   geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
-  ggtitle("Mean auc_e by Species") +
+  ggtitle("Mean Growth by Species") +
   xlab("Mixture Complexity") +
   ylab("Mean Growth")
 
@@ -88,4 +88,12 @@ summary(lm_MxR_F)
 # Basically species and isolate currently explain variation well, and richness doesn't. Which doesn't seem right...
 lm_anova <- anova(lm_MxR, lm_MxR_F)
 
-setwd(here())
+# Let's try tikz
+tikz("Results/Final_Pipeline/growthXrichness.tex", width = 3.5, height = 3.5)
+growthXfunc_richness_mean
+dev.off()
+
+library(tikzDevice)
+tikz('Results/simpleEx.tex',width=3.5,height=3.5)
+plot(1,main='Hello World!')
+dev.off()

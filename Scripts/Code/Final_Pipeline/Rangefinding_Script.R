@@ -105,19 +105,33 @@ for (k in 1:8)
       colour = Isolate)) +
     geom_point() +
     ggtitle(label = names(concentration_stressor_vector[k])) +
-    geom_smooth(method="loess", se=FALSE) +
+    geom_smooth(method = "loess", se = FALSE) +
     geom_vline(xintercept = log(concentration_stressor_vector[k]), colour = "grey", linetype = "dashed") +
     annotate("text", 
              label = paste("Target concentration = ", concentration_stressor_vector[k], " μg/L", sep = ""), 
              hjust = 1,
              vjust = 1,
              color = "grey",
-             angle = 90)
+             angle = 90) +
+    scale_y_continuous(limits = c(0, 9)) +
+    xlab("Log Concentration") +
+    ylab("Mean Growth") +
+    theme(legend.position="none")
   
   assign(temp_plot_name, temp_plot)
 }
+
+dummy_legend <- get_legend(
+    ggplot(data = temp_rangefinding, aes(
+      x = log(Concentration),
+      y = Mean_growth, 
+      colour = Isolate)) +
+    geom_point()
+)
+
 setwd(here("Scripts","Results","Bug_Rangefinding"))
 png("dose_response_messes.png", width = 1500, height = 1500)
-ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom")
+ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend, ncol = 3, nrow = 3)
+dev.off()
 dev.off()
 

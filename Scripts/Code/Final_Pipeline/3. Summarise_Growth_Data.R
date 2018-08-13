@@ -10,6 +10,8 @@ library(gridBase)
 library(gridExtra)
 library(growthmodels)
 
+setwd(here("Scripts"))
+
 #######################
 ### SET INPUTS HERE ###
 #######################

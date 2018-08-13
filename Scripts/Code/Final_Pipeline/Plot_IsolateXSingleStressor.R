@@ -50,8 +50,6 @@ for (o in 1:8)
 {
   temp_isolate <- isolates_vector[o]
   temp_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes(time, Mean_OD)) +
-    geom_point(aes(colour = Stressor), size = 1, shape = 16, alpha = 1) +
-    scale_colour_manual(values = stressor_colours) +
     theme(legend.position="none") +
     ylim(0.04,0.35) +
     scale_shape_identity() +
@@ -69,7 +67,6 @@ for (o in 1:8)
 # Plot a dummy graph so we can get a legend.
 dummy_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes(time, Mean_OD)) +
   geom_point(aes(colour = Stressor), size = 1, shape = 16, alpha = 1) +
-  scale_colour_manual(values = stressor_colours, limits = names(stressor_colours)) +
   scale_shape_identity() +
   geom_smooth(aes(colour = Stressor), method="loess", se = FALSE) +
   geom_hline(yintercept = 0.05, colour = "grey") 
