@@ -2,6 +2,7 @@
 Code and words for my MSc project.
 
 # R packages used:
+```
 dplyr
 tidyr
 tibble
@@ -19,3 +20,4 @@ viridis
 magrittr
 data.table
 forcats
+```
