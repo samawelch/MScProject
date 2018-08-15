@@ -8,7 +8,6 @@ library(ggplot2)
 library(growthcurver)
 library(gridBase)
 library(gridExtra)
-library(growthmodels)
 
 setwd(here("Scripts"))
 

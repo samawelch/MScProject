@@ -1,7 +1,6 @@
 # Modifies tidier_growth_data to create Piggott et al. interaction definitions for every combination of stressors by isolate
 # Also converts presence/absence data into columns for S1, S2, S3, etc
 # Requires a whole buncha stuff.
-# TODO: Make.
 
 library(dplyr)
 library(tibble)
@@ -13,7 +12,6 @@ library(viridis)
 library(forcats) # sadly nothing to do with cats
 library(ggpubr)
 library(here)
-library(plotly)
 
 
 setwd(here("Scripts"))
