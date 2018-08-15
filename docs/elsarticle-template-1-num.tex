@@ -22,7 +22,7 @@
 %% $URL: http://lenova.river-valley.com/svn/elsbst/trunk/elsarticle-template-1-num.tex $
 %%
 
-\documentclass[review,12pt]{elsarticle}
+\documentclass[final,1p,times]{elsarticle}
 
 %% Use the option review to obtain double line spacing
 %% \documentclass[preprint,review,12pt]{elsarticle}
@@ -61,10 +61,18 @@
 \usepackage[title]{appendix}
 \usepackage{hyperref}
 \hypersetup{final}
+\usepackage{threeparttable}
+\usepackage{scalefnt}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amssymb}
 
 %% Keeps tables looking tolerable.
-\newcolumntype{L}{>{\centering\arraybackslash}m{2.3cm}}
+\newcolumntype{L}{>{\centering\arraybackslash}m{2.7cm}}
 \newcolumntype{M}{>{\centering\arraybackslash}m{3cm}}
+
+%% Seeing as this is going to be submitted electronically, I think we can sacrifice page count at the altar of readability. 
+\setlength{\parskip}{1em}
 
 %% The lineno packages adds line numbers. Start line numbering with
 %% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
@@ -92,7 +100,7 @@
 
 % \biboptions{}
 
-\journal{Journal Name}
+\journal{Science of the Total Environment}
 
 \begin{document}
 
@@ -133,12 +141,11 @@
 
 \begin{abstract}
 %% Text of abstract
-I did horrible things to bacteria; sometimes several at once. In the end though I think the bacteria may have still come out ahead.
+I did horrible things to bacteria; sometimes several at once. In the end though I think the bacteria may have still come out ahead. Maybe if I pad the abstract out a little more, like so, everything will be much more neatly laid out across the pages. 
 \end{abstract}
 
 \begin{keyword}
-Bacteria \sep Ecotoxicology \sep Population Ecology \sep Multiple Stressors \sep Mixture Ecology
-%% keywords here, in the form: keyword \sep keyword
+Bacteria \sep Ecotoxicology \sep Higher-order effects \sep Multiple Stressors \sep Mixture Toxicity
 
 %% MSC codes here, in the form: \MSC code \sep code
 %% or \MSC[2008] code \sep code (2000 is the default)
@@ -157,19 +164,21 @@ Bacteria \sep Ecotoxicology \sep Population Ecology \sep Multiple Stressors \sep
 \label{S:1}
 \subsection{The State of the Art}
 
-Today a living organism must content with not only a broad range of ecological and biogeographic stressors, but also the presence of over 20,000 potentially harmful chemicals \cite{ECHA2018a}, often found in complex mixtures with hard-to-predict effects \cite{EuropeanCommission2012a}, while heavy metals are present not only throughout the earth, but also as irreplaceable components in vital enzymes and metabolic pathways.
+Any organism today must content with not only a broad range of ecological and biogeographic stressors, but also the presence of more than 100 million known chemicals \cite{CAS2015}. Though many of these chemicals have always been naturally present in the world as components of the crust, secreted biocides or waste products, the chemical landscape of ecosystems has never been more complex, with chemical stressors mixing with hard-to-predict effects \cite{EuropeanCommission2012a}. 
 
-The combined effects of mixtures of toxins and multiple stressors has long been a source of fascination for the field of academic ecotoxicology \cite{Bliss1939}. Despite this level of interest, advances in prediction, modelling and knowledge of interactions \cite{Lkke2013ToolsStressors,Cote2016,Jackson2016} have not translated to corresponding legislative changes, with existing mixture toxicity regulations being limited and distinctly human-focused \cite{EuropeanCommission2012a}., Consensus on experimental and statistical design has also been lacking, with authors applying a variety of potentially inappropriate null interaction models to their data \cite{Piggott2015,Schafer2018}, making it difficult to easily compare results across studies \cite{Jackson2016},  and a tendency towards the use of a narrow range of established model organisms in toxicity tests \cite{OECD2014SectionSystems}.
+Though mixture toxicity has long attracted much academic attention and study \cite{Bliss1939}, criticisms remain of a lack of consensus on experimental design, use of statistics, and even inconsistent interaction definitions \cite{Jackson2016,Piggott2015,Schafer2018}. Ecotoxicology still bears the legacy of its largely regulatory past, a preoccupation with declaring any given chemical safe or not, using a limited panel of model species \cite{OECD2014SectionSystems}. Equally, existing mixture toxicity regulations in the EU are limited and distinctly human-focused \cite{EuropeanCommission2012a}, and do not represent the latest in scientific knowledge.
 
-This focus on a small panel of well-studied species forms the basis for a longstanding criticism from within the field: the difficulty of integrating ecotoxicological results into larger-scale understanding of how ecosystems respond to stress \cite{Chapman2002a,Gessner2016}. Aquatic and terrestrial ecosystems alike are supported by a broad trophic base of microbes that provide vital services as decomposers, chemical engineers, and pathogens \cite{Nannipieri2003a,VanderHeijden2008a}, but in most cases a chemical’s toxicity to bacteria is tested using the luminescent bacteria toxicity assay (LBTA), a 30-minute exposure to \textit{Aliivibrio fischerii}, a bioluminescent marine decomposer. The LBTA is the industry standard due to its simplicity and ease of use, but it suffers from a number of well-documented limitations \cite{Ma2014}, not including its lack of generalisability. 
+A longstanding criticism of ecotoxicology remains the difficulty of integrating ecotoxicological results into a broader understanding of how ecosystems respond to stress across their component species. \cite{Chapman2002a,Gessner2016}. Ecosystems are without exception supported by a broad trophic foundation of microbes that provide vital services as decomposers, chemical engineers, and pathogens \cite{Nannipieri2003a,VanderHeijden2008a}, but in regulatory and scientific settings a chemical's toxicity to bacteria is typically tested using the luminescent bacteria toxicity assay (LBTA) \cite{OECD2014SectionSystems}, a 30-minute exposure to \textit{Aliivibrio fischerii}, a bioluminescent marine decomposer. The LBTA is the industry standard due to its simplicity and ease of use, but it suffers from a number of well-documented limitations \cite{Ma2014} in addition to the difficult of generalising from one species to an entire ecosystem.
 
-Traditional models of mixture toxicity have traditionally focused on binary mixtures of stressors, where two chemicals or environmental factors known to have a positive or negative effect on various endpoints, including growth, morbidity, and mortality, are mixed at various concentrations, and their combined effect compared to a null-model prediction of their interaction (often additive, which is to say the sum of their parts) in order to determine if in combination they display synergism – an effect greater than the sum of their parts, antagonism – an effect lesser than the sum of their parts – or simple additivism, when the effect is statistically indistinguishable from the null model. This simplistic model suffers from a number of defects, however. Foremost among them is the definition of what constitutes a stressor: a synonym for 'pollutant' or 'pressure', a substance or treatment that produces a deleterious effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that the dose makes the poison – as true for a rise in temperature or in nutrient availability as it is for toxic pollutants, but also that the species makes the poison, that there are many species including bacteria that are able to resist or even thrive on substances that would be deleterious to un-adapted species \cite{Malik2004,Gadd2009}. 
+Traditional models of mixture toxicity focus on binary mixtures of stressors. Two chemicals or environmental factors, that known to have a positive or negative effect on some aspect of a species' fitness, are mixed at various concentrations. Their combined effect compared to a null-model prediction of their interaction -- often additive, the sum of their parts -- in order to determine if in combination they display synergism -– an effect greater than the sum of their parts, antagonism – an effect lesser than the sum of their parts –- or simple additivism, when the effect is statistically indistinguishable from the null model. 
 
-A second issue is that due to the geometrically-scaling increased complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of more complex chemical mixtures – ‘higher order interactions’ – has been limited \cite{Beppler2016UncoveringStressors}. Despite a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017PrevalenceInteractions}, recent studies examining complex mixtures of pharmaceutical antibiotics have shown higher-order emergent effects,  three-way interactions not predictable by multiplying their weighted component effects together, which means that the existing body of binary-interaction based literature may not be scalable over more complex mixtures of stressors to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}
+Though easy to understand and employ, this model is not without its issues. What, for example, is a stressor? The term is often used as a synonym for 'pollutant', 'toxicant', or 'pressure' -- a substance or treatment that produces a negative fitness effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that 'the dose makes the poison'\cite{OGParacelsus} –- as true for a rise in temperature or in nutrient availability as it is for toxic pollutants -- but also that \textit{the species makes the poison}. Many organisms, particularly bacteria, are are able to tolerate or even thrive on substances that are harmful to other species \cite{Malik2004,Gadd2009}. 
 
-At an ecological level research on complex combinations of stressors – including chemicals – is more common, and suffers from a similar level of uncertainty and confusion over the strictest definitions of synergy and antagonism \cite{Cote2016}.  Beppler also highlights the study of emergent interactions between higher-order (3+) mixtures of predators – Multiple Predator Effects (MPEs) – that has received some attention, a recent review of the literature \cite{Griffin2013EffectsMeta-analysis} finding overall that species-rich mixtures of predators were more effective at suppressing prey than poorer mixtures, although a considerable number of component studies found no significant effect of richness. 
+Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has been limited \cite{Beppler2016UncoveringStressors}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017PrevalenceInteractions}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects,  three-way interactions not predictable from component two-way effects, meaning that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}.
 
-In an era where anthropogenic pollution is a greater pressure on ecosystems that ever before, it is vital that we improve our understanding of how a diverse range of wild bacteria respond to different stressors, providing a solid empirical foundation to form the basis for a framework to predict the contributions of individual stressors to the overall stress load on ecosystems. A better understanding of the problems of pollution will also permit more efficient and targeted interventions – where, for instance, one stressor has a disproportionate effect on overall response and thus should produce the greatest positive effect when removed. 
+Within ecology, research on complex combinations of stressors -– including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators -– Multiple Predator Effects (MPEs) –- that has received some attention. One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than poorer mixtures, although a considerable number of component studies found no significant relationship. 
+
+In the Anthropocene, an era where pollution is a greater pressure on ecosystems than ever before, it is vital that we improve our understanding of how a diverse range of wild bacteria respond to different stressors. Greater understanding of these stressors and interactions will enable more targeted and cost-efficient legislation and interventions -– for instance, one stressor has a disproportionate effect on overall response and thus should produce the greatest positive effect when removed. 
 
 This study thus aims to address this knowledge gap through the use of automated experimental set-up and observational equipment to examine the effects of complex mixtures of common pollutants on a diverse panel of soil bacteria. It is hypothesised that more complex mixtures of chemicals will produce emergent effects not predictable from their component lower-order interactions, and that single stressor responses and interaction responses will vary across the bacterial panel.
 
@@ -178,62 +187,34 @@ This study thus aims to address this knowledge gap through the use of automated 
 \subsection{Isolate Selection}
 \label{S:2:1}
 
-8 sets of bacterial isolates  were selected, sourced principally from the Nash's Field experimental site at Silwood Park, United Kingdom. Plots N and P (see Appendix \ref{A:2}) of Nash's Field have since 1991 been treated thrice yearly with metaldehyde at 960 g.ha$^{-1}$ as part of herbivore exclusion experiments \cite{Allan2011ContrastingExperiment}, while bacteria were isolated and sequenced in 2016 for an earlier study \cite{Mombrikotb2016}. 
+8 sets of bacterial isolates  were selected, sourced principally from the Nash's Field experimental site at Silwood Park, United Kingdom. Plots N and P (see Appendix \ref{A:2}) of Nash's Field have since 1991 been treated three times yearly with metaldehyde at 960 g/ha as part of herbivore exclusion experiments \cite{Allan2011ContrastingExperiment}, while bacteria were isolated and sequenced in 2016 for an earlier study \cite{Mombrikotb2016}. 
 
-\begin{table}[h]
+\begin{table}[ht]
+\begin{small}
 \centering
-\scriptsize
-\begin{tabular}{c p{3.2cm} l p{4.8cm}}
+\begin{tabular}{c p{3.1cm} l p{5.2cm}}
 \toprule 
 {Strain} & {Species} & {History} & {Notes} \\
 \midrule
-\rowcolor{black!20}{R2A\_LUF4\_5} & \textit{Luteibacter rhizovicinus} & Control & First isolated from the rhizosphere \cite{Johansen2005LuteibacterL.}.\\
-{R2A\_KUB5\_13} & \textit{Variovorax paradoxus} & Control & Strains capable of metabolising a wide range of pollutants \cite{Satola2013MetabolicParadoxus}.\\
-\rowcolor{black!20}{R2A\_NUF1\_3} & \textit{Variovorax paradoxus} & Metaldehyde & \\
-{R2A\_KUE4\_4} & \textit{Bacillus simplex} & Control & Strains capable of biosorption of heavy metals and radionuclides \cite{Valentine1996BiosorptionZone}.\\
-\rowcolor{black!20}{R2A\_NUE1\_1} & \textit{Bacillus simplex} & Metaldehyde & \\
-{R2A\_KUE4\_10} & \textit{Stenotrophomonas \newline acidaminiphila} & Control & First isolated from a waste-acid-treating anaerobic bioreactor \cite{Assih2002}.\\
-\rowcolor{black!20}{OP50} & \textit{Escherichia coli} & Control & Included as an example of a well-studied model species.\\
+\rowcolor{black!20}{LUF4\_5} & \textit{Luteibacter rhizovicinus} & Control & First isolated from the rhizosphere \cite{Johansen2005LuteibacterL.}. \\
+{KUB5\_13} & \textit{Variovorax paradoxus} & Control & Strains capable of metabolising a wide range of pollutants \cite{Satola2013MetabolicParadoxus}. \\
+\rowcolor{black!20}{NUF1\_3} & \textit{Variovorax paradoxus} & Metaldehyde & \\
+{KUE4\_4} & \textit{Bacillus simplex} & Control & Strains capable of biosorption of heavy metals and radionuclides \cite{Valentine1996BiosorptionZone}. \\
+\rowcolor{black!20}{NUE1\_1} & \textit{Bacillus simplex} & Metaldehyde & \\
+{KUE4\_10} & \textit{Stenotrophomonas \newline acidaminiphila} & Control & First isolated from a waste-acid-treating anaerobic bioreactor \cite{Assih2002}. \\
+\rowcolor{black!20}{OP50} & \textit{Escherichia coli} & Control & Included as a model species. \\
 {KUA5 Sample} & Soil Community & Control & \\
 \bottomrule
 \end{tabular}
 \caption{Bacterial species, strains, and sources.}
 \label{tab:isolates}
+\end{small}
 \end{table}
 
-Isolates were stored on CryoBeads in a standard Brucella Broth with Glycerol solution (Hardy Diagnostics, CB12) at -80\textdegree C until needed for experiments, when they were cultured overnight on a rotary shaker in a standard R2A broth at room temperature (25.9\textdegree C – 26.6\textdegree C over a 48h period) prior to experiments. Soil communities were frozen in a 60\% glycerol solution immediately after extraction and defrosted on an individual basis for overnight culturing, meaning it was probably that each replicate of soil community exposures contained a distinct diversity and abundance of species in itself. 
+Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with glycerol solution (Hardy Diagnostics, CB12) at -80\textdegree C until needed for experiments, when they were cultured overnight on a rotary shaker in a standard R2A broth at room temperature (25.9\textdegree C–-26.6\textdegree C over a 48h period) prior to experiments. Soil communities were frozen in a 60\% glycerol solution immediately after extraction and defrosted on an individual basis for overnight culturing, meaning it was probably that each replicate of soil community exposures contained a distinct diversity and abundance of species in itself. 
 
 \subsection{Stressor Selection}
 \label{S:2:2}
-
-%% LaTeX was sent to punish us for our sins.
-%% I've got no idea what they were, but they must have been pretty bad for us to end up with LaTeX.
-
-\begin{landscape}
-\begin{table}[ht]
-\tiny
-\setlength{\tabcolsep}{4pt}
-\setlength{\extrarowheight}{3pt}
-\begin{tabular}{l c L L M L L}
-\toprule
-\textbf{Stressor} & \textbf{Functional Group} & \textbf{Legislative Limit \SI{}{\ug}/l} & \textbf{Form/Product Code} & \textbf{Bacterial mechanisms of action} & \textbf{Bacterial mechanisms of resistance} & \textbf{Citations} \\
-\midrule
-\rowcolor{black!20}\textbf{Copper} & Heavy Metal & 2000 (Tap water) & Cu(II)Cl\textsubscript{2}, dihydrate (99\%), Alfa Aesar 12458 & Essential respiratory nutrient, enzymatic disruption & Efflux, chelation, rapid repair, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Valko2005MetalsStress,Dupont2011CopperApplications,ECHA2018REACHCopper} \\
-\textbf{Nickel} & Heavy Metal & 20 (Tap water) & Ni(II)Cl\textsubscript{2}, anhydrous (98\%), Alfa Aesar B22085 & Enzymatic inhibition, iron/zinc homeostasis disruption, weak oxidative stress, bacterial nutrient & Sequestration, efflux, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Macomber2011,Nishimura1998ProtonCerevisiae,Zamble2015NickelBiology} \\
-\rowcolor{black!20}\textbf{Chloramphenicol} & Antibacterial & 0.05 (no legal limit) & Ampicillin sodium salt, Sigma Aldrich A9518 & Cell wall synthesis & Reduced membrane permeability, mutant ribosomes, anti-AB enzymes & \cite{Shaw1979Primary31,Rebstock1949ChloramphenicolChloromycetin,Toku-E2018ChloramphenicolChloromycetin,Ruiz1999MechanismsFish,Baker-Austin2006Co-selectionResistance} \\
-\textbf{Ampicillin} & Antibacterial & 0.12 (no legal limit) & Powder, ≥98\%, Sigma Aldrich C0378 & Protein synthesis, 50S ribosome subunit & $\beta$-lactamase enzymes, efflux & \cite{Ruiz1999MechanismsFish,Costanzo2005EcosystemEnvironment} \\
-\rowcolor{black!20}\textbf{Atrazine} & Pesticide (Herbicide) & 0.25 (Tap water) & Power, analytical, Sigma Aldrich 45330 & Oxidative stress, bacterial enzymatic nutrient & Biodegradation & \cite{Shimabukuro1969AtrazineAction,Delorenzo2001TOXICITYREVIEW,Zhang2012OxidativeAtrazine} \\
-\textbf{Metaldehyde} & Pesticide (Insecticide) & 0.5 (Tap water) & Powder, analytical, Sigma Aldrich 63990 & Toxicity unknown, possibly carbon/energy source & Biodegradation & \cite{Kay2014UsingProblem,Castle2017,Thomas2017IsolationSoils} \\
-\rowcolor{black!20}\textbf{Tebuconazole} & Antibacterial & 1 (regulatory acceptable concentration) & Ampicillin sodium salt, Sigma Aldrich 32013 & Unknown & Biodegradation & \cite{Sehnem2010,Artigas2014ComparativeEcosystems} \\
-\textbf{Azoxystrobin} & Antibacterial & 3 (regulatory acceptable concentration) & Powder, Analytical, Sigma Aldrich 31697 & Unknown & Biodegradation & \cite{Battaglin2011Occurrence20052006,Rodrigues2013,Loos2010Pan-EuropeanWater,Bacmaga2015MicrobialAzoxystrobin.} \\
-\bottomrule
-\end{tabular}
-\caption{Summary of selected stressors including type, target concentration, product information and bacterial interactions.}
-\label{tab:stressors}
-\end{table}
-\end{landscape}
-
-%% There! A table that look four times as long to produce as in Word, and is twice as ugly.
 
 Stressors were selected across a diverse range of functional groups (Table \ref{tab:stressors}) in order to assemble a panel that had some but not all mechanisms of action in common amongst the stressors.
 
@@ -241,9 +222,45 @@ Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals
 
 Chloramphenicol and ampicillin are broad spectrum antibacterial agents, used in decreasing amounts in healthcare applications due to their severe side effects and growing resistance, but nevertheless well-studied environmental pollutants. First isolated from \textit{Streptomyces venezuelae}, a soil-dwelling bacterium, chloramphenicol is a broad-spectrum antibiotic to which resistance in the wild and areas under antibiotic pollution is particularly common \cite{Allen2010CallEnvironments}. Ampicillin, a widespread, broad-spectrum antibiotic from the penicillin family is also widely resisted \cite{Ruiz1999MechanismsFish}. Chloramphenicol acts bacteriostatically by inhibiting protein synthesis in the 50S ribosomal subunit, while ampicillin inhibits cell wall synthesis. Drug interaction studies have shown that chloramphenicol is negatively antagonistic towards ampicillin due to their competing modes of action \cite{vanBambeke2017MechanismsAction}. It has been suggested that many of the genes that provide resistance to common antibiotics including chloramphenicol also provide tolerance to environmental stress in non-pathogenic species \cite{Groh2007GenesResistance}. Research has also found that exposure to ROS from heavy metals, including copper, can co-select for chloramphenicol resistance \cite{Harrison2009ChromosomalTolerance}.
 
-Metaldehyde and atrazine are two distinct chemical pesticides; the first a molluscicide, the second a herbicide. Atrazine, a triazine pesticide has been banned in the EU since 2004 \cite{EU2004CommissionSubstance}, but has remained the most commonly used herbicide in the US, and acts on plants by disrupting photosynthesis \cite{Shimabukuro1969AtrazineAction}, while metaldehyde is rapidly converted within the body of molluscs to aldehyde, which damages mucus producing cells, causing excessive mucus production, dehydration, and eventual death \cite{Triebskorn1998EffetcsExposure}. Atrazine has been shown to be both a food source \cite{Wackett2002BiodegradationStudies} and ROS stressor \cite{Zhang2012OxidativeAtrazine} to various species of bacteria, but information on metaldehyde’s effects on bacteria are limited: one study has examined interactions between bacteria and metaldehyde \cite{Thomas2017IsolationSoils}, showing only that \textit{Variovorax} and \textit{Aceinetobacter} strains can be isolated from metaldehyde-treated soil and can degrade the molluscicide.
+Metaldehyde and atrazine are two distinct chemical pesticides; the first a molluscicide, the second a herbicide. Atrazine, a triazine pesticide, has been banned in the EU since 2004 \cite{EU2004CommissionSubstance}, but has remained the most commonly used herbicide in the US, and acts on plants by disrupting photosynthesis \cite{Shimabukuro1969AtrazineAction}, while metaldehyde is rapidly converted within the body of molluscs to aldehyde, which damages mucus producing cells, causing excessive mucus production, dehydration, and eventual death \cite{Triebskorn1998}. Atrazine has been shown to be both a food source \cite{Wackett2002BiodegradationStudies} and ROS stressor \cite{Zhang2012OxidativeAtrazine} to various species of bacteria, but information on metaldehyde’s effects on bacteria are limited: one study has examined interactions between bacteria and metaldehyde \cite{Thomas2017IsolationSoils}, showing only that \textit{Variovorax} and \textit{Aceinetobacter} strains can be isolated from metaldehyde-treated soil and can degrade the molluscicide.
 
-Tebuconazole is a triazole fungicide that acts against a broad range of pathogens by inhibiting fungi-specific membrane synthesis pathways. Tebuconazole is known to be toxic to a range of non-target species \cite{Sehnem2010}, but information on effects on bacteria is limited to the knowledge that some bacteria (not including any of the species used in this study) are capable of degrading tebuconazole \cite{Sehnem2010}. Azoxystrobin is a systemic fungicide in heavy use due to its broad-spectrum inhibition of respiration across major groups of fungal pathogens. Azoxystrobin has been shown to inhibit bacterial growth in mixed fungal-bacteria communities \cite{Bacmaga2015MicrobialAzoxystrobin.}, although the same study showed \textit{Bacillus} species were capable of growth in highly contaminated soil.
+Tebuconazole is a triazole fungicide that acts against a broad range of pathogens by inhibiting fungi-specific membrane synthesis pathways. Tebuconazole is known to be toxic to a range of non-target species \cite{Sehnem2010}, but information on effects on bacteria is limited to the knowledge that some bacteria (not including any of the species used in this study) are capable of degrading tebuconazole \cite{Sehnem2010}. Azoxystrobin is a systemic fungicide in heavy use due to its broad-spectrum inhibition of respiration across major groups of fungal pathogens. Azoxystrobin has been shown to inhibit bacterial growth in mixed fungal-bacteria communities \cite{Bacmaga2015MicrobialAzoxystrobin}, although the same study showed \textit{Bacillus} species were capable of growth in highly contaminated soil.
+
+%% LaTeX was sent to punish us for our sins.
+%% I've got no idea what they were, but they must have been pretty bad for us to end up with LaTeX.
+
+\begin{landscape}
+\begin{table}[ht]
+\begin{threeparttable}
+\small
+\setlength{\tabcolsep}{4pt}
+\setlength{\extrarowheight}{3pt}
+\begin{tabular}{l M l M L L c}
+\toprule
+\textbf{Stressor} & \textbf{Functional Group} & \textbf{Limit (\SI{}{\ug}/l}) & \textbf{Form/Product Code} & \textbf{Bacterial mechanisms of action} & \textbf{Bacterial mechanisms of resistance} & \textbf{Sources} \\
+\midrule
+\rowcolor{black!20}\textbf{Copper} & Heavy Metal & 2000\tnote{t} & Cu(II)Cl\textsubscript{2}, dihydrate (99\%), Alfa Aesar 12458 & Essential nutrient, ROS, enzymes & Efflux, chelation, rapid repair, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Valko2005MetalsStress,Dupont2011CopperApplications,ECHA2018REACHCopper} \\
+\textbf{Nickel} & Heavy Metal & 20\tnote{t} & Ni(II)Cl\textsubscript{2}, anhydrous (98\%), Alfa Aesar B22085 & Enzymes, Fe/Zn homeostasis, weak ROS, nutrient & Sequestration, efflux, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Macomber2011,Nishimura1998ProtonCerevisiae,Zamble2015NickelBiology} \\
+\rowcolor{black!20}\textbf{Chloramphenicol} & Antibacterial & 0.05\tnote{n} & Powder $\geqslant$98\%, Sigma Aldrich C0378 & Cell wall synthesis & Membrane transition, mutant ribosomes, anti-AB enzymes & \cite{Shaw1979Primary31,Rebstock1949ChloramphenicolChloromycetin,Toku-E2018ChloramphenicolChloromycetin,Ruiz1999MechanismsFish} \\
+\textbf{Ampicillin} & Antibacterial & 0.12\tnote{n} & Ampicillin sodium salt, Sigma Aldrich A9518 & Protein synthesis, 50S ribosome subunit & $\beta$-lactamase enzymes, efflux & \cite{Ruiz1999MechanismsFish,Costanzo2005EcosystemEnvironment} \\
+\rowcolor{black!20}\textbf{Atrazine} & Pesticide (Herbicide) & 0.25\tnote{t} & Power, analytical, Sigma Aldrich 45330 & Oxidative stress, bacterial enzymatic nutrient & Biodegradation & \cite{Shimabukuro1969AtrazineAction,Delorenzo2001TOXICITYREVIEW,Zhang2012OxidativeAtrazine} \\
+\textbf{Metaldehyde} & Pesticide \break (Insecticide) & 0.5\tnote{t} & Powder, analytical, Sigma Aldrich 63990 & Toxicity unknown, possible nutrient & Biodegradation & \cite{Kay2014UsingProblem,Castle2017,Thomas2017IsolationSoils} \\
+\rowcolor{black!20}\textbf{Tebuconazole} & Antibacterial & 1\tnote{r} & Ampicillin sodium salt, Sigma Aldrich 32013 & Unknown & Biodegradation & \cite{Sehnem2010,Artigas2014ComparativeEcosystems} \\
+\textbf{Azoxystrobin} & Antibacterial & 3\tnote{r} & Powder, Analytical, Sigma Aldrich 31697 & Unknown & Biodegradation & \cite{Battaglin2011Occurrence20052006,Rodrigues2013,Loos2010Pan-EuropeanWater,Bacmaga2015MicrobialAzoxystrobin} \\
+\bottomrule
+\end{tabular}
+\caption{Summary of stressors including type, target concentration, product information and bacterial interactions.}
+\label{tab:stressors}
+\begin{tablenotes}
+\item [t] UK drinking water regulatory limit, Water Framework Directive
+\item [n] No legal limit, typical environmental concentrations used.
+\item [r] Regulatory Acceptable Concentrations, Water Framework Directive 
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+\end{landscape}
+
+%% There! A table that look five times as long to produce as in Word, and is twice as ugly.
 
 \subsection{Rangefinding and Concentration Calculations}
 \label{S:2:3}
@@ -269,22 +286,22 @@ Growth data and logistic curve were plotted by well, allowing for visual inspect
 \subsection{Stressor Exposures}
 \label{S:2:5}
 
-Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fitted with sterile  pipette tips and a laminar flow hood. 255 combinations of 8 stressors across 8 bacterial isolates were formulated across 24 \SI{2}{\ul} flat bottom 96-well plates, with additional negative controls for a total of 2144 exposures per replicate.  10 μL doses of stressor solutions at environmentally relevant concentrations (Table \ref{tab:stressors}) were added to the wells, in addition to \SI{10}{\ul} of overnight bacterial culture diluted to 1 in 1000, and sufficient R2A broth to bring all well volumes up to \SI{100}{\ul}. Machine-readable worklists were generated from a combination input file for the STARLet using an R script (Appendix \ref{A:1}). Experimental for a single replicates typically lasted 20 hours spread across 2 days; plates were stored in sealed containers at 4\textdegree C overnight, and from the second run onwards with a dampened paper towel to reduce evaporation.
+Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fitted with sterile  pipette tips and a laminar flow hood. 255 combinations of 8 stressors across 8 bacterial isolates were formulated across 24 \SI{2}{\ul} flat bottom 96-well plates, with additional negative controls for a total of 2144 exposures per replicate. \SI{10}{\ul} doses of stressor solutions at environmentally relevant concentrations (Table \ref{tab:stressors}) were added to the wells, in addition to \SI{10}{\ul} of overnight bacterial culture diluted to 1 in 1000, and sufficient R2A broth to bring all well volumes up to \SI{100}{\ul}. Machine-readable worklists were generated from a combination input file for the STARLet using an R script (Appendix \ref{A:1}). Experimental for a single replicates typically lasted 20 hours spread across 2 days; plates were stored in sealed containers at 4\textdegree C overnight, and from the second run onwards with a dampened paper towel to reduce evaporation.
 
 Due to a number of issues with isolate growth in liquid media and plate inoculation, sample size varies across both treatments and isolates (Table \ref{tab:samples}). 
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \small
 \begin{tabular}{l c c}
 \toprule 
 \textbf{Isolate} & \textbf{n Mean} & \textbf{n SD}  \\
 \midrule
-\rowcolor{black!20}{R2A\_LUF4\_5} & 3.3 & 1.7 \\
-{R2A\_KUB5\_13} & 2.6 & 1.9 \\
-\rowcolor{black!20}{R2A\_NUF1\_3} & 2.7 & 1.7\\
-{R2A\_KUE4\_4} & 3.4 & 1.8\\
-\rowcolor{black!20}{R2A\_NUE1\_1} & 2.6 & 1.6\\
+\rowcolor{black!20}{LUF4\_5} & 3.3 & 1.7 \\
+{KUB5\_13} & 2.6 & 1.9 \\
+\rowcolor{black!20}{NUF1\_3} & 2.7 & 1.7\\
+{KUE4\_4} & 3.4 & 1.8\\
+\rowcolor{black!20}{NUE1\_1} & 2.6 & 1.6\\
 {OP50} & 3.3 & 2.0 \\
 \rowcolor{black!20}{Soil Community} & 3.0 & 1.7\\
 \bottomrule
@@ -309,13 +326,13 @@ In order to determine effect direction, size and significance at the individual 
 \label{S:2:9}
 Stressor effect was calculated by subtracting the average growth with stressors from the control growth for a given isolate, producing an additive measure of effect, which was averaged across replicates to produce a measure of mean growth and standard deviation.
 \begin{equation}
-Effect = Growth\_{Control} - Growth\_{Treatment}
+Effect = Growth_{Control} - Growth_{Treatment}
 \label{E:effect_calc}
 \end{equation}
 
 Predicted effect was then calculated using an additive null model, by summing the calculated mean effects of individual stressors on a per-isolate basis and calculating an updated standard deviation from the root of the summed squares of the component standard deviations. 
 
-Effect type was classified according to the definitions in Piggott, Townsend, and Matthaei \cite{Piggott2015}. If the mean predicted and observed effects were not significantly different (independent two-sample T-test, p $<$ 0.05). A positive effect on growth larger than the predicted effect was classified as positive synergy, a negative effect larger (in absolute terms) than the predicted effect was negative synergy. An effect between positive synergy and the predicted effect was classified as negative antagonism, while an effect between negative synergy and the predicted effect was positive antagonism. 
+Effect type was classified according to the definitions found in Piggott, Townsend, and Matthaei \cite{Piggott2015}. If the mean predicted and observed effects were not significantly different (independent two-sample T-test, p $<$ 0.05). A positive effect on growth larger than the predicted effect was classified as positive synergy, a negative effect larger (in absolute terms) than the predicted effect was negative synergy. An effect between positive synergy and the predicted effect was classified as negative antagonism, while an effect between negative synergy and the predicted effect was positive antagonism. 
 
 \subsection{Higher Order Mixtures and Emergent Interactions}
 \label{S:2:10}
@@ -331,7 +348,7 @@ A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016Unc
 \label{E:pred_sd}    
 \end{equation}
 \begin{equation}
-    n_c = sum_{i = 1}^{c_n}\Big(\frac{n_c-1}{c_n}\Big)
+    n_c = \sum_{i = 1}^{c_n}\Big(\frac{n_c-1}{c_n}\Big)
 \label{E:pred_n}    
 \end{equation}
 where:
@@ -358,7 +375,7 @@ Isolates showed a variable response across the spread of rangefinding concentrat
 \subsection{Growth by Stressor Complexity}
 \label{S:3:2}
 
-Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship between complexity and growth. Species identities B. simplex, E. coli, V. paradoxus and the soil community were good predictors of variation (p < 0.05).
+Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship between complexity and growth. Species identities \textit{B. simplex}, \textit{E. coli}, \textit{V. paradoxus} and the soil community were good predictors of variation (p $<$ 0.05).
 
 \subsection{Single Stressor Responses}
 \label{S:3:3}
@@ -368,7 +385,7 @@ Isolates displayed a variety of responses to the various stressors, growth in so
 \subsection{Predicted Versus Observed Effect}
 \label{S:3:4}
 
-Patterns of observed versus predicted mean effect varied considerably between species. KUB5\_13, NUF1\_3 and LUF4\_5’s are tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
+Patterns of observed versus predicted mean effect varied considerably between the species. KUB5\_13, NUF1\_3 and LUF4\_5’s are tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
 
 \subsection{Interaction Type Prevalence}
 \label{S:3:5}
@@ -420,15 +437,14 @@ Recent advances in the understanding of higher-order effects of complex stressor
 
 \section{Acknowledgements}
 \label{S:6}
-First and foremost I would like to thank my parents, without whose patience, support, and advice none of which would be possible.
+%First and foremost I would like to thank my parents, without whose patience, support, and advice none of which would be possible.
 
-Over the course of this project I benefited from the guiding influence of my official supervisors, Dr Tom Bell and Dr Emma Ransome, who were encouraging, supportive, educational, and, when necessary, firm. Dr Shorok Mombriktob was also of indispensable assistance, providing isolates, soil samples, advice, and training on use of certain temperamental pieces of lab equipment. Chris,  Nilita, Kate, Alice, and Meirion, also of Unit C, helped with other elements of my labwork.
+%Over the course of this project I benefited from the guiding influence of my official supervisors, Dr Tom Bell and Dr Emma Ransome, who were encouraging, supportive, educational, and, when necessary, firm. Dr Shorok Mombriktob was also of indispensable assistance, providing isolates, soil samples, advice, and training on use of certain temperamental pieces of lab equipment. Chris,  Nilita, Kate, Alice, and Meirion, also of Unit C, helped with other elements of my labwork.
 
-Lastly in addition to the academic and commercial software and software packages cited in the main text and reference, I would like to thank to thank Chris West, who produced a batch Excel worksheet to .csv converter which was invaluable in the processing of my raw data. I've since learned that I had an R package that does the same thing installed the whole time...
+%Lastly in addition to the academic and commercial software and software packages cited in the main text and reference, I would like to thank to thank Chris West, who produced a batch Excel worksheet to .csv converter which was invaluable in the processing of my raw data. I've since learned that I had an R package that does the same thing installed the whole time...
 
 \section{References}
 \label{S:7}
-
 %% References
 %%
 %% Following citation commands can be used in the body text:
@@ -436,19 +452,16 @@ Lastly in addition to the academic and commercial software and software packages
 %%   \cite{key}          ==>>  [#]
 %%   \cite[chap. 2]{key} ==>>  [#, chap. 2]
 %%   \citet{key}         ==>>  Author [#]
-
 %% References with bibTeX database:
-
 \bibliographystyle{model1-num-names}
 \bibliography{mendeley.bib}
 %\end{thebibliography}
-
 \begin{appendices}
 
 \section{Data and Code}
 \label{A:1}
 
-All data, code, and calculations used in this study is available at: 
+All data, scripts, and calculations used in this study are available at: 
 
 \url{https://github.com/samawelch/MScProject}
 
