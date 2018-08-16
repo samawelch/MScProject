@@ -70,6 +70,9 @@
 %% Keeps tables looking tolerable.
 \newcolumntype{L}{>{\centering\arraybackslash}m{2.7cm}}
 \newcolumntype{M}{>{\centering\arraybackslash}m{3cm}}
+\newcolumntype{N}{>{\centering\arraybackslash}m{1.2cm}}
+\newcolumntype{O}{>{\centering\arraybackslash}m{0.6cm}}
+
 
 %% Seeing as this is going to be submitted electronically, I think we can sacrifice page count at the altar of readability. 
 \setlength{\parskip}{1em}
@@ -223,6 +226,7 @@ Stressors were selected across a diverse range of functional groups (Table \ref{
 Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992OxygenRespiration}, while nickel is occasionally so in bacteria and fungi \cite{Zamble2015NickelBiology}. Bacterial resistance to these stressors is thus often nuanced, with a requirement to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002InductionMetals}, and damages vital biosynthesis enzymes \cite{Macomber2009TheToxicity}, while nickel is a weak ROS generator that can unbalance iron and zinc homeostasis in the cell \cite{Samland2006MicrobialDevelopments}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009TheToxicity}, while nickel can be sequestered inside the cell \cite{Nishimura1998ProtonCerevisiae}.
 
 Chloramphenicol and ampicillin are broad spectrum antibacterial agents, used in decreasing amounts in healthcare applications due to their severe side effects and growing resistance, but nevertheless well-studied environmental pollutants. First isolated from \textit{Streptomyces venezuelae}, a soil-dwelling bacterium, chloramphenicol is a broad-spectrum antibiotic to which resistance in the wild and areas under antibiotic pollution is particularly common \cite{Allen2010CallEnvironments}. Ampicillin, a widespread, broad-spectrum antibiotic from the penicillin family is also widely resisted \cite{Ruiz1999MechanismsFish}. Chloramphenicol acts bacteriostatically by inhibiting protein synthesis in the 50S ribosomal subunit, while ampicillin inhibits cell wall synthesis. Drug interaction studies have shown that chloramphenicol is negatively antagonistic towards ampicillin due to their competing modes of action \cite{vanBambeke2017MechanismsAction}. It has been suggested that many of the genes that provide resistance to common antibiotics including chloramphenicol also provide tolerance to environmental stress in non-pathogenic species \cite{Groh2007GenesResistance}. Research has also found that exposure to ROS from heavy metals, including copper, can co-select for chloramphenicol resistance \cite{Harrison2009ChromosomalTolerance}.
+% TODO: Gram - and Gram +
 
 Metaldehyde and atrazine are two distinct chemical pesticides; the first a molluscicide, the second a herbicide. Atrazine, a triazine pesticide, has been banned in the EU since 2004 \cite{EU2004CommissionSubstance}, but has remained the most commonly used herbicide in the US, and acts on plants by disrupting photosynthesis \cite{Shimabukuro1969AtrazineAction}, while metaldehyde is rapidly converted within the body of molluscs to aldehyde, which damages mucus producing cells, causing excessive mucus production, dehydration, and eventual death \cite{Triebskorn1998}. Atrazine has been shown to be both a food source \cite{Wackett2002BiodegradationStudies} and ROS stressor \cite{Zhang2012OxidativeAtrazine} to various species of bacteria, but information on metaldehyde’s effects on bacteria are limited: one study has examined interactions between bacteria and metaldehyde \cite{Thomas2017IsolationSoils}, showing only that \textit{Variovorax} and \textit{Aceinetobacter} strains can be isolated from metaldehyde-treated soil and can degrade the molluscicide.
 
@@ -245,7 +249,7 @@ Tebuconazole is a triazole fungicide that acts against a broad range of pathogen
 \textbf{Nickel} & Heavy Metal & 20\tnote{t} & Ni(II)Cl\textsubscript{2}, anhydrous (98\%), Alfa Aesar B22085 & Enzymes, Fe/Zn homeostasis, weak ROS, nutrient & Sequestration, efflux, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Macomber2011,Nishimura1998ProtonCerevisiae,Zamble2015NickelBiology} \\
 \rowcolor{black!20}\textbf{Chloramphenicol} & Antibacterial & 0.05\tnote{n} & Powder $\geqslant$98\%, Sigma Aldrich C0378 & Cell wall synthesis & Membrane transition, mutant ribosomes, anti-AB enzymes & \cite{Shaw1979Primary31,Rebstock1949ChloramphenicolChloromycetin,Toku-E2018ChloramphenicolChloromycetin,Ruiz1999MechanismsFish} \\
 \textbf{Ampicillin} & Antibacterial & 0.12\tnote{n} & Ampicillin sodium salt, Sigma Aldrich A9518 & Protein synthesis, 50S ribosome subunit & $\beta$-lactamase enzymes, efflux & \cite{Ruiz1999MechanismsFish,Costanzo2005EcosystemEnvironment} \\
-\rowcolor{black!20}\textbf{Atrazine} & Pesticide (Herbicide) & 0.25\tnote{t} & Power, analytical, Sigma Aldrich 45330 & Oxidative stress, bacterial enzymatic nutrient & Biodegradation & \cite{Shimabukuro1969AtrazineAction,Delorenzo2001TOXICITYREVIEW,Zhang2012OxidativeAtrazine} \\
+\rowcolor{black!20}\textbf{Atrazine} & Pesticide (Herbicide) & 0.25\tnote{t} & Power, analytical, Sigma Aldrich 45330 & ROS, bacterial enzymatic nutrient & Biodegradation & \cite{Shimabukuro1969AtrazineAction,Delorenzo2001TOXICITYREVIEW,Zhang2012OxidativeAtrazine} \\
 \textbf{Metaldehyde} & Pesticide \break (Insecticide) & 0.5\tnote{t} & Powder, analytical, Sigma Aldrich 63990 & Toxicity unknown, possible nutrient & Biodegradation & \cite{Kay2014UsingProblem,Castle2017,Thomas2017IsolationSoils} \\
 \rowcolor{black!20}\textbf{Tebuconazole} & Antibacterial & 1\tnote{r} & Ampicillin sodium salt, Sigma Aldrich 32013 & Unknown & Biodegradation & \cite{Sehnem2010,Artigas2014ComparativeEcosystems} \\
 \textbf{Azoxystrobin} & Antibacterial & 3\tnote{r} & Powder, Analytical, Sigma Aldrich 31697 & Unknown & Biodegradation & \cite{Battaglin2011Occurrence20052006,Rodrigues2013,Loos2010Pan-EuropeanWater,Bacmaga2015MicrobialAzoxystrobin} \\
@@ -276,7 +280,7 @@ Final experimental concentrations were calculated based on well volumes and regu
 
 Microcosm optical density at 590 nm was used as a metric of cell count over time. Immediately after isolates were exposed to stressors, plates were placed in an automatically-fed BioTek Synergy 2 microplate reader for 48 hours, agitating the wells for 5 seconds then reading absorbance every four hours.  At the conclusion of OD readings, wells were checked for contamination by plating the contents of the control plate at $10^{-3}$ and $10^{-4}$ dilutions onto a R2A agar plate and culturing at room temperature for 24 hours.
 
-Flow cytometric cell counts (Accuri C6 Flow Cytometer) were linearly modelled against optical density in an attempt to transform OD reading into absolute cell counts. However, no significant relationship was found between the two measurements, as at the time of measurement, cell counts were insignificantly high to be detected as changes in optical density (see Appendix \ref{A:1} for further details.)  
+Flow cytometric cell counts, read in an Accuri C6 Flow Cytometer, were plotted against optical density using a linear model in an attempt to transform OD reading into absolute cell counts. However, no significant relationship was found between the two measurements, as at the time of measurement, cell counts were insignificantly high to be detected as changes in optical density (Appendix \ref{A:1}). 
 
 Optical density was modelled against time in hours using a logistic curve from the package \textit{growthcurver} \cite{Sprouffske2016Package} for the R programming language \cite{RCoreTeam2018R:Computing}.
 
@@ -285,7 +289,9 @@ Nl_t=\frac{K}{1 + (\frac{K - N_0}{N_0}) e^{-rt}}
 \label{E:log_curve}
 \end{equation}
 
-Growth data and logistic curve were plotted by well, allowing for visual inspection and the exclusion of models from wells where no growth had occurred as a result of factors other than stressor treatment. A null additive model was assumed for all comparisons, consistent with the use of bacterial growth as a metric of response \cite{Piggott2015}. Empirical area under the measured growth (\textit{auc\_e} in growthcurver, henceforth growth) was used as a primary measure of bacterial growth response, as it allowed for taking account of effects on growth at any period in the experiments.
+Growth data and logistic curve were plotted by well, allowing for visual inspection and the exclusion of models from wells where no growth had occurred as a result of factors other than stressor treatment. A null additive model was assumed for all comparisons, consistent with the use of bacterial growth as a metric of response \cite{Piggott2015}. The constructed growth curves offered a number of potential metrics for comparison of effects. 
+
+Empirical area under the measured growth (\textit{auc\_e} in growthcurver, henceforth growth) was used as a primary measure of bacterial growth response, as it allowed for taking account of effects on growth at any period in the experiments.
 
 \subsection{Stressor Exposures}
 \label{S:2:5}
@@ -294,6 +300,7 @@ Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fit
 
 Due to a number of issues with isolate growth in liquid media and plate inoculation, sample size varies across both treatments and isolates (Table \ref{tab:samples}). 
 
+%% Todo: Missing Row
 \begin{table}[ht]
 \centering
 \small
@@ -340,7 +347,7 @@ Effect type was classified according to the definitions found in Piggott, Townse
 
 \subsection{Higher Order Mixtures and Emergent Interactions}
 \label{S:2:10}
-Eight multiple linear regressions were fitted to the data using 1-8-way combinations of stressors to explain variation, and determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using an ANOVA and Akaike Information Criteria test (AIC). 
+Eight multiple linear regressions were fitted to the data using 1-8-way combinations of stressors to explain variation, and determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both an ANOVA and Akaike Information Criteria test (AIC). 
 
 A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016UncoveringStressors} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean, standard deviation and sample size were calculated per isolate as follows: 
 \begin{equation}
@@ -355,7 +362,8 @@ A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016Unc
     n_c = \sum_{i = 1}^{c_n}\Big(\frac{n_c-1}{c_n}\Big)
 \label{E:pred_n}    
 \end{equation}
-where:
+
+\noindent where:
 
 \begin{small}
 \setlength{\tabcolsep}{1pt}
@@ -391,13 +399,41 @@ Isolates displayed a variety of responses to the various stressors, growth in so
 
 Patterns of observed versus predicted mean effect varied considerably between the species. KUB5\_13, NUF1\_3 and LUF4\_5’s are tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
 
-\subsection{Interaction Type Prevalence}
+\includegraphics[scale = 0.25]{Scripts/Results/Final_Pipeline/ObservedXPredicted.pdf}
+
+\subsection{Comparison of Linear Models of Higher-Order Mixtures}
 \label{S:3:5}
+
+A comparison of linear models that attempted to explain variation in terms of 1-8-way combinations of stressors resulted in a degree of model saturation (Table \ref{tab:lmodels}). 4-way interactions explained the variation with the highest degree of statistical significance when compared in an ANOVA (p = 0.02), but an Akaike Information Criteria test that penalised model goodness of fit by number of parameters suggested that more complex models may be overfitted compared to the single stressor model (n = 1). 
+
+\begin{table}[ht]
+\centering
+\scriptsize
+\begin{tabular}{N N N N O N O O O N}
+\toprule 
+\textbf{Complexity} & \textbf{Number of Predictors} & \textbf{Residual Df} & \textbf{Residual Sum of Squares} & \textbf{Df} & \textbf{Sum of Squares} & \textbf{F-value} & \textbf{Pr(>F)} & \textbf{AIC Df} & \textbf{AIC Score}  \\
+\midrule
+\rowcolor{black!20}{1} & 8 & 6154 & 28546.62 & NA & NA & NA & NA & 10 & 26957.56 \\
+{2} & 28 & 6134 & 28585.26 & 20 & -38.64 & NA & NA & 30 & 27005.90 \\
+\rowcolor{black!20}{3} & 56 & 6106 & 28548.02 & 28 & 37.24 & 0.23 & 0.99 & 58 & 27053.86 \\
+{4} & 70 & 6092 & 28428.31 & 14 & 119.71 & 1.83 & 0.03 & 72 & 27055.97 \\
+\rowcolor{black!20}{5} & 56 & 6106 & 28521.45 & -14 & -93.14 & 1.43 & 0.13 & 58 & 27048.12 \\
+{6} & 28 & 6134 & 28635.35 & -28 & -113.9 & 0.87 & 0.66 & 30 & 27016.69 \\
+\rowcolor{black!20}{7} & 8 & 6154 & 28716.32 & -20 & -80.97 & 0.87 & 0.63 & 10 & 26994.09 \\
+{8} & 1 & 6161 & 28752.50 & -7 & -36.18 & 1.11 & 0.36 & 3 & 26987.85 \\
+\bottomrule
+\end{tabular}
+\caption{Comparison of the ANOVA and AIC parameters of eight multiple linear models of 1 to 8-way interactions, rounded to 2 decimal places.}
+\label{tab:lmodels}
+\end{table}
+
+\subsection{Interaction Type Prevalence}
+\label{S:3:6}
 
 The analysis of interaction type showed a relatively high incidence of T-test errors (133 in 1976; ~15\%), due to a correspondingly high incidence of observations with a sample size of one and no standard deviation. For most isolates additive effects prevailed (1744 in 1976; ~88\%), the exception being \textit{E. coli} OP50, where some non-additive effects were seen, especially at a complexity of 4 and above; negative antagonism accounted for slightly under half of the interactions observed (94 in 247; 38\%), while negative synergy was observed only at a complexity of 5 and in low quantities (5 in 247; 2\%).
 
 \subsection{Emergent Interaction Type Prevalence}
-\label{S:3:6}
+\label{S:3:7}
 
 T-test errors represent a similar proportion of emergent effects observed (161 in 1752, ~9\%) . Non-emergent effects – “predicted” – dominate (1589 in 1752, ~91\%). Emergent synergy is non-existent, while two cases of emergent antagonism are present in NUE1\_1: a mixture of copper, nickel, metaldehyde and tebuconazole, and a mixture of copper, nickel, chloramphenicol, metaldehyde, tebuconazole, and azoxystrobin.
 
