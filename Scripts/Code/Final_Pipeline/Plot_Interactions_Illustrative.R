@@ -65,7 +65,6 @@ p3 <- ggplot(data = data3) +
 
 setwd(here("Scripts","Results"))
 
-
 pdf("Plot_Interactions_Illustrative.pdf", height = 4, width = 12)
 annotate_figure(
 ggarrange(p1,p2,p3, ncol = 3, nrow = 1),
