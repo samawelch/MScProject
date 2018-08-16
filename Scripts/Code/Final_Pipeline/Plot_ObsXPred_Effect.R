@@ -38,9 +38,9 @@ for (i in 1:8)
 }
 
 # Plot together, aligned by species
-pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 13, height = 12, onefile = FALSE)
+pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 10, height = 9, onefile = FALSE)
 annotate_figure(ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, ncol = 3, nrow = 3, common.legend = TRUE, legend = "right"),
                 bottom = text_grob("Mean Predicted Additive Growth"),
-                left = text_grob("Mean Observed Growth"))
+                left = text_grob("Mean Observed Growth", rot = 90))
 dev.off()
 
