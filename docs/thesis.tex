@@ -66,6 +66,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amssymb}
+\usepackage{cleveref}
 
 %% Keeps tables looking tolerable.
 \newcolumntype{L}{>{\centering\arraybackslash}m{2.7cm}}
@@ -73,6 +74,8 @@
 \newcolumntype{N}{>{\centering\arraybackslash}m{1.2cm}}
 \newcolumntype{O}{>{\centering\arraybackslash}m{0.6cm}}
 
+%% That perfect ggplot grey for consistencey
+\definecolor{gggrey}{RGB}{230,230,230}
 
 %% Seeing as this is going to be submitted electronically, I think we can sacrifice page count at the altar of readability. 
 \setlength{\parskip}{1em}
@@ -201,13 +204,13 @@ Eight bacterial isolates were selected, sourced principally from the Nash's Fiel
 \toprule 
 \textbf{{Strain}} & \textbf{{Species}} & \textbf{{History}} & \textbf{{Notes}} \\
 \midrule
-\rowcolor{black!20}{LUF4\_5} & \textit{Luteibacter rhizovicinus} & Control & First isolated from the rhizosphere \cite{Johansen2005LuteibacterL.}. \\
+\rowcolor{gggrey}{LUF4\_5} & \textit{Luteibacter rhizovicinus} & Control & First isolated from the rhizosphere \cite{Johansen2005LuteibacterL.}. \\
 {KUB5\_13} & \textit{Variovorax paradoxus} & Control & Strains capable of metabolising a wide range of pollutants \cite{Satola2013MetabolicParadoxus}. \\
-\rowcolor{black!20}{NUF1\_3} & \textit{Variovorax paradoxus} & Metaldehyde & \\
+\rowcolor{gggrey}{NUF1\_3} & \textit{Variovorax paradoxus} & Metaldehyde & \\
 {KUE4\_4} & \textit{Bacillus simplex} & Control & Strains capable of biosorption of heavy metals and radionuclides \cite{Valentine1996BiosorptionZone}. \\
-\rowcolor{black!20}{NUE1\_1} & \textit{Bacillus simplex} & Metaldehyde & \\
+\rowcolor{gggrey}{NUE1\_1} & \textit{Bacillus simplex} & Metaldehyde & \\
 {KUE4\_10} & \textit{Stenotrophomonas \newline acidaminiphila} & Control & First isolated from a waste-acid-treating anaerobic bioreactor \cite{Assih2002}. \\
-\rowcolor{black!20}{OP50} & \textit{Escherichia coli} & Control & Included as a model species. \\
+\rowcolor{gggrey}{OP50} & \textit{Escherichia coli} & Control & Included as a model species. \\
 {KUA5 Sample} & Soil Community & Control & \\
 \bottomrule
 \end{tabular}
@@ -245,13 +248,13 @@ Tebuconazole is a triazole fungicide that acts against a broad range of pathogen
 \toprule
 \textbf{Stressor} & \textbf{Functional Group} & \textbf{Limit (\SI{}{\ug}/l}) & \textbf{Form/Product Code} & \textbf{Bacterial mechanisms of action} & \textbf{Bacterial mechanisms of resistance} & \textbf{Sources} \\
 \midrule
-\rowcolor{black!20}\textbf{Copper} & Heavy Metal & 2000\tnote{t} & Cu(II)Cl\textsubscript{2}, dihydrate (99\%), Alfa Aesar 12458 & Essential nutrient, ROS, enzymes & Efflux, chelation, rapid repair, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Valko2005MetalsStress,Dupont2011CopperApplications,ECHA2018REACHCopper} \\
+\rowcolor{gggrey}\textbf{Copper} & Heavy Metal & 2000\tnote{t} & Cu(II)Cl\textsubscript{2}, dihydrate (99\%), Alfa Aesar 12458 & Essential nutrient, ROS, enzymes & Efflux, chelation, rapid repair, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Valko2005MetalsStress,Dupont2011CopperApplications,ECHA2018REACHCopper} \\
 \textbf{Nickel} & Heavy Metal & 20\tnote{t} & Ni(II)Cl\textsubscript{2}, anhydrous (98\%), Alfa Aesar B22085 & Enzymes, Fe/Zn homeostasis, weak ROS, nutrient & Sequestration, efflux, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Macomber2011,Nishimura1998ProtonCerevisiae,Zamble2015NickelBiology} \\
-\rowcolor{black!20}\textbf{Chloramphenicol} & Antibacterial & 0.05\tnote{n} & Powder $\geqslant$98\%, Sigma Aldrich C0378 & Cell wall synthesis & Membrane transition, mutant ribosomes, anti-AB enzymes & \cite{Shaw1979Primary31,Rebstock1949ChloramphenicolChloromycetin,Toku-E2018ChloramphenicolChloromycetin,Ruiz1999MechanismsFish} \\
+\rowcolor{gggrey}\textbf{Chloramphenicol} & Antibacterial & 0.05\tnote{n} & Powder $\geqslant$98\%, Sigma Aldrich C0378 & Cell wall synthesis & Membrane transition, mutant ribosomes, anti-AB enzymes & \cite{Shaw1979Primary31,Rebstock1949ChloramphenicolChloromycetin,Toku-E2018ChloramphenicolChloromycetin,Ruiz1999MechanismsFish} \\
 \textbf{Ampicillin} & Antibacterial & 0.12\tnote{n} & Ampicillin sodium salt, Sigma Aldrich A9518 & Protein synthesis, 50S ribosome subunit & $\beta$-lactamase enzymes, efflux & \cite{Ruiz1999MechanismsFish,Costanzo2005EcosystemEnvironment} \\
-\rowcolor{black!20}\textbf{Atrazine} & Pesticide (Herbicide) & 0.25\tnote{t} & Power, analytical, Sigma Aldrich 45330 & ROS, bacterial enzymatic nutrient & Biodegradation & \cite{Shimabukuro1969AtrazineAction,Delorenzo2001TOXICITYREVIEW,Zhang2012OxidativeAtrazine} \\
+\rowcolor{gggrey}\textbf{Atrazine} & Pesticide (Herbicide) & 0.25\tnote{t} & Power, analytical, Sigma Aldrich 45330 & ROS, bacterial enzymatic nutrient & Biodegradation & \cite{Shimabukuro1969AtrazineAction,Delorenzo2001TOXICITYREVIEW,Zhang2012OxidativeAtrazine} \\
 \textbf{Metaldehyde} & Pesticide \break (Insecticide) & 0.5\tnote{t} & Powder, analytical, Sigma Aldrich 63990 & Toxicity unknown, possible nutrient & Biodegradation & \cite{Kay2014UsingProblem,Castle2017,Thomas2017IsolationSoils} \\
-\rowcolor{black!20}\textbf{Tebuconazole} & Antibacterial & 1\tnote{r} & Ampicillin sodium salt, Sigma Aldrich 32013 & Unknown & Biodegradation & \cite{Sehnem2010,Artigas2014ComparativeEcosystems} \\
+\rowcolor{gggrey}\textbf{Tebuconazole} & Antibacterial & 1\tnote{r} & Ampicillin sodium salt, Sigma Aldrich 32013 & Unknown & Biodegradation & \cite{Sehnem2010,Artigas2014ComparativeEcosystems} \\
 \textbf{Azoxystrobin} & Antibacterial & 3\tnote{r} & Powder, Analytical, Sigma Aldrich 31697 & Unknown & Biodegradation & \cite{Battaglin2011Occurrence20052006,Rodrigues2013,Loos2010Pan-EuropeanWater,Bacmaga2015MicrobialAzoxystrobin} \\
 \bottomrule
 \end{tabular}
@@ -308,13 +311,13 @@ Due to a number of issues with isolate growth in liquid media and plate inoculat
 \toprule 
 \textbf{Isolate} & \textbf{n Mean} & \textbf{n SD}  \\
 \midrule
-\rowcolor{black!20}{LUF4\_5} & 3.3 & 1.7 \\
+\rowcolor{gggrey}{LUF4\_5} & 3.3 & 1.7 \\
 {KUB5\_13} & 2.6 & 1.9 \\
-\rowcolor{black!20}{NUF1\_3} & 2.7 & 1.7\\
+\rowcolor{gggrey}{NUF1\_3} & 2.7 & 1.7\\
 {KUE4\_4} & 3.4 & 1.8\\
-\rowcolor{black!20}{NUE1\_1} & 2.6 & 1.6\\
+\rowcolor{gggrey}{NUE1\_1} & 2.6 & 1.6\\
 {OP50} & 3.3 & 2.0 \\
-\rowcolor{black!20}{Soil Community} & 3.0 & 1.7\\
+\rowcolor{gggrey}{Soil Community} & 3.0 & 1.7\\
 \bottomrule
 \end{tabular}
 \caption{Sample size mean and standard distribution by isolate.}
@@ -382,22 +385,43 @@ A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016Unc
 \subsection{Rangefinding}
 \label{S:3:1}
 
-Isolates showed a variable response across the spread of rangefinding concentrations with KUB5\_13, KUE4\_4 and the Nash's Field Soil Community generally proving the most able to grow regardless of stressor or concentration. Mean response to concentration (in cyan) showed a variety of responses across the stressors, although the expected negative correlation between concentration and mean growth was not apparent. Azoxystrobin--exposed cultures did not appear to grow at any of the concentrations used.
+Isolates showed a variable response across the spread of rangefinding concentrations (\cref{fig:rangefinding}) with KUB5\_13, KUE4\_4 and the Nash's Field Soil Community generally proving the most able to grow regardless of stressor or concentration. Mean response to concentration (in cyan) showed a variety of responses across the stressors, although the expected negative correlation between concentration and mean growth was not apparent. Azoxystrobin--exposed cultures did not appear to grow at any of the concentrations used.
 
-\subsection{Growth by Stressor Complexity}
-\label{S:3:2}
-
-Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship between complexity and growth. Species identities \textit{B. simplex}, \textit{E. coli}, \textit{V. paradoxus} and the soil community were good predictors of variation (p $<$ 0.05).
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width = \textwidth]{Scripts/Results/Bug_Rangefinding/plots_rangefinding.pdf}
+    \caption{(Weird) rangefinding}
+    \label{fig:rangefinding}
+\end{figure}
 
 \subsection{Single Stressor Responses}
+\label{S:3:2}
+
+Isolates displayed a variety of responses (\cref{fig:sstress}) to the various stressors, growth in some cases apparently enhanced by the presence of most stressors (NUE1\_1, KUE4\_10, OP50, KUE4\_4, and the soil community) but in some cases diminished (NUF1\_3 and LUF4\_5) and in one largely unaffected (KUE4\_4). A bump in  the growth phase generally indicative of diauxic growth was strongly apparent in KUE4\_10, and sporadically present in the soil community, KUE4\_4, NUF1\_3 and NUE1\_1. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/single_stressor_plots.pdf}
+    \caption{(Hideous) effects of single stressors}
+    \label{fig:sstress}
+\end{figure}
+
+\subsection{Growth by Stressor Complexity}
 \label{S:3:3}
 
-Isolates displayed a variety of responses to the various stressors, growth in some cases apparently enhanced by the presence of most stressors (NUE1\_1, KUE4\_10, OP50, KUE4\_4, and the soil community) but in some cases diminished (NUF1\_3 and LUF4\_5) and in one largely unaffected (KUE4\_4). A bump in  the growth phase generally indicative of diauxic growth was strongly apparent in KUE4\_10, and sporadically present in the soil community, KUE4\_4, NUF1\_3 and NUE1\_1. 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width = \textwidth]{Scripts/Results/Bug_Rangefinding/growthXrichness.pdf}
+    \caption{Growth by complexity}
+    \label{fig:growthXcomplex}
+\end{figure}
+
+Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship between complexity and growth. Species identities \textit{B. simplex}, \textit{E. coli}, \textit{V. paradoxus} and the soil community were good predictors of variation (p $<$ 0.05).
 
 \subsection{Predicted Versus Observed Effect}
 \label{S:3:4}
 
-Patterns of observed versus predicted mean effect varied considerably between the species (Figure \ref{fig:obsXpred}). KUB5\_13, NUF1\_3 and LUF4\_5’s are tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
+Patterns of observed versus predicted mean effect varied considerably between the species (\cref{fig:obsXpred}). KUB5\_13, NUF1\_3 and LUF4\_5’s are tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
 
 \begin{figure}[ht]
     \centering
@@ -405,7 +429,6 @@ Patterns of observed versus predicted mean effect varied considerably between th
     \caption{Observed versus predicted effects.}
     \label{fig:obsXpred}
 \end{figure}
-
 
 \subsection{Comparison of Linear Models of Higher-Order Mixtures}
 \label{S:3:5}
@@ -419,13 +442,13 @@ A comparison of linear models that attempted to explain variation in terms of 1-
 \toprule 
 \textbf{Complexity} & \textbf{Number of Predictors} & \textbf{Residual Df} & \textbf{Residual Sum of Squares} & \textbf{Df} & \textbf{Sum of Squares} & \textbf{F-value} & \textbf{Pr(>F)} & \textbf{AIC Df} & \textbf{AIC Score}  \\
 \midrule
-\rowcolor{black!20}{1} & 8 & 6154 & 28546.62 & NA & NA & NA & NA & 10 & 26957.56 \\
+\rowcolor{gggrey}{1} & 8 & 6154 & 28546.62 & NA & NA & NA & NA & 10 & 26957.56 \\
 {2} & 28 & 6134 & 28585.26 & 20 & -38.64 & NA & NA & 30 & 27005.90 \\
-\rowcolor{black!20}{3} & 56 & 6106 & 28548.02 & 28 & 37.24 & 0.23 & 0.99 & 58 & 27053.86 \\
+\rowcolor{gggrey}{3} & 56 & 6106 & 28548.02 & 28 & 37.24 & 0.23 & 0.99 & 58 & 27053.86 \\
 {4} & 70 & 6092 & 28428.31 & 14 & 119.71 & 1.83 & 0.03 & 72 & 27055.97 \\
-\rowcolor{black!20}{5} & 56 & 6106 & 28521.45 & -14 & -93.14 & 1.43 & 0.13 & 58 & 27048.12 \\
+\rowcolor{gggrey}{5} & 56 & 6106 & 28521.45 & -14 & -93.14 & 1.43 & 0.13 & 58 & 27048.12 \\
 {6} & 28 & 6134 & 28635.35 & -28 & -113.9 & 0.87 & 0.66 & 30 & 27016.69 \\
-\rowcolor{black!20}{7} & 8 & 6154 & 28716.32 & -20 & -80.97 & 0.87 & 0.63 & 10 & 26994.09 \\
+\rowcolor{gggrey}{7} & 8 & 6154 & 28716.32 & -20 & -80.97 & 0.87 & 0.63 & 10 & 26994.09 \\
 {8} & 1 & 6161 & 28752.50 & -7 & -36.18 & 1.11 & 0.36 & 3 & 26987.85 \\
 \bottomrule
 \end{tabular}
@@ -436,10 +459,24 @@ A comparison of linear models that attempted to explain variation in terms of 1-
 \subsection{Interaction Type Prevalence}
 \label{S:3:6}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/histogram_interaction_basic.pdf}
+    \caption{Single stressor additive vs observed interaction}
+    \label{fig:histogram_interaction_basic}
+\end{figure}
+
 The analysis of interaction type showed a relatively high incidence of T-test errors (133 in 1976; ~15\%), due to a correspondingly high incidence of observations with a sample size of one and no standard deviation. For most isolates additive effects prevailed (1744 in 1976; ~88\%), the exception being \textit{E. coli} OP50, where some non-additive effects were seen, especially at a complexity of 4 and above; negative antagonism accounted for slightly under half of the interactions observed (94 in 247; 38\%), while negative synergy was observed only at a complexity of 5 and in low quantities (5 in 247; 2\%).
 
 \subsection{Emergent Interaction Type Prevalence}
 \label{S:3:7}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/histogram_interaction_emergent.pdf}
+    \caption{Multiple stressor additive vs observed interaction}
+    \label{fig:histogram_interaction_emergent}
+\end{figure}
 
 T-test errors represent a similar proportion of emergent effects observed (161 in 1752, ~9\%) . Non-emergent effects – “predicted” – dominate (1589 in 1752, ~91\%). Emergent synergy is non-existent, while two cases of emergent antagonism are present in NUE1\_1: a mixture of copper, nickel, metaldehyde and tebuconazole, and a mixture of copper, nickel, chloramphenicol, metaldehyde, tebuconazole, and azoxystrobin.
 
