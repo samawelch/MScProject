@@ -38,7 +38,7 @@ for (i in 1:8)
 }
 
 # Plot together, aligned by species
-png("Results/Final_Pipeline/ObservedXPredicted.png", width = 1800, height = 800)
+pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 13, height = 12, onefile = TRUE)
 ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, ncol = 3, nrow = 3, common.legend = TRUE, legend = "right")
 dev.off()
 

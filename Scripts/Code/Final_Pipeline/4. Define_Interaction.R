@@ -181,5 +181,3 @@ annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend), top = p
 meh <- ggplot(data = all_interactions_tibble, aes(x = pred_mean, y = obs_mean, colour = Interaction)) +
   geom_point() +
   scale_colour_viridis_d()
-
-ggplotly(meh)
