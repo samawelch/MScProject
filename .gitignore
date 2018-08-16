@@ -1,39 +1,79 @@
-# History files
-.Rhistory
-.Rapp.history
 
-# Session Data files
-.RData
-
-# Example code in package build process
-*-Ex.R
-
-# Output files from R CMD build
-/*.tar.gz
-
-# Output files from R CMD check
-/*.Rcheck/
-
-# RStudio files
-.Rproj.user/
-
-# produced vignettes
-vignettes/*.html
-vignettes/*.pdf
-
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
-.httr-oauth
-
-# knitr and R markdown default cache directories
-/*_cache/
-/cache/
-
-# Temporary files created by R markdown
-*.utf8.md
-*.knit.md
-
-# Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
-rsconnect/
-.Rproj.user
-.RData
-.Rhistory
+.Rproj.user/shared/notebooks/paths
+.Rproj.user/shared/notebooks/patch-chunk-names
+.Rproj.user/35C03E84/viewer-cache/86641FF8.Rdata
+.Rproj.user/35C03E84/sources/s-BC64DD17/lock_file
+.Rproj.user/35C03E84/sources/s-BC64DD17/FC8741B4-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/FC8741B4
+.Rproj.user/35C03E84/sources/s-BC64DD17/E266112F-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/E266112F
+.Rproj.user/35C03E84/sources/s-BC64DD17/C41E6EB8-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/C41E6EB8
+.Rproj.user/35C03E84/sources/s-BC64DD17/AEAE2CB-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/AEAE2CB
+.Rproj.user/35C03E84/sources/s-BC64DD17/8E1F8455-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/8E1F8455
+.Rproj.user/35C03E84/sources/s-BC64DD17/845080B7-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/845080B7
+.Rproj.user/35C03E84/sources/s-BC64DD17/65198F3E-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/65198F3E
+.Rproj.user/35C03E84/sources/s-BC64DD17/621D4521-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/621D4521
+.Rproj.user/35C03E84/sources/s-BC64DD17/53B6F7B4-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/53B6F7B4
+.Rproj.user/35C03E84/sources/s-BC64DD17/46AF8AA7-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/46AF8AA7
+.Rproj.user/35C03E84/sources/s-BC64DD17/435DA39D-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/435DA39D
+.Rproj.user/35C03E84/sources/s-BC64DD17/2E943BA9-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/2E943BA9
+.Rproj.user/35C03E84/sources/s-BC64DD17/212E2C80-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/212E2C80
+.Rproj.user/35C03E84/sources/s-BC64DD17/1E6B1436-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/1E6B1436
+.Rproj.user/35C03E84/sources/s-BC64DD17/1C7DFF3-contents
+.Rproj.user/35C03E84/sources/s-BC64DD17/1C7DFF3
+.Rproj.user/35C03E84/sources/prop/INDEX
+.Rproj.user/35C03E84/sources/prop/FEE2CAEA
+.Rproj.user/35C03E84/sources/prop/FE4E4CC8
+.Rproj.user/35C03E84/sources/prop/DAE1415F
+.Rproj.user/35C03E84/sources/prop/CAFC47DC
+.Rproj.user/35C03E84/sources/prop/BF9F3B1D
+.Rproj.user/35C03E84/sources/prop/BDB31B30
+.Rproj.user/35C03E84/sources/prop/BC09BC12
+.Rproj.user/35C03E84/sources/prop/B1E4AB4
+.Rproj.user/35C03E84/sources/prop/AEF8443B
+.Rproj.user/35C03E84/sources/prop/AD95CF22
+.Rproj.user/35C03E84/sources/prop/7A17342E
+.Rproj.user/35C03E84/sources/prop/6C3D885F
+.Rproj.user/35C03E84/sources/prop/60BD4DF8
+.Rproj.user/35C03E84/sources/prop/59E7DC0A
+.Rproj.user/35C03E84/sources/prop/57E4DF7D
+.Rproj.user/35C03E84/sources/prop/4D3C7C92
+.Rproj.user/35C03E84/sources/prop/4A3A83AE
+.Rproj.user/35C03E84/sources/prop/4A3375E9
+.Rproj.user/35C03E84/sources/prop/49DF6D64
+.Rproj.user/35C03E84/sources/prop/41B9C8C9
+.Rproj.user/35C03E84/sources/prop/41A03C62
+.Rproj.user/35C03E84/sources/prop/35204C81
+.Rproj.user/35C03E84/sources/prop/32D2BDD1
+.Rproj.user/35C03E84/sources/prop/32361078
+.Rproj.user/35C03E84/sources/prop/2E1E6E98
+.Rproj.user/35C03E84/sources/prop/2D128241
+.Rproj.user/35C03E84/sources/prop/29198CB4
+.Rproj.user/35C03E84/sources/prop/2790D0DF
+.Rproj.user/35C03E84/sources/prop/207CC8D0
+.Rproj.user/35C03E84/sources/prop/1F8527D8
+.Rproj.user/35C03E84/sources/prop/116A5FAE
+.Rproj.user/35C03E84/saved_source_markers
+.Rproj.user/35C03E84/rmd-outputs
+.Rproj.user/35C03E84/persistent-state
+.Rproj.user/35C03E84/pcs/workbench-pane.pper
+.Rproj.user/35C03E84/pcs/windowlayoutstate.pper
+.Rproj.user/35C03E84/pcs/source-pane.pper
+.Rproj.user/35C03E84/pcs/packages-pane.pper
+.Rproj.user/35C03E84/pcs/files-pane.pper
+.Rproj.user/35C03E84/pcs/debug-breakpoints.pper
+.Rproj.user/35C03E84/explorer-cache/d4f297fbd3a742d0b1b4ba1f7bc48fd3
+.Rproj.user/35C03E84/console06/INDEX001
+.Rproj.user/35C03E84/console06/B3753C93
