@@ -128,9 +128,9 @@ for (i in 1:8)
     geom_bar(position = "stack") +
     
     ggtitle(paste(isolates_species_vector[i])) +
-    xlab("Mixture Complexity") +
-    ylab("Count") +
-    theme(legend.position = "none")
+    theme(legend.position = "none",
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank())
   
   temp_plot_name <- paste("p", i , sep = "")
   assign(temp_plot_name, temp_plot)
@@ -138,7 +138,13 @@ for (i in 1:8)
 
 dummy_legend <- get_legend(
   temp_plot +
-    theme(legend.position = "right") 
+    theme(legend.position = "right") +
+    labs(fill = 'Emergent Interaction') 
 )
 
-annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend), top = p_cutoff)
+pdf("Results/Final_Pipeline/histogram_interaction_emergent.pdf", width = 9, height = 9)
+annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend),
+                left = text_grob("Count", size = 16, rot = 90),
+                bottom = text_grob("Mixture Complexity", size = 16))
+dev.off()
+dev.off()
