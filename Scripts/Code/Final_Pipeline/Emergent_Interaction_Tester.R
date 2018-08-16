@@ -116,7 +116,8 @@ for (i in 1:8)
   temp_plot <- 
     ggplot(data = filter(emergent_interactions_tibble_app, Isolate == isolates_vector[i]), 
            aes(x = as.factor(Richness), 
-               fill = pred_comp_interaction)) +
+               fill = pred_comp_interaction),
+           width = 0.9) +
     
     scale_colour_viridis_d(aesthetics = "fill", 
                            option = "viridis", 
@@ -128,9 +129,11 @@ for (i in 1:8)
     geom_bar(position = "stack") +
     
     ggtitle(paste(isolates_species_vector[i])) +
+    theme_gray() +
     theme(legend.position = "none",
           axis.title.x = element_blank(),
-          axis.title.y = element_blank())
+          axis.title.y = element_blank(),
+          panel.grid.major.x = element_blank())
   
   temp_plot_name <- paste("p", i , sep = "")
   assign(temp_plot_name, temp_plot)

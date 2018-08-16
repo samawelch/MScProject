@@ -73,7 +73,7 @@ dummy_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes
 
 
 grob_leg <- get_legend(dummy_plot)
-# Arange the plots 4x2 with a shared legend
+# Arange the plots with a shared legend
 ss_plots <- ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, grob_leg, ncol = 3, nrow = 3)
 # Print to PDF
 png("Results/Final_Pipeline/single_stressor_plots.png", width = 1500, height = 1500) # setting onefile to false prevents a blank leading page

@@ -151,7 +151,8 @@ for (s in 1:8)
     temp_plot <- 
       ggplot(data = filter(all_interactions_tibble, Isolate == isolates_vector[s]), 
              aes(x = as.factor(Richness), 
-                 fill = Interaction)) +
+                 fill = Interaction,
+                 width = 0.9)) +
       
       scale_colour_viridis_d(aesthetics = "fill", 
                              option = "viridis", 
@@ -161,9 +162,11 @@ for (s in 1:8)
       geom_bar(position = "stack") +
       
       ggtitle(paste(isolates_species_vector[s])) +
+      theme_gray() +
       theme(legend.position = "none",
             axis.title.x = element_blank(),
-            axis.title.y = element_blank())
+            axis.title.y = element_blank(),
+            panel.grid.major.x = element_blank())
     
     temp_plot_name <- paste("p", s , sep = "")
     assign(temp_plot_name, temp_plot)
