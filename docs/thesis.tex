@@ -295,7 +295,7 @@ Nl_t=\frac{K}{1 + (\frac{K - N_0}{N_0}) e^{-rt}}
 
 Growth data and logistic curve were plotted by well, allowing for visual inspection and the exclusion of models from wells where no growth had occurred as a result of factors other than stressor treatment. A null additive model was assumed for all comparisons, consistent with the use of bacterial growth as a metric of response \cite{Piggott2015}. The constructed growth curves offered a number of potential metrics for comparison of effects. 
 
-Empirical area under the measured growth (\textit{auc\_e} in growthcurver, henceforth growth) was used as a primary measure of bacterial growth response, as it allowed for taking account of effects on growth at any period in the experiments.
+Empirical 
 
 \subsection{Stressor Exposures}
 \label{S:2:5}
@@ -348,6 +348,13 @@ Effect = Growth_{Control} - Growth_{Treatment}
 Predicted effect was then calculated using an additive null model, by summing the calculated mean effects of individual stressors on a per-isolate basis and calculating an updated standard deviation from the root of the summed squares of the component standard deviations. 
 
 Effect type was classified according to the definitions found in Piggott, Townsend, and Matthaei \cite{Piggott2015}. If the mean predicted and observed effects were not significantly different (independent two-sample T-test, p $<$ 0.05). A positive effect on growth larger than the predicted effect was classified as positive synergy, a negative effect larger (in absolute terms) than the predicted effect was negative synergy. An effect between positive synergy and the predicted effect was classified as negative antagonism, while an effect between negative synergy and the predicted effect was positive antagonism. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{Scripts/Results/Plot_Interactions_Illustrative.pdf}
+    \caption{Plots to illustrate the ranges of definitions in Piggott et al...}
+    \label{fig:interaction_ranges}
+\end{figure}
 
 \subsection{Higher Order Mixtures and Emergent Interactions}
 \label{S:2:10}
