@@ -28,10 +28,11 @@ for (i in 1:8)
     # Consistent scaling isn't great...
     scale_x_continuous(limits = c(-15, 15)) +
     scale_y_continuous(limits = c(-6, 6)) +
-    xlab(label = "Predicted Additive Mean") +
-    ylab(label = "Observed Mean") +
-    annotate("text", x = -13.5, y = 6, label = "Synergy", colour = "grey") +
-    annotate("text", x = 12.5, y = -6, label = "Antagonism", colour = "grey")
+    theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank()) +
+    annotate("text", x = -10, y = 6, label = "Synergy", colour = "grey") +
+    annotate("text", x = 10, y = -6, label = "Antagonism", colour = "grey")
   
   temp_plot_name <- paste("p", i , sep = "")
   assign(temp_plot_name, plot_i_temp)
