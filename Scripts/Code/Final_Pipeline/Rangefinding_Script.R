@@ -4,6 +4,8 @@ library(tidyr)
 library(growthcurver)
 library(dplyr)
 library(stringr)
+library(here)
+library(ggpubr)
 
 #######################
 
@@ -54,7 +56,7 @@ for (k in 1:length(dir()))
   temp_conc_thing <- unname(concentration_stressor_vector[temp_plate_name])
   
   # tidy data
-  temp_plate_tidy <- as.tibble(temp_plate_df) %>%
+  temp_plate_tidy <- as_tibble(temp_plate_df) %>%
     gather(well, OD, 2:97) %>%   
     # Match our premade concentration and isolate vectors rather haphazardly to the first or last character(s) of the location
     mutate(stressor = temp_plate_name) %>%
@@ -73,6 +75,7 @@ for (l in 1:(nrow(rangefinding_data) / 55))
   temp_data_growth_1 <- SummarizeGrowth(temp_data_growth_0$time, temp_data_growth_0$OD)        # Generate a logistic model for this well's growth
 
   temp_data_growth_2 <- bind_cols(Growth_auc_e = temp_data_growth_1$vals$auc_e,
+                                  Growth_k = temp_data_growth_1$vals$k,
                                     Fit_notes = temp_data_growth_1$vals$note,
                                     Stressor = temp_data_growth_0$stressor[[1]],
                                     Concentration = temp_data_growth_0$Concentration[[1]],
@@ -87,21 +90,21 @@ for (k in 1:8)
   temp_rangefinding <- rf_growth_data %>%
     filter(Stressor == names(concentration_stressor_vector[k])) %>%
     group_by(Isolate, Concentration, Stressor) %>%
-    summarise(Mean_growth = mean(Growth_auc_e))
+    summarise(Mean_growth = mean(Growth_k))
   
-  # Add mean growth
-  temp_rangefinding <- temp_rangefinding %>%
-    bind_rows(temp_rangefinding %>% 
-                group_by(Concentration, Stressor) %>% 
-                summarise(Mean_growth = mean(Mean_growth)) %>% 
-                mutate(Isolate = "Mean"))
+  # (Don't) Add mean growth
+  # temp_rangefinding <- temp_rangefinding %>%
+  #   bind_rows(temp_rangefinding %>% 
+  #               group_by(Concentration, Stressor) %>% 
+  #               summarise(Mean_growth = mean(Mean_growth)) %>% 
+  #               mutate(Isolate = "Mean"))
   
   temp_plot_name <- paste("p", k, sep = "")
   
   temp_plot <- 
     ggplot(data = temp_rangefinding, aes(
       x = log(Concentration),
-      y = Mean_growth, 
+      y = log(Mean_growth), 
       colour = Isolate)) +
     geom_point() +
     ggtitle(label = names(concentration_stressor_vector[k])) +
@@ -113,10 +116,9 @@ for (k in 1:8)
              vjust = 1,
              color = "grey",
              angle = 90) +
-    scale_y_continuous(limits = c(0, 9)) +
-    xlab("Log Concentration") +
-    ylab("Mean Growth") +
-    theme(legend.position="none")
+    theme(legend.position = "none",
+          axis.title.y = element_blank(),
+          axis.title.x = element_blank())	
   
   assign(temp_plot_name, temp_plot)
 }
@@ -130,8 +132,9 @@ dummy_legend <- get_legend(
 )
 
 setwd(here("Scripts","Results","Bug_Rangefinding"))
-png("dose_response_messes.png", width = 1500, height = 1500)
-ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend, ncol = 3, nrow = 3)
+pdf("plots_rangefinding.pdf", width = 9, height = 9)
+annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend, ncol = 3, nrow = 3),
+                left = text_grob("Mean Carrying Capacity (OD)", size = 16, rot = 90),
+                bottom = text_grob("Log Concentration", size = 16))
 dev.off()
 dev.off()
-
