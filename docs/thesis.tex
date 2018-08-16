@@ -129,6 +129,7 @@
 %% \address{Address\fnref{label3}}
 %% \fntext[label3]{}
 
+
 %% use optional labels to link authors explicitly to addresses:
 %% \author[label1,label2]{<author name>}
 %% \address[label1]{<address>}
@@ -173,6 +174,8 @@ Traditional models of mixture toxicity focus on binary mixtures of stressors. Tw
 
 Though easy to understand and employ, this model is not without its issues. What, for example, is a stressor? The term is often used as a synonym for 'pollutant', 'toxicant', or 'pressure' -- a substance or treatment that produces a negative fitness effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that 'the dose makes the poison'\cite{OGParacelsus} –- as true for a rise in temperature or in nutrient availability as it is for toxic pollutants -- but also that \textit{the species makes the poison}. Many organisms, particularly bacteria, are are able to tolerate or even thrive on substances that are harmful to other species \cite{Malik2004,Gadd2009}. 
 
+Paragraph about BEF goes here.
+
 Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has been limited \cite{Beppler2016UncoveringStressors}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017PrevalenceInteractions}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects,  three-way interactions not predictable from component two-way effects, meaning that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}.
 
 Within ecology, research on complex combinations of stressors -– including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators -– Multiple Predator Effects (MPEs) –- that has received some attention. One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than poorer mixtures, although a considerable number of component studies found no significant relationship. 
@@ -186,14 +189,14 @@ This study thus aims to address this knowledge gap through the use of automated 
 \subsection{Isolate Selection}
 \label{S:2:1}
 
-8 sets of bacterial isolates  were selected, sourced principally from the Nash's Field experimental site at Silwood Park, United Kingdom. Plots N and P (see Appendix \ref{A:2}) of Nash's Field have since 1991 been treated three times yearly with metaldehyde at 960 g/ha as part of herbivore exclusion experiments \cite{Allan2011ContrastingExperiment}, while bacteria were isolated and sequenced in 2016 for an earlier study \cite{Mombrikotb2016}. 
+Eight bacterial isolates were selected, sourced principally from the Nash's Field experimental site at Silwood Park, United Kingdom. Since 1991, plots within Nash's Field have been treated three times yearly with metaldehyde at 960 g/ha as part of herbivore exclusion experiments \cite{Allan2011ContrastingExperiment} (Appendix \ref{A:2}). The bacteria used in this study were isolated and sequenced form plots with different exposure histories (Table \ref{tab:isolates}) in 2016 for an earlier study \cite{Mombrikotb2016}. 
 
 \begin{table}[ht]
 \begin{small}
 \centering
 \begin{tabular}{c p{3.1cm} l p{5.2cm}}
 \toprule 
-{Strain} & {Species} & {History} & {Notes} \\
+\textbf{{Strain}} & \textbf{{Species}} & \textbf{{History}} & \textbf{{Notes}} \\
 \midrule
 \rowcolor{black!20}{LUF4\_5} & \textit{Luteibacter rhizovicinus} & Control & First isolated from the rhizosphere \cite{Johansen2005LuteibacterL.}. \\
 {KUB5\_13} & \textit{Variovorax paradoxus} & Control & Strains capable of metabolising a wide range of pollutants \cite{Satola2013MetabolicParadoxus}. \\
@@ -210,7 +213,7 @@ This study thus aims to address this knowledge gap through the use of automated 
 \end{small}
 \end{table}
 
-Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with glycerol solution (Hardy Diagnostics, CB12) at -80\textdegree C until needed for experiments, when they were cultured overnight on a rotary shaker in a standard R2A broth at room temperature (25.9\textdegree C–-26.6\textdegree C over a 48h period) prior to experiments. Soil communities were frozen in a 60\% glycerol solution immediately after extraction and defrosted on an individual basis for overnight culturing, meaning it was probably that each replicate of soil community exposures contained a distinct diversity and abundance of species in itself. 
+Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with glycerol solution (Hardy Diagnostics, CB12) at -80\textdegree C until needed for experiments, when they were cultured overnight on a rotary shaker in a standard R2A broth at room temperature (25.9\textdegree C–26.6\textdegree C) prior to experiments. Soil communities were frozen in a 60\% glycerol solution immediately after extraction and defrosted on an individually for overnight culturing. 
 
 \subsection{Stressor Selection}
 \label{S:2:2}
@@ -264,7 +267,7 @@ Tebuconazole is a triazole fungicide that acts against a broad range of pathogen
 \subsection{Rangefinding and Concentration Calculations}
 \label{S:2:3}
 
-Initial dose-response exposures were conducted at concentrations above and below regulatory limits to obtain an overview of individual stressors' effects on isolates. Eight 96-well microtiter plates were prepared, with  \SI{10}{\ul} of 1-in-100 diluted overnight culture, \SI{80}{\ul} of R2A broth, and \SI{10}{\ul} of stressor stock at either 0.1, 1, 10 or 100 times the target final experimental concentration aliquoted into each well. Each well of stressor concentration and isolate was replicated three times. Well OD was read using the cell count protocol below  \ref{S:2:4}.
+Initial dose-response exposures were conducted at concentrations above and below regulatory limits to obtain an overview of individual stressors' effects on isolates. Eight 96-well microtiter plates were prepared, with  \SI{10}{\ul} of 1-in-100 diluted overnight culture, \SI{80}{\ul} of R2A broth, and \SI{10}{\ul} of stressor stock at either 0.1, 1, 10 or 100 times the target final experimental concentration added to each well. Each well of stressor concentration and isolate was replicated three times. Well OD was read using the cell count protocol below  \ref{S:2:4}.
 
 Final experimental concentrations were calculated based on well volumes and regulatory limits. Calculations are available in Appendix \ref{A:1}.
 
@@ -273,7 +276,9 @@ Final experimental concentrations were calculated based on well volumes and regu
 
 Microcosm optical density at 590 nm was used as a metric of cell count over time. Immediately after isolates were exposed to stressors, plates were placed in an automatically-fed BioTek Synergy 2 microplate reader for 48 hours, agitating the wells for 5 seconds then reading absorbance every four hours.  At the conclusion of OD readings, wells were checked for contamination by plating the contents of the control plate at $10^{-3}$ and $10^{-4}$ dilutions onto a R2A agar plate and culturing at room temperature for 24 hours.
 
-Optical density was modelled against time in hours using a logistic curve from the package growthcurver \cite{Sprouffske2016Package} for the R programming language \cite{RCoreTeam2018R:Computing}
+Flow cytometric cell counts (Accuri C6 Flow Cytometer) were linearly modelled against optical density in an attempt to transform OD reading into absolute cell counts. However, no significant relationship was found between the two measurements, as at the time of measurement, cell counts were insignificantly high to be detected as changes in optical density (see Appendix \ref{A:1} for further details.)  
+
+Optical density was modelled against time in hours using a logistic curve from the package \textit{growthcurver} \cite{Sprouffske2016Package} for the R programming language \cite{RCoreTeam2018R:Computing}.
 
 \begin{equation}
 Nl_t=\frac{K}{1 + (\frac{K - N_0}{N_0}) e^{-rt}}
@@ -285,7 +290,7 @@ Growth data and logistic curve were plotted by well, allowing for visual inspect
 \subsection{Stressor Exposures}
 \label{S:2:5}
 
-Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fitted with sterile  pipette tips and a laminar flow hood. 255 combinations of 8 stressors across 8 bacterial isolates were formulated across 24 \SI{2}{\ul} flat bottom 96-well plates, with additional negative controls for a total of 2144 exposures per replicate. \SI{10}{\ul} doses of stressor solutions at environmentally relevant concentrations (Table \ref{tab:stressors}) were added to the wells, in addition to \SI{10}{\ul} of overnight bacterial culture diluted to 1 in 1000, and sufficient R2A broth to bring all well volumes up to \SI{100}{\ul}. Machine-readable worklists were generated from a combination input file for the STARLet using an R script (Appendix \ref{A:1}). Experimental for a single replicates typically lasted 20 hours spread across 2 days; plates were stored in sealed containers at 4\textdegree C overnight, and from the second run onwards with a dampened paper towel to reduce evaporation.
+Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fitted with sterile  pipette tips and a laminar flow hood. 255 combinations of 8 stressors across 8 bacterial isolates were formulated across 24 \SI{200}{\ul} flat bottom 96-well plates, with additional negative controls for a total of 2144 exposures per replicate. \SI{10}{\ul} doses of stressor solutions at environmentally relevant concentrations (Table \ref{tab:stressors}) were added to the wells, in addition to \SI{10}{\ul} of overnight bacterial culture diluted to 1 in 1000, and sufficient R2A broth to bring all well volumes up to \SI{100}{\ul}. Machine-readable worklists were generated from a combination input file for the STARLet using an R script (Appendix \ref{A:1}). Experimental for a single replicates typically lasted 20 hours spread across 2 days; plates were stored in sealed containers at 4\textdegree C overnight, and from the second run onwards with a dampened paper towel to reduce evaporation.
 
 Due to a number of issues with isolate growth in liquid media and plate inoculation, sample size varies across both treatments and isolates (Table \ref{tab:samples}). 
 
@@ -453,7 +458,7 @@ Recent advances in the understanding of higher-order effects of complex stressor
 %%   \citet{key}         ==>>  Author [#]
 %% References with bibTeX database:
 \bibliographystyle{model1-num-names}
-\bibliography{project.bib}
+\bibliography{mendeley.bib}
 %\end{thebibliography}
 \begin{appendices}
 
