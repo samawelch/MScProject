@@ -67,6 +67,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{amssymb}
 \usepackage{cleveref}
+\usepackage{float}
 
 %% Keeps tables looking tolerable.
 \newcolumntype{L}{>{\centering\arraybackslash}m{2.7cm}}
@@ -195,7 +196,7 @@ This study thus aims to address this knowledge gap through the use of automated 
 \subsection{Isolate Selection}
 \label{S:2:1}
 
-Eight bacterial isolates were selected, sourced principally from the Nash's Field experimental site at Silwood Park, United Kingdom. Since 1991, plots within Nash's Field have been treated three times yearly with metaldehyde at 960 g/ha as part of herbivore exclusion experiments \cite{Allan2011ContrastingExperiment} (Appendix \ref{A:2}). The bacteria used in this study were isolated and sequenced form plots with different exposure histories (Table \ref{tab:isolates}) in 2016 for an earlier study \cite{Mombrikotb2016}. 
+Eight bacterial isolates were selected, sourced principally from the Nash's Field experimental site at Silwood Park, United Kingdom. Since 1991, plots within Nash's Field have been treated three times yearly with metaldehyde at 960 g/ha as part of herbivore exclusion experiments \cite{Allan2011ContrastingExperiment} (\cref{A:2}). The bacteria used in this study were isolated and sequenced form plots with different exposure histories (\cref{tab:isolates}) in 2016 for an earlier study \cite{Mombrikotb2016}. 
 
 \begin{table}[ht]
 \begin{small}
@@ -224,7 +225,7 @@ Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with gly
 \subsection{Stressor Selection}
 \label{S:2:2}
 
-Stressors were selected across a diverse range of functional groups (Table \ref{tab:stressors}) in order to assemble a panel that had some but not all mechanisms of action in common amongst the stressors.
+Stressors were selected across a diverse range of functional groups (\cref{tab:stressors}) in order to assemble a panel that had some but not all mechanisms of action in common amongst the stressors.
 
 Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992OxygenRespiration}, while nickel is occasionally so in bacteria and fungi \cite{Zamble2015NickelBiology}. Bacterial resistance to these stressors is thus often nuanced, with a requirement to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002InductionMetals}, and damages vital biosynthesis enzymes \cite{Macomber2009TheToxicity}, while nickel is a weak ROS generator that can unbalance iron and zinc homeostasis in the cell \cite{Samland2006MicrobialDevelopments}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009TheToxicity}, while nickel can be sequestered inside the cell \cite{Nishimura1998ProtonCerevisiae}.
 
@@ -387,55 +388,59 @@ A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016Unc
 
 Isolates showed a variable response across the spread of rangefinding concentrations (\cref{fig:rangefinding}) with KUB5\_13, KUE4\_4 and the Nash's Field Soil Community generally proving the most able to grow regardless of stressor or concentration. Mean response to concentration (in cyan) showed a variety of responses across the stressors, although the expected negative correlation between concentration and mean growth was not apparent. Azoxystrobin--exposed cultures did not appear to grow at any of the concentrations used.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Bug_Rangefinding/plots_rangefinding.pdf}
     \caption{(Weird) rangefinding}
     \label{fig:rangefinding}
 \end{figure}
 
+\newpage
 \subsection{Single Stressor Responses}
 \label{S:3:2}
 
 Isolates displayed a variety of responses (\cref{fig:sstress}) to the various stressors, growth in some cases apparently enhanced by the presence of most stressors (NUE1\_1, KUE4\_10, OP50, KUE4\_4, and the soil community) but in some cases diminished (NUF1\_3 and LUF4\_5) and in one largely unaffected (KUE4\_4). A bump in  the growth phase generally indicative of diauxic growth was strongly apparent in KUE4\_10, and sporadically present in the soil community, KUE4\_4, NUF1\_3 and NUE1\_1. 
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/single_stressor_plots.pdf}
     \caption{(Hideous) effects of single stressors}
     \label{fig:sstress}
 \end{figure}
 
+\newpage
 \subsection{Growth by Stressor Complexity}
 \label{S:3:3}
 
-\begin{figure}[ht]
+Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship between complexity and growth. Species identities \textit{B. simplex}, \textit{E. coli}, \textit{V. paradoxus} and the soil community were good predictors of variation (p $<$ 0.05).
+
+\begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/growthXrichness.pdf}
     \caption{Growth by complexity}
     \label{fig:growthXcomplex}
 \end{figure}
 
-Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship between complexity and growth. Species identities \textit{B. simplex}, \textit{E. coli}, \textit{V. paradoxus} and the soil community were good predictors of variation (p $<$ 0.05).
-
+\newpage
 \subsection{Predicted Versus Observed Effect}
 \label{S:3:4}
 
 Patterns of observed versus predicted mean effect varied considerably between the species (\cref{fig:obsXpred}). KUB5\_13, NUF1\_3 and LUF4\_5’s are tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
 
-\begin{figure}[ht]
+\begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/ObservedXPredicted.pdf}
     \caption{Observed versus predicted effects.}
     \label{fig:obsXpred}
 \end{figure}
 
+\newpage
 \subsection{Comparison of Linear Models of Higher-Order Mixtures}
 \label{S:3:5}
 
 A comparison of linear models that attempted to explain variation in terms of 1-8-way combinations of stressors resulted in a degree of model saturation (Table \ref{tab:lmodels}). 4-way interactions explained the variation with the highest degree of statistical significance when compared in an ANOVA (p = 0.02), but an Akaike Information Criteria test that penalised model goodness of fit by number of parameters suggested that more complex models may be overfitted compared to the single stressor model (n = 1). 
 
-\begin{table}[ht]
+\begin{table}[H]
 \centering
 \scriptsize
 \begin{tabular}{N N N N O N O O O N}
@@ -456,30 +461,33 @@ A comparison of linear models that attempted to explain variation in terms of 1-
 \label{tab:lmodels}
 \end{table}
 
+\newpage
 \subsection{Interaction Type Prevalence}
 \label{S:3:6}
 
-\begin{figure}[ht]
+The analysis of interaction type showed a relatively high incidence of T-test errors (133 in 1976; ~15\%), due to a correspondingly high incidence of observations with a sample size of one and no standard deviation. For most isolates additive effects prevailed (1744 in 1976; ~88\%), the exception being \textit{E. coli} OP50, where some non-additive effects were seen, especially at a complexity of 4 and above; negative antagonism accounted for slightly under half of the interactions observed (94 in 247; 38\%), while negative synergy was observed only at a complexity of 5 and in low quantities (5 in 247; 2\%).
+
+\begin{figure}[hb]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/histogram_interaction_basic.pdf}
     \caption{Single stressor additive vs observed interaction}
     \label{fig:histogram_interaction_basic}
 \end{figure}
 
-The analysis of interaction type showed a relatively high incidence of T-test errors (133 in 1976; ~15\%), due to a correspondingly high incidence of observations with a sample size of one and no standard deviation. For most isolates additive effects prevailed (1744 in 1976; ~88\%), the exception being \textit{E. coli} OP50, where some non-additive effects were seen, especially at a complexity of 4 and above; negative antagonism accounted for slightly under half of the interactions observed (94 in 247; 38\%), while negative synergy was observed only at a complexity of 5 and in low quantities (5 in 247; 2\%).
-
+\newpage
 \subsection{Emergent Interaction Type Prevalence}
 \label{S:3:7}
 
-\begin{figure}[ht]
+T-test errors represent a similar proportion of emergent effects observed (161 in 1752, ~9\%) . Non-emergent effects – “predicted” – dominate (1589 in 1752, ~91\%). Emergent synergy is non-existent, while two cases of emergent antagonism are present in NUE1\_1: a mixture of copper, nickel, metaldehyde and tebuconazole, and a mixture of copper, nickel, chloramphenicol, metaldehyde, tebuconazole, and azoxystrobin.
+
+\begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/histogram_interaction_emergent.pdf}
     \caption{Multiple stressor additive vs observed interaction}
     \label{fig:histogram_interaction_emergent}
 \end{figure}
 
-T-test errors represent a similar proportion of emergent effects observed (161 in 1752, ~9\%) . Non-emergent effects – “predicted” – dominate (1589 in 1752, ~91\%). Emergent synergy is non-existent, while two cases of emergent antagonism are present in NUE1\_1: a mixture of copper, nickel, metaldehyde and tebuconazole, and a mixture of copper, nickel, chloramphenicol, metaldehyde, tebuconazole, and azoxystrobin.
-
+\newpage
 \section{Discussion}
 \label{S:4}
 
@@ -502,7 +510,7 @@ Although the majority of the stressors used in this study have well-documents im
 
 A number of limitations apply to this study if overcome could affect the significance of detected interactions considerably.  Due to a combination of mistakes during the lab work phase of the study and the reticence of the strains KUB5\_13 and NUF1\_3 (\textit{V. paradoxus}) to grow directly in liquid media from cryogenic storage (perhaps unsurprising as the strains in question were sources from soil samples), the sample size in the case of a number of combinations (Table \ref{tab:samples}) was insufficiently large to detect non-additive effects at all but the highest p-values.  Greater replication of a smaller number of isolates would have permitted results to be declared with a greater degree of certainty. 
 
-Another issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of Bacillus to aggregate within the well, creating considerable local variation in optical density across 
+Another issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density across 
 Additionally, due to the long preparation times for exposures, and experimental durations (96 hours from first the addition of media to plates to experiment end), well evaporation posed a non-random but difficult to account for influence on bacterial growth conditions, an additional stressor not part of the experimental design. Evaporation was most evident in peripheral wells (A1-–12, H1-–12, all X1 and X12 wells), and as stressor combination layout on the plates was not randomised between isolates or runs, it is probably that evaporation played a not-insignificant role in the observed effects of various treatments. Were a simpler level of treatment/isolate complexity used in simpler work, it would be possible to mitigate this effect by using only the inner wells of the 96 well plate, and by reduce experimental set-up time. 
 
 Lastly, the incorporation of varying concentrations of stressors would have allowed the construction of dose response curves, calculation of inhibitory concentrations (ICs), and correspondingly the modelling of Bliss Independence \cite{Bliss1939} of stressors, which has been applied with some success to the issue of higher-order and emergent interactions in complex mixtures of antibiotics \cite{Beppler2016UncoveringStressors,Tekin2017PrevalenceInteractions} 
