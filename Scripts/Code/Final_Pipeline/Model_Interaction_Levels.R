@@ -1,6 +1,7 @@
 # Makes those linear models Tom wanted.
 # Requires: Growth_Curve_Loop
 library(dplyr)
+library(here)
 
 isolate_lm <- lm(Growth_auc_e ~ Isolate, tidy_growth_data)
 summary(isolate_lm)
@@ -30,12 +31,16 @@ for (b in 1:8)
   }
   test3 <- paste(test2, collapse = " + ")
   # We need to actually nest the model by concatenating the formulae each loop
-  test4 <- paste(test3, test4, collapse = " + ")
-  test3 <- paste("Growth_auc_e ~ ", test3, sep = "")
+  # This is a crude way to avoid sticking an extraneous + in lmf_1
+  if (is.null(test4))
+    test4 <- test3
+  else
+    test4 <- paste(test3, test4, sep = " + ")
+  test5 <- paste("Growth_auc_e ~ ", test4, sep = "")
   temp_lmf_name <- paste("lmf_", b , sep = "")
-  assign(temp_lmf_name, test3)
+  assign(temp_lmf_name, test5)
   temp_lm_name <- paste("lm_", b , sep = "")
-  temp_lm <- do.call("lm", list(test3, tidy_growth_data))
+  temp_lm <- do.call("lm", list(test5, tidy_growth_data))
   assign(temp_lm_name, temp_lm)
 }
 
@@ -56,6 +61,6 @@ aic_tib <- as.tibble(aic) %>%
 ggplot(data = aic_tib, aes(x = lm, y = AIC)) +
   geom_point(aes(size = df))
 # Lower AIC is better?
-
+setwd(here("Scripts"))
 write.csv(lm_anova, "Results/Final_Pipeline/lm_anova_results.csv")
 write.csv(aic_tib, "Results/Final_Pipeline/aic_results.csv")
