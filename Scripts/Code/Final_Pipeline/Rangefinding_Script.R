@@ -135,7 +135,7 @@ dummy_legend <- get_legend(
 setwd(here("Scripts","Results","Bug_Rangefinding"))
 pdf("plots_rangefinding.pdf", width = 9, height = 9)
 annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend, ncol = 3, nrow = 3),
-                left = text_grob("Mean Area Under Curver (OD)", size = 16, rot = 90),
+                left = text_grob("Mean Area Under Curver (OD)", rot = 90),
                 bottom = text_grob(expression(paste("Log Concentration (", mu, "g/l)"))))
 dev.off()
 dev.off()

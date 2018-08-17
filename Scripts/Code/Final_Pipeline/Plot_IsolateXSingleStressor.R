@@ -81,7 +81,9 @@ grob_leg <- get_legend(dummy_plot)
 ss_plots <- ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, grob_leg, ncol = 3, nrow = 3)
 # Print to PDF
 pdf("Results/Final_Pipeline/single_stressor_plots.pdf", width = 9, height = 9) # setting onefile to false prevents a blank leading page
-ss_plots
+annotate_figure(ss_plots,
+                left = text_grob("OD at 590 nm", rot = 90),
+                bottom = text_grob("Time (h)"))
 dev.off()
 dev.off()
 
