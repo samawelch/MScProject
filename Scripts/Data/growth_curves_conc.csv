@@ -1,0 +1,865 @@
+well,max.running.average,max.slopes,stressor,relative concentration,actual concentration (mg/ml),bacteria,Species
+A1,0.181,0.029485714,Ampicillin,/10,2.00E-07,LUF4_5,L. rhizovicinus
+A2,0.2245,0.038914286,Ampicillin,/10,2.00E-07,LUF4_5,L. rhizovicinus
+A3,0.238,0.039828571,Ampicillin,/10,2.00E-07,LUF4_5,L. rhizovicinus
+A4,0.2035,0.0356,Ampicillin,TGT,2.00E-06,LUF4_5,L. rhizovicinus
+A5,0.235,0.041257143,Ampicillin,TGT,2.00E-06,LUF4_5,L. rhizovicinus
+A6,0.214,0.040514286,Ampicillin,TGT,2.00E-06,LUF4_5,L. rhizovicinus
+A7,0.2245,0.038914286,Ampicillin,*10,2.00E-05,LUF4_5,L. rhizovicinus
+A8,0.1905,0.034971429,Ampicillin,*10,2.00E-05,LUF4_5,L. rhizovicinus
+A9,0.19,0.034457143,Ampicillin,*10,2.00E-05,LUF4_5,L. rhizovicinus
+A10,0.2055,0.037542857,Ampicillin,*100,2.00E-04,LUF4_5,L. rhizovicinus
+A11,0.2015,0.036057143,Ampicillin,*100,2.00E-04,LUF4_5,L. rhizovicinus
+A12,0.179,0.029428571,Ampicillin,*100,2.00E-04,LUF4_5,L. rhizovicinus
+B1,0.242,0.033257143,Ampicillin,/10,2.00E-07,KUB5_13,V. paradoxus
+B2,0.3095,0.028228571,Ampicillin,/10,2.00E-07,KUB5_13,V. paradoxus
+B3,0.318,0.027142857,Ampicillin,/10,2.00E-07,KUB5_13,V. paradoxus
+B4,0.322,0.028285714,Ampicillin,TGT,2.00E-06,KUB5_13,V. paradoxus
+B5,0.316,0.028114286,Ampicillin,TGT,2.00E-06,KUB5_13,V. paradoxus
+B6,0.321,0.027942857,Ampicillin,TGT,2.00E-06,KUB5_13,V. paradoxus
+B7,0.328,0.027771429,Ampicillin,*10,2.00E-05,KUB5_13,V. paradoxus
+B8,0.3245,0.028342857,Ampicillin,*10,2.00E-05,KUB5_13,V. paradoxus
+B9,0.32,0.028228571,Ampicillin,*10,2.00E-05,KUB5_13,V. paradoxus
+B10,0.357,0.030057143,Ampicillin,*100,2.00E-04,KUB5_13,V. paradoxus
+B11,0.315,0.030342857,Ampicillin,*100,2.00E-04,KUB5_13,V. paradoxus
+B12,0.2365,0.032285714,Ampicillin,*100,2.00E-04,KUB5_13,V. paradoxus
+C1,0.2425,0.034228571,Ampicillin,/10,2.00E-07,NUE1_1,B. muralis
+C2,0.5155,0.132628571,Ampicillin,/10,2.00E-07,NUE1_1,B. muralis
+C3,0.5545,0.085771429,Ampicillin,/10,2.00E-07,NUE1_1,B. muralis
+C4,0.501,0.093714286,Ampicillin,TGT,2.00E-06,NUE1_1,B. muralis
+C5,0.5265,0.111028571,Ampicillin,TGT,2.00E-06,NUE1_1,B. muralis
+C6,0.5695,0.110685714,Ampicillin,TGT,2.00E-06,NUE1_1,B. muralis
+C7,0.4965,0.090742857,Ampicillin,*10,2.00E-05,NUE1_1,B. muralis
+C8,0.509,0.088857143,Ampicillin,*10,2.00E-05,NUE1_1,B. muralis
+C9,0.512,0.084228571,Ampicillin,*10,2.00E-05,NUE1_1,B. muralis
+C10,0.1695,0.024628571,Ampicillin,*100,2.00E-04,NUE1_1,B. muralis
+C11,0.201,0.028685714,Ampicillin,*100,2.00E-04,NUE1_1,B. muralis
+C12,0.158,0.019085714,Ampicillin,*100,2.00E-04,NUE1_1,B. muralis
+D1,0.2365,0.025885714,Ampicillin,/10,2.00E-07,NUF1_3,V. paradoxus
+D2,0.329,0.0304,Ampicillin,/10,2.00E-07,NUF1_3,V. paradoxus
+D3,0.348,0.033028571,Ampicillin,/10,2.00E-07,NUF1_3,V. paradoxus
+D4,0.351,0.033485714,Ampicillin,TGT,2.00E-06,NUF1_3,V. paradoxus
+D5,0.3385,0.031771429,Ampicillin,TGT,2.00E-06,NUF1_3,V. paradoxus
+D6,0.358,0.034171429,Ampicillin,TGT,2.00E-06,NUF1_3,V. paradoxus
+D7,0.351,0.0328,Ampicillin,*10,2.00E-05,NUF1_3,V. paradoxus
+D8,0.348,0.032342857,Ampicillin,*10,2.00E-05,NUF1_3,V. paradoxus
+D9,0.364,0.0348,Ampicillin,*10,2.00E-05,NUF1_3,V. paradoxus
+D10,0.3275,0.031485714,Ampicillin,*100,2.00E-04,NUF1_3,V. paradoxus
+D11,0.322,0.0304,Ampicillin,*100,2.00E-04,NUF1_3,V. paradoxus
+D12,0.2505,0.025542857,Ampicillin,*100,2.00E-04,NUF1_3,V. paradoxus
+E1,0.263,0.060685714,Ampicillin,/10,2.00E-07,KUE4_4,B. muralis
+E2,0.5325,0.183485714,Ampicillin,/10,2.00E-07,KUE4_4,B. muralis
+E3,0.525,0.173657143,Ampicillin,/10,2.00E-07,KUE4_4,B. muralis
+E4,0.4475,0.125257143,Ampicillin,TGT,2.00E-06,KUE4_4,B. muralis
+E5,0.5125,0.201485714,Ampicillin,TGT,2.00E-06,KUE4_4,B. muralis
+E6,0.5185,0.144285714,Ampicillin,TGT,2.00E-06,KUE4_4,B. muralis
+E7,0.619,0.157085714,Ampicillin,*10,2.00E-05,KUE4_4,B. muralis
+E8,0.4825,0.0868,Ampicillin,*10,2.00E-05,KUE4_4,B. muralis
+E9,0.7995,0.234228571,Ampicillin,*10,2.00E-05,KUE4_4,B. muralis
+E10,0.1055,0.018742857,Ampicillin,*100,2.00E-04,KUE4_4,B. muralis
+E11,0.37,0.136971429,Ampicillin,*100,2.00E-04,KUE4_4,B. muralis
+E12,0.1605,0.048628571,Ampicillin,*100,2.00E-04,KUE4_4,B. muralis
+F1,0.2475,0.040171429,Ampicillin,/10,2.00E-07,KUE4_10,S. acidaminiphila
+F2,0.317,0.048057143,Ampicillin,/10,2.00E-07,KUE4_10,S. acidaminiphila
+F3,0.344,0.050285714,Ampicillin,/10,2.00E-07,KUE4_10,S. acidaminiphila
+F4,0.346,0.049714286,Ampicillin,TGT,2.00E-06,KUE4_10,S. acidaminiphila
+F5,0.339,0.048,Ampicillin,TGT,2.00E-06,KUE4_10,S. acidaminiphila
+F6,0.3385,0.050057143,Ampicillin,TGT,2.00E-06,KUE4_10,S. acidaminiphila
+F7,0.358,0.051828571,Ampicillin,*10,2.00E-05,KUE4_10,S. acidaminiphila
+F8,0.3475,0.0476,Ampicillin,*10,2.00E-05,KUE4_10,S. acidaminiphila
+F9,0.3395,0.047085714,Ampicillin,*10,2.00E-05,KUE4_10,S. acidaminiphila
+F10,0.354,0.0484,Ampicillin,*100,2.00E-04,KUE4_10,S. acidaminiphila
+F11,0.3375,0.046571429,Ampicillin,*100,2.00E-04,KUE4_10,S. acidaminiphila
+F12,0.2825,0.042685714,Ampicillin,*100,2.00E-04,KUE4_10,S. acidaminiphila
+G1,0.17,0.039257143,Ampicillin,/10,2.00E-07,OP50,E. coli
+G2,0.208,0.035542857,Ampicillin,/10,2.00E-07,OP50,E. coli
+G3,0.2215,0.036285714,Ampicillin,/10,2.00E-07,OP50,E. coli
+G4,0.2255,0.036628571,Ampicillin,TGT,2.00E-06,OP50,E. coli
+G5,0.2175,0.034857143,Ampicillin,TGT,2.00E-06,OP50,E. coli
+G6,0.2105,0.033771429,Ampicillin,TGT,2.00E-06,OP50,E. coli
+G7,0.163,0.026114286,Ampicillin,*10,2.00E-05,OP50,E. coli
+G8,0.174,0.028,Ampicillin,*10,2.00E-05,OP50,E. coli
+G9,0.175,0.028285714,Ampicillin,*10,2.00E-05,OP50,E. coli
+G10,0.1435,0.017428571,Ampicillin,*100,2.00E-04,OP50,E. coli
+G11,0.144,0.016571429,Ampicillin,*100,2.00E-04,OP50,E. coli
+G12,0.1055,0.014914286,Ampicillin,*100,2.00E-04,OP50,E. coli
+H1,0.1195,0.025142857,Ampicillin,/10,2.00E-07,SC,SC
+H2,0.182,0.043142857,Ampicillin,/10,2.00E-07,SC,SC
+H3,0.1905,0.051085714,Ampicillin,/10,2.00E-07,SC,SC
+H4,0.172,0.040228571,Ampicillin,TGT,2.00E-06,SC,SC
+H5,0.1655,0.041085714,Ampicillin,TGT,2.00E-06,SC,SC
+H6,0.157,0.037028571,Ampicillin,TGT,2.00E-06,SC,SC
+H7,0.154,0.033942857,Ampicillin,*10,2.00E-05,SC,SC
+H8,0.159,0.035542857,Ampicillin,*10,2.00E-05,SC,SC
+H9,0.158,0.031142857,Ampicillin,*10,2.00E-05,SC,SC
+H10,0.1885,0.033257143,Ampicillin,*100,2.00E-04,SC,SC
+H11,0.1845,0.033885714,Ampicillin,*100,2.00E-04,SC,SC
+H12,0.2,0.033485714,Ampicillin,*100,2.00E-04,SC,SC
+A7,0.213,0.046914286,Atrazine,*10,4.00E-05,LUF4_5,L. rhizovicinus
+A8,0.2025,0.044342857,Atrazine,*10,4.00E-05,LUF4_5,L. rhizovicinus
+A9,0.1965,0.038914286,Atrazine,*10,4.00E-05,LUF4_5,L. rhizovicinus
+B7,0.3105,0.030342857,Atrazine,*10,4.00E-05,KUB5_13,V. paradoxus
+B8,0.311,0.033885714,Atrazine,*10,4.00E-05,KUB5_13,V. paradoxus
+B9,0.3205,0.027257143,Atrazine,*10,4.00E-05,KUB5_13,V. paradoxus
+C7,0.5225,0.133714286,Atrazine,*10,4.00E-05,NUE1_1,B. muralis
+C8,0.537,0.091657143,Atrazine,*10,4.00E-05,NUE1_1,B. muralis
+C9,0.4975,0.097314286,Atrazine,*10,4.00E-05,NUE1_1,B. muralis
+D7,0.315,0.030971429,Atrazine,*10,4.00E-05,NUF1_3,V. paradoxus
+D8,0.32,0.030857143,Atrazine,*10,4.00E-05,NUF1_3,V. paradoxus
+D9,0.3175,0.030171429,Atrazine,*10,4.00E-05,NUF1_3,V. paradoxus
+E7,0.469,0.135371429,Atrazine,*10,4.00E-05,KUE4_4,B. muralis
+E8,0.464,0.159942857,Atrazine,*10,4.00E-05,KUE4_4,B. muralis
+E9,0.53,0.149942857,Atrazine,*10,4.00E-05,KUE4_4,B. muralis
+F7,0.3295,0.046971429,Atrazine,*10,4.00E-05,KUE4_10,S. acidaminiphila
+F8,0.3375,0.047714286,Atrazine,*10,4.00E-05,KUE4_10,S. acidaminiphila
+F9,0.3405,0.047485714,Atrazine,*10,4.00E-05,KUE4_10,S. acidaminiphila
+G7,0.208,0.036685714,Atrazine,*10,4.00E-05,OP50,E. coli
+G8,0.2145,0.036171429,Atrazine,*10,4.00E-05,OP50,E. coli
+G9,0.22,0.036914286,Atrazine,*10,4.00E-05,OP50,E. coli
+H7,0.159,0.042685714,Atrazine,*10,4.00E-05,SC,SC
+H8,0.1565,0.041485714,Atrazine,*10,4.00E-05,SC,SC
+H9,0.1645,0.042971429,Atrazine,*10,4.00E-05,SC,SC
+A10,0.207,0.042057143,Atrazine,*100,4.00E-04,LUF4_5,L. rhizovicinus
+A11,0.192,0.037542857,Atrazine,*100,4.00E-04,LUF4_5,L. rhizovicinus
+A12,0.1595,0.026114286,Atrazine,*100,4.00E-04,LUF4_5,L. rhizovicinus
+B10,0.322,0.033142857,Atrazine,*100,4.00E-04,KUB5_13,V. paradoxus
+B11,0.298,0.028,Atrazine,*100,4.00E-04,KUB5_13,V. paradoxus
+B12,0.221,0.027142857,Atrazine,*100,4.00E-04,KUB5_13,V. paradoxus
+C10,0.5085,0.1192,Atrazine,*100,4.00E-04,NUE1_1,B. muralis
+C11,0.519,0.132342857,Atrazine,*100,4.00E-04,NUE1_1,B. muralis
+C12,0.267,0.0408,Atrazine,*100,4.00E-04,NUE1_1,B. muralis
+D10,0.325,0.032,Atrazine,*100,4.00E-04,NUF1_3,V. paradoxus
+D11,0.3255,0.032971429,Atrazine,*100,4.00E-04,NUF1_3,V. paradoxus
+D12,0.233,0.025028571,Atrazine,*100,4.00E-04,NUF1_3,V. paradoxus
+E10,0.433,0.140457143,Atrazine,*100,4.00E-04,KUE4_4,B. muralis
+E11,0.4885,0.184114286,Atrazine,*100,4.00E-04,KUE4_4,B. muralis
+E12,0.2635,0.067885714,Atrazine,*100,4.00E-04,KUE4_4,B. muralis
+F10,0.341,0.049428571,Atrazine,*100,4.00E-04,KUE4_10,S. acidaminiphila
+F11,0.323,0.0484,Atrazine,*100,4.00E-04,KUE4_10,S. acidaminiphila
+F12,0.2685,0.044685714,Atrazine,*100,4.00E-04,KUE4_10,S. acidaminiphila
+G10,0.221,0.037428571,Atrazine,*100,4.00E-04,OP50,E. coli
+G11,0.216,0.037028571,Atrazine,*100,4.00E-04,OP50,E. coli
+G12,0.181,0.037142857,Atrazine,*100,4.00E-04,OP50,E. coli
+H10,0.156,0.046628571,Atrazine,*100,4.00E-04,SC,SC
+H11,0.1615,0.048285714,Atrazine,*100,4.00E-04,SC,SC
+H12,0.153,0.043657143,Atrazine,*100,4.00E-04,SC,SC
+A1,0.101,0.014457143,Atrazine,/10,4.00E-07,LUF4_5,L. rhizovicinus
+A2,0.2265,0.044228571,Atrazine,/10,4.00E-07,LUF4_5,L. rhizovicinus
+A3,0.247,0.046342857,Atrazine,/10,4.00E-07,LUF4_5,L. rhizovicinus
+B1,0.1825,0.017085714,Atrazine,/10,4.00E-07,KUB5_13,V. paradoxus
+B2,0.292,0.027428571,Atrazine,/10,4.00E-07,KUB5_13,V. paradoxus
+B3,0.3165,0.028742857,Atrazine,/10,4.00E-07,KUB5_13,V. paradoxus
+C1,0.116,0.021028571,Atrazine,/10,4.00E-07,NUE1_1,B. muralis
+C2,0.5015,0.148742857,Atrazine,/10,4.00E-07,NUE1_1,B. muralis
+C3,0.499,0.114457143,Atrazine,/10,4.00E-07,NUE1_1,B. muralis
+D1,0.222,0.025542857,Atrazine,/10,4.00E-07,NUF1_3,V. paradoxus
+D2,0.2765,0.025885714,Atrazine,/10,4.00E-07,NUF1_3,V. paradoxus
+D3,0.326,0.031142857,Atrazine,/10,4.00E-07,NUF1_3,V. paradoxus
+E1,0.2915,0.063657143,Atrazine,/10,4.00E-07,KUE4_4,B. muralis
+E2,0.5145,0.2004,Atrazine,/10,4.00E-07,KUE4_4,B. muralis
+E3,0.511,0.178857143,Atrazine,/10,4.00E-07,KUE4_4,B. muralis
+F1,0.222,0.036971429,Atrazine,/10,4.00E-07,KUE4_10,S. acidaminiphila
+F2,0.258,0.038971429,Atrazine,/10,4.00E-07,KUE4_10,S. acidaminiphila
+F3,0.32,0.046057143,Atrazine,/10,4.00E-07,KUE4_10,S. acidaminiphila
+G1,0.214,0.038571429,Atrazine,/10,4.00E-07,OP50,E. coli
+G2,0.107,0.014342857,Atrazine,/10,4.00E-07,OP50,E. coli
+G3,0.2255,0.036571429,Atrazine,/10,4.00E-07,OP50,E. coli
+H1,0.142,0.036685714,Atrazine,/10,4.00E-07,SC,SC
+H2,0.1655,0.041485714,Atrazine,/10,4.00E-07,SC,SC
+H3,0.164,0.040571429,Atrazine,/10,4.00E-07,SC,SC
+A4,0.241,0.043028571,Atrazine,TGT,4.00E-06,LUF4_5,L. rhizovicinus
+A5,0.217,0.0444,Atrazine,TGT,4.00E-06,LUF4_5,L. rhizovicinus
+A6,0.2245,0.046857143,Atrazine,TGT,4.00E-06,LUF4_5,L. rhizovicinus
+B4,0.3085,0.033485714,Atrazine,TGT,4.00E-06,KUB5_13,V. paradoxus
+B5,0.3125,0.0284,Atrazine,TGT,4.00E-06,KUB5_13,V. paradoxus
+B6,0.313,0.027828571,Atrazine,TGT,4.00E-06,KUB5_13,V. paradoxus
+C4,0.5385,0.081942857,Atrazine,TGT,4.00E-06,NUE1_1,B. muralis
+C5,0.5315,0.113428571,Atrazine,TGT,4.00E-06,NUE1_1,B. muralis
+C6,0.5355,0.11,Atrazine,TGT,4.00E-06,NUE1_1,B. muralis
+D4,0.335,0.031942857,Atrazine,TGT,4.00E-06,NUF1_3,V. paradoxus
+D5,0.3285,0.032457143,Atrazine,TGT,4.00E-06,NUF1_3,V. paradoxus
+D6,0.324,0.032171429,Atrazine,TGT,4.00E-06,NUF1_3,V. paradoxus
+E4,0.4345,0.172171429,Atrazine,TGT,4.00E-06,KUE4_4,B. muralis
+E5,0.4755,0.149485714,Atrazine,TGT,4.00E-06,KUE4_4,B. muralis
+E6,0.485,0.174228571,Atrazine,TGT,4.00E-06,KUE4_4,B. muralis
+F4,0.36,0.050171429,Atrazine,TGT,4.00E-06,KUE4_10,S. acidaminiphila
+F5,0.3335,0.0464,Atrazine,TGT,4.00E-06,KUE4_10,S. acidaminiphila
+F6,0.3415,0.0484,Atrazine,TGT,4.00E-06,KUE4_10,S. acidaminiphila
+G4,0.22,0.036685714,Atrazine,TGT,4.00E-06,OP50,E. coli
+G5,0.216,0.036171429,Atrazine,TGT,4.00E-06,OP50,E. coli
+G6,0.215,0.0364,Atrazine,TGT,4.00E-06,OP50,E. coli
+H4,0.162,0.040857143,Atrazine,TGT,4.00E-06,SC,SC
+H5,0.1585,0.0396,Atrazine,TGT,4.00E-06,SC,SC
+H6,0.159,0.041714286,Atrazine,TGT,4.00E-06,SC,SC
+A7,0.0455,0.000742857,Azostrobin,*10,1000,LUF4_5,L. rhizovicinus
+A8,0.048,0.000742857,Azostrobin,*10,1000,LUF4_5,L. rhizovicinus
+A9,0.048,0.001257143,Azostrobin,*10,1000,LUF4_5,L. rhizovicinus
+B7,0.0455,0.0004,Azostrobin,*10,1000,KUB5_13,V. paradoxus
+B8,0.045,0.000285714,Azostrobin,*10,1000,KUB5_13,V. paradoxus
+B9,0.047,0.000342857,Azostrobin,*10,1000,KUB5_13,V. paradoxus
+C7,0.047,0.001028571,Azostrobin,*10,1000,NUE1_1,B. muralis
+C8,0.048,0.0012,Azostrobin,*10,1000,NUE1_1,B. muralis
+C9,0.049,0.001142857,Azostrobin,*10,1000,NUE1_1,B. muralis
+D7,0.047,0.000514286,Azostrobin,*10,1000,NUF1_3,V. paradoxus
+D8,0.045,0.000342857,Azostrobin,*10,1000,NUF1_3,V. paradoxus
+D9,0.046,0.000285714,Azostrobin,*10,1000,NUF1_3,V. paradoxus
+E7,0.046,0.000571429,Azostrobin,*10,1000,KUE4_4,B. muralis
+E8,0.045,0.000685714,Azostrobin,*10,1000,KUE4_4,B. muralis
+E9,0.045,0.000457143,Azostrobin,*10,1000,KUE4_4,B. muralis
+F7,0.045,0.000285714,Azostrobin,*10,1000,KUE4_10,S. acidaminiphila
+F8,0.049,0.000342857,Azostrobin,*10,1000,KUE4_10,S. acidaminiphila
+F9,0.045,0.000342857,Azostrobin,*10,1000,KUE4_10,S. acidaminiphila
+G7,0.047,0.000742857,Azostrobin,*10,1000,OP50,E. coli
+G8,0.047,0.001314286,Azostrobin,*10,1000,OP50,E. coli
+G9,0.048,0.0008,Azostrobin,*10,1000,OP50,E. coli
+H7,0.046,0.001714286,Azostrobin,*10,1000,SC,SC
+H8,0.047,0.0016,Azostrobin,*10,1000,SC,SC
+H9,0.048,0.001485714,Azostrobin,*10,1000,SC,SC
+A7,0.2035,0.043542857,Tebuconazole,*10,1000,LUF4_5,L. rhizovicinus
+A8,0.1915,0.0392,Tebuconazole,*10,1000,LUF4_5,L. rhizovicinus
+A9,0.193,0.037314286,Tebuconazole,*10,1000,LUF4_5,L. rhizovicinus
+B7,0.314,0.033771429,Tebuconazole,*10,1000,KUB5_13,V. paradoxus
+B8,0.3155,0.028285714,Tebuconazole,*10,1000,KUB5_13,V. paradoxus
+B9,0.3115,0.033314286,Tebuconazole,*10,1000,KUB5_13,V. paradoxus
+C7,0.1885,0.019542857,Tebuconazole,*10,1000,NUE1_1,B. muralis
+C8,0.196,0.018285714,Tebuconazole,*10,1000,NUE1_1,B. muralis
+C9,0.1865,0.012914286,Tebuconazole,*10,1000,NUE1_1,B. muralis
+D7,0.3135,0.030514286,Tebuconazole,*10,1000,NUF1_3,V. paradoxus
+D8,0.3125,0.030742857,Tebuconazole,*10,1000,NUF1_3,V. paradoxus
+D9,0.314,0.030742857,Tebuconazole,*10,1000,NUF1_3,V. paradoxus
+E7,0.116,0.038228571,Tebuconazole,*10,1000,KUE4_4,B. muralis
+E8,0.141,0.039257143,Tebuconazole,*10,1000,KUE4_4,B. muralis
+E9,0.1005,0.028914286,Tebuconazole,*10,1000,KUE4_4,B. muralis
+F7,0.047,0.002,Tebuconazole,*10,1000,KUE4_10,S. acidaminiphila
+F8,0.05,0.003314286,Tebuconazole,*10,1000,KUE4_10,S. acidaminiphila
+F9,0.0455,0.0012,Tebuconazole,*10,1000,KUE4_10,S. acidaminiphila
+G7,0.129,0.014228571,Tebuconazole,*10,1000,OP50,E. coli
+G8,0.1345,0.0148,Tebuconazole,*10,1000,OP50,E. coli
+G9,0.1285,0.014685714,Tebuconazole,*10,1000,OP50,E. coli
+H7,0.1865,0.059142857,Tebuconazole,*10,1000,SC,SC
+H8,0.194,0.063257143,Tebuconazole,*10,1000,SC,SC
+H9,0.1885,0.0608,Tebuconazole,*10,1000,SC,SC
+A10,0.046,0.000742857,Azostrobin,*100,10000,LUF4_5,L. rhizovicinus
+A11,0.047,0.000742857,Azostrobin,*100,10000,LUF4_5,L. rhizovicinus
+A12,0.047,0.002228571,Azostrobin,*100,10000,LUF4_5,L. rhizovicinus
+B10,0.049,0.000514286,Azostrobin,*100,10000,KUB5_13,V. paradoxus
+B11,0.047,0.000857143,Azostrobin,*100,10000,KUB5_13,V. paradoxus
+B12,0.045,0.000914286,Azostrobin,*100,10000,KUB5_13,V. paradoxus
+C10,0.049,0.001028571,Azostrobin,*100,10000,NUE1_1,B. muralis
+C11,0.048,0.000971429,Azostrobin,*100,10000,NUE1_1,B. muralis
+C12,0.044,0.000685714,Azostrobin,*100,10000,NUE1_1,B. muralis
+D10,0.047,0.000628571,Azostrobin,*100,10000,NUF1_3,V. paradoxus
+D11,0.046,0.0008,Azostrobin,*100,10000,NUF1_3,V. paradoxus
+D12,0.045,0.0008,Azostrobin,*100,10000,NUF1_3,V. paradoxus
+E10,0.045,0.0008,Azostrobin,*100,10000,KUE4_4,B. muralis
+E11,0.046,0.0008,Azostrobin,*100,10000,KUE4_4,B. muralis
+E12,0.045,0.0008,Azostrobin,*100,10000,KUE4_4,B. muralis
+F10,0.045,0.000342857,Azostrobin,*100,10000,KUE4_10,S. acidaminiphila
+F11,0.047,0.000514286,Azostrobin,*100,10000,KUE4_10,S. acidaminiphila
+F12,0.046,5.71E-05,Azostrobin,*100,10000,KUE4_10,S. acidaminiphila
+G10,0.045,0.001085714,Azostrobin,*100,10000,OP50,E. coli
+G11,0.0445,0.001142857,Azostrobin,*100,10000,OP50,E. coli
+G12,0.045,0.0012,Azostrobin,*100,10000,OP50,E. coli
+H10,0.045,0.001085714,Azostrobin,*100,10000,SC,SC
+H11,0.0445,0.0008,Azostrobin,*100,10000,SC,SC
+H12,0.046,0.000971429,Azostrobin,*100,10000,SC,SC
+A10,0.057,0.002285714,Tebuconazole,*100,10000,LUF4_5,L. rhizovicinus
+A11,0.058,0.002285714,Tebuconazole,*100,10000,LUF4_5,L. rhizovicinus
+A12,0.0595,0.002971429,Tebuconazole,*100,10000,LUF4_5,L. rhizovicinus
+B10,0.059,0.002,Tebuconazole,*100,10000,KUB5_13,V. paradoxus
+B11,0.061,0.002914286,Tebuconazole,*100,10000,KUB5_13,V. paradoxus
+B12,0.06,0.002857143,Tebuconazole,*100,10000,KUB5_13,V. paradoxus
+C10,0.064,0.001542857,Tebuconazole,*100,10000,NUE1_1,B. muralis
+C11,0.065,0.001771429,Tebuconazole,*100,10000,NUE1_1,B. muralis
+C12,0.0605,-5.71E-05,Tebuconazole,*100,10000,NUE1_1,B. muralis
+D10,0.058,0.001714286,Tebuconazole,*100,10000,NUF1_3,V. paradoxus
+D11,0.06,0.002857143,Tebuconazole,*100,10000,NUF1_3,V. paradoxus
+D12,0.057,0.002,Tebuconazole,*100,10000,NUF1_3,V. paradoxus
+E10,0.059,0.001142857,Tebuconazole,*100,10000,KUE4_4,B. muralis
+E11,0.06,0.002,Tebuconazole,*100,10000,KUE4_4,B. muralis
+E12,0.059,0.002114286,Tebuconazole,*100,10000,KUE4_4,B. muralis
+F10,0.046,0.000628571,Tebuconazole,*100,10000,KUE4_10,S. acidaminiphila
+F11,0.048,0.0008,Tebuconazole,*100,10000,KUE4_10,S. acidaminiphila
+F12,0.047,0.000742857,Tebuconazole,*100,10000,KUE4_10,S. acidaminiphila
+G10,0.068,0.001828571,Tebuconazole,*100,10000,OP50,E. coli
+G11,0.067,0.001942857,Tebuconazole,*100,10000,OP50,E. coli
+G12,0.066,0.003942857,Tebuconazole,*100,10000,OP50,E. coli
+H10,0.064,0.001028571,Tebuconazole,*100,10000,SC,SC
+H11,0.0635,0.001257143,Tebuconazole,*100,10000,SC,SC
+H12,0.063,0.002171429,Tebuconazole,*100,10000,SC,SC
+A7,0.2845,0.048742857,Chloramphenicol,*10,2.00E-06,LUF4_5,L. rhizovicinus
+A8,0.291,0.044857143,Chloramphenicol,*10,2.00E-06,LUF4_5,L. rhizovicinus
+A9,0.2915,0.045028571,Chloramphenicol,*10,2.00E-06,LUF4_5,L. rhizovicinus
+B7,0.358,0.0308,Chloramphenicol,*10,2.00E-06,KUB5_13,V. paradoxus
+B8,0.3755,0.025657143,Chloramphenicol,*10,2.00E-06,KUB5_13,V. paradoxus
+B9,0.37,0.026342857,Chloramphenicol,*10,2.00E-06,KUB5_13,V. paradoxus
+C7,0.7465,0.098571429,Chloramphenicol,*10,2.00E-06,NUE1_1,B. muralis
+C8,0.728,0.114457143,Chloramphenicol,*10,2.00E-06,NUE1_1,B. muralis
+C9,0.778,0.107542857,Chloramphenicol,*10,2.00E-06,NUE1_1,B. muralis
+D7,0.4495,0.040857143,Chloramphenicol,*10,2.00E-06,NUF1_3,V. paradoxus
+D8,0.592,0.045771429,Chloramphenicol,*10,2.00E-06,NUF1_3,V. paradoxus
+D9,0.594,0.047771429,Chloramphenicol,*10,2.00E-06,NUF1_3,V. paradoxus
+E7,0.6465,0.207028571,Chloramphenicol,*10,2.00E-06,KUE4_4,B. muralis
+E8,0.6915,0.2124,Chloramphenicol,*10,2.00E-06,KUE4_4,B. muralis
+E9,0.6995,0.1708,Chloramphenicol,*10,2.00E-06,KUE4_4,B. muralis
+F7,0.581,0.089542857,Chloramphenicol,*10,2.00E-06,KUE4_10,S. acidaminiphila
+F8,0.579,0.087142857,Chloramphenicol,*10,2.00E-06,KUE4_10,S. acidaminiphila
+F9,0.5825,0.0808,Chloramphenicol,*10,2.00E-06,KUE4_10,S. acidaminiphila
+G7,0.262,0.061942857,Chloramphenicol,*10,2.00E-06,OP50,E. coli
+G8,0.271,0.063542857,Chloramphenicol,*10,2.00E-06,OP50,E. coli
+G9,0.268,0.063828571,Chloramphenicol,*10,2.00E-06,OP50,E. coli
+H7,0.2455,0.076571429,Chloramphenicol,*10,2.00E-06,SC,SC
+H8,0.2325,0.073371429,Chloramphenicol,*10,2.00E-06,SC,SC
+H9,0.229,0.071142857,Chloramphenicol,*10,2.00E-06,SC,SC
+A10,0.2695,0.044171429,Chloramphenicol,*100,2.00E-05,LUF4_5,L. rhizovicinus
+A11,0.2735,0.037028571,Chloramphenicol,*100,2.00E-05,LUF4_5,L. rhizovicinus
+A12,0.2465,0.035314286,Chloramphenicol,*100,2.00E-05,LUF4_5,L. rhizovicinus
+B10,0.3695,0.026,Chloramphenicol,*100,2.00E-05,KUB5_13,V. paradoxus
+B11,0.374,0.0884,Chloramphenicol,*100,2.00E-05,KUB5_13,V. paradoxus
+B12,0.366,0.029714286,Chloramphenicol,*100,2.00E-05,KUB5_13,V. paradoxus
+C10,0.783,0.113314286,Chloramphenicol,*100,2.00E-05,NUE1_1,B. muralis
+C11,0.745,0.114514286,Chloramphenicol,*100,2.00E-05,NUE1_1,B. muralis
+C12,0.5295,0.120285714,Chloramphenicol,*100,2.00E-05,NUE1_1,B. muralis
+D10,0.569,0.052171429,Chloramphenicol,*100,2.00E-05,NUF1_3,V. paradoxus
+D11,0.5875,0.05,Chloramphenicol,*100,2.00E-05,NUF1_3,V. paradoxus
+D12,0.3415,0.028514286,Chloramphenicol,*100,2.00E-05,NUF1_3,V. paradoxus
+E10,0.7335,0.194228571,Chloramphenicol,*100,2.00E-05,KUE4_4,B. muralis
+E11,0.6355,0.2016,Chloramphenicol,*100,2.00E-05,KUE4_4,B. muralis
+E12,0.4455,0.094628571,Chloramphenicol,*100,2.00E-05,KUE4_4,B. muralis
+F10,0.5925,0.095428571,Chloramphenicol,*100,2.00E-05,KUE4_10,S. acidaminiphila
+F11,0.545,0.088514286,Chloramphenicol,*100,2.00E-05,KUE4_10,S. acidaminiphila
+F12,0.345,0.055028571,Chloramphenicol,*100,2.00E-05,KUE4_10,S. acidaminiphila
+G10,0.276,0.067142857,Chloramphenicol,*100,2.00E-05,OP50,E. coli
+G11,0.269,0.065142857,Chloramphenicol,*100,2.00E-05,OP50,E. coli
+G12,0.2145,0.054742857,Chloramphenicol,*100,2.00E-05,OP50,E. coli
+H10,0.2535,0.071257143,Chloramphenicol,*100,2.00E-05,SC,SC
+H11,0.232,0.0696,Chloramphenicol,*100,2.00E-05,SC,SC
+H12,0.1805,0.062,Chloramphenicol,*100,2.00E-05,SC,SC
+A1,0.2655,0.042628571,Chloramphenicol,/10,2.00E-08,LUF4_5,L. rhizovicinus
+A2,0.311,0.041542857,Chloramphenicol,/10,2.00E-08,LUF4_5,L. rhizovicinus
+A3,0.303,0.040685714,Chloramphenicol,/10,2.00E-08,LUF4_5,L. rhizovicinus
+B1,0.362,0.028914286,Chloramphenicol,/10,2.00E-08,KUB5_13,V. paradoxus
+B2,0.3615,0.030228571,Chloramphenicol,/10,2.00E-08,KUB5_13,V. paradoxus
+B3,0.36,0.026114286,Chloramphenicol,/10,2.00E-08,KUB5_13,V. paradoxus
+C1,0.576,0.114228571,Chloramphenicol,/10,2.00E-08,NUE1_1,B. muralis
+C2,0.689,0.1084,Chloramphenicol,/10,2.00E-08,NUE1_1,B. muralis
+C3,0.808,0.113371429,Chloramphenicol,/10,2.00E-08,NUE1_1,B. muralis
+D1,0.347,0.028971429,Chloramphenicol,/10,2.00E-08,NUF1_3,V. paradoxus
+D2,0.595,0.043371429,Chloramphenicol,/10,2.00E-08,NUF1_3,V. paradoxus
+D3,0.597,0.050971429,Chloramphenicol,/10,2.00E-08,NUF1_3,V. paradoxus
+E1,0.4505,0.110971429,Chloramphenicol,/10,2.00E-08,KUE4_4,B. muralis
+E2,0.6645,0.131142857,Chloramphenicol,/10,2.00E-08,KUE4_4,B. muralis
+E3,0.756,0.160171429,Chloramphenicol,/10,2.00E-08,KUE4_4,B. muralis
+F1,0.374,0.056514286,Chloramphenicol,/10,2.00E-08,KUE4_10,S. acidaminiphila
+F2,0.5955,0.089885714,Chloramphenicol,/10,2.00E-08,KUE4_10,S. acidaminiphila
+F3,0.5985,0.093142857,Chloramphenicol,/10,2.00E-08,KUE4_10,S. acidaminiphila
+G1,0.266,0.064514286,Chloramphenicol,/10,2.00E-08,OP50,E. coli
+G2,0.2855,0.064742857,Chloramphenicol,/10,2.00E-08,OP50,E. coli
+G3,0.318,0.0672,Chloramphenicol,/10,2.00E-08,OP50,E. coli
+H1,0.21,0.070342857,Chloramphenicol,/10,2.00E-08,SC,SC
+H2,0.265,0.078971429,Chloramphenicol,/10,2.00E-08,SC,SC
+H3,0.241,0.075714286,Chloramphenicol,/10,2.00E-08,SC,SC
+A4,0.3095,0.037314286,Chloramphenicol,TGT,2.00E-07,LUF4_5,L. rhizovicinus
+A5,0.297,0.045885714,Chloramphenicol,TGT,2.00E-07,LUF4_5,L. rhizovicinus
+A6,0.2425,0.04,Chloramphenicol,TGT,2.00E-07,LUF4_5,L. rhizovicinus
+B4,0.3785,0.027142857,Chloramphenicol,TGT,2.00E-07,KUB5_13,V. paradoxus
+B5,0.372,0.026685714,Chloramphenicol,TGT,2.00E-07,KUB5_13,V. paradoxus
+B6,0.376,0.033257143,Chloramphenicol,TGT,2.00E-07,KUB5_13,V. paradoxus
+C4,0.7475,0.101542857,Chloramphenicol,TGT,2.00E-07,NUE1_1,B. muralis
+C5,0.7255,0.1244,Chloramphenicol,TGT,2.00E-07,NUE1_1,B. muralis
+C6,0.765,0.122685714,Chloramphenicol,TGT,2.00E-07,NUE1_1,B. muralis
+D4,0.61,0.049485714,Chloramphenicol,TGT,2.00E-07,NUF1_3,V. paradoxus
+D5,0.599,0.045942857,Chloramphenicol,TGT,2.00E-07,NUF1_3,V. paradoxus
+D6,0.607,0.045257143,Chloramphenicol,TGT,2.00E-07,NUF1_3,V. paradoxus
+E4,0.749,0.2196,Chloramphenicol,TGT,2.00E-07,KUE4_4,B. muralis
+E5,0.6755,0.202857143,Chloramphenicol,TGT,2.00E-07,KUE4_4,B. muralis
+E6,0.6985,0.194,Chloramphenicol,TGT,2.00E-07,KUE4_4,B. muralis
+F4,0.6465,0.096457143,Chloramphenicol,TGT,2.00E-07,KUE4_10,S. acidaminiphila
+F5,0.571,0.086228571,Chloramphenicol,TGT,2.00E-07,KUE4_10,S. acidaminiphila
+F6,0.597,0.0908,Chloramphenicol,TGT,2.00E-07,KUE4_10,S. acidaminiphila
+G4,0.2815,0.065085714,Chloramphenicol,TGT,2.00E-07,OP50,E. coli
+G5,0.275,0.065771429,Chloramphenicol,TGT,2.00E-07,OP50,E. coli
+G6,0.2705,0.064571429,Chloramphenicol,TGT,2.00E-07,OP50,E. coli
+H4,0.263,0.073257143,Chloramphenicol,TGT,2.00E-07,SC,SC
+H5,0.247,0.0764,Chloramphenicol,TGT,2.00E-07,SC,SC
+H6,0.244,0.0776,Chloramphenicol,TGT,2.00E-07,SC,SC
+A1,0.193,0.034,Control,,,,
+A2,0.224,0.042057143,Control,,,,
+A3,0.238,0.040171429,Control,,,,
+A4,0.2345,0.040742857,Control,,,,
+A5,0.2865,0.050342857,Control,,,,
+A6,0.2615,0.041314286,Control,,,,
+A7,0.228,0.045657143,Control,,,,
+A8,0.2285,0.038057143,Control,,,,
+A9,0.22,0.037314286,Control,,,,
+A10,0.28,0.045257143,Control,,,,
+A11,0.2845,0.043828571,Control,,,,
+A12,0.2385,0.037828571,Control,,,,
+B1,0.245,0.022857143,Control,,,,
+B2,0.32,0.026628571,Control,,,,
+B3,0.3205,0.030457143,Control,,,,
+B4,0.3325,0.026228571,Control,,,,
+B5,0.3305,0.024457143,Control,,,,
+B6,0.345,0.026285714,Control,,,,
+B7,0.3045,0.033714286,Control,,,,
+B8,0.3065,0.0744,Control,,,,
+B9,0.384,0.042857143,Control,,,,
+B10,0.3905,0.0832,Control,,,,
+B11,0.3565,0.066114286,Control,,,,
+B12,0.298,0.072914286,Control,,,,
+C1,0.415,0.072057143,Control,,,,
+C2,0.5465,0.116114286,Control,,,,
+C3,0.502,0.113428571,Control,,,,
+C4,0.548,0.093657143,Control,,,,
+C5,0.512,0.113828571,Control,,,,
+C6,0.5325,0.103028571,Control,,,,
+C7,0.5295,0.128514286,Control,,,,
+C8,0.486,0.097828571,Control,,,,
+C9,0.56,0.101257143,Control,,,,
+C10,0.4765,0.094342857,Control,,,,
+C11,0.72,0.1068,Control,,,,
+C12,0.3995,0.102628571,Control,,,,
+D1,0.282,0.025885714,Control,,,,
+D2,0.4,0.035885714,Control,,,,
+D3,0.391,0.0348,Control,,,,
+D4,0.35,0.032342857,Control,,,,
+D5,0.3565,0.032914286,Control,,,,
+D6,0.355,0.032514286,Control,,,,
+D7,0.356,0.033828571,Control,,,,
+D8,0.35,0.034342857,Control,,,,
+D9,0.348,0.033085714,Control,,,,
+D10,0.34,0.083485714,Control,,,,
+D11,0.255,0.040571429,Control,,,,
+D12,0.292,0.060971429,Control,,,,
+E1,0.043,0.002228571,Control,,,,
+E2,0.05,0.003142857,Control,,,,
+E3,0.0485,0.001771429,Control,,,,
+E4,0.057,0.0028,Control,,,,
+E5,0.0555,0.0016,Control,,,,
+E6,0.058,0.001314286,Control,,,,
+E7,0.06,0.002742857,Control,,,,
+E8,0.051,0.001771429,Control,,,,
+E9,0.045,0.001314286,Control,,,,
+E10,0.0505,0.003028571,Control,,,,
+E11,0.0755,0.009314286,Control,,,,
+E12,0.044,0.000742857,Control,,,,
+F1,0.3185,0.045714286,Control,,,,
+F2,0.3365,0.048457143,Control,,,,
+F3,0.3455,0.048228571,Control,,,,
+F4,0.3495,0.048114286,Control,,,,
+F5,0.346,0.046457143,Control,,,,
+F6,0.349,0.048571429,Control,,,,
+F7,0.343,0.048114286,Control,,,,
+F8,0.355,0.048,Control,,,,
+F9,0.3775,0.051028571,Control,,,,
+F10,0.384,0.049828571,Control,,,,
+F11,0.3705,0.046685714,Control,,,,
+F12,0.2975,0.045771429,Control,,,,
+G1,0.202,0.0392,Control,,,,
+G2,0.2245,0.0384,Control,,,,
+G3,0.2335,0.038571429,Control,,,,
+G4,0.235,0.0396,Control,,,,
+G5,0.245,0.040171429,Control,,,,
+G6,0.2255,0.038057143,Control,,,,
+G7,0.2205,0.038457143,Control,,,,
+G8,0.2235,0.038285714,Control,,,,
+G9,0.219,0.035257143,Control,,,,
+G10,0.3185,0.042628571,Control,,,,
+G11,0.2205,0.037371429,Control,,,,
+G12,0.2025,0.035371429,Control,,,,
+H1,0.184,0.056285714,Control,,,,
+H2,0.2245,0.061657143,Control,,,,
+H3,0.21,0.060171429,Control,,,,
+H4,0.197,0.054114286,Control,,,,
+H5,0.198,0.057371429,Control,,,,
+H6,0.1955,0.0568,Control,,,,
+H7,0.1955,0.0572,Control,,,,
+H8,0.199,0.059885714,Control,,,,
+H9,0.1875,0.051828571,Control,,,,
+H10,0.186,0.048457143,Control,,,,
+H11,0.2135,0.060971429,Control,,,,
+H12,0.184,0.050057143,Control,,,,
+A7,0.2465,0.041885714,Copper,*10,2.00E-01,LUF4_5,L. rhizovicinus
+A8,0.196,0.029542857,Copper,*10,2.00E-01,LUF4_5,L. rhizovicinus
+A9,0.199,0.031371429,Copper,*10,2.00E-01,LUF4_5,L. rhizovicinus
+B7,0.39,0.054914286,Copper,*10,2.00E-01,KUB5_13,V. paradoxus
+B8,0.3315,0.0324,Copper,*10,2.00E-01,KUB5_13,V. paradoxus
+B9,0.3555,0.126,Copper,*10,2.00E-01,KUB5_13,V. paradoxus
+C7,0.541,0.117428571,Copper,*10,2.00E-01,NUE1_1,B. muralis
+C8,0.4915,0.099085714,Copper,*10,2.00E-01,NUE1_1,B. muralis
+C9,0.4845,0.100228571,Copper,*10,2.00E-01,NUE1_1,B. muralis
+D7,0.3,0.047085714,Copper,*10,2.00E-01,NUF1_3,V. paradoxus
+D8,0.33,0.030971429,Copper,*10,2.00E-01,NUF1_3,V. paradoxus
+D9,0.335,0.032685714,Copper,*10,2.00E-01,NUF1_3,V. paradoxus
+E7,0.507,0.207314286,Copper,*10,2.00E-01,KUE4_4,B. muralis
+E8,0.5145,0.205485714,Copper,*10,2.00E-01,KUE4_4,B. muralis
+E9,0.495,0.157542857,Copper,*10,2.00E-01,KUE4_4,B. muralis
+F7,0.3665,0.049714286,Copper,*10,2.00E-01,KUE4_10,S. acidaminiphila
+F8,0.4045,0.049314286,Copper,*10,2.00E-01,KUE4_10,S. acidaminiphila
+F9,0.3605,0.047314286,Copper,*10,2.00E-01,KUE4_10,S. acidaminiphila
+G7,0.2245,0.036057143,Copper,*10,2.00E-01,OP50,E. coli
+G8,0.2265,0.035885714,Copper,*10,2.00E-01,OP50,E. coli
+G9,0.2275,0.036114286,Copper,*10,2.00E-01,OP50,E. coli
+H7,0.1815,0.048971429,Copper,*10,2.00E-01,SC,SC
+H8,0.1865,0.049371429,Copper,*10,2.00E-01,SC,SC
+H9,0.184,0.050285714,Copper,*10,2.00E-01,SC,SC
+A10,0.233,0.0372,Copper,*100,2.00E+00,LUF4_5,L. rhizovicinus
+A11,0.2415,0.0332,Copper,*100,2.00E+00,LUF4_5,L. rhizovicinus
+A12,0.226,0.036,Copper,*100,2.00E+00,LUF4_5,L. rhizovicinus
+B10,0.3065,0.077028571,Copper,*100,2.00E+00,KUB5_13,V. paradoxus
+B11,0.2985,0.053428571,Copper,*100,2.00E+00,KUB5_13,V. paradoxus
+B12,0.2945,0.060685714,Copper,*100,2.00E+00,KUB5_13,V. paradoxus
+C10,0.478,0.1128,Copper,*100,2.00E+00,NUE1_1,B. muralis
+C11,0.475,0.122171429,Copper,*100,2.00E+00,NUE1_1,B. muralis
+C12,0.27,0.0356,Copper,*100,2.00E+00,NUE1_1,B. muralis
+D10,0.3165,0.063885714,Copper,*100,2.00E+00,NUF1_3,V. paradoxus
+D11,0.366,0.087428571,Copper,*100,2.00E+00,NUF1_3,V. paradoxus
+D12,0.291,0.067828571,Copper,*100,2.00E+00,NUF1_3,V. paradoxus
+E10,0.4535,0.1428,Copper,*100,2.00E+00,KUE4_4,B. muralis
+E11,0.428,0.1548,Copper,*100,2.00E+00,KUE4_4,B. muralis
+E12,0.4055,0.143714286,Copper,*100,2.00E+00,KUE4_4,B. muralis
+F10,0.394,0.047828571,Copper,*100,2.00E+00,KUE4_10,S. acidaminiphila
+F11,0.381,0.047828571,Copper,*100,2.00E+00,KUE4_10,S. acidaminiphila
+F12,0.3385,0.046285714,Copper,*100,2.00E+00,KUE4_10,S. acidaminiphila
+G10,0.2805,0.038114286,Copper,*100,2.00E+00,OP50,E. coli
+G11,0.223,0.036,Copper,*100,2.00E+00,OP50,E. coli
+G12,0.203,0.035942857,Copper,*100,2.00E+00,OP50,E. coli
+H10,0.1865,0.052171429,Copper,*100,2.00E+00,SC,SC
+H11,0.185,0.050857143,Copper,*100,2.00E+00,SC,SC
+H12,0.176,0.048057143,Copper,*100,2.00E+00,SC,SC
+A1,0.1855,0.028571429,Copper,/10,2.00E-03,LUF4_5,L. rhizovicinus
+A2,0.1955,0.032628571,Copper,/10,2.00E-03,LUF4_5,L. rhizovicinus
+A3,0.1965,0.034914286,Copper,/10,2.00E-03,LUF4_5,L. rhizovicinus
+B1,0.2215,0.026228571,Copper,/10,2.00E-03,KUB5_13,V. paradoxus
+B2,0.291,0.026628571,Copper,/10,2.00E-03,KUB5_13,V. paradoxus
+B3,0.306,0.026228571,Copper,/10,2.00E-03,KUB5_13,V. paradoxus
+C1,0.2105,0.030914286,Copper,/10,2.00E-03,NUE1_1,B. muralis
+C2,0.5225,0.137257143,Copper,/10,2.00E-03,NUE1_1,B. muralis
+C3,0.5095,0.108571429,Copper,/10,2.00E-03,NUE1_1,B. muralis
+D1,0.306,0.029142857,Copper,/10,2.00E-03,NUF1_3,V. paradoxus
+D2,0.371,0.034971429,Copper,/10,2.00E-03,NUF1_3,V. paradoxus
+D3,0.398,0.037828571,Copper,/10,2.00E-03,NUF1_3,V. paradoxus
+E1,0.214,0.052571429,Copper,/10,2.00E-03,KUE4_4,B. muralis
+E2,0.4825,0.198171429,Copper,/10,2.00E-03,KUE4_4,B. muralis
+E3,0.5435,0.155085714,Copper,/10,2.00E-03,KUE4_4,B. muralis
+F1,0.303,0.045771429,Copper,/10,2.00E-03,KUE4_10,S. acidaminiphila
+F2,0.378,0.049657143,Copper,/10,2.00E-03,KUE4_10,S. acidaminiphila
+F3,0.386,0.050114286,Copper,/10,2.00E-03,KUE4_10,S. acidaminiphila
+G1,0.226,0.038514286,Copper,/10,2.00E-03,OP50,E. coli
+G2,0.2245,0.037485714,Copper,/10,2.00E-03,OP50,E. coli
+G3,0.233,0.038057143,Copper,/10,2.00E-03,OP50,E. coli
+H1,0.2005,0.056571429,Copper,/10,2.00E-03,SC,SC
+H2,0.221,0.065371429,Copper,/10,2.00E-03,SC,SC
+H3,0.2015,0.058571429,Copper,/10,2.00E-03,SC,SC
+A4,0.196,0.033942857,Copper,TGT,2.00E-02,LUF4_5,L. rhizovicinus
+A5,0.1945,0.032857143,Copper,TGT,2.00E-02,LUF4_5,L. rhizovicinus
+A6,0.1995,0.0396,Copper,TGT,2.00E-02,LUF4_5,L. rhizovicinus
+B4,0.3255,0.032,Copper,TGT,2.00E-02,KUB5_13,V. paradoxus
+B5,0.3115,0.031257143,Copper,TGT,2.00E-02,KUB5_13,V. paradoxus
+B6,0.3485,0.084857143,Copper,TGT,2.00E-02,KUB5_13,V. paradoxus
+C4,0.5385,0.106171429,Copper,TGT,2.00E-02,NUE1_1,B. muralis
+C5,0.5005,0.105714286,Copper,TGT,2.00E-02,NUE1_1,B. muralis
+C6,0.54,0.102971429,Copper,TGT,2.00E-02,NUE1_1,B. muralis
+D4,0.32,0.0304,Copper,TGT,2.00E-02,NUF1_3,V. paradoxus
+D5,0.3335,0.030971429,Copper,TGT,2.00E-02,NUF1_3,V. paradoxus
+D6,0.334,0.030457143,Copper,TGT,2.00E-02,NUF1_3,V. paradoxus
+E4,0.496,0.1708,Copper,TGT,2.00E-02,KUE4_4,B. muralis
+E5,0.4575,0.130171429,Copper,TGT,2.00E-02,KUE4_4,B. muralis
+E6,0.527,0.153028571,Copper,TGT,2.00E-02,KUE4_4,B. muralis
+F4,0.3825,0.049485714,Copper,TGT,2.00E-02,KUE4_10,S. acidaminiphila
+F5,0.36,0.047885714,Copper,TGT,2.00E-02,KUE4_10,S. acidaminiphila
+F6,0.359,0.048057143,Copper,TGT,2.00E-02,KUE4_10,S. acidaminiphila
+G4,0.2295,0.036971429,Copper,TGT,2.00E-02,OP50,E. coli
+G5,0.227,0.036514286,Copper,TGT,2.00E-02,OP50,E. coli
+G6,0.227,0.0356,Copper,TGT,2.00E-02,OP50,E. coli
+H4,0.189,0.050285714,Copper,TGT,2.00E-02,SC,SC
+H5,0.1885,0.049942857,Copper,TGT,2.00E-02,SC,SC
+H6,0.1915,0.051885714,Copper,TGT,2.00E-02,SC,SC
+A7,0.1795,0.034857143,Metaldehyde,*10,2.00E-05,LUF4_5,L. rhizovicinus
+A8,0.1835,0.036571429,Metaldehyde,*10,2.00E-05,LUF4_5,L. rhizovicinus
+A9,0.1785,0.030342857,Metaldehyde,*10,2.00E-05,LUF4_5,L. rhizovicinus
+B7,0.318,0.030171429,Metaldehyde,*10,2.00E-05,KUB5_13,V. paradoxus
+B8,0.3255,0.028171429,Metaldehyde,*10,2.00E-05,KUB5_13,V. paradoxus
+B9,0.327,0.034285714,Metaldehyde,*10,2.00E-05,KUB5_13,V. paradoxus
+C7,0.5165,0.104742857,Metaldehyde,*10,2.00E-05,NUE1_1,B. muralis
+C8,0.5385,0.099942857,Metaldehyde,*10,2.00E-05,NUE1_1,B. muralis
+C9,0.545,0.097885714,Metaldehyde,*10,2.00E-05,NUE1_1,B. muralis
+D7,0.4,0.038571429,Metaldehyde,*10,2.00E-05,NUF1_3,V. paradoxus
+D8,0.411,0.037885714,Metaldehyde,*10,2.00E-05,NUF1_3,V. paradoxus
+D9,0.399,0.036571429,Metaldehyde,*10,2.00E-05,NUF1_3,V. paradoxus
+E7,0.4325,0.108971429,Metaldehyde,*10,2.00E-05,KUE4_4,B. muralis
+E8,0.525,0.150628571,Metaldehyde,*10,2.00E-05,KUE4_4,B. muralis
+E9,0.5105,0.140285714,Metaldehyde,*10,2.00E-05,KUE4_4,B. muralis
+F7,0.358,0.048857143,Metaldehyde,*10,2.00E-05,KUE4_10,S. acidaminiphila
+F8,0.3515,0.048285714,Metaldehyde,*10,2.00E-05,KUE4_10,S. acidaminiphila
+F9,0.346,0.047714286,Metaldehyde,*10,2.00E-05,KUE4_10,S. acidaminiphila
+G7,0.222,0.033828571,Metaldehyde,*10,2.00E-05,OP50,E. coli
+G8,0.2265,0.035085714,Metaldehyde,*10,2.00E-05,OP50,E. coli
+G9,0.225,0.0356,Metaldehyde,*10,2.00E-05,OP50,E. coli
+H7,0.194,0.055942857,Metaldehyde,*10,2.00E-05,SC,SC
+H8,0.178,0.048742857,Metaldehyde,*10,2.00E-05,SC,SC
+H9,0.1855,0.051028571,Metaldehyde,*10,2.00E-05,SC,SC
+A10,0.1045,0.007085714,Metaldehyde,*100,2.00E-04,LUF4_5,L. rhizovicinus
+A11,0.098,0.007142857,Metaldehyde,*100,2.00E-04,LUF4_5,L. rhizovicinus
+A12,0.0845,0.006571429,Metaldehyde,*100,2.00E-04,LUF4_5,L. rhizovicinus
+B10,0.1295,0.020514286,Metaldehyde,*100,2.00E-04,KUB5_13,V. paradoxus
+B11,0.115,0.016685714,Metaldehyde,*100,2.00E-04,KUB5_13,V. paradoxus
+B12,0.0665,0.007142857,Metaldehyde,*100,2.00E-04,KUB5_13,V. paradoxus
+C10,0.1435,0.021942857,Metaldehyde,*100,2.00E-04,NUE1_1,B. muralis
+C11,0.148,0.029142857,Metaldehyde,*100,2.00E-04,NUE1_1,B. muralis
+C12,0.09,0.012514286,Metaldehyde,*100,2.00E-04,NUE1_1,B. muralis
+D10,0.062,0.003085714,Metaldehyde,*100,2.00E-04,NUF1_3,V. paradoxus
+D11,0.057,0.0016,Metaldehyde,*100,2.00E-04,NUF1_3,V. paradoxus
+D12,0.051,0.000914286,Metaldehyde,*100,2.00E-04,NUF1_3,V. paradoxus
+E10,0.0925,0.024457143,Metaldehyde,*100,2.00E-04,KUE4_4,B. muralis
+E11,0.0815,0.009657143,Metaldehyde,*100,2.00E-04,KUE4_4,B. muralis
+E12,0.1275,0.010742857,Metaldehyde,*100,2.00E-04,KUE4_4,B. muralis
+F10,0.059,0.002971429,Metaldehyde,*100,2.00E-04,KUE4_10,S. acidaminiphila
+F11,0.063,0.003428571,Metaldehyde,*100,2.00E-04,KUE4_10,S. acidaminiphila
+F12,0.052,0.001485714,Metaldehyde,*100,2.00E-04,KUE4_10,S. acidaminiphila
+G10,0.176,0.0164,Metaldehyde,*100,2.00E-04,OP50,E. coli
+G11,0.1745,0.0168,Metaldehyde,*100,2.00E-04,OP50,E. coli
+G12,0.097,0.006742857,Metaldehyde,*100,2.00E-04,OP50,E. coli
+H10,0.106,0.024285714,Metaldehyde,*100,2.00E-04,SC,SC
+H11,0.102,0.031314286,Metaldehyde,*100,2.00E-04,SC,SC
+H12,0.1135,0.1344,Metaldehyde,*100,2.00E-04,SC,SC
+A1,0.18,0.028342857,Metaldehyde,/10,2.00E-07,LUF4_5,L. rhizovicinus
+A2,0.2355,0.044057143,Metaldehyde,/10,2.00E-07,LUF4_5,L. rhizovicinus
+A3,0.2035,0.041371429,Metaldehyde,/10,2.00E-07,LUF4_5,L. rhizovicinus
+B1,0.23,0.028342857,Metaldehyde,/10,2.00E-07,KUB5_13,V. paradoxus
+B2,0.325,0.030628571,Metaldehyde,/10,2.00E-07,KUB5_13,V. paradoxus
+B3,0.3225,0.029942857,Metaldehyde,/10,2.00E-07,KUB5_13,V. paradoxus
+C1,0.254,0.034342857,Metaldehyde,/10,2.00E-07,NUE1_1,B. muralis
+C2,0.5045,0.122571429,Metaldehyde,/10,2.00E-07,NUE1_1,B. muralis
+C3,0.5025,0.125828571,Metaldehyde,/10,2.00E-07,NUE1_1,B. muralis
+D1,0.2435,0.024171429,Metaldehyde,/10,2.00E-07,NUF1_3,V. paradoxus
+D2,0.344,0.032057143,Metaldehyde,/10,2.00E-07,NUF1_3,V. paradoxus
+D3,0.36,0.032514286,Metaldehyde,/10,2.00E-07,NUF1_3,V. paradoxus
+E1,0.1645,0.051142857,Metaldehyde,/10,2.00E-07,KUE4_4,B. muralis
+E2,0.439,0.1544,Metaldehyde,/10,2.00E-07,KUE4_4,B. muralis
+E3,0.529,0.152114286,Metaldehyde,/10,2.00E-07,KUE4_4,B. muralis
+F1,0.282,0.042914286,Metaldehyde,/10,2.00E-07,KUE4_10,S. acidaminiphila
+F2,0.3485,0.049371429,Metaldehyde,/10,2.00E-07,KUE4_10,S. acidaminiphila
+F3,0.35,0.047771429,Metaldehyde,/10,2.00E-07,KUE4_10,S. acidaminiphila
+G1,0.2075,0.039314286,Metaldehyde,/10,2.00E-07,OP50,E. coli
+G2,0.2245,0.038914286,Metaldehyde,/10,2.00E-07,OP50,E. coli
+G3,0.231,0.0356,Metaldehyde,/10,2.00E-07,OP50,E. coli
+H1,0.179,0.044971429,Metaldehyde,/10,2.00E-07,SC,SC
+H2,0.2055,0.057885714,Metaldehyde,/10,2.00E-07,SC,SC
+H3,0.19,0.052342857,Metaldehyde,/10,2.00E-07,SC,SC
+A4,0.2025,0.0396,Metaldehyde,TGT,2.00E-06,LUF4_5,L. rhizovicinus
+A5,0.1975,0.04,Metaldehyde,TGT,2.00E-06,LUF4_5,L. rhizovicinus
+A6,0.208,0.041828571,Metaldehyde,TGT,2.00E-06,LUF4_5,L. rhizovicinus
+B4,0.3235,0.029942857,Metaldehyde,TGT,2.00E-06,KUB5_13,V. paradoxus
+B5,0.313,0.0288,Metaldehyde,TGT,2.00E-06,KUB5_13,V. paradoxus
+B6,0.3265,0.030742857,Metaldehyde,TGT,2.00E-06,KUB5_13,V. paradoxus
+C4,0.491,0.128457143,Metaldehyde,TGT,2.00E-06,NUE1_1,B. muralis
+C5,0.5175,0.118114286,Metaldehyde,TGT,2.00E-06,NUE1_1,B. muralis
+C6,0.546,0.1248,Metaldehyde,TGT,2.00E-06,NUE1_1,B. muralis
+D4,0.362,0.033714286,Metaldehyde,TGT,2.00E-06,NUF1_3,V. paradoxus
+D5,0.364,0.035028571,Metaldehyde,TGT,2.00E-06,NUF1_3,V. paradoxus
+D6,0.368,0.035085714,Metaldehyde,TGT,2.00E-06,NUF1_3,V. paradoxus
+E4,0.427,0.115085714,Metaldehyde,TGT,2.00E-06,KUE4_4,B. muralis
+E5,0.459,0.155714286,Metaldehyde,TGT,2.00E-06,KUE4_4,B. muralis
+E6,0.4865,0.154342857,Metaldehyde,TGT,2.00E-06,KUE4_4,B. muralis
+F4,0.3645,0.0496,Metaldehyde,TGT,2.00E-06,KUE4_10,S. acidaminiphila
+F5,0.3565,0.048628571,Metaldehyde,TGT,2.00E-06,KUE4_10,S. acidaminiphila
+F6,0.3575,0.048628571,Metaldehyde,TGT,2.00E-06,KUE4_10,S. acidaminiphila
+G4,0.223,0.035657143,Metaldehyde,TGT,2.00E-06,OP50,E. coli
+G5,0.2235,0.035485714,Metaldehyde,TGT,2.00E-06,OP50,E. coli
+G6,0.2265,0.036457143,Metaldehyde,TGT,2.00E-06,OP50,E. coli
+H4,0.1875,0.052857143,Metaldehyde,TGT,2.00E-06,SC,SC
+H5,0.1825,0.051771429,Metaldehyde,TGT,2.00E-06,SC,SC
+H6,0.1865,0.053771429,Metaldehyde,TGT,2.00E-06,SC,SC
+A4,0.212,0.040628571,Nickel,TGT,2.00E-03,LUF4_5,L. rhizovicinus
+A5,0.2055,0.041771429,Nickel,TGT,2.00E-03,LUF4_5,L. rhizovicinus
+A6,0.2015,0.041028571,Nickel,TGT,2.00E-03,LUF4_5,L. rhizovicinus
+B4,0.3105,0.0256,Nickel,TGT,2.00E-03,KUB5_13,V. paradoxus
+B5,0.305,0.027028571,Nickel,TGT,2.00E-03,KUB5_13,V. paradoxus
+B6,0.317,0.028342857,Nickel,TGT,2.00E-03,KUB5_13,V. paradoxus
+C4,0.539,0.111428571,Nickel,TGT,2.00E-03,NUE1_1,B. muralis
+C5,0.518,0.096285714,Nickel,TGT,2.00E-03,NUE1_1,B. muralis
+C6,0.514,0.107657143,Nickel,TGT,2.00E-03,NUE1_1,B. muralis
+D4,0.334,0.032914286,Nickel,TGT,2.00E-03,NUF1_3,V. paradoxus
+D5,0.334,0.032171429,Nickel,TGT,2.00E-03,NUF1_3,V. paradoxus
+D6,0.3305,0.031885714,Nickel,TGT,2.00E-03,NUF1_3,V. paradoxus
+E4,0.5145,0.188114286,Nickel,TGT,2.00E-03,KUE4_4,B. muralis
+E5,0.4695,0.177885714,Nickel,TGT,2.00E-03,KUE4_4,B. muralis
+E6,0.4865,0.145714286,Nickel,TGT,2.00E-03,KUE4_4,B. muralis
+F4,0.3665,0.047942857,Nickel,TGT,2.00E-03,KUE4_10,S. acidaminiphila
+F5,0.352,0.047428571,Nickel,TGT,2.00E-03,KUE4_10,S. acidaminiphila
+F6,0.2945,0.0416,Nickel,TGT,2.00E-03,KUE4_10,S. acidaminiphila
+G4,0.223,0.033428571,Nickel,TGT,2.00E-03,OP50,E. coli
+G5,0.219,0.032514286,Nickel,TGT,2.00E-03,OP50,E. coli
+G6,0.226,0.034057143,Nickel,TGT,2.00E-03,OP50,E. coli
+H4,0.181,0.046228571,Nickel,TGT,2.00E-03,SC,SC
+H5,0.158,0.035828571,Nickel,TGT,2.00E-03,SC,SC
+H6,0.181,0.039657143,Nickel,TGT,2.00E-03,SC,SC
+A1,0.1915,0.031485714,Nickel,/10,2.00E-04,LUF4_5,L. rhizovicinus
+A2,0.2015,0.039314286,Nickel,/10,2.00E-04,LUF4_5,L. rhizovicinus
+A3,0.214,0.042457143,Nickel,/10,2.00E-04,LUF4_5,L. rhizovicinus
+B1,0.236,0.0288,Nickel,/10,2.00E-04,KUB5_13,V. paradoxus
+B2,0.291,0.027828571,Nickel,/10,2.00E-04,KUB5_13,V. paradoxus
+B3,0.2995,0.026057143,Nickel,/10,2.00E-04,KUB5_13,V. paradoxus
+C1,0.4355,0.109828571,Nickel,/10,2.00E-04,NUE1_1,B. muralis
+C2,0.52,0.115771429,Nickel,/10,2.00E-04,NUE1_1,B. muralis
+C3,0.525,0.113542857,Nickel,/10,2.00E-04,NUE1_1,B. muralis
+D1,0.26,0.0248,Nickel,/10,2.00E-04,NUF1_3,V. paradoxus
+D2,0.329,0.031485714,Nickel,/10,2.00E-04,NUF1_3,V. paradoxus
+D3,0.329,0.032,Nickel,/10,2.00E-04,NUF1_3,V. paradoxus
+E1,0.3015,0.0908,Nickel,/10,2.00E-04,KUE4_4,B. muralis
+E2,0.384,0.101942857,Nickel,/10,2.00E-04,KUE4_4,B. muralis
+E3,0.479,0.158457143,Nickel,/10,2.00E-04,KUE4_4,B. muralis
+F1,0.2895,0.042685714,Nickel,/10,2.00E-04,KUE4_10,S. acidaminiphila
+F2,0.3385,0.047085714,Nickel,/10,2.00E-04,KUE4_10,S. acidaminiphila
+F3,0.348,0.046571429,Nickel,/10,2.00E-04,KUE4_10,S. acidaminiphila
+G1,0.2015,0.034228571,Nickel,/10,2.00E-04,OP50,E. coli
+G2,0.219,0.033542857,Nickel,/10,2.00E-04,OP50,E. coli
+G3,0.228,0.0328,Nickel,/10,2.00E-04,OP50,E. coli
+H1,0.1795,0.036342857,Nickel,/10,2.00E-04,SC,SC
+H2,0.1905,0.038057143,Nickel,/10,2.00E-04,SC,SC
+H3,0.1855,0.038628571,Nickel,/10,2.00E-04,SC,SC
+A10,0.188,0.037142857,Nickel,*100,2.00E-01,LUF4_5,L. rhizovicinus
+A11,0.183,0.034914286,Nickel,*100,2.00E-01,LUF4_5,L. rhizovicinus
+A12,0.1605,0.024628571,Nickel,*100,2.00E-01,LUF4_5,L. rhizovicinus
+B10,0.314,0.025714286,Nickel,*100,2.00E-01,KUB5_13,V. paradoxus
+B11,0.29,0.029371429,Nickel,*100,2.00E-01,KUB5_13,V. paradoxus
+B12,0.221,0.028342857,Nickel,*100,2.00E-01,KUB5_13,V. paradoxus
+C10,0.498,0.1004,Nickel,*100,2.00E-01,NUE1_1,B. muralis
+C11,0.5045,0.089371429,Nickel,*100,2.00E-01,NUE1_1,B. muralis
+C12,0.425,0.077828571,Nickel,*100,2.00E-01,NUE1_1,B. muralis
+D10,0.364,0.036742857,Nickel,*100,2.00E-01,NUF1_3,V. paradoxus
+D11,0.364,0.0364,Nickel,*100,2.00E-01,NUF1_3,V. paradoxus
+D12,0.271,0.025942857,Nickel,*100,2.00E-01,NUF1_3,V. paradoxus
+E10,0.482,0.175428571,Nickel,*100,2.00E-01,KUE4_4,B. muralis
+E11,0.418,0.174628571,Nickel,*100,2.00E-01,KUE4_4,B. muralis
+E12,0.3015,0.075142857,Nickel,*100,2.00E-01,KUE4_4,B. muralis
+F10,0.402,0.049771429,Nickel,*100,2.00E-01,KUE4_10,S. acidaminiphila
+F11,0.4035,0.051428571,Nickel,*100,2.00E-01,KUE4_10,S. acidaminiphila
+F12,0.3705,0.050971429,Nickel,*100,2.00E-01,KUE4_10,S. acidaminiphila
+G10,0.224,0.032285714,Nickel,*100,2.00E-01,OP50,E. coli
+G11,0.2195,0.0324,Nickel,*100,2.00E-01,OP50,E. coli
+G12,0.1865,0.028971429,Nickel,*100,2.00E-01,OP50,E. coli
+H10,0.18,0.039942857,Nickel,*100,2.00E-01,SC,SC
+H11,0.1705,0.039371429,Nickel,*100,2.00E-01,SC,SC
+H12,0.1825,0.037371429,Nickel,*100,2.00E-01,SC,SC
+A7,0.1855,0.036114286,Nickel,*10,2.00E-02,LUF4_5,L. rhizovicinus
+A8,0.183,0.036685714,Nickel,*10,2.00E-02,LUF4_5,L. rhizovicinus
+A9,0.1855,0.034971429,Nickel,*10,2.00E-02,LUF4_5,L. rhizovicinus
+B7,0.313,0.027428571,Nickel,*10,2.00E-02,KUB5_13,V. paradoxus
+B8,0.3075,0.0292,Nickel,*10,2.00E-02,KUB5_13,V. paradoxus
+B9,0.3155,0.025942857,Nickel,*10,2.00E-02,KUB5_13,V. paradoxus
+C7,0.51,0.093485714,Nickel,*10,2.00E-02,NUE1_1,B. muralis
+C8,0.496,0.096571429,Nickel,*10,2.00E-02,NUE1_1,B. muralis
+C9,0.492,0.095142857,Nickel,*10,2.00E-02,NUE1_1,B. muralis
+D7,0.321,0.031371429,Nickel,*10,2.00E-02,NUF1_3,V. paradoxus
+D8,0.3235,0.032171429,Nickel,*10,2.00E-02,NUF1_3,V. paradoxus
+D9,0.3155,0.030514286,Nickel,*10,2.00E-02,NUF1_3,V. paradoxus
+E7,0.523,0.175257143,Nickel,*10,2.00E-02,KUE4_4,B. muralis
+E8,0.496,0.1672,Nickel,*10,2.00E-02,KUE4_4,B. muralis
+E9,0.5365,0.201028571,Nickel,*10,2.00E-02,KUE4_4,B. muralis
+F7,0.351,0.047028571,Nickel,*10,2.00E-02,KUE4_10,S. acidaminiphila
+F8,0.3595,0.047885714,Nickel,*10,2.00E-02,KUE4_10,S. acidaminiphila
+F9,0.354,0.047314286,Nickel,*10,2.00E-02,KUE4_10,S. acidaminiphila
+G7,0.222,0.033485714,Nickel,*10,2.00E-02,OP50,E. coli
+G8,0.226,0.033485714,Nickel,*10,2.00E-02,OP50,E. coli
+G9,0.224,0.032571429,Nickel,*10,2.00E-02,OP50,E. coli
+H7,0.164,0.040114286,Nickel,*10,2.00E-02,SC,SC
+H8,0.163,0.041885714,Nickel,*10,2.00E-02,SC,SC
+H9,0.1695,0.0376,Nickel,*10,2.00E-02,SC,SC
+A1,0.047,0.001428571,Azostrobin,/10,10,LUF4_5,L. rhizovicinus
+A2,0.047,0.000628571,Azostrobin,/10,10,LUF4_5,L. rhizovicinus
+A3,0.045,0.000914286,Azostrobin,/10,10,LUF4_5,L. rhizovicinus
+B1,0.046,0.000285714,Azostrobin,/10,10,KUB5_13,V. paradoxus
+B2,0.045,0.000285714,Azostrobin,/10,10,KUB5_13,V. paradoxus
+B3,0.045,0.000685714,Azostrobin,/10,10,KUB5_13,V. paradoxus
+C1,0.046,0.001142857,Azostrobin,/10,10,NUE1_1,B. muralis
+C2,0.048,0.002,Azostrobin,/10,10,NUE1_1,B. muralis
+C3,0.045,0.002114286,Azostrobin,/10,10,NUE1_1,B. muralis
+D1,0.044,0.000285714,Azostrobin,/10,10,NUF1_3,V. paradoxus
+D2,0.045,0.000514286,Azostrobin,/10,10,NUF1_3,V. paradoxus
+D3,0.046,0.000514286,Azostrobin,/10,10,NUF1_3,V. paradoxus
+E1,0.046,0.000514286,Azostrobin,/10,10,KUE4_4,B. muralis
+E2,0.044,0.000514286,Azostrobin,/10,10,KUE4_4,B. muralis
+E3,0.048,0.0008,Azostrobin,/10,10,KUE4_4,B. muralis
+F1,0.045,0.000514286,Azostrobin,/10,10,KUE4_10,S. acidaminiphila
+F2,0.045,0.000285714,Azostrobin,/10,10,KUE4_10,S. acidaminiphila
+F3,0.048,0.0004,Azostrobin,/10,10,KUE4_10,S. acidaminiphila
+G1,0.047,0.002228571,Azostrobin,/10,10,OP50,E. coli
+G2,0.046,0.002228571,Azostrobin,/10,10,OP50,E. coli
+G3,0.048,0.0024,Azostrobin,/10,10,OP50,E. coli
+H1,0.048,0.001885714,Azostrobin,/10,10,SC,SC
+H2,0.048,0.002685714,Azostrobin,/10,10,SC,SC
+H3,0.0475,0.002514286,Azostrobin,/10,10,SC,SC
+A1,0.171,0.027428571,Tebuconazole,/10,10,LUF4_5,L. rhizovicinus
+A2,0.2165,0.042114286,Tebuconazole,/10,10,LUF4_5,L. rhizovicinus
+A3,0.251,0.050171429,Tebuconazole,/10,10,LUF4_5,L. rhizovicinus
+B1,0.1675,0.018171429,Tebuconazole,/10,10,KUB5_13,V. paradoxus
+B2,0.2845,0.029371429,Tebuconazole,/10,10,KUB5_13,V. paradoxus
+B3,0.3,0.033828571,Tebuconazole,/10,10,KUB5_13,V. paradoxus
+C1,0.1175,0.023714286,Tebuconazole,/10,10,NUE1_1,B. muralis
+C2,0.498,0.118628571,Tebuconazole,/10,10,NUE1_1,B. muralis
+C3,0.4875,0.112057143,Tebuconazole,/10,10,NUE1_1,B. muralis
+D1,0.1935,0.0228,Tebuconazole,/10,10,NUF1_3,V. paradoxus
+D2,0.2835,0.026971429,Tebuconazole,/10,10,NUF1_3,V. paradoxus
+D3,0.3085,0.028342857,Tebuconazole,/10,10,NUF1_3,V. paradoxus
+E1,0.1125,0.0316,Tebuconazole,/10,10,KUE4_4,B. muralis
+E2,0.425,0.1124,Tebuconazole,/10,10,KUE4_4,B. muralis
+E3,0.4095,0.109885714,Tebuconazole,/10,10,KUE4_4,B. muralis
+F1,0.046,0.000857143,Tebuconazole,/10,10,KUE4_10,S. acidaminiphila
+F2,0.047,0.000857143,Tebuconazole,/10,10,KUE4_10,S. acidaminiphila
+F3,0.047,0.001028571,Tebuconazole,/10,10,KUE4_10,S. acidaminiphila
+G1,0.1775,0.039314286,Tebuconazole,/10,10,OP50,E. coli
+G2,0.2025,0.035828571,Tebuconazole,/10,10,OP50,E. coli
+G3,0.2225,0.036228571,Tebuconazole,/10,10,OP50,E. coli
+H1,0.168,0.038914286,Tebuconazole,/10,10,SC,SC
+H2,0.179,0.045028571,Tebuconazole,/10,10,SC,SC
+H3,0.1665,0.039542857,Tebuconazole,/10,10,SC,SC
+A4,0.05,0.001428571,Azostrobin,TGT,100,LUF4_5,L. rhizovicinus
+A5,0.0465,0.000571429,Azostrobin,TGT,100,LUF4_5,L. rhizovicinus
+A6,0.046,0.000571429,Azostrobin,TGT,100,LUF4_5,L. rhizovicinus
+B4,0.046,0.000285714,Azostrobin,TGT,100,KUB5_13,V. paradoxus
+B5,0.045,0.000342857,Azostrobin,TGT,100,KUB5_13,V. paradoxus
+B6,0.046,0.000514286,Azostrobin,TGT,100,KUB5_13,V. paradoxus
+C4,0.045,0.002114286,Azostrobin,TGT,100,NUE1_1,B. muralis
+C5,0.049,0.002114286,Azostrobin,TGT,100,NUE1_1,B. muralis
+C6,0.048,0.001942857,Azostrobin,TGT,100,NUE1_1,B. muralis
+D4,0.046,0.000285714,Azostrobin,TGT,100,NUF1_3,V. paradoxus
+D5,0.045,0.000285714,Azostrobin,TGT,100,NUF1_3,V. paradoxus
+D6,0.047,0.0004,Azostrobin,TGT,100,NUF1_3,V. paradoxus
+E4,0.049,0.000285714,Azostrobin,TGT,100,KUE4_4,B. muralis
+E5,0.046,0.000457143,Azostrobin,TGT,100,KUE4_4,B. muralis
+E6,0.047,0.000342857,Azostrobin,TGT,100,KUE4_4,B. muralis
+F4,0.0475,4.00E-04,Azostrobin,TGT,100,KUE4_10,S. acidaminiphila
+F5,0.048,0.000457143,Azostrobin,TGT,100,KUE4_10,S. acidaminiphila
+F6,0.045,0.000342857,Azostrobin,TGT,100,KUE4_10,S. acidaminiphila
+G4,0.046,0.002228571,Azostrobin,TGT,100,OP50,E. coli
+G5,0.045,0.002457143,Azostrobin,TGT,100,OP50,E. coli
+G6,0.045,0.002285714,Azostrobin,TGT,100,OP50,E. coli
+H4,0.05,0.0028,Azostrobin,TGT,100,SC,SC
+H5,0.045,0.002914286,Azostrobin,TGT,100,SC,SC
+H6,0.045,0.002857143,Azostrobin,TGT,100,SC,SC
+A4,0.2525,0.047314286,Tebuconazole,TGT,100,LUF4_5,L. rhizovicinus
+A5,0.2125,0.045314286,Tebuconazole,TGT,100,LUF4_5,L. rhizovicinus
+A6,0.212,0.045942857,Tebuconazole,TGT,100,LUF4_5,L. rhizovicinus
+B4,0.315,0.030685714,Tebuconazole,TGT,100,KUB5_13,V. paradoxus
+B5,0.3165,0.028571429,Tebuconazole,TGT,100,KUB5_13,V. paradoxus
+B6,0.3285,0.030628571,Tebuconazole,TGT,100,KUB5_13,V. paradoxus
+C4,0.4765,0.106457143,Tebuconazole,TGT,100,NUE1_1,B. muralis
+C5,0.4775,0.099028571,Tebuconazole,TGT,100,NUE1_1,B. muralis
+C6,0.483,0.102228571,Tebuconazole,TGT,100,NUE1_1,B. muralis
+D4,0.312,0.028171429,Tebuconazole,TGT,100,NUF1_3,V. paradoxus
+D5,0.319,0.030571429,Tebuconazole,TGT,100,NUF1_3,V. paradoxus
+D6,0.3265,0.030685714,Tebuconazole,TGT,100,NUF1_3,V. paradoxus
+E4,0.383,0.1444,Tebuconazole,TGT,100,KUE4_4,B. muralis
+E5,0.4615,0.115371429,Tebuconazole,TGT,100,KUE4_4,B. muralis
+E6,0.468,0.141428571,Tebuconazole,TGT,100,KUE4_4,B. muralis
+F4,0.048,0.000857143,Tebuconazole,TGT,100,KUE4_10,S. acidaminiphila
+F5,0.049,0.0012,Tebuconazole,TGT,100,KUE4_10,S. acidaminiphila
+F6,0.045,0.001314286,Tebuconazole,TGT,100,KUE4_10,S. acidaminiphila
+G4,0.216,0.034228571,Tebuconazole,TGT,100,OP50,E. coli
+G5,0.2165,0.037942857,Tebuconazole,TGT,100,OP50,E. coli
+G6,0.218,0.033485714,Tebuconazole,TGT,100,OP50,E. coli
+H4,0.1785,0.049942857,Tebuconazole,TGT,100,SC,SC
+H5,0.1725,0.045314286,Tebuconazole,TGT,100,SC,SC
+H6,0.166,0.042514286,Tebuconazole,TGT,100,SC,SC

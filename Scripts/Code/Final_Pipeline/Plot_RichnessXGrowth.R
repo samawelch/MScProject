@@ -1,6 +1,4 @@
 # Produces a basic plot of mixture complexity against a variety of metrics of growth from Growth_Curve_Loop.R. Prints to pdf.
-# TODO: What's the statistical validity of any of this? How can I best represent it?
-# TODO: Figure out the big deal with carrying capacity.
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
@@ -26,13 +24,18 @@ richness_functional_growth_data <- aggregate_functional_groups(tidier_growth_dat
   select(Richness, Species, Mean, SD) %>%
   filter(Species != "Control")
 
+# More means by richness
+# richness_growth_data <- richness_growth_data %>%
+#   group_by(Richness, Isolate) %>%
+#   summarise(Mean = mean(Mean), SD = sqrt(sum(SD ^ 2)))
+
 # And graph growth against richness, by species of bacteria
-growthXrichness_mean <- ggplot(richness_growth_data, aes(Richness, Mean)) +
-  geom_jitter(aes(colour = Isolate, shape = 16), width = 0.3) +
+growthXrichness_mean <- ggplot(richness_growth_data, aes(as.factor(Richness), Mean)) +
   scale_shape_identity() +
   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
-  geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
-  ggtitle("Mean auc_e")
+  geom_jitter(aes(colour = Isolate)) +
+  xlab("Mixture Complexity") +
+  ylab("Mean Area Under Curve") 
 
 growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.factor(Richness), Mean)) +
   geom_smooth(aes(group = Species, colour = Species), method = "lm", se = FALSE) +
@@ -67,10 +70,12 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.fact
 #   ggtitle("growth rate")
 
 # We can do some linear modelling later and obtain some idea of the statistical soundness behind our measurements...
-png("Results/Final_Pipeline/growthXrichness.png", width = 1600, height = 800)
+pdf("Results/Final_Pipeline/growthXrichness.png", width = 9, height = 6)
 # ggarrange(growthXrichness_auc_e, growthXrichness_auc_l, growthXrichness_k, growthXrichness_r, common.legend = TRUE, legend = "right", ncol = 2, nrow = 2)
-growthXfunc_richness_mean
+growthXrichness_mean
 dev.off()
+dev.off()
+
 
 # A non-visual measure of fit goodness would also be a good idea
 lm_MxR <- lm(Mean ~ Richness + Isolate, richness_growth_data)
@@ -87,13 +92,3 @@ summary(lm_MxR_F)
 
 # Basically species and isolate currently explain variation well, and richness doesn't. Which doesn't seem right...
 lm_anova <- anova(lm_MxR, lm_MxR_F)
-
-# Let's try tikz
-tikz("Results/Final_Pipeline/growthXrichness.tex", width = 3.5, height = 3.5)
-growthXfunc_richness_mean
-dev.off()
-
-library(tikzDevice)
-tikz('Results/simpleEx.tex',width=3.5,height=3.5)
-plot(1,main='Hello World!')
-dev.off()

@@ -12,7 +12,7 @@ library(ggpubr)
 # Misc counters:
 
 # How about a unique time cutoff
-rf_time_cutoff <- 24
+rf_time_cutoff <- 48
 rf_read_rate <- 4
 # It's still 24 though.
 
@@ -90,7 +90,7 @@ for (k in 1:8)
   temp_rangefinding <- rf_growth_data %>%
     filter(Stressor == names(concentration_stressor_vector[k])) %>%
     group_by(Isolate, Concentration, Stressor) %>%
-    summarise(Mean_growth = mean(Growth_k))
+    summarise(Mean_growth = mean(Growth_auc_e))
   
   # (Don't) Add mean growth
   # temp_rangefinding <- temp_rangefinding %>%
@@ -104,7 +104,7 @@ for (k in 1:8)
   temp_plot <- 
     ggplot(data = temp_rangefinding, aes(
       x = log(Concentration),
-      y = log(Mean_growth), 
+      y = Mean_growth, 
       colour = Isolate)) +
     geom_point() +
     ggtitle(label = names(concentration_stressor_vector[k])) +
@@ -118,7 +118,8 @@ for (k in 1:8)
              angle = 90) +
     theme(legend.position = "none",
           axis.title.y = element_blank(),
-          axis.title.x = element_blank())	
+          axis.title.x = element_blank())	+
+    scale_y_continuous(limits = c(0,30))
   
   assign(temp_plot_name, temp_plot)
 }
@@ -134,7 +135,7 @@ dummy_legend <- get_legend(
 setwd(here("Scripts","Results","Bug_Rangefinding"))
 pdf("plots_rangefinding.pdf", width = 9, height = 9)
 annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend, ncol = 3, nrow = 3),
-                left = text_grob("Mean Carrying Capacity (OD)", size = 16, rot = 90),
-                bottom = text_grob("Log Concentration", size = 16))
+                left = text_grob("Mean Area Under Curver (OD)", size = 16, rot = 90),
+                bottom = text_grob(expression(paste("Log Concentration (", mu, "g/l)"))))
 dev.off()
 dev.off()
