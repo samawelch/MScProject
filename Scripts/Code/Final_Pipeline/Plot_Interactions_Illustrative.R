@@ -26,8 +26,11 @@ p1 <- ggplot(data = data1) +
   ylab(label = "Response") +
   scale_x_discrete(limits = interaction_order_vector) +
   scale_color_viridis_d(aesthetics = "fill") +
-  scale_y_continuous(expand = c(0,0), limits = c(-5.5,5.5)) +
-  theme(panel.grid.major.x = element_blank()) +
+  scale_y_continuous(expand = c(0,0), 
+                     limits = c(-5.5, 5.5),
+                     breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.y = element_blank()) +
   ggtitle(label = "Double Negative Stressor Interactions", subtitle = "Example: Antibacterial x Antibacterial") +
   theme(axis.text.x = element_text(size = 10, angle = 0),
         legend.position = "none",
@@ -40,8 +43,11 @@ p2 <- ggplot(data = data2) +
   ylab(label = "Response") +
   scale_x_discrete(limits = interaction_order_vector) +
   scale_color_viridis_d(aesthetics = "fill") +
-  scale_y_continuous(expand = c(0,0), limits = c(-5.5,5.5)) +
-  theme(panel.grid.major.x = element_blank()) +
+  scale_y_continuous(expand = c(0,0), 
+                     limits = c(-5.5, 5.5),
+                     breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.y = element_blank()) +
   ggtitle(label = "Opposing Stressor Interactions", subtitle = "Example: Antibacterial x Food Source") +
   theme(axis.text.x = element_text(size = 10, angle = 0),
         legend.position = "none",
@@ -55,8 +61,11 @@ p3 <- ggplot(data = data3) +
   ylab(label = "Response") +
   scale_x_discrete(limits = interaction_order_vector) +
   scale_color_viridis_d(aesthetics = "fill") +
-  scale_y_continuous(expand = c(0,0), limits = c(-5.5,5.5)) +
-  theme(panel.grid.major.x = element_blank()) +
+  scale_y_continuous(expand = c(0,0), 
+                     limits = c(-5.5, 5.5),
+                     breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.y = element_blank()) +
   ggtitle(label = "Double Positive Stressor Interactions", subtitle = "Example: Food Source x Food Source") +
   theme(axis.text.x = element_text(size = 10, angle = 0),
         legend.position = "none",

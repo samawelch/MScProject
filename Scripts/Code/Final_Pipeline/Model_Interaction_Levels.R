@@ -1,12 +1,13 @@
 # Makes those linear models Tom wanted.
-# TODO: Actually Make
 # Requires: Growth_Curve_Loop
 library(dplyr)
-library(tidyverse)
 
-# I think we need to allow for the effect of species???
 isolate_lm <- lm(Growth_auc_e ~ Isolate, tidy_growth_data)
 summary(isolate_lm)
+
+# Setting this as an empty vector now so that the lmf_1 will only contain itself, but
+# lmf_n > 1 will contain all of lmf_m < n. If that makes sense... 
+test4 <- c()
 
 # It's another nested for loop.
 for (b in 1:8)
@@ -18,6 +19,7 @@ for (b in 1:8)
     test1 <- paste("(", test0[1,a], sep = "")
     if (b > 1)
     {
+      # We only need to start worrying about : for n > 1 levels of complexity
       for (c in 1:(b-1))
       {
         test1 <- paste(test1, ":", test0[(c+1),a])  
@@ -27,14 +29,14 @@ for (b in 1:8)
       test2[a] <- test1
   }
   test3 <- paste(test2, collapse = " + ")
+  # We need to actually nest the model by concatenating the formulae each loop
+  test4 <- paste(test3, test4, collapse = " + ")
   test3 <- paste("Growth_auc_e ~ ", test3, sep = "")
   temp_lmf_name <- paste("lmf_", b , sep = "")
   assign(temp_lmf_name, test3)
-  
   temp_lm_name <- paste("lm_", b , sep = "")
   temp_lm <- do.call("lm", list(test3, tidy_growth_data))
   assign(temp_lm_name, temp_lm)
-  
 }
 
 # Can we pick out the models that best explain the variation
