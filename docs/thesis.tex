@@ -301,7 +301,7 @@ Limited data are available on the prevalence and composition of chemical mixture
 \subsection{Rangefinding and Concentration Calculations}
 \label{S:2:3}
 
-Initial dose-response exposures were conducted at concentrations above and below regulatory limits to obtain an overview of individual stressors' effects on isolates. Eight 96-well microtiter plates were prepared, with  \SI{10}{\ul} of 1-in-100 diluted overnight culture, \SI{80}{\ul} of R2A broth, and \SI{10}{\ul} of stressor stock at either 0.1, 1, 10 or 100 times the target final experimental concentration added to each well. Each well of stressor concentration and isolate was replicated three times. Well OD was read using the cell count protocol below  \ref{S:2:4}.
+Initial dose-response exposures were conducted at concentrations above and below regulatory limits to obtain an overview of individual stressors' effects on isolates. Eight 96-well microtiter plates were prepared, with  \SI{10}{\ul} of 1-in-100 diluted overnight culture, \SI{80}{\ul} of R2A broth, and \SI{10}{\ul} of stressor stock at either 0.1, 1, 10 or 100 times the target final experimental concentration added to each well. Each well of stressor concentration and isolate was replicated three times. Well OD was read using the cell count protocol below \ref{S:2:4}.
 
 Final experimental concentrations were calculated based on regulatory limits (Limits column, \cref{tab:stressors}). Calculations are available in Appendix \ref{A:1}.
 
@@ -353,10 +353,9 @@ All data processing and statistical analysis was conducted in R version 3.5.1 \c
 
 In order to provide an initial measure of isolate untreated and single stressor growth rates, optical density for control and single stressor exposures were graphed against time, with a local regression plotted across measured points and error bars added. 
 
-The assumption that under an additive null model, fitness would be negatively correlated with mixture complexity was examined by modelling mean \textit{auc} against the number of stressors applied in a treatment  using two linear models with complexity and isolate or species as explanatory variables, which were compared using an analysis of variance (ANOVA). 
+The assumption that under an additive null model, fitness would be negatively correlated with mixture complexity was then examined by modelling mean \textit{auc} against the number of stressors applied in a treatment  using two linear models with complexity and isolate or species as explanatory variables, which were compared using an analysis of variance (ANOVA). 
 
-
-Stressor effect was calculated by subtracting the average growth with stressors from the control growth for a given isolate, producing an additive measure of effect, which was averaged across replicates to produce a measure of mean growth and standard deviation.
+In order the produce an quantifiable measure of the effects of stressors and stressor mixtures on growth, stressor effect was calculated by subtracting the average growth with stressors from the control growth for a given isolate, producing an additive measure of effect, which was averaged across replicates to produce a measure of mean growth and standard deviation.
 \begin{equation}
 Effect = Growth_{Control} - Growth_{Treatment}
 \label{E:effect_calc}
@@ -364,12 +363,12 @@ Effect = Growth_{Control} - Growth_{Treatment}
 
 Predicted effect was then calculated using an additive null model, by summing the calculated mean effects of individual stressors on a per-isolate basis and calculating an updated standard deviation from the root of the summed squares of the component standard deviations. 
 
-Effect type was classified according to the definitions found in Piggott, Townsend, and Matthaei \cite{Piggott2015}. If the mean predicted and observed effects were not significantly different (independent two-sample T-test, p $<$ 0.05). A positive effect on growth larger than the predicted effect was classified as positive synergy, a negative effect larger (in absolute terms) than the predicted effect was negative synergy. An effect between positive synergy and the predicted effect was classified as negative antagonism, while an effect between negative synergy and the predicted effect was positive antagonism (\cref{fig:interaction_ranges}). 
+Effect type was classified according to the definitions found in Piggott, Townsend, and Matthaei \cite{Piggott2015}. If the mean predicted and observed effects were not significantly different (independent two-sample T-test, p $<$ 0.05), the interaction was classified as additive, regardless of the absolute distance between the two values. A positive effect on growth larger than the predicted effect was classified as positive synergy (+S), a negative effect larger (in absolute terms) than the predicted effect was negative synergy (-S). An effect between positive synergy and the predicted effect was classified as negative antagonism (-A), while an effect between negative synergy and the predicted effect was positive antagonism (+A) (\cref{fig:interaction_ranges}). 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Plot_Interactions_Illustrative.pdf}
-    \caption{Plots to illustrate the ranges of definitions in Piggott et al...}
+    \caption{Plots to illustrate the ranges of Piggott, Mattheai \& Townsend's reconceptualised interaction definitions \cite{Piggott2015}. A gradient effect indicates a definition range that continues towards $-\infty$ or $+\infty$, while the range of additivism is technically bounded by statistical significance rather than pure numerical distance.}
     \label{fig:interaction_ranges}
 \end{figure}
 
@@ -408,18 +407,19 @@ A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} w
 \subsection{Rangefinding}
 \label{S:3:1}
 
-Isolates showed a variable response across the spread of rangefinding concentrations (\cref{fig:rangefinding}) with KUB5\_13, KUE4\_4 and the Nash's Field Soil Community generally proving the most able to grow regardless of stressor or concentration. Mean response to concentration (in cyan) showed a variety of responses across the stressors, although the expected negative correlation between concentration and mean growth was not apparent. Azoxystrobin--exposed cultures did not appear to grow at any of the concentrations used.
+Isolates showed a variable response across the spread of rangefinding concentrations (\cref{fig:rangefinding}) with KUB5\_13, KUE4\_4 and the Nash's Field Soil Community generally proving the most able to grow regardless of stressor or concentration. The expected negative correlation between concentration and mean growth was not apparent. Azoxystrobin--exposed cultures did not appear to grow at any of the concentrations used.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Bug_Rangefinding/plots_rangefinding.pdf}
-    \caption{(Weird) rangefinding}
+    \caption{Mean area under growth curve at $\lambda$ = 590 nm by isolate, across target concentration ÷ 10, target concentration (dotted grey line), target concentration × 10 and target concentration × 100 (see table 2). Local area polynomial regression (LOESS) fitted to data points for illustrative purposes. n = 3 for all combinations of isolate, stressor and concentration.}
     \label{fig:rangefinding}
 \end{figure}
 
-Section on sample sizes???
+\subsection{Sample Sizes}
+\label{S:3:2}
 
-Due to a number of issues with isolate growth in liquid media and manual pipetting error of bacterial cultures, sample size varies across both treatments and isolates (\cref{tab:samples})
+Due to a number of issues with isolate growth in liquid media and manual pipetting error of bacterial cultures, sample size varies across both treatments and isolates (\cref{tab:samples}). These small and variable sample sizes have affected the statistical significance of the data and analysis discussed below.
 
 %% Todo: Missing Row
 \begin{table}[ht]
@@ -434,8 +434,9 @@ Due to a number of issues with isolate growth in liquid media and manual pipetti
 \rowcolor{gggrey}{NUF1\_3} & 2.7 & 1.7\\
 {KUE4\_4} & 3.4 & 1.8\\
 \rowcolor{gggrey}{NUE1\_1} & 2.6 & 1.6\\
-{OP50} & 3.3 & 2.0 \\
-\rowcolor{gggrey}{Soil Community} & 3.0 & 1.7\\
+{KUE4\_10} & 3.0 & 1.9 \\
+\rowcolor{gggrey}{OP50} & 3.3 & 2.0 \\
+{Soil Community} & 3.0 & 1.7\\
 \bottomrule
 \end{tabular}
 \caption{Sample size mean and standard distribution by isolate.}
@@ -444,20 +445,20 @@ Due to a number of issues with isolate growth in liquid media and manual pipetti
 
 \newpage
 \subsection{Single Stressor Responses}
-\label{S:3:2}
+\label{S:3:3}
 
 Isolates displayed a variety of responses (\cref{fig:sstress}) to the various stressors, growth in some cases apparently enhanced by the presence of most stressors (NUE1\_1, KUE4\_10, OP50, KUE4\_4, and the soil community) but in some cases diminished (NUF1\_3 and LUF4\_5) and in one largely unaffected (KUE4\_4). A bump in  the growth phase generally indicative of diauxic growth was strongly apparent in KUE4\_10, and sporadically present in the soil community, KUE4\_4, NUF1\_3 and NUE1\_1. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/single_stressor_plots.pdf}
-    \caption{(Hideous) effects of single stressors}
+    \caption{Effects of exposures of eight bacterial isolates to eight individual stressors, as well as a negative control on growth as measured by OD at 590 nm, over 48 hours, with standard deviation. n = 1-4; see \cref{tab:samples}}
     \label{fig:sstress}
 \end{figure}
 
 \newpage
 \subsection{Growth by Stressor Complexity}
-\label{S:3:3}
+\label{S:3:4}
 
 Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship between complexity and growth. Species identities \textit{B. simplex}, \textit{E. coli}, \textit{V. paradoxus} and the soil community were good predictors of variation (p $<$ 0.05).
 
@@ -470,7 +471,7 @@ Modelling mean growth as either isolate or species versus mixture complexity did
 
 \newpage
 \subsection{Predicted Versus Observed Effect}
-\label{S:3:4}
+\label{S:3:5}
 
 Patterns of observed versus predicted mean effect varied considerably between the species (\cref{fig:obsXpred}). KUB5\_13, NUF1\_3 and LUF4\_5’s are tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
 
@@ -483,9 +484,9 @@ Patterns of observed versus predicted mean effect varied considerably between th
 
 \newpage
 \subsection{Comparison of Linear Models of Higher-Order Mixtures}
-\label{S:3:5}
+\label{S:3:6}
 
-A comparison of linear models that attempted to explain variation in terms of 1-8-way combinations of stressors resulted in a degree of model saturation (Table \ref{tab:lmodels}). 4-way interactions explained the variation with the highest degree of statistical significance when compared in an ANOVA (p = 0.02), but an Akaike Information Criteria test that penalised model goodness of fit by number of parameters suggested that more complex models may be over-fitted compared to the single stressor model (n = 1). 
+A comparison of linear models of varying complexity (\cref{tab:lmodels}) showed F-values higher than the critical F-statistic (1.08 at p = 0.05) at p $<$ 0.05 for the, 2-, 3- and 6-complexity models. Penalised for number of parameters, the 2-complexity model had a significantly lower AIC than other models. We can thus infer that a model of two-way interations and single stressor effects best explains the variation seen in our data.
 
 \begin{table}[H]
 \centering
@@ -494,23 +495,23 @@ A comparison of linear models that attempted to explain variation in terms of 1-
 \toprule 
 \textbf{Complexity} & \textbf{Number of Predictors} & \textbf{Residual Df} & \textbf{Residual Sum of Squares} & \textbf{Df} & \textbf{Sum of Squares} & \textbf{F-value} & \textbf{Pr(>F)} & \textbf{AIC Df} & \textbf{AIC Score}  \\
 \midrule
-\rowcolor{gggrey}{1} & 8 & 6154 & 28546.62 & NA & NA & NA & NA & 10 & 26957.56 \\
-{2} & 28 & 6134 & 28585.26 & 20 & -38.64 & NA & NA & 30 & 27005.90 \\
-\rowcolor{gggrey}{3} & 56 & 6106 & 28548.02 & 28 & 37.24 & 0.23 & 0.99 & 58 & 27053.86 \\
-{4} & 70 & 6092 & 28428.31 & 14 & 119.71 & 1.83 & 0.03 & 72 & 27055.97 \\
-\rowcolor{gggrey}{5} & 56 & 6106 & 28521.45 & -14 & -93.14 & 1.43 & 0.13 & 58 & 27048.12 \\
-{6} & 28 & 6134 & 28635.35 & -28 & -113.9 & 0.87 & 0.66 & 30 & 27016.69 \\
-\rowcolor{gggrey}{7} & 8 & 6154 & 28716.32 & -20 & -80.97 & 0.87 & 0.63 & 10 & 26994.09 \\
-{8} & 1 & 6161 & 28752.50 & -7 & -36.18 & 1.11 & 0.36 & 3 & 26987.85 \\
+\rowcolor{gggrey}1 & 8   & 6154 & 28546.62 & NA & NA     & NA   & NA   & 10  & 26957.56 \\
+2 & 36  & 6126 & 27757.15 & 28 & 789.47 & 6.29 & 0.00 & 38  & 26840.72 \\
+\rowcolor{gggrey}3 & 92  & 6070 & 27494.60 & 56 & 262.55 & 1.05 & 0.38 & 94  & 26894.15 \\
+4 & 162 & 6000 & 26944.72 & 70 & 549.87 & 1.75 & 0.00 & 164 & 26909.64 \\
+\rowcolor{gggrey}5 & 218 & 5944 & 26783.04 & 56 & 161.69 & 0.64 & 0.98 & 220 & 26984.55 \\
+6 & 246 & 5916 & 26570.95 & 28 & 212.09 & 1.69 & 0.01 & 248 & 26991.55 \\
+\rowcolor{gggrey}7 & 254 & 5908 & 26503.86 & 8  & 67.09  & 1.87 & 0.06 & 256 & 26991.97 \\
+8 & 255 & 5907 & 26497.05 & 1  & 6.82   & 1.52 & 0.22 & 257 & 26992.38 \\     
 \bottomrule
 \end{tabular}
-\caption{Comparison of the ANOVA and AIC parameters of eight multiple linear models of 1 to 8-way interactions, rounded to 2 decimal places.}
+\caption{Comparison of the ANOVA and AIC parameters of eight multiple linear models of 1 to 8-way interactions, rounded to 2 decimal places. Calculated critical F-statistic of 1.08 at p = 0.05.}
 \label{tab:lmodels}
 \end{table}
 
 \newpage
 \subsection{Interaction Type Prevalence}
-\label{S:3:6}
+\label{S:3:7}
 
 The analysis of interaction type showed a relatively high incidence of T-test errors (133 in 1976; ~15\%), due to a correspondingly high incidence of observations with a sample size of one and no standard deviation. For most isolates additive effects prevailed (1744 in 1976; ~88\%), the exception being \textit{E. coli} OP50, where some non-additive effects were seen, especially at a complexity of 4 and above; negative antagonism accounted for slightly under half of the interactions observed (94 in 247; 38\%), while negative synergy was observed only at a complexity of 5 and in low quantities (5 in 247; 2\%).
 
@@ -523,7 +524,7 @@ The analysis of interaction type showed a relatively high incidence of T-test er
 
 \newpage
 \subsection{Emergent Interaction Type Prevalence}
-\label{S:3:7}
+\label{S:3:8}
 
 T-test errors represent a similar proportion of emergent effects observed (161 in 1752, ~9\%) . Non-emergent effects – “predicted” – dominate (1589 in 1752, ~91\%). Emergent synergy is non-existent, while two cases of emergent antagonism are present in NUE1\_1: a mixture of copper, nickel, metaldehyde and tebuconazole, and a mixture of copper, nickel, chloramphenicol, metaldehyde, tebuconazole, and azoxystrobin.
 
