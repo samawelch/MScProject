@@ -68,6 +68,10 @@
 \usepackage{amssymb}
 \usepackage{cleveref}
 \usepackage{float}
+\usepackage{geometry}
+
+% Nicer margins please?
+\geometry{margin=3cm}
 
 %% Keeps tables looking tolerable.
 \newcolumntype{L}{>{\centering\arraybackslash}m{2.7cm}}
@@ -112,7 +116,8 @@
 \begin{document}
 
 \begin{titlepage}
-\includegraphics{icl_logo.png}
+\includegraphics[scale = 0.1]{icl_logo.png}\\
+
 \centering
 \textit{Are regulatory limits on pollutants sufficient to protect from emergent mixture effects?}
 
@@ -204,7 +209,7 @@ Due to the geometrically-increasing complexity of adding additional stressors to
 
 Within ecology, research on complex combinations of stressors -– including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators -– Multiple Predator Effects (MPEs) –- that has received some attention. One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than poorer mixtures, although a considerable number of component studies found no significant relationship. 
 
-Research on species interaction is more common,
+Parallels can also be drawn with research on inter-species interactions in the vein of food webs, the presence of a species having a positive or negative effect on the fitness of other species in a similar manner to a chemical stressor. Considerable research has explored interaction across food webs and trophic levels, and the  cascading shifts in biotic interactions caused by abiotic environmental change \cite{Hooper2005,Parmesan2006,Chesson2000}. Research has shown that chemical stressors such as pesticides can cause large scale changes over short timescales to ecosystems, mediated through complex webs of interactions \cite{Thompson2016}. The effect of species interaction on evolutionary responses has also been examined species interaction \cite{Lawrence2012}, showing that in bacteria these interactions can over time cause considerable shifts in both communities and the phenotypes and genotypes of component species.
 
 In the Anthropocene, an era where pollution is a greater pressure on ecosystems than ever before, it is vital that we improve our understanding of how a diverse range of wild bacteria respond to different stressors. Greater understanding of these stressors and interactions will enable more targeted and cost-efficient legislation and interventions -– for instance, one stressor has a disproportionate effect on overall response and thus should produce the greatest positive effect when removed. 
 
@@ -244,7 +249,7 @@ Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with gly
 \subsection{Stressor Selection}
 \label{S:2:2}
 
-Stressors were selected across a diverse range of functional groups (\cref{tab:stressors}) in order to assemble a panel that had some but not all mechanisms of action in common amongst the stressors.
+Chemical stressors were selected across a diverse range of functional groups (\cref{tab:stressors}) in order to assemble a panel that had some but not all mechanisms of action in common amongst the stressors, and that have the potential to occur in mixtures in ecosystems.
 
 Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992}, while nickel is occasionally so in bacteria and fungi \cite{Zamble2015}. Bacterial resistance to these stressors is thus often nuanced, with a requirement to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002}, and damages vital biosynthesis enzymes \cite{Macomber2009}, while nickel is a weak ROS generator that can unbalance iron and zinc homeostasis in the cell \cite{Samland2006}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009}, while nickel can be sequestered inside the cell \cite{Nishimura1998}.
 
@@ -254,6 +259,8 @@ Chloramphenicol and ampicillin are broad spectrum antibacterial agents, used in 
 Metaldehyde and atrazine are two distinct chemical pesticides; the first a molluscicide, the second a herbicide. Atrazine, a triazine pesticide, has been banned in the EU since 2004 \cite{EU2004}, but has remained the most commonly used herbicide in the US, and acts on plants by disrupting photosynthesis \cite{Shimabukuro1969}, while metaldehyde is rapidly converted within the body of molluscs to aldehyde, which damages mucus producing cells, causing excessive mucus production, dehydration, and eventual death \cite{Triebskorn1998}. Atrazine has been shown to be both a food source \cite{Wackett2002} and ROS stressor \cite{Zhang2012} to various species of bacteria, but information on metaldehyde’s effects on bacteria are limited: one study has examined interactions between bacteria and metaldehyde \cite{Thomas2017}, showing only that \textit{Variovorax} and \textit{Aceinetobacter} strains can be isolated from metaldehyde-treated soil and can degrade the molluscicide.
 
 Tebuconazole is a triazole fungicide that acts against a broad range of pathogens by inhibiting fungi-specific membrane synthesis pathways. Tebuconazole is known to be toxic to a range of non-target species \cite{Sehnem2010}, but information on effects on bacteria is limited to the knowledge that some bacteria (not including any of the species used in this study) are capable of degrading tebuconazole \cite{Sehnem2010}. Azoxystrobin is a systemic fungicide in heavy use due to its broad-spectrum inhibition of respiration across major groups of fungal pathogens. Azoxystrobin has been shown to inhibit bacterial growth in mixed fungal-bacteria communities \cite{Bacmaga2015MicrobialAzoxystrobin}, although the same study showed \textit{Bacillus} species were capable of growth in highly contaminated soil.
+
+Limited data are available on the prevalence and composition of chemical mixtures in waters in the UK. However, hospital effluent is known to represent an important source of not only anti-bacterial pollution \cite{Sacher2001} but also heavy metals \cite{Verlicchi2010}. Agriculture is also a potential source of complex chemical mixtures, through the simultaneous use of fungicides, herbicides, insecticides, veterinary antibiotics \cite{Stuart2012}, while heavy metals frequently enter the environment through industrial wastewater, mine run-off, and landfill leachate \cite{Facchinelli2001}. Where pollution from these sources mix, such as at the interface between different land uses, or in the body of a river that runs through such areas, chemical mixtures are likely to be common.
 
 %% LaTeX was sent to punish us for our sins.
 %% I've got no idea what they were, but they must have been pretty bad for us to end up with LaTeX.
@@ -296,7 +303,7 @@ Tebuconazole is a triazole fungicide that acts against a broad range of pathogen
 
 Initial dose-response exposures were conducted at concentrations above and below regulatory limits to obtain an overview of individual stressors' effects on isolates. Eight 96-well microtiter plates were prepared, with  \SI{10}{\ul} of 1-in-100 diluted overnight culture, \SI{80}{\ul} of R2A broth, and \SI{10}{\ul} of stressor stock at either 0.1, 1, 10 or 100 times the target final experimental concentration added to each well. Each well of stressor concentration and isolate was replicated three times. Well OD was read using the cell count protocol below  \ref{S:2:4}.
 
-Final experimental concentrations were calculated based on well volumes and regulatory limits. Calculations are available in Appendix \ref{A:1}.
+Final experimental concentrations were calculated based on regulatory limits (Limits column, \cref{tab:stressors}). Calculations are available in Appendix \ref{A:1}.
 
 \subsection{Metrics of Growth}
 \label{S:2:4}
@@ -314,19 +321,19 @@ Nl_t=\frac{K}{1 + (\frac{K - N_0}{N_0}) e^{-rt}}
 
 Growth data and logistic curve were plotted by well, allowing for visual inspection and the exclusion of models from wells where no growth had occurred as a result of factors other than stressor treatment. A null additive model was assumed for all comparisons, consistent with the use of bacterial growth as a metric of response \cite{Piggott2015}. 
 
-A typical bacterial growth curve \cite{Monod1949} offers a number of potential parameters for the quantification of bacterial growth, summarised in \cref{tab:metrics} below. Of the metrics available,  the unitless measure of empirical area under the curve ($auc\_e$ in \textit{growthcurver)} was selected, as its use did not involve the same loss of exponential phase growth data as in measurement of lag time, carrying capacity, or level of growth at a specific time point. Growth level, which involves the fitting of a Zwietering logistic growth curve to measured growth and the extraction of parameters from the curve, was not considered as a metric due to a lack of awareness during the data analysis phase \cite{Cuevas2017} Growth score, a refined form of growth level, was not considered for the same reason \cite{Cuevas2018}.
+A typical bacterial growth curve \cite{Monod1949} offers a number of potential parameters for the quantification of bacterial growth, summarised in \cref{tab:metrics} below. Of the metrics available,  the unitless measure of empirical area under the curve ($auc\_e$ in \textit{growthcurver)} was selected, as its use did not involve the same loss of exponential phase growth data as in measurement of lag time, carrying capacity, or level of growth at a specific time point. Growth level, which involves the fitting of a Zwietering logistic growth curve to measured growth and the extraction of parameters from the curve, was not considered as a metric due to a lack of awareness during the data analysis phase \cite{Cuevas2017}. Growth score, a refined form of growth level, was rejected for the same reason \cite{Cuevas2018}.
 
 \begin{table}[ht]
 \centering
 \scriptsize
-\begin{tabular}{N M L L N}
+\begin{tabular}{L M L L N}
 \toprule 
 \textbf{Metric} & \textbf{Description} & \textbf{Advantages} & \textbf{Disadvantages} & \textbf{Example/ Citation} \\
 \midrule
 \rowcolor{gggrey}{Lag time} & Time before bacterial growth phase & Provides high level of resolution over initial growth phase & Ignores variation in other phases & \cite{Monod1949} \\
-{Area under curve (AUC)} & Area under logistic or empirical growth curve & Accounts for effects at all phases of growth & Loss of growth resolution & \cite{Firsov2001} \\
+{Area under curve (auc)} & Area under logistic or empirical growth curve & Accounts for effects at all phases of growth & Loss of growth resolution & \cite{Firsov2001} \\
 \rowcolor{gggrey}{Carrying capacity $k$} & Maximum growth (stationary phase) & Better accounts for variable growth speed between species & Ignores variation in other phases & \cite{Chapman2018} \\
-{Growth\textsubscript{t}} & Growth as measured at a consistent timepoint & Easy to measure & Considerable loss of information & \cite{Hall2014} \\
+{Growth\textsubscript{t}} & Growth as measured at a consistent timepoint & Easy to measure & Considerable loss of resolution & \cite{Hall2014} \\
 \rowcolor{gggrey}{Growth Level (GL)} & Least-squares fitting of Zwietering logistic growth curve model & Effective in differentiating growth speeds &  Convoluted, not easily interpretable & \cite{Cuevas2017,Cuevas2018}\\
 {Growth Score (GS)} & Simplified and refined interpretation of GL & Easier to interpret, less heavily affected by experiment length & New and untested, complex implementation & \cite{Cuevas2018}\\
 \bottomrule
@@ -338,45 +345,17 @@ A typical bacterial growth curve \cite{Monod1949} offers a number of potential p
 \subsection{Stressor Exposures}
 \label{S:2:5}
 
-Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fitted with sterile  pipette tips and a laminar flow hood. 255 combinations of 8 stressors across 8 bacterial isolates were formulated across 24 \SI{200}{\ul} flat bottom 96-well plates, with additional negative controls for a total of 2144 exposures per replicate. \SI{10}{\ul} doses of stressor solutions at environmentally relevant concentrations (Table \ref{tab:stressors}) were added to the wells, in addition to \SI{10}{\ul} of overnight bacterial culture diluted to 1 in 1000, and sufficient R2A broth to bring all well volumes up to \SI{100}{\ul}. Machine-readable worklists were generated from a combination input file for the STARLet using an R script (Appendix \ref{A:1}). Experimental for a single replicates typically lasted 20 hours spread across 2 days; plates were stored in sealed containers at 4\textdegree C overnight, and from the second run onwards with a dampened paper towel to reduce evaporation.
-
-Due to a number of issues with isolate growth in liquid media and plate inoculation, sample size varies across both treatments and isolates (Table \ref{tab:samples}). 
-
-%% Todo: Missing Row
-\begin{table}[ht]
-\centering
-\small
-\begin{tabular}{l c c}
-\toprule 
-\textbf{Isolate} & \textbf{n Mean} & \textbf{n SD}  \\
-\midrule
-\rowcolor{gggrey}{LUF4\_5} & 3.3 & 1.7 \\
-{KUB5\_13} & 2.6 & 1.9 \\
-\rowcolor{gggrey}{NUF1\_3} & 2.7 & 1.7\\
-{KUE4\_4} & 3.4 & 1.8\\
-\rowcolor{gggrey}{NUE1\_1} & 2.6 & 1.6\\
-{OP50} & 3.3 & 2.0 \\
-\rowcolor{gggrey}{Soil Community} & 3.0 & 1.7\\
-\bottomrule
-\end{tabular}
-\caption{Sample size mean and standard distribution by isolate.}
-\label{tab:samples}
-\end{table}
+Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fitted with sterile  pipette tips and a laminar flow hood. Seven bacterial isolates and one mixed soil community were exposed to combinations of 8 stressors (n = 255), formulated across twenty four \SI{200}{\ul} flat bottom 96-well plates. Negative controls were added, for a total of 2144 exposures per replicate. \SI{10}{\ul} doses of stressor solution, diluted to regulatory limits (\cref{tab:stressors}) with R2A broth, were added to the wells, with sufficient R2A broth to bring all well volumes up to \SI{90}{\ul}. Machine-readable worklists were generated from a combination input file for the STARLet using an R script (Appendix \ref{A:1}). Experimental for a single replicates typically lasted 20 hours spread across 2 days; plates were stored in sealed containers at 4\textdegree C overnight, and from the second run onwards with a dampened paper towel to reduce evaporation. Finally, \SI{10}{\ul} of overnight bacterial culture, diluted to 1 in 1000 in R2A broth, was added to the plates. Plate optical density was read for 48 hours, with one read per hour for replicates 1 and 2 and one read per four hours for replicate 3 and 4, in an attempt to reduce evaporation. In the former case only every fourth read was sampled to produce consistent growth curves. 
 
 \subsection{Statistical Analysis}
 \label{S:2:6}
 All data processing and statistical analysis was conducted in R version 3.5.1 \cite{RCoreTeam2018}, data using the \textit{tidyverse} family of packages \cite{Wickham2017}. All R code is available in Appendix \ref{A:1}, as well as full attribution of all other packages, functions and software used in the production of this report.
 
-\subsection{Mixture Complexity Versus Growth}
-\label{S:2:7}
-Growth was modelled against the number of stressors applied in a treatment ---"stressor complexity"--- using two linear models with complexity and isolate or species as explanatory variables, which were compared using an analysis of variance (ANOVA). A mean across all isolates was also calculated. 
+In order to provide an initial measure of isolate untreated and single stressor growth rates, optical density for control and single stressor exposures were graphed against time, with a local regression plotted across measured points and error bars added. 
 
-\subsection{Single Stressor Growth Curves by Isolate}
-\label{S:2:8}
-In order to determine effect direction, size and significance at the individual stressor level, growth curves were fitted as above for individual combinations of stressors and isolates. 
+The assumption that under an additive null model, fitness would be negatively correlated with mixture complexity was examined by modelling mean \textit{auc} against the number of stressors applied in a treatment  using two linear models with complexity and isolate or species as explanatory variables, which were compared using an analysis of variance (ANOVA). 
 
-\subsection{Interaction Type Prevalence}
-\label{S:2:9}
+
 Stressor effect was calculated by subtracting the average growth with stressors from the control growth for a given isolate, producing an additive measure of effect, which was averaged across replicates to produce a measure of mean growth and standard deviation.
 \begin{equation}
 Effect = Growth_{Control} - Growth_{Treatment}
@@ -394,8 +373,6 @@ Effect type was classified according to the definitions found in Piggott, Townse
     \label{fig:interaction_ranges}
 \end{figure}
 
-\subsection{Higher Order Mixtures and Emergent Interactions}
-\label{S:2:10}
 Eight multiple linear regressions were fitted to the data using a nested set combinations of stressors, from individual stressors to eight-way combinations and all less-complex combinations, to explain variation, and determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both a one-way ANOVA to F-test nested models, to apply an F-test to models, and Akaike Information Criteria test (AIC), to compare models with a penalty for number of estimated parameters \cite{Akaike1974}. 
 
 A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean, standard deviation and sample size were calculated per isolate as follows: 
@@ -440,6 +417,31 @@ Isolates showed a variable response across the spread of rangefinding concentrat
     \label{fig:rangefinding}
 \end{figure}
 
+Section on sample sizes???
+
+Due to a number of issues with isolate growth in liquid media and manual pipetting error of bacterial cultures, sample size varies across both treatments and isolates (\cref{tab:samples})
+
+%% Todo: Missing Row
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{l c c}
+\toprule 
+\textbf{Isolate} & \textbf{n Mean} & \textbf{n SD}  \\
+\midrule
+\rowcolor{gggrey}{LUF4\_5} & 3.3 & 1.7 \\
+{KUB5\_13} & 2.6 & 1.9 \\
+\rowcolor{gggrey}{NUF1\_3} & 2.7 & 1.7\\
+{KUE4\_4} & 3.4 & 1.8\\
+\rowcolor{gggrey}{NUE1\_1} & 2.6 & 1.6\\
+{OP50} & 3.3 & 2.0 \\
+\rowcolor{gggrey}{Soil Community} & 3.0 & 1.7\\
+\bottomrule
+\end{tabular}
+\caption{Sample size mean and standard distribution by isolate.}
+\label{tab:samples}
+\end{table}
+
 \newpage
 \subsection{Single Stressor Responses}
 \label{S:3:2}
@@ -483,7 +485,7 @@ Patterns of observed versus predicted mean effect varied considerably between th
 \subsection{Comparison of Linear Models of Higher-Order Mixtures}
 \label{S:3:5}
 
-A comparison of linear models that attempted to explain variation in terms of 1-8-way combinations of stressors resulted in a degree of model saturation (Table \ref{tab:lmodels}). 4-way interactions explained the variation with the highest degree of statistical significance when compared in an ANOVA (p = 0.02), but an Akaike Information Criteria test that penalised model goodness of fit by number of parameters suggested that more complex models may be overfitted compared to the single stressor model (n = 1). 
+A comparison of linear models that attempted to explain variation in terms of 1-8-way combinations of stressors resulted in a degree of model saturation (Table \ref{tab:lmodels}). 4-way interactions explained the variation with the highest degree of statistical significance when compared in an ANOVA (p = 0.02), but an Akaike Information Criteria test that penalised model goodness of fit by number of parameters suggested that more complex models may be over-fitted compared to the single stressor model (n = 1). 
 
 \begin{table}[H]
 \centering
