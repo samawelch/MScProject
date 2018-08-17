@@ -111,12 +111,25 @@
 
 \begin{document}
 
+\begin{titlepage}
+\includegraphics{icl_logo.png}
+\centering
+\textit{Are regulatory limits on pollutants sufficient to protect from emergent mixture effects?}
+
+A thesis submitted in partial fulfilment of the requirements for the degree of Master of Science at Imperial College London
+
+Formatted in the journal style of the \textit{Journal of the Total Environment}
+
+Submitted for the MSc in Ecological Applications
+
+Samuel A. Welch
+
+August 2018
+\end{titlepage}
+
 \begin{frontmatter}
 
 %% Title, authors and addresses
-
-\title{Are regulatory limits on pollutants sufficient to protect from emergent mixture effects?}
-
 %% use the tnoteref command within \title for footnotes;
 %% use the tnotetext command for the associated footnote;
 %% use the fnref command within \author or \address for footnotes;
@@ -136,6 +149,13 @@
 %% \address{Address\fnref{label3}}
 %% \fntext[label3]{}
 
+\section{Declaration}
+
+I had a lot of help.
+
+\newpage
+
+\title{Are regulatory limits on pollutants sufficient to protect from emergent mixture effects?}
 
 %% use optional labels to link authors explicitly to addresses:
 %% \author[label1,label2]{<author name>}
@@ -180,11 +200,11 @@ Traditional models of mixture toxicity focus on binary mixtures of stressors. Tw
 
 Though easy to understand and employ, this model is not without its issues. What, for example, is a stressor? The term is often used as a synonym for 'pollutant', 'toxicant', or 'pressure' -- a substance or treatment that produces a negative fitness effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that 'the dose makes the poison'\cite{OGParacelsus} –- as true for a rise in temperature or in nutrient availability as it is for toxic pollutants -- but also that \textit{the species makes the poison}. Many organisms, particularly bacteria, are are able to tolerate or even thrive on substances that are harmful to other species \cite{Malik2004,Gadd2009}. 
 
-Paragraph about BEF goes here.
-
-Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has been limited \cite{Beppler2016UncoveringStressors}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017PrevalenceInteractions}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects,  three-way interactions not predictable from component two-way effects, meaning that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}.
+Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has been limited \cite{Beppler2016}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017PrevalenceInteractions}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects,  three-way interactions not predictable from component two-way effects, meaning that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}.
 
 Within ecology, research on complex combinations of stressors -– including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators -– Multiple Predator Effects (MPEs) –- that has received some attention. One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than poorer mixtures, although a considerable number of component studies found no significant relationship. 
+
+Research on species interaction is more common,
 
 In the Anthropocene, an era where pollution is a greater pressure on ecosystems than ever before, it is vital that we improve our understanding of how a diverse range of wild bacteria respond to different stressors. Greater understanding of these stressors and interactions will enable more targeted and cost-efficient legislation and interventions -– for instance, one stressor has a disproportionate effect on overall response and thus should produce the greatest positive effect when removed. 
 
@@ -226,12 +246,12 @@ Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with gly
 
 Stressors were selected across a diverse range of functional groups (\cref{tab:stressors}) in order to assemble a panel that had some but not all mechanisms of action in common amongst the stressors.
 
-Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992OxygenRespiration}, while nickel is occasionally so in bacteria and fungi \cite{Zamble2015NickelBiology}. Bacterial resistance to these stressors is thus often nuanced, with a requirement to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002InductionMetals}, and damages vital biosynthesis enzymes \cite{Macomber2009TheToxicity}, while nickel is a weak ROS generator that can unbalance iron and zinc homeostasis in the cell \cite{Samland2006MicrobialDevelopments}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009TheToxicity}, while nickel can be sequestered inside the cell \cite{Nishimura1998ProtonCerevisiae}.
+Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992}, while nickel is occasionally so in bacteria and fungi \cite{Zamble2015}. Bacterial resistance to these stressors is thus often nuanced, with a requirement to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002}, and damages vital biosynthesis enzymes \cite{Macomber2009}, while nickel is a weak ROS generator that can unbalance iron and zinc homeostasis in the cell \cite{Samland2006}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009}, while nickel can be sequestered inside the cell \cite{Nishimura1998}.
 
-Chloramphenicol and ampicillin are broad spectrum antibacterial agents, used in decreasing amounts in healthcare applications due to their severe side effects and growing resistance, but nevertheless well-studied environmental pollutants. First isolated from \textit{Streptomyces venezuelae}, a soil-dwelling bacterium, chloramphenicol is a broad-spectrum antibiotic to which resistance in the wild and areas under antibiotic pollution is particularly common \cite{Allen2010CallEnvironments}. Ampicillin, a widespread, broad-spectrum antibiotic from the penicillin family is also widely resisted \cite{Ruiz1999MechanismsFish}. Chloramphenicol acts bacteriostatically by inhibiting protein synthesis in the 50S ribosomal subunit, while ampicillin inhibits cell wall synthesis. Drug interaction studies have shown that chloramphenicol is negatively antagonistic towards ampicillin due to their competing modes of action \cite{vanBambeke2017MechanismsAction}. It has been suggested that many of the genes that provide resistance to common antibiotics including chloramphenicol also provide tolerance to environmental stress in non-pathogenic species \cite{Groh2007GenesResistance}. Research has also found that exposure to ROS from heavy metals, including copper, can co-select for chloramphenicol resistance \cite{Harrison2009ChromosomalTolerance}.
+Chloramphenicol and ampicillin are broad spectrum antibacterial agents, used in decreasing amounts in healthcare applications due to their severe side effects and growing resistance, but nevertheless well-studied environmental pollutants. First isolated from \textit{Streptomyces venezuelae}, a soil-dwelling bacterium, chloramphenicol is a broad-spectrum antibiotic to which resistance in the wild and areas under antibiotic pollution is particularly common \cite{Allen2010}. Ampicillin, a widespread, broad-spectrum antibiotic from the penicillin family is also widely resisted \cite{Ruiz1999MechanismsFish}. Chloramphenicol acts bacteriostatically by inhibiting protein synthesis in the 50S ribosomal subunit, while ampicillin inhibits cell wall synthesis. Drug interaction studies have shown that chloramphenicol is negatively antagonistic towards ampicillin due to their competing modes of action \cite{vanBambeke2017MechanismsAction}. It has been suggested that many of the genes that provide resistance to common antibiotics including chloramphenicol also provide tolerance to environmental stress in non-pathogenic species \cite{Groh2007}. Research has also found that exposure to ROS from heavy metals, including copper, can co-select for chloramphenicol resistance \cite{Harrison2009}.
 % TODO: Gram - and Gram +
 
-Metaldehyde and atrazine are two distinct chemical pesticides; the first a molluscicide, the second a herbicide. Atrazine, a triazine pesticide, has been banned in the EU since 2004 \cite{EU2004CommissionSubstance}, but has remained the most commonly used herbicide in the US, and acts on plants by disrupting photosynthesis \cite{Shimabukuro1969AtrazineAction}, while metaldehyde is rapidly converted within the body of molluscs to aldehyde, which damages mucus producing cells, causing excessive mucus production, dehydration, and eventual death \cite{Triebskorn1998}. Atrazine has been shown to be both a food source \cite{Wackett2002BiodegradationStudies} and ROS stressor \cite{Zhang2012OxidativeAtrazine} to various species of bacteria, but information on metaldehyde’s effects on bacteria are limited: one study has examined interactions between bacteria and metaldehyde \cite{Thomas2017IsolationSoils}, showing only that \textit{Variovorax} and \textit{Aceinetobacter} strains can be isolated from metaldehyde-treated soil and can degrade the molluscicide.
+Metaldehyde and atrazine are two distinct chemical pesticides; the first a molluscicide, the second a herbicide. Atrazine, a triazine pesticide, has been banned in the EU since 2004 \cite{EU2004}, but has remained the most commonly used herbicide in the US, and acts on plants by disrupting photosynthesis \cite{Shimabukuro1969}, while metaldehyde is rapidly converted within the body of molluscs to aldehyde, which damages mucus producing cells, causing excessive mucus production, dehydration, and eventual death \cite{Triebskorn1998}. Atrazine has been shown to be both a food source \cite{Wackett2002} and ROS stressor \cite{Zhang2012} to various species of bacteria, but information on metaldehyde’s effects on bacteria are limited: one study has examined interactions between bacteria and metaldehyde \cite{Thomas2017}, showing only that \textit{Variovorax} and \textit{Aceinetobacter} strains can be isolated from metaldehyde-treated soil and can degrade the molluscicide.
 
 Tebuconazole is a triazole fungicide that acts against a broad range of pathogens by inhibiting fungi-specific membrane synthesis pathways. Tebuconazole is known to be toxic to a range of non-target species \cite{Sehnem2010}, but information on effects on bacteria is limited to the knowledge that some bacteria (not including any of the species used in this study) are capable of degrading tebuconazole \cite{Sehnem2010}. Azoxystrobin is a systemic fungicide in heavy use due to its broad-spectrum inhibition of respiration across major groups of fungal pathogens. Azoxystrobin has been shown to inhibit bacterial growth in mixed fungal-bacteria communities \cite{Bacmaga2015MicrobialAzoxystrobin}, although the same study showed \textit{Bacillus} species were capable of growth in highly contaminated soil.
 
@@ -248,14 +268,14 @@ Tebuconazole is a triazole fungicide that acts against a broad range of pathogen
 \toprule
 \textbf{Stressor} & \textbf{Functional Group} & \textbf{Limit (\SI{}{\ug}/l}) & \textbf{Form/Product Code} & \textbf{Bacterial mechanisms of action} & \textbf{Bacterial mechanisms of resistance} & \textbf{Sources} \\
 \midrule
-\rowcolor{gggrey}\textbf{Copper} & Heavy Metal & 2000\tnote{t} & Cu(II)Cl\textsubscript{2}, dihydrate (99\%), Alfa Aesar 12458 & Essential nutrient, ROS, enzymes & Efflux, chelation, rapid repair, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Valko2005MetalsStress,Dupont2011CopperApplications,ECHA2018REACHCopper} \\
-\textbf{Nickel} & Heavy Metal & 20\tnote{t} & Ni(II)Cl\textsubscript{2}, anhydrous (98\%), Alfa Aesar B22085 & Enzymes, Fe/Zn homeostasis, weak ROS, nutrient & Sequestration, efflux, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Macomber2011,Nishimura1998ProtonCerevisiae,Zamble2015NickelBiology} \\
-\rowcolor{gggrey}\textbf{Chloramphenicol} & Antibacterial & 0.05\tnote{n} & Powder $\geqslant$98\%, Sigma Aldrich C0378 & Cell wall synthesis & Membrane transition, mutant ribosomes, anti-AB enzymes & \cite{Shaw1979Primary31,Rebstock1949ChloramphenicolChloromycetin,Toku-E2018ChloramphenicolChloromycetin,Ruiz1999MechanismsFish} \\
-\textbf{Ampicillin} & Antibacterial & 0.12\tnote{n} & Ampicillin sodium salt, Sigma Aldrich A9518 & Protein synthesis, 50S ribosome subunit & $\beta$-lactamase enzymes, efflux & \cite{Ruiz1999MechanismsFish,Costanzo2005EcosystemEnvironment} \\
-\rowcolor{gggrey}\textbf{Atrazine} & Pesticide (Herbicide) & 0.25\tnote{t} & Power, analytical, Sigma Aldrich 45330 & ROS, bacterial enzymatic nutrient & Biodegradation & \cite{Shimabukuro1969AtrazineAction,Delorenzo2001TOXICITYREVIEW,Zhang2012OxidativeAtrazine} \\
-\textbf{Metaldehyde} & Pesticide \break (Insecticide) & 0.5\tnote{t} & Powder, analytical, Sigma Aldrich 63990 & Toxicity unknown, possible nutrient & Biodegradation & \cite{Kay2014UsingProblem,Castle2017,Thomas2017IsolationSoils} \\
+\rowcolor{gggrey}\textbf{Copper} & Heavy Metal & 2000\tnote{t} & Cu(II)Cl\textsubscript{2}, dihydrate (99\%), Alfa Aesar 12458 & Essential nutrient, ROS, enzymes & Efflux, chelation, rapid repair, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Valko2005,Dupont2011,ECHA2018Cu} \\
+\textbf{Nickel} & Heavy Metal & 20\tnote{t} & Ni(II)Cl\textsubscript{2}, anhydrous (98\%), Alfa Aesar B22085 & Enzymes, Fe/Zn homeostasis, weak ROS, nutrient & Sequestration, efflux, membrane transition & \cite{Nayar2004EnvironmentalMesocosms,Macomber2011,Nishimura1998,Zamble2015} \\
+\rowcolor{gggrey}\textbf{Chloramphenicol} & Antibacterial & 0.05\tnote{n} & Powder $\geqslant$98\%, Sigma Aldrich C0378 & Cell wall synthesis & Membrane transition, mutant ribosomes, anti-AB enzymes & \cite{Shaw1979,Rebstock1949,Toku-E2018Ch,Ruiz1999MechanismsFish} \\
+\textbf{Ampicillin} & Antibacterial & 0.12\tnote{n} & Ampicillin sodium salt, Sigma Aldrich A9518 & Protein synthesis, 50S ribosome subunit & $\beta$-lactamase enzymes, efflux & \cite{Ruiz1999MechanismsFish,Costanzo2005} \\
+\rowcolor{gggrey}\textbf{Atrazine} & Pesticide (Herbicide) & 0.25\tnote{t} & Power, analytical, Sigma Aldrich 45330 & ROS, bacterial enzymatic nutrient & Biodegradation & \cite{Shimabukuro1969,Delorenzo2001,Zhang2012} \\
+\textbf{Metaldehyde} & Pesticide \break (Insecticide) & 0.5\tnote{t} & Powder, analytical, Sigma Aldrich 63990 & Toxicity unknown, possible nutrient & Biodegradation & \cite{Kay2014,Castle2017,Thomas2017} \\
 \rowcolor{gggrey}\textbf{Tebuconazole} & Antibacterial & 1\tnote{r} & Ampicillin sodium salt, Sigma Aldrich 32013 & Unknown & Biodegradation & \cite{Sehnem2010,Artigas2014ComparativeEcosystems} \\
-\textbf{Azoxystrobin} & Antibacterial & 3\tnote{r} & Powder, Analytical, Sigma Aldrich 31697 & Unknown & Biodegradation & \cite{Battaglin2011Occurrence20052006,Rodrigues2013,Loos2010Pan-EuropeanWater,Bacmaga2015MicrobialAzoxystrobin} \\
+\textbf{Azoxystrobin} & Antibacterial & 3\tnote{r} & Powder, Analytical, Sigma Aldrich 31697 & Unknown & Biodegradation & \cite{Battaglin2011Occurrence20052006,Rodrigues2013,Loos2010,Bacmaga2015MicrobialAzoxystrobin} \\
 \bottomrule
 \end{tabular}
 \caption{Summary of stressors including type, target concentration, product information and bacterial interactions.}
@@ -285,16 +305,35 @@ Microcosm optical density at 590 nm was used as a metric of cell count over time
 
 Flow cytometric cell counts, read in an Accuri C6 Flow Cytometer, were plotted against optical density using a linear model in an attempt to transform OD reading into absolute cell counts. However, no significant relationship was found between the two measurements, as at the time of measurement, cell counts were insignificantly high to be detected as changes in optical density (Appendix \ref{A:1}). 
 
-Optical density was modelled against time in hours using a logistic curve from the package \textit{growthcurver} \cite{Sprouffske2016Package} for the R programming language \cite{RCoreTeam2018R:Computing}.
+Optical density was modelled against time in hours using a logistic curve, selected as a well-documented and fitting model \cite{Zwietering1990}.  from the package \textit{growthcurver} \cite{Sprouffske2016Package} for the R programming language \cite{RCoreTeam2018}.
 
 \begin{equation}
 Nl_t=\frac{K}{1 + (\frac{K - N_0}{N_0}) e^{-rt}}
 \label{E:log_curve}
 \end{equation}
 
-Growth data and logistic curve were plotted by well, allowing for visual inspection and the exclusion of models from wells where no growth had occurred as a result of factors other than stressor treatment. A null additive model was assumed for all comparisons, consistent with the use of bacterial growth as a metric of response \cite{Piggott2015}. The constructed growth curves offered a number of potential metrics for comparison of effects. 
+Growth data and logistic curve were plotted by well, allowing for visual inspection and the exclusion of models from wells where no growth had occurred as a result of factors other than stressor treatment. A null additive model was assumed for all comparisons, consistent with the use of bacterial growth as a metric of response \cite{Piggott2015}. 
 
-Empirical 
+A typical bacterial growth curve \cite{Monod1949} offers a number of potential parameters for the quantification of bacterial growth, summarised in \cref{tab:metrics} below. Of the metrics available,  the unitless measure of empirical area under the curve ($auc\_e$ in \textit{growthcurver)} was selected, as its use did not involve the same loss of exponential phase growth data as in measurement of lag time, carrying capacity, or level of growth at a specific time point. Growth level, which involves the fitting of a Zwietering logistic growth curve to measured growth and the extraction of parameters from the curve, was not considered as a metric due to a lack of awareness during the data analysis phase \cite{Cuevas2017} Growth score, a refined form of growth level, was not considered for the same reason \cite{Cuevas2018}.
+
+\begin{table}[ht]
+\centering
+\scriptsize
+\begin{tabular}{N M L L N}
+\toprule 
+\textbf{Metric} & \textbf{Description} & \textbf{Advantages} & \textbf{Disadvantages} & \textbf{Example/ Citation} \\
+\midrule
+\rowcolor{gggrey}{Lag time} & Time before bacterial growth phase & Provides high level of resolution over initial growth phase & Ignores variation in other phases & \cite{Monod1949} \\
+{Area under curve (AUC)} & Area under logistic or empirical growth curve & Accounts for effects at all phases of growth & Loss of growth resolution & \cite{Firsov2001} \\
+\rowcolor{gggrey}{Carrying capacity $k$} & Maximum growth (stationary phase) & Better accounts for variable growth speed between species & Ignores variation in other phases & \cite{Chapman2018} \\
+{Growth\textsubscript{t}} & Growth as measured at a consistent timepoint & Easy to measure & Considerable loss of information & \cite{Hall2014} \\
+\rowcolor{gggrey}{Growth Level (GL)} & Least-squares fitting of Zwietering logistic growth curve model & Effective in differentiating growth speeds &  Convoluted, not easily interpretable & \cite{Cuevas2017,Cuevas2018}\\
+{Growth Score (GS)} & Simplified and refined interpretation of GL & Easier to interpret, less heavily affected by experiment length & New and untested, complex implementation & \cite{Cuevas2018}\\
+\bottomrule
+\end{tabular}
+\caption{Potential metrics of bacterial growth}
+\label{tab:metrics}
+\end{table}
 
 \subsection{Stressor Exposures}
 \label{S:2:5}
@@ -326,7 +365,7 @@ Due to a number of issues with isolate growth in liquid media and plate inoculat
 
 \subsection{Statistical Analysis}
 \label{S:2:6}
-All data processing and statistical analysis was conducted in R version 3.5.1 \cite{RCoreTeam2018R:Computing}, data using the \textit{tidyverse} family of packages \cite{Wickham2017Tidyverse:Tidyverse}. All R code is available in Appendix \ref{A:1}, as well as full attribution of all other packages, functions and software used in the production of this report.
+All data processing and statistical analysis was conducted in R version 3.5.1 \cite{RCoreTeam2018}, data using the \textit{tidyverse} family of packages \cite{Wickham2017}. All R code is available in Appendix \ref{A:1}, as well as full attribution of all other packages, functions and software used in the production of this report.
 
 \subsection{Mixture Complexity Versus Growth}
 \label{S:2:7}
@@ -357,9 +396,9 @@ Effect type was classified according to the definitions found in Piggott, Townse
 
 \subsection{Higher Order Mixtures and Emergent Interactions}
 \label{S:2:10}
-Eight multiple linear regressions were fitted to the data using 1-8-way combinations of stressors to explain variation, and determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both an ANOVA and Akaike Information Criteria test (AIC). 
+Eight multiple linear regressions were fitted to the data using a nested set combinations of stressors, from individual stressors to eight-way combinations and all less-complex combinations, to explain variation, and determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both a one-way ANOVA to F-test nested models, to apply an F-test to models, and Akaike Information Criteria test (AIC), to compare models with a penalty for number of estimated parameters \cite{Akaike1974}. 
 
-A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016UncoveringStressors} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean, standard deviation and sample size were calculated per isolate as follows: 
+A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean, standard deviation and sample size were calculated per isolate as follows: 
 \begin{equation}
     m_c = \sum_{i = 1}^{c_n}\Big(\frac{m_c-1}{c_n}\Big)
 \label{E:pred_mean}    
@@ -519,11 +558,11 @@ A number of limitations apply to this study if overcome could affect the signifi
 Another issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density across 
 Additionally, due to the long preparation times for exposures, and experimental durations (96 hours from first the addition of media to plates to experiment end), well evaporation posed a non-random but difficult to account for influence on bacterial growth conditions, an additional stressor not part of the experimental design. Evaporation was most evident in peripheral wells (A1-–12, H1-–12, all X1 and X12 wells), and as stressor combination layout on the plates was not randomised between isolates or runs, it is probably that evaporation played a not-insignificant role in the observed effects of various treatments. Were a simpler level of treatment/isolate complexity used in simpler work, it would be possible to mitigate this effect by using only the inner wells of the 96 well plate, and by reduce experimental set-up time. 
 
-Lastly, the incorporation of varying concentrations of stressors would have allowed the construction of dose response curves, calculation of inhibitory concentrations (ICs), and correspondingly the modelling of Bliss Independence \cite{Bliss1939} of stressors, which has been applied with some success to the issue of higher-order and emergent interactions in complex mixtures of antibiotics \cite{Beppler2016UncoveringStressors,Tekin2017PrevalenceInteractions} 
+Lastly, the incorporation of varying concentrations of stressors would have allowed the construction of dose response curves, calculation of inhibitory concentrations (ICs), and correspondingly the modelling of Bliss Independence \cite{Bliss1939} of stressors, which has been applied with some success to the issue of higher-order and emergent interactions in complex mixtures of antibiotics \cite{Beppler2016,Tekin2017PrevalenceInteractions} 
 \subsection{Next Steps}
 \label{S:4:4}
 
-A small but growing body of evidence conducted by researchers at the University of California has suggested that, in lab strains of \textit{E. coli}, the potential for higher-order interactions in complex mixtures of chemicals is far higher than previously assumed \cite{Beppler2016UncoveringStressors,Tekin2016,Tekin2017PrevalenceInteractions}.  This study has undertaken a similar approach to a more diverse mixture of chemicals with mixed results; however, it is clear that existing attempts to understand the effects of the complex mixtures of stressors that define interactions in real-world ecosystems through simple interactions is insufficient.
+A small but growing body of evidence conducted by researchers at the University of California has suggested that, in lab strains of \textit{E. coli}, the potential for higher-order interactions in complex mixtures of chemicals is far higher than previously assumed \cite{Beppler2016,Tekin2016,Tekin2017PrevalenceInteractions}.  This study has undertaken a similar approach to a more diverse mixture of chemicals with mixed results; however, it is clear that existing attempts to understand the effects of the complex mixtures of stressors that define interactions in real-world ecosystems through simple interactions is insufficient.
 
 With the increasing level of automation available in laboratories, it is crucial that further steps are taken to undertake work that will improve our understanding the role of complex stressor mixtures in contemporary ecosystems and study systems, and to develop effective strategies to protect and restore such effected ecosystems.
 
