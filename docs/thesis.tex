@@ -78,6 +78,7 @@
 \newcolumntype{M}{>{\centering\arraybackslash}m{3cm}}
 \newcolumntype{N}{>{\centering\arraybackslash}m{1.2cm}}
 \newcolumntype{O}{>{\centering\arraybackslash}m{0.6cm}}
+\newcolumntype{P}{>{\centering\arraybackslash}m{2.2cm}}
 
 %% That perfect ggplot grey for consistencey
 \definecolor{gggrey}{RGB}{230,230,230}
@@ -107,7 +108,7 @@
 %%   sort&compress   -  like sort, but also compresses numerical citations
 %%   compress - compresses without sorting
 %%
-\biboptions{comma,square}
+\biboptions{comma,square,sort&compress}
 
 % \biboptions{}
 
@@ -156,8 +157,11 @@ August 2018
 
 \section{Declaration}
 
-I had a lot of help.
+Drs Emma Ransome (ER), Tom Bell (TB) and Shorok Mombrikotb (SM) assisted in the design of experimental protocols and parts of the design of the statistical analysis. SM also assisted with the design of the worklists for the Hamilton STARlet, and provided Nash's Field soil isolates for experimental use.
 
+Nilita Mukjang and Meirion Hopkins also assisted with aspects of the experimental phase of the project.
+
+I conducted all aspects of the data collection, cleaning and analysis, including all code used in cleaning and analysis. As part of this process I made use of a number of R packages, which are cited either in the Methods (\cref{S:3}), or Appendix \ref{A:1}. 
 \newpage
 
 \title{Are regulatory limits on pollutants sufficient to protect from emergent mixture effects?}
@@ -205,7 +209,7 @@ Traditional models of mixture toxicity focus on binary mixtures of stressors. Tw
 
 Though easy to understand and employ, this model is not without its issues. What, for example, is a stressor? The term is often used as a synonym for 'pollutant', 'toxicant', or 'pressure' -- a substance or treatment that produces a negative fitness effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that 'the dose makes the poison'\cite{OGParacelsus} –- as true for a rise in temperature or in nutrient availability as it is for toxic pollutants -- but also that \textit{the species makes the poison}. Many organisms, particularly bacteria, are are able to tolerate or even thrive on substances that are harmful to other species \cite{Malik2004,Gadd2009}. 
 
-Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has been limited \cite{Beppler2016}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017PrevalenceInteractions}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects,  three-way interactions not predictable from component two-way effects, meaning that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}.
+Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has been limited \cite{Beppler2016}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017a}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects,  three-way interactions not predictable from component two-way effects, meaning that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}.
 
 Within ecology, research on complex combinations of stressors -– including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators -– Multiple Predator Effects (MPEs) –- that has received some attention. One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than poorer mixtures, although a considerable number of component studies found no significant relationship. 
 
@@ -213,7 +217,7 @@ Parallels can also be drawn with research on inter-species interactions in the v
 
 In the Anthropocene, an era where pollution is a greater pressure on ecosystems than ever before, it is vital that we improve our understanding of how a diverse range of wild bacteria respond to different stressors. Greater understanding of these stressors and interactions will enable more targeted and cost-efficient legislation and interventions -– for instance, one stressor has a disproportionate effect on overall response and thus should produce the greatest positive effect when removed. 
 
-This study thus aims to address this knowledge gap through the use of automated experimental set-up and observational equipment to examine the effects of complex mixtures of common pollutants on a diverse panel of soil bacteria. It is hypothesised that more complex mixtures of chemicals will produce emergent effects not predictable from their component lower-order interactions, and that single stressor responses and interaction responses will vary across the bacterial panel.
+This study thus aims to address this knowledge gap through the use of automated lab equipment to examine the effects of complex mixtures of common pollutants on a diverse panel of soil bacteria. It is hypothesised that more complex mixtures of chemicals will produce emergent effects not predictable from their component lower-order interactions, and that single stressor responses and interaction responses will vary across the bacterial panel.
 
 \section{Methods}
 \label{S:2}
@@ -244,21 +248,20 @@ Eight bacterial isolates were selected, sourced principally from the Nash's Fiel
 \end{small}
 \end{table}
 
-Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with glycerol solution (Hardy Diagnostics, CB12) at -80\textdegree C until needed for experiments, when they were cultured overnight on a rotary shaker in a standard R2A broth at room temperature (25.9\textdegree C–26.6\textdegree C) prior to experiments. Soil communities were frozen in a 60\% glycerol solution immediately after extraction and defrosted on an individually for overnight culturing. 
+Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with glycerol solution (Hardy Diagnostics, CB12) at -80\textdegree C until needed for experiments, when they were cultured overnight on a rotary shaker (140 RPM) in a standard R2A broth at room temperature (25.9\textdegree C –- 26.6\textdegree C) prior to experiments. Soil communities were frozen in a 60\% glycerol solution immediately after extraction and defrosted on an individually for overnight culturing. 
 
 \subsection{Stressor Selection}
 \label{S:2:2}
 
-Chemical stressors were selected across a diverse range of functional groups (\cref{tab:stressors}) in order to assemble a panel that had some but not all mechanisms of action in common amongst the stressors, and that have the potential to occur in mixtures in ecosystems.
+Chemical stressors were selected from a range of groups (\cref{tab:stressors}) in order to assemble a panel that had some common mechanisms of action, and that have the potential to occur in mixtures in ecosystems.
 
-Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992}, while nickel is occasionally so in bacteria and fungi \cite{Zamble2015}. Bacterial resistance to these stressors is thus often nuanced, with a requirement to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002}, and damages vital biosynthesis enzymes \cite{Macomber2009}, while nickel is a weak ROS generator that can unbalance iron and zinc homeostasis in the cell \cite{Samland2006}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009}, while nickel can be sequestered inside the cell \cite{Nishimura1998}.
+Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992}, while nickel is occasionally so in bacteria and fungi \cite{Zamble2015}. Bacterial resistance to these stressors is thus often nuanced, with a need to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002}, and damages vital biosynthesis enzymes \cite{Macomber2009}, while nickel is a weak ROS generator, and can dangerously unbalance iron and zinc homeostasis in the cell \cite{Samland2006}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009}, while nickel can be sequestered in vacuoles within the cell \cite{Nishimura1998}.
 
-Chloramphenicol and ampicillin are broad spectrum antibacterial agents, used in decreasing amounts in healthcare applications due to their severe side effects and growing resistance, but nevertheless well-studied environmental pollutants. First isolated from \textit{Streptomyces venezuelae}, a soil-dwelling bacterium, chloramphenicol is a broad-spectrum antibiotic to which resistance in the wild and areas under antibiotic pollution is particularly common \cite{Allen2010}. Ampicillin, a widespread, broad-spectrum antibiotic from the penicillin family is also widely resisted \cite{Ruiz1999MechanismsFish}. Chloramphenicol acts bacteriostatically by inhibiting protein synthesis in the 50S ribosomal subunit, while ampicillin inhibits cell wall synthesis. Drug interaction studies have shown that chloramphenicol is negatively antagonistic towards ampicillin due to their competing modes of action \cite{vanBambeke2017MechanismsAction}. It has been suggested that many of the genes that provide resistance to common antibiotics including chloramphenicol also provide tolerance to environmental stress in non-pathogenic species \cite{Groh2007}. Research has also found that exposure to ROS from heavy metals, including copper, can co-select for chloramphenicol resistance \cite{Harrison2009}.
-% TODO: Gram - and Gram +
+Chloramphenicol and ampicillin are broad spectrum antibacterial agents, effective against many gram-positive and -negative bacteria, and used in decreasing quantities in healthcare applications due to their severe side effects and growing resistance. Nevertheless, as well-studied environmental pollutants they are ideal candidates for exposures. First isolated from \textit{Streptomyces venezuelae}, a soil-dwelling bacterium, chloramphenicol is a broad-spectrum antibiotic, to which resistance in the wild and areas under antibiotic pollution is particularly common \cite{Allen2010}. Ampicillin, a widespread antibiotic from the penicillin family, is also widely resisted \cite{Ruiz1999MechanismsFish}. Chloramphenicol acts bacteriostatically by inhibiting protein synthesis in the 50S ribosomal subunit, while ampicillin inhibits cell wall synthesis. Drug interaction studies have shown that chloramphenicol is negatively antagonistic towards ampicillin, due to their competing modes of action \cite{vanBambeke2017MechanismsAction}. It has been suggested that many of the genes that provide resistance to common antibiotics, including chloramphenicol, also provide tolerance to environmental stress \cite{Groh2007}. Research has also shown that exposure to ROS from heavy metals, including copper, can co-select for chloramphenicol resistance \cite{Harrison2009}.
 
-Metaldehyde and atrazine are two distinct chemical pesticides; the first a molluscicide, the second a herbicide. Atrazine, a triazine pesticide, has been banned in the EU since 2004 \cite{EU2004}, but has remained the most commonly used herbicide in the US, and acts on plants by disrupting photosynthesis \cite{Shimabukuro1969}, while metaldehyde is rapidly converted within the body of molluscs to aldehyde, which damages mucus producing cells, causing excessive mucus production, dehydration, and eventual death \cite{Triebskorn1998}. Atrazine has been shown to be both a food source \cite{Wackett2002} and ROS stressor \cite{Zhang2012} to various species of bacteria, but information on metaldehyde’s effects on bacteria are limited: one study has examined interactions between bacteria and metaldehyde \cite{Thomas2017}, showing only that \textit{Variovorax} and \textit{Aceinetobacter} strains can be isolated from metaldehyde-treated soil and can degrade the molluscicide.
+Atrazine, a triazine herbicide, has been banned in the EU since 2004 \cite{EU2004}, but has remained the most commonly used herbicide in the US, and acts on plants by disrupting photosynthesis \cite{Shimabukuro1969}. Atrazine has been shown to be both a food source \cite{Wackett2002} and ROS stressor \cite{Zhang2012} to various species of bacteria. Metaldehyde, a common water pollutant and mollusicide, is rapidly converted within the body of its target species into aldehyde, which damages mucus producing cells, causing excessive mucus production, dehydration, and eventual death \cite{Triebskorn1998}. However, knowledge of its effects on bacteria are limited -- only one study has examined interactions between bacteria and metaldehyde \cite{Thomas2017}, showing only that \textit{Variovorax} and \textit{Aceinetobacter} strains can be isolated from metaldehyde-treated soil, and can degrade the molluscicide.
 
-Tebuconazole is a triazole fungicide that acts against a broad range of pathogens by inhibiting fungi-specific membrane synthesis pathways. Tebuconazole is known to be toxic to a range of non-target species \cite{Sehnem2010}, but information on effects on bacteria is limited to the knowledge that some bacteria (not including any of the species used in this study) are capable of degrading tebuconazole \cite{Sehnem2010}. Azoxystrobin is a systemic fungicide in heavy use due to its broad-spectrum inhibition of respiration across major groups of fungal pathogens. Azoxystrobin has been shown to inhibit bacterial growth in mixed fungal-bacteria communities \cite{Bacmaga2015MicrobialAzoxystrobin}, although the same study showed \textit{Bacillus} species were capable of growth in highly contaminated soil.
+Tebuconazole is a triazole fungicide that acts against a broad range of pathogens by inhibiting fungi-specific membrane synthesis pathways. Tebuconazole is known to be toxic to a range of non-target species \cite{Sehnem2010}, but information on effects on bacteria is limited to the knowledge that some bacteria -- though none of the species used in this study -- are capable of degrading tebuconazole \cite{Sehnem2010}. Azoxystrobin is a systemic fungicide in heavy use due to its broad-spectrum inhibition of respiration across major groups of fungal pathogens. Azoxystrobin has been shown to inhibit bacterial growth in mixed fungal-bacteria communities \cite{Bacmaga2015MicrobialAzoxystrobin}, although the same study showed \textit{Bacillus} species were capable of growth in highly contaminated soil.
 
 Limited data are available on the prevalence and composition of chemical mixtures in waters in the UK. However, hospital effluent is known to represent an important source of not only anti-bacterial pollution \cite{Sacher2001} but also heavy metals \cite{Verlicchi2010}. Agriculture is also a potential source of complex chemical mixtures, through the simultaneous use of fungicides, herbicides, insecticides, veterinary antibiotics \cite{Stuart2012}, while heavy metals frequently enter the environment through industrial wastewater, mine run-off, and landfill leachate \cite{Facchinelli2001}. Where pollution from these sources mix, such as at the interface between different land uses, or in the body of a river that runs through such areas, chemical mixtures are likely to be common.
 
@@ -301,14 +304,14 @@ Limited data are available on the prevalence and composition of chemical mixture
 \subsection{Rangefinding and Concentration Calculations}
 \label{S:2:3}
 
-Initial dose-response exposures were conducted at concentrations above and below regulatory limits to obtain an overview of individual stressors' effects on isolates. Eight 96-well microtiter plates were prepared, with  \SI{10}{\ul} of 1-in-100 diluted overnight culture, \SI{80}{\ul} of R2A broth, and \SI{10}{\ul} of stressor stock at either 0.1, 1, 10 or 100 times the target final experimental concentration added to each well. Each well of stressor concentration and isolate was replicated three times. Well OD was read using the cell count protocol below \ref{S:2:4}.
+Initial dose-response exposures were conducted at concentrations above and below regulatory limits to determine individual stressors' effects on isolates. Eight 96-well microtiter plates were prepared, with  \SI{10}{\ul} of 1-in-100 diluted overnight culture, \SI{80}{\ul} of R2A broth, and \SI{10}{\ul} of stressor stock at either 0.1, 1, 10 or 100 times the target final experimental concentration added to each well. Each well of stressor concentration and isolate was replicated three times. Well OD was read using the cell count protocol below \ref{S:2:4}.
 
 Final experimental concentrations were calculated based on regulatory limits (Limits column, \cref{tab:stressors}). Calculations are available in Appendix \ref{A:1}.
 
 \subsection{Metrics of Growth}
 \label{S:2:4}
 
-Microcosm optical density at 590 nm was used as a metric of cell count over time. Immediately after isolates were exposed to stressors, plates were placed in an automatically-fed BioTek Synergy 2 microplate reader for 48 hours, agitating the wells for 5 seconds then reading absorbance every four hours.  At the conclusion of OD readings, wells were checked for contamination by plating the contents of the control plate at $10^{-3}$ and $10^{-4}$ dilutions onto a R2A agar plate and culturing at room temperature for 24 hours.
+Microcosm optical density (OD) at 590 nm was used as a metric of cell count over time. Immediately after isolates were exposed to stressors, plates were placed in an automatically-fed BioTek Synergy 2 microplate reader for 48 hours, agitating the wells for 5 seconds then reading absorbance every four hours.  At the conclusion of OD readings, wells were checked for contamination by plating the contents of the control plate at $10^{-3}$ and $10^{-4}$ dilutions onto a R2A agar plate and culturing at room temperature for 24 hours.
 
 Flow cytometric cell counts, read in an Accuri C6 Flow Cytometer, were plotted against optical density using a linear model in an attempt to transform OD reading into absolute cell counts. However, no significant relationship was found between the two measurements, as at the time of measurement, cell counts were insignificantly high to be detected as changes in optical density (Appendix \ref{A:1}). 
 
@@ -321,7 +324,7 @@ Nl_t=\frac{K}{1 + (\frac{K - N_0}{N_0}) e^{-rt}}
 
 Growth data and logistic curve were plotted by well, allowing for visual inspection and the exclusion of models from wells where no growth had occurred as a result of factors other than stressor treatment. A null additive model was assumed for all comparisons, consistent with the use of bacterial growth as a metric of response \cite{Piggott2015}. 
 
-A typical bacterial growth curve \cite{Monod1949} offers a number of potential parameters for the quantification of bacterial growth, summarised in \cref{tab:metrics} below. Of the metrics available,  the unitless measure of empirical area under the curve ($auc\_e$ in \textit{growthcurver)} was selected, as its use did not involve the same loss of exponential phase growth data as in measurement of lag time, carrying capacity, or level of growth at a specific time point. Growth level, which involves the fitting of a Zwietering logistic growth curve to measured growth and the extraction of parameters from the curve, was not considered as a metric due to a lack of awareness during the data analysis phase \cite{Cuevas2017}. Growth score, a refined form of growth level, was rejected for the same reason \cite{Cuevas2018}.
+A typical bacterial growth curve \cite{Monod1949} offers a number of potential parameters for the quantification of bacterial growth, summarised in \cref{tab:metrics} below. Of the metrics available, the unitless measure of empirical area under the curve ($auc\_e$ in \textit{growthcurver)} was selected, as its use did not involve the same loss of exponential phase growth data as in measurement of lag time, carrying capacity, or level of growth at a specific time point. Growth level, which involves the fitting of a Zwietering logistic growth curve to measured growth and the extraction of parameters from the curve, was not considered as a metric due to a lack of awareness during the data analysis phase \cite{Cuevas2017}. Growth score, a refined form of growth level, was rejected for the same reason \cite{Cuevas2018}.
 
 \begin{table}[ht]
 \centering
@@ -345,17 +348,17 @@ A typical bacterial growth curve \cite{Monod1949} offers a number of potential p
 \subsection{Stressor Exposures}
 \label{S:2:5}
 
-Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fitted with sterile  pipette tips and a laminar flow hood. Seven bacterial isolates and one mixed soil community were exposed to combinations of 8 stressors (n = 255), formulated across twenty four \SI{200}{\ul} flat bottom 96-well plates. Negative controls were added, for a total of 2144 exposures per replicate. \SI{10}{\ul} doses of stressor solution, diluted to regulatory limits (\cref{tab:stressors}) with R2A broth, were added to the wells, with sufficient R2A broth to bring all well volumes up to \SI{90}{\ul}. Machine-readable worklists were generated from a combination input file for the STARLet using an R script (Appendix \ref{A:1}). Experimental for a single replicates typically lasted 20 hours spread across 2 days; plates were stored in sealed containers at 4\textdegree C overnight, and from the second run onwards with a dampened paper towel to reduce evaporation. Finally, \SI{10}{\ul} of overnight bacterial culture, diluted to 1 in 1000 in R2A broth, was added to the plates. Plate optical density was read for 48 hours, with one read per hour for replicates 1 and 2 and one read per four hours for replicate 3 and 4, in an attempt to reduce evaporation. In the former case only every fourth read was sampled to produce consistent growth curves. 
+Stressor combinations were formulated by use of a Hamilton MicroLab STARLet, fitted with sterile  pipette tips and a laminar flow hood to limit contamination. Seven bacterial isolates and one mixed soil community were exposed to combinations of 8 stressors (n = 255), formulated across twenty four \SI{200}{\ul} flat bottom 96-well plates. Negative controls were added, for a total of 2144 exposures per replicate. \SI{10}{\ul} doses of stressor solution, diluted to regulatory limits (\cref{tab:stressors}) with R2A broth, were added to the wells, with sufficient R2A broth to bring all well volumes up to \SI{90}{\ul}. Machine-readable worklists were generated from a combination input file for the STARLet using an R script (Appendix \ref{A:1}). Experimental for a single replicates typically lasted 20 hours spread across 2 days; plates were stored in sealed containers at 4\textdegree C overnight, and from the second run onwards with a dampened paper towel to reduce evaporation. Finally, \SI{10}{\ul} of overnight bacterial culture, diluted to 1 in 1000 in R2A broth, was added to the plates. Plate optical density was read for 48 hours, with one read per hour for replicates 1 and 2 and one read per four hours for replicate 3 and 4, in an attempt to reduce evaporation. In the former case only every fourth read was sampled to produce consistent growth curves. 
 
 \subsection{Statistical Analysis}
 \label{S:2:6}
-All data processing and statistical analysis was conducted in R version 3.5.1 \cite{RCoreTeam2018}, data using the \textit{tidyverse} family of packages \cite{Wickham2017}. All R code is available in Appendix \ref{A:1}, as well as full attribution of all other packages, functions and software used in the production of this report.
+All data processing and statistical analysis was conducted in R version 3.5.1 \cite{RCoreTeam2018}, with the assistance of a number of additional R packages \cite{Auguie2017, Murrell2014,Garnier2018,Wickham2018b,Wickham2018c,Gagolewski2018,Bache2014,Muller2017,Kassambara2018,Wickham2016,Wickham2018a,Wickham2018}. All R code is available in Appendix \ref{A:1}.
 
 In order to provide an initial measure of isolate untreated and single stressor growth rates, optical density for control and single stressor exposures were graphed against time, with a local regression plotted across measured points and error bars added. 
 
 The assumption that under an additive null model, fitness would be negatively correlated with mixture complexity was then examined by modelling mean \textit{auc} against the number of stressors applied in a treatment  using two linear models with complexity and isolate or species as explanatory variables, which were compared using an analysis of variance (ANOVA). 
 
-In order the produce an quantifiable measure of the effects of stressors and stressor mixtures on growth, stressor effect was calculated by subtracting the average growth with stressors from the control growth for a given isolate, producing an additive measure of effect, which was averaged across replicates to produce a measure of mean growth and standard deviation.
+In order the produce an quantifiable measure of the effects of stressors and stressor mixtures on growth, stressor effect was calculated by subtracting the average growth with stressors from the control growth for a given isolate (eq. \ref{E:effect_calc}), producing an additive measure of effect. This was averaged across replicates to produce a measure of mean growth and standard deviation.
 \begin{equation}
 Effect = Growth_{Control} - Growth_{Treatment}
 \label{E:effect_calc}
@@ -372,9 +375,9 @@ Effect type was classified according to the definitions found in Piggott, Townse
     \label{fig:interaction_ranges}
 \end{figure}
 
-Eight multiple linear regressions were fitted to the data using a nested set combinations of stressors, from individual stressors to eight-way combinations and all less-complex combinations, to explain variation, and determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both a one-way ANOVA to F-test nested models, to apply an F-test to models, and Akaike Information Criteria test (AIC), to compare models with a penalty for number of estimated parameters \cite{Akaike1974}. 
+Eight nest multiple linear regressions were fitted to the data using a nested set combinations of stressors, from individual stressors to eight-way combinations and all less complex combinations, to explain variation, and determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both a one-way ANOVA to F-test nested models, to apply an F-test to models, and Akaike Information Criteria test (AIC), to compare models with a penalty for number of estimated parameters \cite{Akaike1974}. 
 
-A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean, standard deviation and sample size were calculated per isolate as follows: 
+A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean (eq. \ref{E:pred_mean}, standard deviation (eq. \ref{E:pred_sd}) and sample size (eq. \ref{E:pred_n} were calculated per isolate as follows: 
 \begin{equation}
     m_c = \sum_{i = 1}^{c_n}\Big(\frac{m_c-1}{c_n}\Big)
 \label{E:pred_mean}    
@@ -388,7 +391,7 @@ A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} w
 \label{E:pred_n}    
 \end{equation}
 
-\noindent where:
+\mbox{where:}
 
 \begin{small}
 \setlength{\tabcolsep}{1pt}
@@ -407,7 +410,7 @@ A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} w
 \subsection{Rangefinding}
 \label{S:3:1}
 
-Isolates showed a variable response across the spread of rangefinding concentrations (\cref{fig:rangefinding}) with KUB5\_13, KUE4\_4 and the Nash's Field Soil Community generally proving the most able to grow regardless of stressor or concentration. The expected negative correlation between concentration and mean growth was not apparent. Azoxystrobin--exposed cultures did not appear to grow at any of the concentrations used.
+Isolates showed a variable response across the spread of rangefinding concentrations (\cref{fig:rangefinding}) with KUB5\_13, KUE4\_4, and the Nash's Field Soil Community generally proving the most able to grow regardless of stressor or concentration. The expected negative correlation between concentration and mean growth was not apparent. Azoxystrobin--exposed cultures did not appear to grow at any of the concentrations used.
 
 \begin{figure}[H]
     \centering
@@ -491,7 +494,7 @@ A comparison of linear models of varying complexity (\cref{tab:lmodels}) showed 
 \begin{table}[H]
 \centering
 \scriptsize
-\begin{tabular}{N N N N O N O O O N}
+\begin{tabular}{N N N P O N O O O N}
 \toprule 
 \textbf{Complexity} & \textbf{Number of Predictors} & \textbf{Residual Df} & \textbf{Residual Sum of Squares} & \textbf{Df} & \textbf{Sum of Squares} & \textbf{F-value} & \textbf{Pr(>F)} & \textbf{AIC Df} & \textbf{AIC Score}  \\
 \midrule
@@ -561,11 +564,11 @@ A number of limitations apply to this study if overcome could affect the signifi
 Another issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density across 
 Additionally, due to the long preparation times for exposures, and experimental durations (96 hours from first the addition of media to plates to experiment end), well evaporation posed a non-random but difficult to account for influence on bacterial growth conditions, an additional stressor not part of the experimental design. Evaporation was most evident in peripheral wells (A1-–12, H1-–12, all X1 and X12 wells), and as stressor combination layout on the plates was not randomised between isolates or runs, it is probably that evaporation played a not-insignificant role in the observed effects of various treatments. Were a simpler level of treatment/isolate complexity used in simpler work, it would be possible to mitigate this effect by using only the inner wells of the 96 well plate, and by reduce experimental set-up time. 
 
-Lastly, the incorporation of varying concentrations of stressors would have allowed the construction of dose response curves, calculation of inhibitory concentrations (ICs), and correspondingly the modelling of Bliss Independence \cite{Bliss1939} of stressors, which has been applied with some success to the issue of higher-order and emergent interactions in complex mixtures of antibiotics \cite{Beppler2016,Tekin2017PrevalenceInteractions} 
+Lastly, the incorporation of varying concentrations of stressors would have allowed the construction of dose response curves, calculation of inhibitory concentrations (ICs), and correspondingly the modelling of Bliss Independence \cite{Bliss1939} of stressors, which has been applied with some success to the issue of higher-order and emergent interactions in complex mixtures of antibiotics \cite{Beppler2016,Tekin2017a} 
 \subsection{Next Steps}
 \label{S:4:4}
 
-A small but growing body of evidence conducted by researchers at the University of California has suggested that, in lab strains of \textit{E. coli}, the potential for higher-order interactions in complex mixtures of chemicals is far higher than previously assumed \cite{Beppler2016,Tekin2016,Tekin2017PrevalenceInteractions}.  This study has undertaken a similar approach to a more diverse mixture of chemicals with mixed results; however, it is clear that existing attempts to understand the effects of the complex mixtures of stressors that define interactions in real-world ecosystems through simple interactions is insufficient.
+A small but growing body of evidence conducted by researchers at the University of California has suggested that, in lab strains of \textit{E. coli}, the potential for higher-order interactions in complex mixtures of chemicals is far higher than previously assumed \cite{Beppler2016,Tekin2016,Tekin2017a}.  This study has undertaken a similar approach to a more diverse mixture of chemicals with mixed results; however, it is clear that existing attempts to understand the effects of the complex mixtures of stressors that define interactions in real-world ecosystems through simple interactions is insufficient.
 
 With the increasing level of automation available in laboratories, it is crucial that further steps are taken to undertake work that will improve our understanding the role of complex stressor mixtures in contemporary ecosystems and study systems, and to develop effective strategies to protect and restore such effected ecosystems.
 
@@ -603,6 +606,7 @@ Recent advances in the understanding of higher-order effects of complex stressor
 All data, scripts, and calculations used in this study are available at: 
 
 \url{https://github.com/samawelch/MScProject}
+
 
 \section{Nash's Field Treatments and Isolates}
 \label{A:2}
