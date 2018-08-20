@@ -74,6 +74,7 @@
 \geometry{margin=3cm}
 
 %% Keeps tables looking tolerable.
+\newcolumntype{K}{>{\centering\arraybackslash}m{4cm}}
 \newcolumntype{L}{>{\centering\arraybackslash}m{2.7cm}}
 \newcolumntype{M}{>{\centering\arraybackslash}m{3cm}}
 \newcolumntype{N}{>{\centering\arraybackslash}m{1.2cm}}
@@ -124,9 +125,11 @@
 \centering
 {\huge \textit{Is this title still relevant?}}
 
-\includegraphics[scale = 0.1]{icl_logo.png}\hfill
+\addvspace{4.5cm}
 
-\addvspace{15cm}
+\includegraphics[scale = 0.5]{docs/badnews8ways.png}\hfill
+
+\addvspace{4.5cm}
 
 A thesis submitted in partial fulfilment of the requirements for the degree of Master of Science at Imperial College London
 
@@ -280,7 +283,7 @@ Limited data are available on the prevalence and composition of chemical mixture
 \small
 \setlength{\tabcolsep}{4pt}
 \setlength{\extrarowheight}{3pt}
-\begin{tabular}{l M l M L L c}
+\begin{tabular}{l M l K K K c}
 \toprule
 \textbf{Stressor} & \textbf{Functional Group} & \textbf{Limit (\SI{}{\ug}/l}) & \textbf{Form/Product Code} & \textbf{Bacterial mechanisms of action} & \textbf{Bacterial mechanisms of resistance} & \textbf{Sources} \\
 \midrule
@@ -335,6 +338,7 @@ A typical bacterial growth curve \cite{Monod1949} offers a number of potential p
 \begin{table}[ht]
 \centering
 \scriptsize
+\renewcommand{\arraystretch}{1.8}
 \begin{tabular}{L M L L N}
 \toprule 
 \textbf{Metric} & \textbf{Description} & \textbf{Advantages} & \textbf{Disadvantages} & \textbf{Example/ Citation} \\
