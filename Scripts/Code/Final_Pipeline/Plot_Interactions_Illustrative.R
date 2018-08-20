@@ -31,7 +31,7 @@ p1 <- ggplot(data = data1) +
                      breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.y = element_blank()) +
-  ggtitle(label = "Double Negative Stressor Interactions", subtitle = "Example: Antibacterial x Antibacterial") +
+  ggtitle(label = "Double Negative Interactions", subtitle = "Example: Antibacterial x Antibacterial") +
   theme(axis.text.x = element_text(size = 10, angle = 0),
         legend.position = "none",
         axis.title.y = element_blank())
@@ -48,7 +48,7 @@ p2 <- ggplot(data = data2) +
                      breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.y = element_blank()) +
-  ggtitle(label = "Opposing Stressor Interactions", subtitle = "Example: Antibacterial x Food Source") +
+  ggtitle(label = "Opposing Interactions", subtitle = "Example: Antibacterial x Food Source") +
   theme(axis.text.x = element_text(size = 10, angle = 0),
         legend.position = "none",
         axis.title.y = element_blank(),
@@ -66,7 +66,7 @@ p3 <- ggplot(data = data3) +
                      breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.y = element_blank()) +
-  ggtitle(label = "Double Positive Stressor Interactions", subtitle = "Example: Food Source x Food Source") +
+  ggtitle(label = "Double Positive Interactions", subtitle = "Example: Food Source x Food Source") +
   theme(axis.text.x = element_text(size = 10, angle = 0),
         legend.position = "none",
         axis.title.y = element_blank(),
