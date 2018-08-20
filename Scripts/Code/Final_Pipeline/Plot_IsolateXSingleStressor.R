@@ -9,12 +9,12 @@ library(growthcurver)
 library(gridBase)
 library(gridExtra)
 library(ggpubr)
-library(cowplot)
+library(RColorBrewer)
 setwd(here("scripts"))
 source('Code/Final_Pipeline/Function_Aggregate_Fun_Groups.R')
 
-# A colour vector for consistent colouring
-stressor_colours <- c("Copper" = "red", "Nickel" = "darkred", "Chloramphenicol" = "darkmagenta", "Ampicillin" = "magenta", "Atrazine" = "green", "Metaldehyde" = "darkgreen", "Tebuconazole" = "blue", "Azoxystrobin" = "darkblue", "None" = "black")
+# A colour vector for consistent colouring. Uses Brewer's "Paired" palette, plus black for control.
+stressor_colours <- c("Copper" = "#A6CEE3", "Nickel" = "#1F78B4", "Chloramphenicol" = "#B2DF8A", "Ampicillin" = "#33A02C", "Atrazine" = "#FB9A99", "Metaldehyde" = "#E31A1C", "Tebuconazole" = "#FDBF6F", "Azoxystrobin" = "#FF7F00", "Control" = "#000000")
 
 # We can graph the effects of different single stressors on bacteria. For instance:
 isolate_single_stress <- tidy_data %>%
@@ -53,14 +53,16 @@ for (o in 1:8)
 {
   temp_isolate <- isolates_vector[o]
   temp_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes(time, Mean_OD)) +
-    theme(legend.position="none") +
     ylim(0,0.5) +
-    geom_errorbar(aes(colour = Stressor, ymin = Mean_OD - SD_OD, ymax = Mean_OD + SD_OD), position = position_dodge(width = 5)) +
+    # geom_errorbar(aes(colour = Stressor, ymin = Mean_OD - SD_OD, ymax = Mean_OD + SD_OD), position = position_dodge(width = 5)) +
     geom_smooth(aes(colour = Stressor), se = FALSE, method = "loess") +
     ggtitle(isolates_species_vector[o]) +
+    theme_grey() +
     theme(axis.title.x=element_blank(),
-          axis.title.y=element_blank()) +
-    scale_colour_discrete(labels = c("Copper", "Nickel", "Chloramphenicol", "Ampicillin", "Atrazine", "Metaldehyde", "Tebuconazole", "Azokystrobin", "Control"))
+          axis.title.y=element_blank(),
+          legend.position = "none") +
+    scale_colour_manual(labels = c("Copper", "Nickel", "Chloramphenicol", "Ampicillin", "Atrazine", "Metaldehyde", "Tebuconazole", "Azoxystrobin", "Control"),
+                        values = unname(stressor_colours)) +
     # Add a control line
     geom_hline(yintercept = 0.05, colour = "grey")
   #scale_colour_manual(values = stressor_colours)
@@ -69,14 +71,8 @@ for (o in 1:8)
 }
 
 # Plot a dummy graph so we can get a legend.
-dummy_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes(time, Mean_OD)) +
-  geom_point(aes(colour = Stressor), size = 1, shape = 16, alpha = 1) +
-  scale_shape_identity() +
-  geom_smooth(aes(colour = Stressor), method="loess", se = FALSE) +
-  geom_hline(yintercept = 0.05, colour = "grey") 
+grob_leg <- get_legend(p1 + theme(legend.position = "left")) 
 
-
-grob_leg <- get_legend(dummy_plot)
 # Arange the plots with a shared legend
 ss_plots <- ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, grob_leg, ncol = 3, nrow = 3)
 # Print to PDF
