@@ -11,6 +11,7 @@ library(gridBase)
 library(gridExtra)
 library(ggpubr)
 library(viridis)
+library(here)
 
 setwd(here("Scripts"))
 
@@ -38,11 +39,11 @@ for (i in 1:8)
   assign(temp_plot_name, plot_i_temp)
 }
 
-# Plot together, aligned by species
-pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 11, height = 11.25, onefile = FALSE)
-annotate_figure(ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom"),
-                bottom = text_grob("Mean Predicted Additive Growth", size = 16),
-                left = text_grob("Mean Observed Growth", rot = 90, size = 16))
-dev.off()
+dummy_legend <- get_legend(p1 + theme(legend.position="right"))
 
-ggplot_build(p1)
+# Plot together, aligned by species
+pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 9, height = 9, onefile = FALSE)
+annotate_figure(ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, dummy_legend, ncol = 3, nrow = 3),
+                bottom = text_grob("Mean Predicted Additive Growth"),
+                left = text_grob("Mean Observed Growth", rot = 90))
+dev.off()

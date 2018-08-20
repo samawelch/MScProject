@@ -74,7 +74,7 @@ p3 <- ggplot(data = data3) +
 
 setwd(here("Scripts","Results"))
 
-pdf("Plot_Interactions_Illustrative.pdf", height = 4, width = 12)
+pdf("Plot_Interactions_Illustrative.pdf", height = 3, width = 9)
 annotate_figure(
 ggarrange(p1,p2,p3, ncol = 3, nrow = 1),
 left = text_grob("Response", rot = 90))
