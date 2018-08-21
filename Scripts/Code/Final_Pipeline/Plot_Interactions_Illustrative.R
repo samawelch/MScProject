@@ -15,6 +15,9 @@ library(viridis)
 
 interaction_order_vector <- c("A", "B", "Additive", "+S", "-S", "+A", "-A" )
 
+interaction_order_vector <- c("A", "B", "Additive", "+S", "-S", "+A", "-A" )
+
+
 setwd(here("Scripts"))
 
 data <- read.csv("Data/Expanded_Interaction_Definition_Data.csv")
