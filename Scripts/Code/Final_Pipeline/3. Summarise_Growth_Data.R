@@ -16,7 +16,7 @@ setwd(here("Scripts"))
 #######################
 
 # Pick a growth metric. This will be used in all dependent scripts, so choose carefully...
-growth_metric <- "Growth_auc_e"
+growth_metric <- "Max_Growth"
 # (UQ(rlang::sym(growth_metric))) notation is used to cleanly insert your chosen growth metric into data manipulation functions
 
 #######################
@@ -26,7 +26,7 @@ growth_metric <- "Growth_auc_e"
 # Make a new tibble with a clever name. And a measure of stressor richness.
 tidier_growth_data <-
   tidy_growth_data %>%
-  select(location, Growth_auc_e, Growth_auc_l, Growth_k, Growth_r, Growth_n0, Growth_sigma, Fit_notes, Copper, Nickel, Chloramphenicol, Ampicillin, Atrazine, Metaldehyde, Tebuconazole, Azoxystrobin, Isolate) %>%
+  select(location, Growth_auc_e, Growth_auc_l, Growth_k, Growth_r, Growth_n0, Growth_sigma, Max_Growth, Fit_notes, Copper, Nickel, Chloramphenicol, Ampicillin, Atrazine, Metaldehyde, Tebuconazole, Azoxystrobin, Isolate) %>%
   mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin)
 
 # Pull out our controls so we can average them by Isolate rather than location
@@ -37,7 +37,7 @@ temp_control_means <- tidier_growth_data %>%
   mutate(Mean = mean(UQ(rlang::sym(growth_metric)))) %>%
   mutate(SD = sd(UQ(rlang::sym(growth_metric)))) %>%
   mutate(n = n()) %>%
-  select(-Growth_auc_e, -Growth_auc_l, -Growth_k, -Growth_r, -Growth_n0, -Growth_sigma, -Fit_notes) %>%
+  select(-Growth_auc_e, -Growth_auc_l, -Growth_k, -Growth_r, -Growth_n0, -Growth_sigma, -Fit_notes, -Max_Growth) %>%
   distinct() %>% # TODO:  I still don't know a better way to average across rows in one fell swoop
   ungroup()
 
@@ -49,7 +49,7 @@ tidier_growth_data <- tidier_growth_data %>%
   mutate(Mean = mean(UQ(rlang::sym(growth_metric)))) %>%
   mutate(SD = sd(UQ(rlang::sym(growth_metric)))) %>%
   mutate(n = n()) %>%
-  select(-Growth_auc_e, -Growth_auc_l, -Growth_k, -Growth_r, -Growth_n0, -Growth_sigma, -Fit_notes) %>%
+  select(-Growth_auc_e, -Growth_auc_l, -Growth_k, -Growth_r, -Growth_n0, -Growth_sigma, -Fit_notes, -Max_Growth) %>%
   distinct() %>% 
   ungroup() %>%
   select(-location)

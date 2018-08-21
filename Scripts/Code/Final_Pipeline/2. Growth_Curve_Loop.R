@@ -10,6 +10,7 @@ library(growthcurver)
 library(gridBase)
 library(gridExtra)
 library(growthmodels)
+library(here)
 
 setwd(here("Scripts"))
 
@@ -42,9 +43,11 @@ tidy_growth_data <- tidy_data[0,] %>%
   select(-time, -OD)
 # We can use a for loop to calculate empirical area under the curve (auc_e) (for example) for every well
 # We can add a second for loop to this lumbering monstrosity to do so across all runs. Jesus wept.
-for (l in 1:wells_count)
+
+# This loop will run across the first three recorded runs. This is because the four run has a different number of timepoints per well, and it's easier
+# (but slower and cruder) to use two separate loops.
+for (l in 1:6432)
 {
-  # TODO: Can we tidy this up somehow?
   temp_data_growth_0 <- 
     tidy_data[((l-1) * timepoints_count + 1):(l * timepoints_count),] %>%     # Turn every timepoints_count measurements into a single df
     filter(time <= time_cutoff) %>%
@@ -63,6 +66,7 @@ for (l in 1:wells_count)
                                     Growth_n0 = temp_data_growth_1$vals$n0,
                                     Growth_sigma = temp_data_growth_1$vals$sigma,
                                     Fit_notes = temp_data_growth_1$vals$note,
+                                    Max_Growth = max(temp_data_growth_0$OD),
                                     Copper = temp_data_growth_0$Copper[[1]],
                                     Nickel = temp_data_growth_0$Nickel[[1]],
                                     Chloramphenicol = temp_data_growth_0$Chloramphenicol[[1]],
@@ -139,7 +143,49 @@ for (l in 1:wells_count)
   # temp_well_stressor_list <- "" # Don't forget to clear it here...
 }
 
+# Loop #2
+timepoints_count <- 10
+for (l in 6432:8576)
+{
+  temp_data_growth_0 <- 
+    tidy_data[((l-1) * timepoints_count + 1):(l * timepoints_count),] %>%     # Turn every timepoints_count measurements into a single df
+    filter(time <= time_cutoff) %>%
+    filter((time %% read_rate) == 0)                                          # Filter your data set down to readings ever n hours                      
+  temp_data_growth_1 <- SummarizeGrowth(temp_data_growth_0$time, temp_data_growth_0$OD)        # Generate a logistic model for this well's growth
+  
+  # If it's a good fit, it goes in. This is going to break a lot of interaction calculations for the time being.
+  if (temp_data_growth_1$vals$note == "")
+  {
+    temp_data_growth_2 <- bind_cols(location = temp_data_growth_0$location[[1]],
+                                    Run = temp_data_growth_0$Run[[1]],
+                                    Growth_auc_e = temp_data_growth_1$vals$auc_e,
+                                    Growth_auc_l = temp_data_growth_1$vals$auc_l,
+                                    Growth_k = temp_data_growth_1$vals$k, # TODO: Change coordinates to colnames.
+                                    Growth_r = temp_data_growth_1$vals$r,
+                                    Growth_n0 = temp_data_growth_1$vals$n0,
+                                    Growth_sigma = temp_data_growth_1$vals$sigma,
+                                    Fit_notes = temp_data_growth_1$vals$note,
+                                    Max_Growth = max(temp_data_growth_0$OD),
+                                    Copper = temp_data_growth_0$Copper[[1]],
+                                    Nickel = temp_data_growth_0$Nickel[[1]],
+                                    Chloramphenicol = temp_data_growth_0$Chloramphenicol[[1]],
+                                    Ampicillin = temp_data_growth_0$Ampicillin[[1]],
+                                    Metaldehyde = temp_data_growth_0$Metaldehyde[[1]],
+                                    Atrazine = temp_data_growth_0$Atrazine[[1]],
+                                    Tebuconazole = temp_data_growth_0$Tebuconazole[[1]],
+                                    Azoxystrobin = temp_data_growth_0$Azoxystrobin[[1]],
+                                    Isolate = temp_data_growth_0$Isolate[[1]])
+    
+    tidy_growth_data <- bind_rows(tidy_growth_data, temp_data_growth_2)
+  }
+  if (temp_data_growth_1$vals$note != "")
+  {
+    bad_fit_count = bad_fit_count + 1
+  }
+
+}
 
 # Just to give an idea of how good the fits are...
 cat("bad fits: \n", bad_fit_count, "\n")
 cat("of total wells: \n", wells_count, "\n")
+# This is broken now that there are different numbers of timepoint per well
