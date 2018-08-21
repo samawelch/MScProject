@@ -77,10 +77,11 @@ for (l in 1:(nrow(rangefinding_data) / 55))
 
   temp_data_growth_2 <- bind_cols(Growth_auc_e = temp_data_growth_1$vals$auc_e,
                                   Growth_k = temp_data_growth_1$vals$k,
-                                    Fit_notes = temp_data_growth_1$vals$note,
-                                    Stressor = temp_data_growth_0$stressor[[1]],
-                                    Concentration = temp_data_growth_0$Concentration[[1]],
-                                    Isolate = temp_data_growth_0$Isolate[[1]])
+                                  Fit_notes = temp_data_growth_1$vals$note,
+                                  Stressor = temp_data_growth_0$stressor[[1]],
+                                  Concentration = temp_data_growth_0$Concentration[[1]],
+                                  Isolate = temp_data_growth_0$Isolate[[1]],
+                                  Max_Growth = max(temp_data_growth_0$OD))
     
   rf_growth_data <- bind_rows(rf_growth_data, temp_data_growth_2)
 }
@@ -91,7 +92,7 @@ for (k in 1:8)
   temp_rangefinding <- rf_growth_data %>%
     filter(Stressor == names(concentration_stressor_vector[k])) %>%
     group_by(Isolate, Concentration, Stressor) %>%
-    summarise(Mean_growth = mean(Growth_auc_e))
+    summarise(Mean_growth = mean(Max_Growth))
   
   # (Don't) Add mean growth
   # temp_rangefinding <- temp_rangefinding %>%
@@ -109,7 +110,7 @@ for (k in 1:8)
       colour = Isolate)) +
     geom_point() +
     ggtitle(label = names(concentration_stressor_vector[k])) +
-    geom_smooth(method = "loess", se = FALSE) +
+    geom_smooth(method = "lm", se = FALSE) +
     geom_vline(xintercept = log(concentration_stressor_vector[k]), colour = "grey", linetype = "dashed") +
     annotate("text", 
              label = paste("Target concentration = ", concentration_stressor_vector[k], " μg/L", sep = ""), 
@@ -117,11 +118,12 @@ for (k in 1:8)
              vjust = 1,
              color = "grey",
              angle = 90) +
+    theme_gray() +
     theme(legend.position = "none",
           axis.title.y = element_blank(),
           axis.title.x = element_blank())	+
-    scale_y_continuous(limits = c(0,30)) + 
-    theme_gray()
+    scale_y_continuous(limits = c(0,1))
+
   
   assign(temp_plot_name, temp_plot)
 }
@@ -137,7 +139,7 @@ dummy_legend <- get_legend(
 setwd(here("Scripts","Results","Bug_Rangefinding"))
 pdf("plots_rangefinding.pdf", width = 9, height = 9)
 annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend, ncol = 3, nrow = 3),
-                left = text_grob("Mean Area Under Curver (OD)", rot = 90),
+                left = text_grob("Maximum OD", rot = 90),
                 bottom = text_grob(expression(paste("Log Concentration (", mu, "g/l)"))))
 dev.off()
 dev.off()
