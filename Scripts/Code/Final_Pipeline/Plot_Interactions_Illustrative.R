@@ -15,8 +15,7 @@ library(viridis)
 
 interaction_order_vector <- c("A", "B", "Additive", "+S", "-S", "+A", "-A" )
 
-interaction_order_vector <- c("A", "B", "Additive", "+S", "-S", "+A", "-A" )
-
+interaction_colour_vector <- c("A" = "#440154","B" = "#440154","Additive" = "#22a884", "+S" = "#fde725","-S" = "#7ad151", "+A" = "#414487", "-A" = "#2a788e")
 
 setwd(here("Scripts"))
 
@@ -28,7 +27,7 @@ p1 <- ggplot(data = data1) +
   geom_rect(aes(ymin = ymin, ymax = ymax, xmax = ID - 0.45, xmin = ID + 0.45, fill = Interaction)) +
   ylab(label = "Response") +
   scale_x_discrete(limits = interaction_order_vector) +
-  scale_color_viridis_d(aesthetics = "fill") +
+  scale_fill_manual(values = interaction_colour_vector, breaks = interaction_order_vector) +
   scale_y_continuous(expand = c(0,0), 
                      limits = c(-5.5, 5.5),
                      breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
@@ -45,7 +44,7 @@ p2 <- ggplot(data = data2) +
   geom_rect(aes(ymin = ymin, ymax = ymax, xmax = ID - 0.45, xmin = ID + 0.45, fill = Interaction)) +
   ylab(label = "Response") +
   scale_x_discrete(limits = interaction_order_vector) +
-  scale_color_viridis_d(aesthetics = "fill") +
+  scale_fill_manual(values = interaction_colour_vector, breaks = interaction_order_vector) +
   scale_y_continuous(expand = c(0,0), 
                      limits = c(-5.5, 5.5),
                      breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
@@ -63,7 +62,7 @@ p3 <- ggplot(data = data3) +
   geom_rect(aes(ymin = ymin, ymax = ymax, xmax = ID - 0.45, xmin = ID + 0.45, fill = Interaction)) +
   ylab(label = "Response") +
   scale_x_discrete(limits = interaction_order_vector) +
-  scale_color_viridis_d(aesthetics = "fill") +
+  scale_fill_manual(values = interaction_colour_vector, breaks = interaction_order_vector) +
   scale_y_continuous(expand = c(0,0), 
                      limits = c(-5.5, 5.5),
                      breaks = c(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5)) +
