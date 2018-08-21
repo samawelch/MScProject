@@ -12,7 +12,6 @@ library(stringr)
 
 
 setwd(here("Scripts")) # Hopefully a slighly more rational way to handle WDs. Run here() for project directory. 
-# See https://www.rdocumentation.org/packages/here/versions/0.1 for here package documentations.
 
 #Start from a tabula rasa
 rm(list=ls())

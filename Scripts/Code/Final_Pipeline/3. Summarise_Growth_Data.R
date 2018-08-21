@@ -16,7 +16,7 @@ setwd(here("Scripts"))
 #######################
 
 # Pick a growth metric. This will be used in all dependent scripts, so choose carefully...
-growth_metric <- "Max_Growth"
+growth_metric <- "Growth_auc_e"
 # (UQ(rlang::sym(growth_metric))) notation is used to cleanly insert your chosen growth metric into data manipulation functions
 
 #######################

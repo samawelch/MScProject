@@ -42,7 +42,7 @@ for (i in 1:8)
 dummy_legend <- get_legend(p1 + theme(legend.position="right"))
 
 # Plot together, aligned by species
-pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 9, height = 9, onefile = FALSE)
+pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 9, height = 9)
 annotate_figure(ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, dummy_legend, ncol = 3, nrow = 3),
                 bottom = text_grob("Mean Predicted Additive Growth"),
                 left = text_grob("Mean Observed Growth", rot = 90))

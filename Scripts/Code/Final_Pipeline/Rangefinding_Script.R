@@ -2,6 +2,7 @@
 
 library(tidyr)
 library(growthcurver)
+library(ggplot2)
 library(dplyr)
 library(stringr)
 library(here)
@@ -119,7 +120,8 @@ for (k in 1:8)
     theme(legend.position = "none",
           axis.title.y = element_blank(),
           axis.title.x = element_blank())	+
-    scale_y_continuous(limits = c(0,30))
+    scale_y_continuous(limits = c(0,30)) + 
+    theme_gray()
   
   assign(temp_plot_name, temp_plot)
 }

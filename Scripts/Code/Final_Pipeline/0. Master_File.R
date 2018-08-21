@@ -11,11 +11,12 @@ library(ggplot2)
 library(growthcurver)
 library(gridBase)
 library(gridExtra)
+library(here)
 
 setwd(here())
 
 ### Which runs are we including?
-runs_vector <- c(2,3,4)
+runs_vector <- c(2,3,4,5)
 
 #########################
 ### DATA MANIPULATION ###

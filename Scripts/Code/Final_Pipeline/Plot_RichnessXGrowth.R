@@ -1,6 +1,6 @@
 # Produces a basic plot of mixture complexity against a variety of metrics of growth from Growth_Curve_Loop.R. Prints to pdf.
 library(dplyr)
-library(tidyverse)
+library(tidyr)
 library(ggplot2)
 library(growthcurver)
 library(gridBase)
@@ -35,14 +35,14 @@ growthXrichness_mean <- ggplot(richness_growth_data, aes(as.factor(Richness), Me
   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
   geom_jitter(aes(colour = Isolate)) +
   xlab("Mixture Complexity") +
-  ylab("Mean Area Under Curve") 
+  ylab("Mean Max Growth") 
 
 growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.factor(Richness), Mean)) +
   geom_smooth(aes(group = Species, colour = Species), method = "lm", se = FALSE) +
   geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
   ggtitle("Mean Growth by Species") +
   xlab("Mixture Complexity") +
-  ylab("Mean Growth")
+  ylab("Mean Max Growth")
 
 # # Same for auc_l
 # growthXrichness_auc_l <- ggplot(richness_growth_data, aes(Richness, Growth_auc_l)) +
@@ -70,7 +70,7 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.fact
 #   ggtitle("growth rate")
 
 # We can do some linear modelling later and obtain some idea of the statistical soundness behind our measurements...
-pdf("Results/Final_Pipeline/growthXrichness.png", width = 9, height = 6)
+ggsave("Results/Final_Pipeline/growthXrichness.pdf", width = 9, height = 6)
 # ggarrange(growthXrichness_auc_e, growthXrichness_auc_l, growthXrichness_k, growthXrichness_r, common.legend = TRUE, legend = "right", ncol = 2, nrow = 2)
 growthXrichness_mean
 dev.off()

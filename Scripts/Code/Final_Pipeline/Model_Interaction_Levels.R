@@ -3,7 +3,7 @@
 library(dplyr)
 library(here)
 
-isolate_lm <- lm(Growth_auc_e ~ Isolate, tidy_growth_data)
+isolate_lm <- lm(Max_Growth ~ Isolate, tidy_growth_data)
 summary(isolate_lm)
 
 # Setting this as an empty vector now so that the lmf_1 will only contain itself, but
@@ -51,19 +51,20 @@ aic <- AIC(lm_1, lm_2, lm_3, lm_4, lm_5, lm_6, lm_7, lm_8)
 # And then pick out interactions on the basis of effect size/statistical significance...
 summary(lm_1)
 anova(lm_1)
-# Currently dealing with model saturation. Needs work.
 
 aic_tib <- as.tibble(aic) %>%
-  bind_cols(lm = c("lm1","lm2","lm3","lm4","lm5","lm6","lm7","lm8")) 
+  bind_cols(lm = c("lm1","lm2","lm3","lm4","lm5","lm6","lm7","lm8")) %>%
+  rename(AIC_df = df)
 
-ggplot(data = aic_tib, aes(x = lm, y = AIC)) +
-  geom_point(aes(size = df))
+lm_anova_tibble <- as.tibble(lm_anova) %>%
+  bind_cols(aic_tib)
+
 # Lower AIC is better?
+
 setwd(here("Scripts"))
-write.csv(lm_anova, "Results/Final_Pipeline/lm_anova_results.csv")
-write.csv(aic_tib, "Results/Final_Pipeline/aic_results.csv")
+write.csv(lm_anova_tibble, "Results/Final_Pipeline/lm_stats_results.csv")
 
 # What's our critical F-value?
 alpha = 0.05
 qf(1-alpha, lm_anova[1,1], lm_anova[2,1])
-# 1.07
+# 1.042

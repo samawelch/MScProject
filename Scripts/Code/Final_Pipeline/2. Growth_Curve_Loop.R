@@ -46,12 +46,12 @@ tidy_growth_data <- tidy_data[0,] %>%
 
 # This loop will run across the first three recorded runs. This is because the four run has a different number of timepoints per well, and it's easier
 # (but slower and cruder) to use two separate loops.
+timepoints_count <- 13
 for (l in 1:6432)
 {
   temp_data_growth_0 <- 
     tidy_data[((l-1) * timepoints_count + 1):(l * timepoints_count),] %>%     # Turn every timepoints_count measurements into a single df
-    filter(time <= time_cutoff) %>%
-    filter((time %% read_rate) == 0)                                          # Filter your data set down to readings ever n hours                      
+    filter(time <= time_cutoff)            
   temp_data_growth_1 <- SummarizeGrowth(temp_data_growth_0$time, temp_data_growth_0$OD)        # Generate a logistic model for this well's growth
   
   # If it's a good fit, it goes in. This is going to break a lot of interaction calculations for the time being.
@@ -61,7 +61,7 @@ for (l in 1:6432)
                                     Run = temp_data_growth_0$Run[[1]],
                                     Growth_auc_e = temp_data_growth_1$vals$auc_e,
                                     Growth_auc_l = temp_data_growth_1$vals$auc_l,
-                                    Growth_k = temp_data_growth_1$vals$k, # TODO: Change coordinates to colnames.
+                                    Growth_k = temp_data_growth_1$vals$k, 
                                     Growth_r = temp_data_growth_1$vals$r,
                                     Growth_n0 = temp_data_growth_1$vals$n0,
                                     Growth_sigma = temp_data_growth_1$vals$sigma,
@@ -144,13 +144,12 @@ for (l in 1:6432)
 }
 
 # Loop #2
-timepoints_count <- 10
-for (l in 6432:8576)
+timepoints_count <- 10 # the issue is by setting timepoints here we start our second for loop (3 * 6433) positions earlier than we should...
+for (l in 1:2144)
 {
-  temp_data_growth_0 <- 
-    tidy_data[((l-1) * timepoints_count + 1):(l * timepoints_count),] %>%     # Turn every timepoints_count measurements into a single df
-    filter(time <= time_cutoff) %>%
-    filter((time %% read_rate) == 0)                                          # Filter your data set down to readings ever n hours                      
+  temp_data_growth_0 <-
+    tidy_data[((l-1) * timepoints_count + 83617) : ((l * timepoints_count) + 83616), ] %>%     # Turn every timepoints_count measurements into a single df
+    filter(time <= time_cutoff)                                                       
   temp_data_growth_1 <- SummarizeGrowth(temp_data_growth_0$time, temp_data_growth_0$OD)        # Generate a logistic model for this well's growth
   
   # If it's a good fit, it goes in. This is going to break a lot of interaction calculations for the time being.
