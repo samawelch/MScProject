@@ -30,17 +30,17 @@ for (s in 1:8)
 {
   # Create a tibble of all measurements for our chosen isolate
   isolate_tidier_growth_data <- tidier_growth_data %>%
-    select(Copper, Nickel, Chloramphenicol, Ampicillin, Metaldehyde, Atrazine, Tebuconazole, Azoxystrobin, Isolate, Mean, SD, Richness, n) %>%
+    select(Copper, Nickel, Chloramphenicol, Ampicillin, Metaldehyde, Atrazine, Tebuconazole, Azoxystrobin, Isolate, Mean, SD, Complexity, n) %>%
     filter(Isolate == isolates_vector[s]) 
   
   # Calculate a baseline from controls
   control_baseline <- isolate_tidier_growth_data %>%
-    filter(Richness == 0) %>%
+    filter(Complexity == 0) %>%
     select(Isolate, Mean, SD, n)
   
   # A tibble of single stressors
   single_stressor_growth_data <- isolate_tidier_growth_data %>%
-    filter(Richness == 1) %>%
+    filter(Complexity == 1) %>%
     mutate(mean_effect = Mean - control_baseline$Mean) %>%
     mutate(sd_effect = sqrt((SD ^ 2) + (control_baseline$SD ^ 2))) %>% # New SD is the square root of the summed squared SDs
     mutate(n_effect = n) %>%
@@ -61,7 +61,7 @@ for (s in 1:8)
   
   # get rid of presence/absence columns
   single_stressor_growth_data <- single_stressor_growth_data %>%
-    select(-Copper, -Nickel, -Chloramphenicol, -Ampicillin, -Metaldehyde, -Atrazine, -Tebuconazole, -Azoxystrobin, -Mean, -SD, -Richness, -n)
+    select(-Copper, -Nickel, -Chloramphenicol, -Ampicillin, -Metaldehyde, -Atrazine, -Tebuconazole, -Azoxystrobin, -Mean, -SD, -Complexity, -n)
   
   # This ugly boy here reorders the single stressor data to stressors_vector so I don't accidentally predict using the wrong data!
   single_stressor_growth_data$Stressor <- factor(single_stressor_growth_data$Stressor, levels = stressors_vector)
@@ -70,7 +70,7 @@ for (s in 1:8)
   
   # And all mixtures
   mixture_tidier_growth_data <- isolate_tidier_growth_data %>%
-    filter(Richness > 1) %>%
+    filter(Complexity > 1) %>%
     mutate(obs_mean = Mean - control_baseline$Mean) %>%
     mutate(obs_sd = sqrt((SD ** 2) + (control_baseline$SD ** 2))) %>%
     mutate(obs_n = n) %>%
@@ -87,7 +87,7 @@ for (s in 1:8)
     temp_stressors <- vector(mode = "numeric", length = 8)
     for (q in 1:8)
     {
-      if ((mixture_tidier_growth_data[p,q] == 1) && (mixture_counter < mixture_tidier_growth_data$Richness[p]))
+      if ((mixture_tidier_growth_data[p,q] == 1) && (mixture_counter < mixture_tidier_growth_data$Complexity[p]))
       {
         # If a stressor is present, add the relevant means and sd from single_stressor_growth_data
         # We're summming means here because we're calculating an additive effect
@@ -98,12 +98,12 @@ for (s in 1:8)
         # And append the stressor effect to temp_stressors so we can calculate the regions of Piggott synergy and antagonism
         temp_stressors[q] <- single_stressor_growth_data$mean_effect[q]
       } 
-      if (mixture_counter == mixture_tidier_growth_data$Richness[p])
+      if (mixture_counter == mixture_tidier_growth_data$Complexity[p])
       {
         # Once the additive mean and sd are calculated, we can compare the two to determine the interaction type. This is where it gets complicated.
         
         # Divide the pred_n by richness and round it up
-        mixture_tidier_growth_data$pred_n[p] <- ceiling((mixture_tidier_growth_data$pred_n[p])/(mixture_tidier_growth_data$Richness[p]))
+        mixture_tidier_growth_data$pred_n[p] <- ceiling((mixture_tidier_growth_data$pred_n[p])/(mixture_tidier_growth_data$Complexity[p]))
         
         # Now we need to t-test the observed vs predicted effect. We'll be rejecting the null hypothesis for p < 0.05
         additive_test <- t.test2(mixture_tidier_growth_data$pred_mean[p], mixture_tidier_growth_data$obs_mean[p], 
@@ -150,7 +150,7 @@ for (s in 1:8)
     
     temp_plot <- 
       ggplot(data = filter(all_interactions_tibble, Isolate == isolates_vector[s]), 
-             aes(x = as.factor(Richness), 
+             aes(x = as.factor(Complexity), 
                  fill = Interaction,
                  width = 0.9)) +
       

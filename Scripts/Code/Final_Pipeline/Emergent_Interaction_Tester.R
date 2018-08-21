@@ -33,12 +33,12 @@ for (i in 1:8)
   {
     # For a given higher-order (n > 2) mixture, filter the tibble down
     temp_ho_emergent_interaction_tibble <- emergent_interactions_tibble %>%
-      filter(Richness == o) %>% # in retrospect Richness == o is not very human-friendly
+      filter(Complexity == o) %>% # in retrospect Complexity == o is not very human-friendly
       filter(Isolate == isolates_vector[i])
     
     # Also generate a tibble of n-1 order interactions
     temp_component_emergent_interaction_tibble <- emergent_interactions_tibble %>%
-      filter(Richness == o-1) %>%
+      filter(Complexity == o-1) %>%
       filter(Isolate == isolates_vector[i])
     
     # Now let's work out way through the combinations
@@ -52,7 +52,7 @@ for (i in 1:8)
           temp_filter_vector[q] <- colnames(temp_ho_emergent_interaction_tibble[q])
         }
       }
-      # Now that we've got a vector of all the stressors we care about, we can use it to filter the Richness == (n-1) dataset
+      # Now that we've got a vector of all the stressors we care about, we can use it to filter the Complexity == (n-1) dataset
       # Remove empty elements
       temp_filter_vector <- temp_filter_vector[temp_filter_vector != ""]
       # paste paste paste
@@ -116,7 +116,7 @@ for (i in 1:8)
   
   temp_plot <- 
     ggplot(data = filter(emergent_interactions_tibble_app, Isolate == isolates_vector[i]), 
-           aes(x = as.factor(Richness), 
+           aes(x = as.factor(Complexity), 
                fill = pred_comp_interaction),
            width = 0.9) +
     

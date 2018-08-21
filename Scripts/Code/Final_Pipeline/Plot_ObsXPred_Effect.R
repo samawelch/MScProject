@@ -21,7 +21,7 @@ for (i in 1:8)
   interactions_temp <- filter(all_interactions_tibble, Isolate == isolates_vector[i])
   
   plot_i_temp <- ggplot(interactions_temp, aes(x = pred_mean, y = obs_mean)) +
-    geom_point(aes(colour = Richness), size = 2, alpha = 0.9, shape = 16) +
+    geom_point(aes(colour = Complexity), size = 2, alpha = 0.9, shape = 16) +
     scale_colour_viridis(discrete = FALSE) +
     theme(legend.position="none") +
     geom_abline(slope = 1, intercept = 0, colour = "grey", size = 1) +

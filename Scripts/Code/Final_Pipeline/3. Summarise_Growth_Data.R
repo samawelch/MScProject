@@ -27,11 +27,11 @@ growth_metric <- "Growth_auc_e"
 tidier_growth_data <-
   tidy_growth_data %>%
   select(location, Growth_auc_e, Growth_auc_l, Growth_k, Growth_r, Growth_n0, Growth_sigma, Max_Growth, Fit_notes, Copper, Nickel, Chloramphenicol, Ampicillin, Atrazine, Metaldehyde, Tebuconazole, Azoxystrobin, Isolate) %>%
-  mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin)
+  mutate(Complexity = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin)
 
 # Pull out our controls so we can average them by Isolate rather than location
 temp_control_means <- tidier_growth_data %>%
-  filter(Richness == 0) %>%
+  filter(Complexity == 0) %>%
   select(-location) %>%
   group_by(Isolate) %>%
   mutate(Mean = mean(UQ(rlang::sym(growth_metric)))) %>%
@@ -43,8 +43,8 @@ temp_control_means <- tidier_growth_data %>%
 
 # Average the remaining treatment wells by location
 tidier_growth_data <- tidier_growth_data %>%
-  mutate(Richness = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
-  filter(Richness != 0) %>%
+  mutate(Complexity = Copper + Nickel + Chloramphenicol + Ampicillin + Atrazine + Metaldehyde + Tebuconazole + Azoxystrobin) %>%
+  filter(Complexity != 0) %>%
   group_by(location) %>%
   mutate(Mean = mean(UQ(rlang::sym(growth_metric)))) %>%
   mutate(SD = sd(UQ(rlang::sym(growth_metric)))) %>%

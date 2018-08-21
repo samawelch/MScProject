@@ -16,28 +16,28 @@ source('Code/Final_Pipeline/Function_Aggregate_Fun_Groups.R')
 # Let's graph a bunch of growth parameters against stressor richness 
 # First things first: transmute stressor presence/absence to a single richness column
 richness_growth_data <- tidier_growth_data %>%
-  select(Richness, Isolate, Mean, SD) %>%
+  select(Complexity, Isolate, Mean, SD) %>%
   filter(Isolate != "Control")
 
 # and for the sake of completeness
 richness_functional_growth_data <- aggregate_functional_groups(tidier_growth_data) %>%
-  select(Richness, Species, Mean, SD) %>%
+  select(Complexity, Species, Mean, SD) %>%
   filter(Species != "Control")
 
 # More means by richness
 # richness_growth_data <- richness_growth_data %>%
-#   group_by(Richness, Isolate) %>%
+#   group_by(Complexity, Isolate) %>%
 #   summarise(Mean = mean(Mean), SD = sqrt(sum(SD ^ 2)))
 
 # And graph growth against richness, by species of bacteria
-growthXrichness_mean <- ggplot(richness_growth_data, aes(as.factor(Richness), Mean)) +
+growthXrichness_mean <- ggplot(richness_growth_data, aes(as.factor(Complexity), Mean)) +
   scale_shape_identity() +
   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
   geom_jitter(aes(colour = Isolate)) +
   xlab("Mixture Complexity") +
   ylab("Mean Max Growth") 
 
-growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.factor(Richness), Mean)) +
+growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.factor(Complexity), Mean)) +
   geom_smooth(aes(group = Species, colour = Species), method = "lm", se = FALSE) +
   geom_smooth(aes(colour = "Overall"), method = "lm", se = FALSE) +
   ggtitle("Mean Growth by Species") +
@@ -45,7 +45,7 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.fact
   ylab("Mean Max Growth")
 
 # # Same for auc_l
-# growthXrichness_auc_l <- ggplot(richness_growth_data, aes(Richness, Growth_auc_l)) +
+# growthXrichness_auc_l <- ggplot(richness_growth_data, aes(Complexity, Growth_auc_l)) +
 #   geom_point(aes(colour = Isolate, shape = 1)) +
 #   scale_shape_identity() +
 #   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
@@ -53,7 +53,7 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.fact
 #   ggtitle("auc_l")
 # 
 # # Same for k (max growth?)
-# growthXrichness_k <- ggplot(richness_growth_data, aes(Richness, Growth_k)) +
+# growthXrichness_k <- ggplot(richness_growth_data, aes(Complexity, Growth_k)) +
 #   geom_point(aes(colour = Isolate, shape = 1)) +
 #   scale_shape_identity() +
 #   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
@@ -62,7 +62,7 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.fact
 #   ggtitle("carrying capacity")
 # 
 # # might as well also do
-# growthXrichness_r <- ggplot(richness_growth_data, aes(Richness, Growth_r)) +
+# growthXrichness_r <- ggplot(richness_growth_data, aes(Complexity, Growth_r)) +
 #   geom_point(aes(colour = Isolate, shape = 1)) +
 #   scale_shape_identity() +
 #   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
@@ -78,14 +78,14 @@ dev.off()
 
 
 # A non-visual measure of fit goodness would also be a good idea
-lm_MxR <- lm(Mean ~ Richness + Isolate, richness_growth_data)
+lm_MxR <- lm(Mean ~ Complexity + Isolate, richness_growth_data)
 par(mfrow = c(2, 2), mar = c(5, 5, 1.5, 1.5))
 plot(lm_MxR)
-cor.test(richness_growth_data$Mean, richness_growth_data$Richness, use = "pairwise")
+cor.test(richness_growth_data$Mean, richness_growth_data$Complexity, use = "pairwise")
 summary(lm_MxR)
 
 # By species
-lm_MxR_F <- lm(Mean ~ Species + Richness, richness_functional_growth_data)
+lm_MxR_F <- lm(Mean ~ Species + Complexity, richness_functional_growth_data)
 par(mfrow = c(2, 2), mar = c(5, 5, 1.5, 1.5))
 plot(lm_MxR_F)
 summary(lm_MxR_F)
