@@ -393,7 +393,7 @@ Additivity-predicted effect (eq. \ref{E:pred_effect_calc}) was then calculated u
 
 \begin{equation}
 \text{\textit{Predicted Stressor Effect}} = \sum \text{\textit{individual Stressor Effects}}
-% I had to add a new package here just so I could code 'Effect' as text, because LaTeX is Shit At Kerning™
+% I had to add a new package here just so I could code 'Effect' as text, because \LaTeX is Shit At Kerning™
 \label{E:pred_effect_calc}
 \end{equation}
 
@@ -406,10 +406,10 @@ Effect type was classified according to the definitions found in Piggott, Townse
     \label{fig:interaction_ranges}
 \end{figure}
 
-Eight nest multiple linear regressions were fitted to the data using a nested set combinations of stressors, from individual stressors to eight-way combinations and all less complex combinations, to explain variation, and determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both a one-way ANOVA to F-test nested models, to apply an F-test to models, and Akaike Information Criteria test (AIC), to compare models with a penalty for number of estimated parameters \cite{Akaike1974}. 
+Eight nested multiple linear regressions were fitted to the data using a nested set of combinations of stressors. The simplest model (Complexity = 1) attempted to explain variation using only an intercept and the effects of eight individual stressors. The next simplest model (Complexity = 2) included the previous model's explanatory variables, but added all possible two-way stressor combinations as additional variables, and so forth, to the most complex model (Complexity = 8). This permitted us to determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both a one-way ANOVA to F-test nested models, to apply an F-test to models, and Akaike Information Criteria test (AIC), to compare models with a penalty for number of estimated parameters \cite{Akaike1974}. 
 
 A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean (eq. \ref{E:pred_mean}, standard deviation (eq. \ref{E:pred_sd}) and sample size (eq. \ref{E:pred_n} were calculated per isolate as follows: 
-\begin{equation}
+\begin{equation}[ht]
     m_c = \sum_{i = 1}^{c_n}\Big(\frac{m_c-1}{c_n}\Big)
 \label{E:pred_mean}    
 \end{equation}
@@ -446,7 +446,7 @@ Isolates showed a variable response across the spread of rangefinding concentrat
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Bug_Rangefinding/plots_rangefinding.pdf}
-    \caption{Mean area under growth curve at $\lambda$ = 590 nm by isolate, across target concentration ÷ 10, target concentration (dotted grey line), target concentration × 10 and target concentration × 100 (see table 2). Local area polynomial regression (LOESS) fitted to data points for illustrative purposes. n = 3 for all combinations of isolate, stressor and concentration.}
+    \caption{Maximum Optical Density at $\lambda$ = 590 nm over 48h growth, by isolate, across target concentration ÷ 10, target concentration (dotted grey line), target concentration × 10 and target concentration × 100 (see table \ref{tab:stressors}). Local area polynomial regression (LOESS) fitted to data points for illustrative purposes. n = 3 for all combinations of isolate, stressor and concentration. \textit{Note that Maximum OD was used to distinguish growth in the original rangefinding and thus is retained as a metric in this graphic.}}
     \label{fig:rangefinding}
 \end{figure}
 
@@ -472,7 +472,7 @@ Due to a number of issues with isolate growth in liquid media and manual pipetti
 {Soil Community} & 3.1 & 1.7\\
 \bottomrule
 \end{tabular}
-\caption{Sample size mean and standard distribution by isolate.}
+\caption{Experimental issues caused sample sizes (n) to vary across isolates and stressor mixtures. This table gives mean sample size $\pm$ a standard deviation calculated on a per-isolate basis.}
 \label{tab:samples}
 \end{table}
 
@@ -493,12 +493,12 @@ Isolates displayed a variety of responses (\cref{fig:sstress}) to the various st
 \subsection{Growth by Stressor Complexity}
 \label{S:3:4}
 
-Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship between complexity and growth. Species identities \textit{B. simplex}, \textit{E. coli}, \textit{V. paradoxus} and the soil community were good predictors of variation (p $<$ 0.05).
+Modelling mean growth as either isolate or species versus mixture complexity did not reveal a statistically significant relationship (intercept = 0.03, p = 0.07) between complexity and growth. Isolate identity was a good predictor of variation except (p < 0.05), however, coefficient varied considerably in the case of one species, with \textit{B. simplex}'s KUE4\_4 displaying an intercept of -0.43 and NUE1\_1 an intercept of 0.63. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/growthXrichness.pdf}
-    \caption{Growth by complexity}
+    \caption{Mean Area under Growth Curve at $\lambda$ = 590 nm versus complexity of 256 mixtures of 1-8 chemical stressors. Individual data points are included as a measure of variance, and are displayed horizontally to reduce overlap.}
     \label{fig:growthXcomplex}
 \end{figure}
 
@@ -611,9 +611,11 @@ Recent advances in the understanding of higher-order effects of complex stressor
 \label{S:6}
 First and foremost I would like to thank my parents, without whose patience, support, and advice none of which would be possible.
 
-Over the course of this project I benefited from the guiding influence of my official supervisors, Dr Tom Bell and Dr Emma Ransome, who were encouraging, supportive, educational, and, when necessary, firm. Dr Shorok Mombriktob was also of indispensable assistance, providing isolates, soil samples, advice, and training on use of certain temperamental pieces of lab equipment. Chris, Nilita, Kate, Alice, and Meirion, also of Unit C, helped with other elements of my labwork.
+Over the course of this project I benefited from the guiding influence of my official supervisors, Dr Tom Bell and Dr Emma Ransome, who were encouraging, supportive, educational, and, when necessary, firm. Dr Shorok Mombrikotb was also of indispensable assistance, providing isolates, soil samples, advice, and training on use of certain temperamental pieces of lab equipment. Chris, Nilita, Kate, Alice, and Meirion, also of Unit C, helped with other elements of my labwork.
 
-Lastly in addition to the academic and commercial software and software packages cited in the main text and reference, I would like to thank to thank Chris West, who produced a batch Excel worksheet to .csv converter which was invaluable in the processing of my raw data. I've since learned that I had an R package that does the same thing installed the whole time...
+In addition to the academic and commercial software and software packages cited in the main text and reference, I would like to thank to thank Chris West, who produced a batch Excel worksheet to .csv converter which was invaluable in the processing of my raw data. I've since learned that I had an R package that does the same thing installed the whole time...
+
+This report was typeset in \LaTeX, using the online editor Overleaf, and the following packages: \textit{graphicx, amssymb, amsthm, rotating, booktabs, tabularx, array, siunitx,  textcomp, pdflscape, xcolor,  appendix, hyperref, final, threeparttable, scalefnt, inputenc, fontenc, amssymb, cleveref, float, geometry, amsmath}, which went some way to making \LaTeX a less frustrating piece of software to use.   
 
 \section{References}
 \label{S:7}
