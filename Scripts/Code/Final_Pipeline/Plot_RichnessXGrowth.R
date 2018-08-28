@@ -43,7 +43,8 @@ growthXrichness_mean <- ggplot(richness_growth_data, aes(as.factor(Complexity), 
   geom_jitter(aes(colour = Isolate)) +
   xlab("Mixture Complexity") +
   ylab("Mean Area under Growth Curve") +
-  scale_colour_brewer(palette = "Set1")
+  scale_colour_brewer(palette = "Set1") +
+  theme(legend.position="bottom")
 
 growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.factor(Complexity), Mean)) +
   geom_smooth(aes(group = Species, colour = Species), method = "lm", se = FALSE) +
@@ -78,7 +79,7 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.fact
 #   ggtitle("growth rate")
 
 # We can do some linear modelling later and obtain some idea of the statistical soundness behind our measurements...
-ggsave("Results/Final_Pipeline/growthXrichness.pdf", width = 9, height = 6)
+ggsave("Results/Final_Pipeline/growthXrichness.pdf", width = 9, height = 7)
 # ggarrange(growthXrichness_auc_e, growthXrichness_auc_l, growthXrichness_k, growthXrichness_r, common.legend = TRUE, legend = "right", ncol = 2, nrow = 2)
 growthXrichness_mean
 dev.off()
