@@ -91,8 +91,7 @@ for (k in 1:8)
 {
   temp_rangefinding <- rf_growth_data %>%
     filter(Stressor == names(concentration_stressor_vector[k])) %>%
-    group_by(Isolate, Concentration, Stressor) %>%
-    summarise(Mean_growth = mean(Max_Growth))
+    group_by(Isolate, Concentration, Stressor)
   
   # (Don't) Add mean growth
   # temp_rangefinding <- temp_rangefinding %>%
@@ -106,7 +105,7 @@ for (k in 1:8)
   temp_plot <- 
     ggplot(data = temp_rangefinding, aes(
       x = log(Concentration),
-      y = Mean_growth, 
+      y = Max_Growth, 
       colour = Isolate)) +
     geom_point() +
     ggtitle(label = names(concentration_stressor_vector[k])) +
@@ -131,7 +130,7 @@ for (k in 1:8)
 dummy_legend <- get_legend(
     ggplot(data = temp_rangefinding, aes(
       x = log(Concentration),
-      y = Mean_growth, 
+      y = Max_Growth, 
       colour = Isolate)) +
     geom_point()
 )

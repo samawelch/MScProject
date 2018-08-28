@@ -54,7 +54,7 @@ for (o in 1:8)
   temp_isolate <- isolates_vector[o]
   temp_plot <- ggplot(filter(isolate_single_stress, Isolate == temp_isolate), aes(time, Mean_OD)) +
     ylim(0,0.5) +
-    # geom_errorbar(aes(colour = Stressor, ymin = Mean_OD - SD_OD, ymax = Mean_OD + SD_OD), position = position_dodge(width = 5)) +
+    geom_errorbar(aes(colour = Stressor, ymin = Mean_OD - SD_OD, ymax = Mean_OD + SD_OD), position = position_dodge(width = 5)) +
     geom_smooth(aes(colour = Stressor), se = FALSE, method = "loess") +
     ggtitle(isolates_species_vector[o]) +
     theme_grey() +

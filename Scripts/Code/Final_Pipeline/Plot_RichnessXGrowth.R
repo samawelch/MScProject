@@ -24,6 +24,14 @@ richness_functional_growth_data <- aggregate_functional_groups(tidier_growth_dat
   select(Complexity, Species, Mean, SD) %>%
   filter(Species != "Control")
 
+richness_growth_data$Isolate <- as.character(richness_growth_data$Isolate)
+
+# Change isolate names to isolate/species names
+for (i in 1:8)
+{
+  richness_growth_data$Isolate[richness_growth_data$Isolate == isolates_vector[i]] <- isolates_species_vector[i]
+}
+
 # More means by richness
 # richness_growth_data <- richness_growth_data %>%
 #   group_by(Complexity, Isolate) %>%
@@ -31,11 +39,11 @@ richness_functional_growth_data <- aggregate_functional_groups(tidier_growth_dat
 
 # And graph growth against richness, by species of bacteria
 growthXrichness_mean <- ggplot(richness_growth_data, aes(as.factor(Complexity), Mean)) +
-  scale_shape_identity() +
   geom_smooth(aes(group = Isolate, colour = Isolate), method = "lm", se = FALSE) +
   geom_jitter(aes(colour = Isolate)) +
   xlab("Mixture Complexity") +
-  ylab("Mean Max Growth") 
+  ylab("Mean Area under Growth Curve") +
+  scale_colour_brewer(palette = "Set1")
 
 growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.factor(Complexity), Mean)) +
   geom_smooth(aes(group = Species, colour = Species), method = "lm", se = FALSE) +

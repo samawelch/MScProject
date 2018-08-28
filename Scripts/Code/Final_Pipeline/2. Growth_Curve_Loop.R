@@ -174,6 +174,7 @@ for (l in 1:2144)
                                     Tebuconazole = temp_data_growth_0$Tebuconazole[[1]],
                                     Azoxystrobin = temp_data_growth_0$Azoxystrobin[[1]],
                                     Isolate = temp_data_growth_0$Isolate[[1]])
+                  
     
     tidy_growth_data <- bind_rows(tidy_growth_data, temp_data_growth_2)
   }

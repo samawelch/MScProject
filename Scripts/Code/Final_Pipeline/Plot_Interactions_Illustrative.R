@@ -53,7 +53,7 @@ p2 <- ggplot(data = data2) +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.y = element_blank()) +
   ggtitle(label = "Opposing Interactions", subtitle = "Example: Antibacterial x Food Source") +
-  theme(axis.text.x = element_text(size = 10, angle = 0),
+  theme(axis.text.x = element_text(size = 9, angle = 0),
         legend.position = "none",
         axis.title.y = element_blank(),
         axis.text.y = element_blank())
@@ -71,7 +71,7 @@ p3 <- ggplot(data = data3) +
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.y = element_blank()) +
   ggtitle(label = "Double Positive Interactions", subtitle = "Example: Food Source x Food Source") +
-  theme(axis.text.x = element_text(size = 10, angle = 0),
+  theme(axis.text.x = element_text(size = 9, angle = 0),
         legend.position = "none",
         axis.title.y = element_blank(),
         axis.text.y = element_blank())
