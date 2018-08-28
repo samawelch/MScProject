@@ -79,7 +79,7 @@ growthXfunc_richness_mean <- ggplot(richness_functional_growth_data, aes(as.fact
 #   ggtitle("growth rate")
 
 # We can do some linear modelling later and obtain some idea of the statistical soundness behind our measurements...
-ggsave("Results/Final_Pipeline/growthXrichness.pdf", width = 9, height = 7)
+pdf("Results/Final_Pipeline/growthXrichness.pdf", width = 9, height = 7)
 # ggarrange(growthXrichness_auc_e, growthXrichness_auc_l, growthXrichness_k, growthXrichness_r, common.legend = TRUE, legend = "right", ncol = 2, nrow = 2)
 growthXrichness_mean +
   theme(legend.key.size = unit(1.1, "cm"))
