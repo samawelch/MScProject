@@ -8,6 +8,7 @@ Should you find yourself in the uneviable position of needing to re-run my code,
 * `setwd()` should automatically adjust to wherever you've cloned this repository to, as long as you've remembered to install `here`.
 * Please run the numbered scripts in order (1-4) before attempting to run any plotting scripts. 
 * Experimental data is currently read from a series of .csvs in the Run_X series of folders. This was set up before I found out about the wide range of packages that can extract data directly from Excel worksheets. Should you need to re-use any of the scripts contained here, I would recommend using a function from this package in place of the existing for loop. 
+* Should you have any further questions, I can be contacted here, on GitHub.
 
 ## R packages used:
 ```
