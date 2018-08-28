@@ -1,6 +1,5 @@
-\documentclass[10pt,letter]{article}
-\usepackage[top=0.85in,left=1.5in,footskip=0.75in]{geometry}
-
+\documentclass[10pt]{article}
+\usepackage[top=0.85in,left=2.5in,footskip=0.75in]{geometry}
 % amsmath and amssymb packages, useful for mathematical formulas and symbols
 \usepackage{amsmath,amssymb}
 
@@ -62,15 +61,15 @@
 \usepackage{amssymb}
 \usepackage{cleveref}
 \usepackage{float}
-\usepackage{geometry}
 \usepackage{amsmath}
+\usepackage{setspace}
 
 %% Keeps tables looking tolerable.
 \newcolumntype{K}{>{\centering\arraybackslash}m{4cm}}
 \newcolumntype{L}{>{\centering\arraybackslash}m{2.7cm}}
 \newcolumntype{M}{>{\centering\arraybackslash}m{3cm}}
 \newcolumntype{N}{>{\centering\arraybackslash}m{1.2cm}}
-\newcolumntype{O}{>{\centering\arraybackslash}m{0.6cm}}
+\newcolumntype{O}{>{\centering\arraybackslash}m{0.5cm}}
 \newcolumntype{P}{>{\centering\arraybackslash}m{2.2cm}}
 
 %% That perfect ggplot grey for consistency
@@ -97,10 +96,16 @@
 \hline
 \noalign{\global\arrayrulewidth\savedwidth}}
 
+% Apparently aligning a title to the left is too complex for \LaTeX
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+\begin{flushleft}
+  \textbf{\@title}
 
-% Remove comment for double spacing
-%\usepackage{setspace} 
-%\doublespacing
+  \@author
+\end{flushleft}\egroup
+}
+\makeatother
 
 % Text layout
 \raggedright
@@ -120,8 +125,6 @@
 \makeatletter
 \renewcommand{\@biblabel}[1]{\quad#1.}
 \makeatother
-
-
 
 % Header and Footer with logo
 \usepackage{lastpage,fancyhdr,graphicx}
@@ -144,39 +147,58 @@
 \newcommand{\ipsum}{{\bf IPSUM}}
 
 %% END MACROS SECTION
-
+\title{\Large{Are regulatory limits on pollutants sufficient to protect from emergent mixture effects?}}
+\author{Samuel A. Welch\textsuperscript{1}}
 
 \begin{document}
-\vspace*{0.2in}
 
-% Title must be 250 characters or less.
 \begin{flushleft}
-{\Large
-\textbf\newline{Title of submission to PLOS journals} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
-}
-\newline
-% Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
-\\
-Samuel A. Welch
-\\
+\maketitle
 \bigskip
-Department of Life Sciences, Silwood Park, Imperial College London, United Kingdom
+\textbf{1.} Department of Life Sciences, Silwood Park, Imperial College London, United Kingdom
 \bigskip
-
 \end{flushleft}
+\vspace{1.3cm}
+
+\begin{center}
+\includegraphics[scale = 0.4]{docs/badnews8ways.png}
+
+\vspace{1.3cm}
+
+A thesis submitted in partial fulfilment of the requirements for the degree of Master of Science at Imperial College London\\
+\smallskip
+Formatted in the journal style of \textit{PLOS}\\
+\smallskip
+Submitted for the MSc in Ecological Applications
+\end{center}
+
+% Please keep the abstract below 300 words
+\section*{Abstract}
+Longstanding ecotoxicological convention is that interaction between complex mixtures of three or more chemical stressors are negligible compared to two-way interactions. Recent studies on \textit{E. coli} exposed to complex mixtures of antibiotics, however, have suggested this is not the case. This study set out to determine if this new evidence were applicable to wild soil bacteria and communities exposed to 255 1-8-way combinations of eight heavy metals, pesticides and antibacterials.
+
+Our findings suggest that experimental results from exposures of lab species may not be applicable to wild species. Of the seven isolates and one soil community studied, although many non-significant non-additive effects were detected, only \textit{E. coli} OP50, a lab strain, showed significantly non-additive effects (n = 777, $p < 0.05$), and almost no 'emergent effects', mixture effects not predictable from their components at a level of complexity one smaller, were detected. A comparison of nested linear models suggested that across the studied isolates, two-way interactions were the most significant in determining mixture effect on growth (F = 6.41, F-critical = 1.04, $p < 0.05$).  
+
+It thus appears that present regulatory limits on chemical stressor concentrations in the environment do protect bacteria from mixture effects, over short exposures. More research is needed to determine how applicable these results are to real-world exposures. 
 
 \newpage
 
-\noindent \textbf{Declaration} 
+\begin{spacing}{0.05}
+\tableofcontents
+\end{spacing}
+\vspace{0.5cm}
+\textit{This table of contents is included for ease of navigation.}
+
+\newpage
+
+\section*{Declaration} 
 
 Drs Emma Ransome (ER), Tom Bell (TB) and Shorok Mombrikotb (SM) assisted in the design of experimental protocols and parts of the design of the statistical analysis. SM also assisted with the design of the worklists for the Hamilton STARlet, and provided Nash's Field soil isolates for experimental use.
 
 Nilita Mukjang assisted with the sampling and preparation of soil microbial communities.
 
 I conducted all aspects of the data collection, cleaning and analysis, including all code used in cleaning and analysis. As part of this process I made use of a number of R packages, which are cited in Methods (\cref{S:3}).
-\newpage
 
-\title{Are regulatory limits on pollutants sufficient to protect from emergent mixture effects?}
+\linenumbers
 
 %% main text
 \section{Introduction}
@@ -235,7 +257,7 @@ Eight bacterial isolates were selected, sourced principally from the Nash's Fiel
 {KUE4\_4} & \textit{Bacillus simplex} & Control & Strains capable of biosorption of heavy metals and radionuclides \cite{Valentine1996BiosorptionZone}. \\
 \rowcolor{gggrey}{NUE1\_1} & \textit{Bacillus simplex} & Metaldehyde & \\
 {KUE4\_10} & \textit{Stenotrophomonas \newline acidaminiphila} & Control & First isolated from a waste-acid-treating anaerobic bioreactor \cite{Assih2002}. \\
-\rowcolor{gggrey}{OP50} & \textit{Escherichia coli} & Control & Included as a model species. \\
+\rowcolor{gggrey}{OP50} & \textit{Escherichia coli} & Control & \textit{Caenorhabditis elegans} feeder\cite{Stiernagle2006}, included as a model species. \\
 {KUA5 Sample} & Soil Community & Control & \\
 \bottomrule
 \end{tabular}
@@ -324,9 +346,9 @@ A typical bacterial growth curve \cite{Monod1949} offers a number of potential p
 
 \begin{table}[ht]
 \centering
-\tiny
+\scriptsize
 \renewcommand{\arraystretch}{1.8}
-\begin{tabular}{N M L L N}
+\begin{tabular}{P M L L N}
 \toprule 
 \textbf{Metric} & \textbf{Description} & \textbf{Advantages} & \textbf{Disadvantages} & \textbf{Example/ Citation} \\
 \midrule
@@ -382,7 +404,7 @@ Effect type was classified according to the definitions found in Piggott, Townse
 Eight nested multiple linear regressions were fitted to the data using a nested set of combinations of stressors. The simplest model (Complexity = 1) attempted to explain variation using only an intercept and the effects of eight individual stressors. The next simplest model (Complexity = 2) included the previous model's explanatory variables, but added all possible two-way stressor combinations as additional variables, and so forth, to the most complex model (Complexity = 8). This permitted us to determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both a one-way ANOVA to F-test nested models, to apply an F-test to models, and Akaike Information Criteria test (AIC), to compare models with a penalty for number of estimated parameters \cite{Akaike1974}. 
 
 A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean (eq. \ref{E:pred_mean}), standard deviation (eq. \ref{E:pred_sd}) and sample size (eq. \ref{E:pred_n} were calculated per isolate as follows: 
-\begin{equation}[ht]
+\begin{equation}
     m_c = \sum_{i = 1}^{c_n}\Big(\frac{m_c-1}{c_n}\Big)
 \label{E:pred_mean}    
 \end{equation}
@@ -548,27 +570,25 @@ Emergent interactions, effects of complex mixtures of stressors not predictable 
 \subsection{Novel Findings}
 \label{S:4:1}
 
-Of the two hypotheses laid down in this project’s introduction, limited conclusions can be drawn. Figure 2 shows various positive and negative relationships between mixture complexity and growth across the species, although none of these relationships are statistically significant. 
+The aims of this study were a) to determine if it was possible to predict the effects of complex mixtures of chemical stressors on a diverse range bacteria from their component single stressors and stressor mixtures, and b) to determine how prediction ability and mixture effects varied across isolates.
 
 Although Figure 4 shows a relatively high incidence of observed effects deviating from the additive prediction, very few of these deviations are significant at $p < 0.05$ (Figure \ref{fig:histogram_interaction_basic}), the few cases of synergy and antagonism being limited to \textit{E. coli} OP50, where they were relatively common. A similar lack of emergent interactions (Figure \ref{fig:histogram_interaction_emergent}) was detected. 
 
 However, a degree of inter-species variation at various levels of significance in response and interactive effect was present. The effects of individual stressors on growth varied considerably and frequently reversed between species, and different patterns of clustering between observed and predicted effects were observed in Figure 4. As discussed above, \textit{E. coli} OP50 showed the only significant non-additive interactions detected, although no similar pattern was observed at the emergent level. 
 
-\subsection{Single Stressor Effects}
-\label{S:4:2}
+The study found interactive effects are limited to \textit{E. coli} and were not present in wild bacterial species. The strain used in this study, OP50, has a long history of use as a food source for \textit{C. elegans}. OP50 was likely selected as a feeder stock due to its rapid growth, and it is possible that mutations acquired over its recent history as a feeder species \cite{Tenaillon2016} have, in response to a lack of selection pressures unrelated to competition, led it to become both a faster grower in nutrient media and less tolerant to chemical stressors. Regardless, this finding does raise questions about the suitability of multiple stressor experiments that only consider effects of higher-order mixtures on lab-adapted model species, as their responses may not accurately reflect the response of more stress-tolerant wild species.  
 
-Although the majority of the stressors used in this study have well-documented impacts on bacteria, a number –- including the pesticides atrazine and metaldehyde and the fungicides tebuconazole and azoxystrobin –- have little to no literature available on their effects or mechanism of effect on non-target species and indeed may represent a food source of a stressor for different species under different conditions, which appears to have been the case in single stressor exposures.
+At a regulatory and risk-assessment level, this study suggests that existing regulatory limits on common heavy metals, fungicides, insecticides and herbicides may be sufficient to protect bacteria from addition mixture effects, even at high levels of mixture complexity in the environment. More research is, however, required to determine how these mixtures affect communities over the long term, and in combination with other-non chemical stressors, such as temperature and land use change.  
 
 \subsection{Caveats and Limitations}
 \label{S:4:3}
 
-A number of limitations apply to this study if overcome could affect the significance of detected interactions considerably.  Due to a combination of mistakes during the lab work phase of the study and the reticence of the strains KUB5\_13 and NUF1\_3 (\textit{V. paradoxus}) to grow directly in liquid media from cryogenic storage (perhaps unsurprising as the strains in question were sources from soil samples), the sample size in the case of a number of combinations (Table \ref{tab:samples}) was insufficiently large to detect non-additive effects at all but the highest p-values.  Greater replication of a smaller number of isolates would have permitted results to be declared with a greater degree of certainty. 
-
-Another issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density across ???
+A number of limitations apply to this study if overcome could affect the significance of detected interactions considerably.  Due to a combination of mistakes during the lab work phase of the study and the reticence of the strains KUB5\_13 and NUF1\_3 (\textit{V. paradoxus}) to grow directly in liquid media from cryogenic storage (perhaps unsurprising as the strains in question were sources from soil samples), the sample size in the case of a number of combinations (Table \ref{tab:samples}) was insufficiently large to detect non-additive effects at all but the highest p-values.  Greater replication of a smaller number of isolates would have permitted results to be declared with a greater degree of certainty. A further issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density. 
 
 Additionally, due to the long preparation times for exposures, and experimental durations (96 hours from first the addition of media to plates to experiment end), well evaporation posed a non-random but difficult to account for influence on bacterial growth conditions, an additional stressor not part of the experimental design. Evaporation was most evident in peripheral wells (A1-–12, H1-–12, all X1 and X12 wells), and as stressor combination layout on the plates was not randomised between isolates or runs, it is probably that evaporation played a not-insignificant role in the observed effects of various treatments. Were a simpler level of treatment/isolate complexity used in simpler work, it would be possible to mitigate this effect by using only the inner wells of the 96 well plate, and by reduce experimental set-up time. 
 
 Lastly, the incorporation of varying concentrations of stressors would have allowed the construction of dose response curves, calculation of inhibitory concentrations (ICs), and correspondingly the modelling of Bliss Independence \cite{Bliss1939} of stressors, which has been applied with some success to the issue of higher-order and emergent interactions in complex mixtures of antibiotics \cite{Beppler2016,Tekin2017a} 
+
 \subsection{Next Steps}
 \label{S:4:4}
 
@@ -579,7 +599,7 @@ With the increasing level of automation available in laboratories, it is crucial
 \section{Conclusions}
 \label{S:5}
 
-Recent advances in the understanding of higher-order effects of complex stressor mixtures suggest that effects are not as previous believed negligible. This study found predominantly additive effects at both the interaction and emergent interaction level; with non-additive effects largely limited to negative antagonism for \textit{E. coli} OP50 exposed to more complex mixtures. This suggests that studies that examine only lab species for interactions may not be fully applicable to wild populations, and further study is needed to determine applicability to the diversity of species present in the wild.
+Recent advances in the understanding of higher-order effects of complex stressor mixtures suggest that effects are not as previous believed negligible. This study found predominantly additive effects at both the interaction and emergent interaction level; with non-additive effects largely limited to negative antagonism for \textit{E. coli} OP50 exposed to more complex mixtures. This suggests that studies that examine only lab species for interactions may not be fully applicable to wild populations, and thus that findings of significant higher-order mixture effects in lab species may not be a cause for concern about the ability of regulatory limits on chemical stressors to protect bacteria from mixture effects.
 
 \section{Acknowledgements}
 \label{S:6}
@@ -617,9 +637,10 @@ In addition to the packages cited in the main text, a variant t-test that took p
 \section{Nash's Field Treatments and Isolates}
 \label{A:2}
 
+The wild bacteria and soil communities used in this study were isolated from soil samples from the on-going Nash's Field herbivore exclusion experiment \cite{Allan2011ContrastingExperiment} at Silwood Park, Imperial College London, United Kingdom. Six isolates were selected from the 844 extracted by Dr Mombrikotb \cite{Mombrikotb2016}, with the intent of sourcing two control species, and two species that were present in both control and metaldehyde-treated plots. This, and the requirement that species be identified to a probability of 95\% limited species options to those selected. 
 
-\section{Notes on the Operation of Hamilton STARlet}
-\label{A:3}
+Dr Mombrikotb's and my notes on all species are available in the project Git repository in \verb|Data/Nash_Species| as the files \verb|Nash_Isolates_SBM.csv| and \verb|Nash_Isolates_SW.csv|.
+
 \end{appendices}
 
 \end{document}
