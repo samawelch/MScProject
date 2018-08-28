@@ -69,6 +69,7 @@
 \usepackage{cleveref}
 \usepackage{float}
 \usepackage{geometry}
+\usepackage{amsmath}
 
 % Nicer margins please?
 \geometry{margin=3cm}
@@ -208,25 +209,38 @@ Bacteria \sep Ecotoxicology \sep Higher-order effects \sep Multiple Stressors \s
 \section{Introduction}
 \label{S:1}
 
-Any organism today must content with not only a broad range of ecological and biogeographic stressors, but also the presence of more than 100 million known chemicals \cite{CAS2015}. Though many of these chemicals have always been naturally present in the world as components of the crust, secreted biocides or waste products, the chemical landscape of ecosystems has never been more complex, with chemical stressors mixing with hard-to-predict effects \cite{EuropeanCommission2012a}. 
+Any organism today must contend with not only a broad range of ecological and biogeographic stressors, but also the presence of more than 100 million known chemicals \cite{CAS2015}. Though many of these chemicals have always been naturally present in the world as components of the crust, secreted biocides or waste products, complex mixtures of chemical stressors are now a common feature in terrestrial and aquatic ecosystems. \cite{EuropeanCommission2012a}. 
 
-Though mixture toxicity has long attracted much academic attention and study \cite{Bliss1939}, criticisms remain of a lack of consensus on experimental design, use of statistics, and even inconsistent interaction definitions \cite{Jackson2016,Piggott2015,Schafer2018}. Ecotoxicology still bears the legacy of its largely regulatory past, a preoccupation with declaring any given chemical safe or not, using a limited panel of model species \cite{OECD2014SectionSystems}. Equally, existing mixture toxicity regulations in the EU are limited and distinctly human-focused \cite{EuropeanCommission2012a}, and do not represent the latest in scientific knowledge.
+Though mixture toxicity has long attracted much academic attention \cite{Bliss1939}, criticisms remain of a lack of consensus on experimental design, use of statistics, and even inconsistent interaction definitions \cite{Jackson2016,Piggott2015,Schafer2018}. Ecotoxicology still bears the legacy of its largely regulatory past: a preoccupation with declaring any given chemical safe or not, using a limited panel of model species \cite{OECD2014SectionSystems}. Equally, existing mixture toxicity regulations in the EU are limited and distinctly human-focused \cite{EuropeanCommission2012a}, and do not represent the latest in scientific knowledge.
 
 A longstanding criticism of ecotoxicology remains the difficulty of integrating ecotoxicological results into a broader understanding of how ecosystems respond to stress across their component species. \cite{Chapman2002a,Gessner2016}. Ecosystems are without exception supported by a broad trophic foundation of microbes that provide vital services as decomposers, chemical engineers, and pathogens \cite{Nannipieri2003a,VanderHeijden2008a}, but in regulatory and scientific settings a chemical's toxicity to bacteria is typically tested using the luminescent bacteria toxicity assay (LBTA) \cite{OECD2014SectionSystems}, a 30-minute exposure to \textit{Aliivibrio fischerii}, a bioluminescent marine decomposer. The LBTA is the industry standard due to its simplicity and ease of use, but it suffers from a number of well-documented limitations \cite{Ma2014} in addition to the difficult of generalising from one species to an entire ecosystem.
 
-Traditional models of mixture toxicity focus on binary mixtures of stressors. Two chemicals or environmental factors, that known to have a positive or negative effect on some aspect of a species' fitness, are mixed at various concentrations. Their combined effect compared to a null-model prediction of their interaction -- often additive, the sum of their parts -- in order to determine if in combination they display synergism -– an effect greater than the sum of their parts, antagonism – an effect lesser than the sum of their parts –- or simple additivism, when the effect is statistically indistinguishable from the null model. 
+Constrained by practical limitations, ecotoxicology experiments have always tended towards simplicity. Studies have traditionally consider the effects of a single stressor on a single species, and where stressor interaction has been examined, it has been largely limited to binary mixtures of stressors \cite{Peterson2017}. In brief summary, two chemicals or environmental factors, that are known to have a positive or negative effect on some aspect of a species' fitness, are mixed at various concentrations. By comparing their observed effect to a null hypothesis prediction of their effect calculated by adding (or in some cases multiplying \cite{Schafer2018}) individual effects, it is possible to determine the nature of the interaction between stressors in a mixture (\cref{tab:simple_interactions}). A result not significantly different from the null hypothesis is considered additive, a result significantly larger is synergistic, and a result significantly smaller is antagonistic. 
 
-Though easy to understand and employ, this model is not without its issues. What, for example, is a stressor? The term is often used as a synonym for 'pollutant', 'toxicant', or 'pressure' -- a substance or treatment that produces a negative fitness effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that 'the dose makes the poison'\cite{OGParacelsus} –- as true for a rise in temperature or in nutrient availability as it is for toxic pollutants -- but also that \textit{the species makes the poison}. Many organisms, particularly bacteria, are are able to tolerate or even thrive on substances that are harmful to other species \cite{Malik2004,Gadd2009}. 
+\begin{table}[ht]
+\centering
+\begin{tabular}{l l}
+\toprule 
+\textbf{Name} & \textbf{Observed Effect vs Predicted Effect} \\
+\midrule
+\rowcolor{gggrey}   Additivism      &   \textit{Observed effect $\approx$ sum of individual effects} \\
+                    Synergy         &   \textit{Observed effect $>$ sum of individual effects} \\
+\rowcolor{gggrey}   Antagonism      &   \textit{Observed effect $<$ sum of individual effects} \\
+\bottomrule
+\end{tabular}
+\caption{Conventional definitions of interactions between stressors, based on \citet{Bliss1939}}
+\label{tab:simple_interactions}
+\end{table}
 
-Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has been limited \cite{Beppler2016}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017a}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects,  three-way interactions not predictable from component two-way effects, meaning that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}.
+Though easy to understand and employ, this model is not without its issues. Confusion over definitions abound. For instance, the term 'stressor' is often used as a synonym for 'pollutant', 'toxicant', or 'pressure' -- a substance or treatment that produces a negative fitness effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that 'the dose makes the poison'\cite{OGParacelsus} –- as true for a rise in temperature or in nutrient availability as it is for toxic pollutants -- but also that \textit{the species makes the poison}. Many organisms, particularly bacteria, are are able to tolerate or even thrive on substances that are harmful to other species \cite{Malik2004,Gadd2009}. 
 
-Within ecology, research on complex combinations of stressors -– including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators -– Multiple Predator Effects (MPEs) –- that has received some attention. One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than poorer mixtures, although a considerable number of component studies found no significant relationship. 
+Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has been limited \cite{Beppler2016}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017a}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects,  three-way interactions not predictable from component two-way effects, meaning that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}. Within ecology, research on complex combinations of stressors -– including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators -– Multiple Predator Effects (MPEs) –- that has received some attention. One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than poorer mixtures, although a considerable number of component studies found no significant relationship. 
 
 Parallels can also be drawn with research on inter-species interactions in the vein of food webs, the presence of a species having a positive or negative effect on the fitness of other species in a similar manner to a chemical stressor. Considerable research has explored interaction across food webs and trophic levels, and the  cascading shifts in biotic interactions caused by abiotic environmental change \cite{Hooper2005,Parmesan2006,Chesson2000}. Research has shown that chemical stressors such as pesticides can cause large scale changes over short timescales to ecosystems, mediated through complex webs of interactions \cite{Thompson2016}. The effect of species interaction on evolutionary responses has also been examined species interaction \cite{Lawrence2012}, showing that in bacteria these interactions can over time cause considerable shifts in both communities and the phenotypes and genotypes of component species.
 
 In the Anthropocene, an era where pollution is a greater pressure on ecosystems than ever before, it is vital that we improve our understanding of how a diverse range of wild bacteria respond to different stressors. Greater understanding of these stressors and interactions will enable more targeted and cost-efficient legislation and interventions -– for instance, one stressor has a disproportionate effect on overall response and thus should produce the greatest positive effect when removed. 
 
-This study thus aims to address this knowledge gap through the use of automated lab equipment to examine the effects of complex mixtures of common pollutants on a diverse panel of soil bacteria. It is hypothesised that more complex mixtures of chemicals will produce emergent effects not predictable from their component lower-order interactions, and that single stressor responses and interaction responses will vary across the bacterial panel.
+This study thus aims to address this knowledge gap by examining the effects of complex mixtures of common pollutants on a diverse panel of soil bacteria. It is hypothesised that more complex mixtures of chemicals will produce emergent effects not predictable from studying the chemicals in isolation, and that single stressor responses and interaction responses will vary across the bacterial panel.
 
 \section{Methods}
 \label{S:2}
@@ -262,9 +276,9 @@ Isolates were stored on CryoBeads in a standard \textit{Brucella} broth with gly
 \subsection{Stressor Selection}
 \label{S:2:2}
 
-Chemical stressors were selected from a range of groups (\cref{tab:stressors}) in order to assemble a panel that had some common mechanisms of action, and that have the potential to occur in mixtures in ecosystems.
+Chemical stressors were selected from a range of categories (\cref{tab:stressors}) in order to assemble a panel that had some common mechanisms of action, and that have the potential to occur in mixtures in ecosystems.
 
-Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992}, while nickel is occasionally so in bacteria and fungi \cite{Zamble2015}. Bacterial resistance to these stressors is thus often nuanced, with a need to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002}, and damages vital biosynthesis enzymes \cite{Macomber2009}, while nickel is a weak ROS generator, and can dangerously unbalance iron and zinc homeostasis in the cell \cite{Samland2006}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009}, while nickel can be sequestered in vacuoles within the cell \cite{Nishimura1998}.
+Nickel (\textsubscript{28}Ni) and Copper (\textsubscript{29}Cu) are heavy metals, common pollutants with a wide range of industrial applications. Copper is an essential respiratory nutrient across all kingdoms of life \cite{Babcock1992}, while nickel is a cofactor in many bacterial and fungal enzymes \cite{Zamble2015}. Bacterial resistance to these stressors is thus often nuanced, with a need to balance availability in the cell as nutrients with their potential for damage.  Copper is a prolific generator of Reactive Oxygen Species (ROS) \cite{Bal2002}, and damages vital biosynthesis enzymes \cite{Macomber2009}, while nickel is a weak ROS generator, and can dangerously unbalance iron and zinc homeostasis in the cell \cite{Samland2006}. Copper and nickel are resisted through similar pathways \cite{Mykytczuk2011CytoplasmicFerrooxidans}, including active efflux and membrane modification. Copper is also resisted through chelation and rapid repair of damaged enzymes \cite{Macomber2009}, while nickel can be sequestered in vacuoles within the cell \cite{Nishimura1998}.
 
 Chloramphenicol and ampicillin are broad spectrum antibacterial agents, effective against many gram-positive and -negative bacteria, and used in decreasing quantities in healthcare applications due to their severe side effects and growing resistance. Nevertheless, as well-studied environmental pollutants they are ideal candidates for exposures. First isolated from \textit{Streptomyces venezuelae}, a soil-dwelling bacterium, chloramphenicol is a broad-spectrum antibiotic, to which resistance in the wild and areas under antibiotic pollution is particularly common \cite{Allen2010}. Ampicillin, a widespread antibiotic from the penicillin family, is also widely resisted \cite{Ruiz1999MechanismsFish}. Chloramphenicol acts bacteriostatically by inhibiting protein synthesis in the 50S ribosomal subunit, while ampicillin inhibits cell wall synthesis. Drug interaction studies have shown that chloramphenicol is negatively antagonistic towards ampicillin, due to their competing modes of action \cite{vanBambeke2017MechanismsAction}. It has been suggested that many of the genes that provide resistance to common antibiotics, including chloramphenicol, also provide tolerance to environmental stress \cite{Groh2007}. Research has also shown that exposure to ROS from heavy metals, including copper, can co-select for chloramphenicol resistance \cite{Harrison2009}.
 
@@ -278,7 +292,7 @@ Limited data are available on the prevalence and composition of chemical mixture
 %% I've got no idea what they were, but they must have been pretty bad for us to end up with LaTeX.
 
 \begin{landscape}
-\begin{table}[ht]
+\begin{table}[h]
 \begin{threeparttable}
 \small
 \setlength{\tabcolsep}{4pt}
@@ -315,7 +329,7 @@ Limited data are available on the prevalence and composition of chemical mixture
 
 Initial dose-response exposures were conducted at concentrations above and below regulatory limits to determine individual stressors' effects on isolates. Eight 96-well microtiter plates were prepared, with  \SI{10}{\ul} of 1-in-100 diluted overnight culture, \SI{80}{\ul} of R2A broth, and \SI{10}{\ul} of stressor stock at either 0.1, 1, 10 or 100 times the target final experimental concentration added to each well. Each well of stressor concentration and isolate was replicated three times. Well OD was read using the cell count protocol below \ref{S:2:4}.
 
-Final experimental concentrations were calculated based on regulatory limits (Limits column, \cref{tab:stressors}). Calculations are available in Appendix \ref{A:1}.
+Final experimental concentrations were chosen based on regulatory limits where available, and realistic environmental concentrations where no regulatory limits exist (Limits column, \cref{tab:stressors}). Calculations are available in Appendix \ref{A:1}.
 
 \subsection{Metrics of Growth}
 \label{S:2:4}
@@ -368,20 +382,27 @@ In order to provide an initial measure of isolate untreated and single stressor 
 
 The assumption that under an additive null model, fitness would be negatively correlated with mixture complexity was then examined by modelling mean \textit{auc} against the number of stressors applied in a treatment  using two linear models with complexity and isolate or species as explanatory variables, which were compared using an analysis of variance (ANOVA). 
 
-In order the produce an quantifiable measure of the effects of stressors and stressor mixtures on growth, stressor effect was calculated by subtracting the average growth with stressors from the control growth for a given isolate (eq. \ref{E:effect_calc}), producing an additive measure of effect. This was averaged across replicates to produce a measure of mean growth and standard deviation.
+In order to produce a quantifiable measure of the effects of stressors and stressor mixtures on growth, stressor effect was calculated by subtracting the average growth with stressors from the control growth for a given isolate (eq. \ref{E:effect_calc}), producing an additive measure of effect. This was averaged across replicates to produce a measure of mean growth and standard deviation. This calculated effect on area under curve was henceforth used as the sole metric of stressor effect.
 \begin{equation}
-Effect = Growth_{Control} - Growth_{Treatment}
+\text{\textit{Stressor Effect}} = Growth_{Control} - Growth_{Treatment}
+% I had to add a new package here just so I could code 'Effect' as text, because LaTeX is Shit At Kerning™
 \label{E:effect_calc}
 \end{equation}
 
-Predicted effect was then calculated using an additive null model, by summing the calculated mean effects of individual stressors on a per-isolate basis and calculating an updated standard deviation from the root of the summed squares of the component standard deviations. 
+Additivity-predicted effect (eq. \ref{E:pred_effect_calc}) was then calculated using an additive null model, by summing the calculated mean effects of individual stressors on a per-isolate basis and calculating an updated standard deviation from the root of the summed squares of the component standard deviations.
+
+\begin{equation}
+\text{\textit{Predicted Stressor Effect}} = \sum \text{\textit{individual Stressor Effects}}
+% I had to add a new package here just so I could code 'Effect' as text, because LaTeX is Shit At Kerning™
+\label{E:pred_effect_calc}
+\end{equation}
 
 Effect type was classified according to the definitions found in Piggott, Townsend, and Matthaei \cite{Piggott2015}. If the mean predicted and observed effects were not significantly different (independent two-sample T-test, p $<$ 0.05), the interaction was classified as additive, regardless of the absolute distance between the two values. A positive effect on growth larger than the predicted effect was classified as positive synergy (+S), a negative effect larger (in absolute terms) than the predicted effect was negative synergy (-S). An effect between positive synergy and the predicted effect was classified as negative antagonism (-A), while an effect between negative synergy and the predicted effect was positive antagonism (+A) (\cref{fig:interaction_ranges}). 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Plot_Interactions_Illustrative.pdf}
-    \caption{Plots to illustrate the ranges of Piggott, Mattheai \& Townsend's reconceptualised interaction definitions \cite{Piggott2015}. A gradient effect indicates a definition range that continues towards $-\infty$ or $+\infty$, while the range of additivism is technically bounded by statistical significance rather than pure numerical distance.}
+    \caption{Plots to illustrate the ranges of Piggott, Mattheai \& Townsend's reconceptualised interaction definitions \cite{Piggott2015}. Interaction definitions for three possible combinations of stressors with a negative or positive effect on organism fitness (A \& B) are depicted visually: i) Additive, the null hypothesis, ii) and iii), a positive or negative effect larger in absolute terms than the null hypothesis, and iv) and v), a positive or negative effect smaller in absolute terms than the null hypothesis.  A gradient effect indicates a definition range that continues towards $-\infty$ or $+\infty$, while the range of additivism is technically bounded by statistical significance rather than pure numerical distance.}
     \label{fig:interaction_ranges}
 \end{figure}
 
@@ -485,7 +506,7 @@ Modelling mean growth as either isolate or species versus mixture complexity did
 \subsection{Predicted Versus Observed Effect}
 \label{S:3:5}
 
-Patterns of observed versus predicted mean effect varied considerably between the species (\cref{fig:obsXpred}). KUB5\_13, NUF1\_3 and LUF4\_5’s are tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
+Patterns of observed versus predicted mean effect varied considerably among the species (\cref{fig:obsXpred}). Isolates KUB5\_13, NUF1\_3 and LUF4\_5’s have tight, linear distributions clustered around the 0 marks on both axes, while OP50, KUE4\_4 and the soil community’s observed effects fell largely below the predicted additive effect, especially at high levels of stressor complexity. KUE4\_10 and NUE1\_1’s patterns are more diffused across the additive line, but display a similar pattern of synergy at lower levels of complexity and antagonism at higher levels. This pattern is repeat across the majority of isolates, although LUF4\_5 shows a reversal of this pattern, and NUF1\_3 is clustered similarly but with greater x and y overlap between points of different richness.
 
 \begin{figure}[H]
     \centering
@@ -588,11 +609,11 @@ Recent advances in the understanding of higher-order effects of complex stressor
 
 \section{Acknowledgements}
 \label{S:6}
-%First and foremost I would like to thank my parents, without whose patience, support, and advice none of which would be possible.
+First and foremost I would like to thank my parents, without whose patience, support, and advice none of which would be possible.
 
-%Over the course of this project I benefited from the guiding influence of my official supervisors, Dr Tom Bell and Dr Emma Ransome, who were encouraging, supportive, educational, and, when necessary, firm. Dr Shorok Mombriktob was also of indispensable assistance, providing isolates, soil samples, advice, and training on use of certain temperamental pieces of lab equipment. Chris, Nilita, Kate, Alice, and Meirion, also of Unit C, helped with other elements of my labwork.
+Over the course of this project I benefited from the guiding influence of my official supervisors, Dr Tom Bell and Dr Emma Ransome, who were encouraging, supportive, educational, and, when necessary, firm. Dr Shorok Mombriktob was also of indispensable assistance, providing isolates, soil samples, advice, and training on use of certain temperamental pieces of lab equipment. Chris, Nilita, Kate, Alice, and Meirion, also of Unit C, helped with other elements of my labwork.
 
-%Lastly in addition to the academic and commercial software and software packages cited in the main text and reference, I would like to thank to thank Chris West, who produced a batch Excel worksheet to .csv converter which was invaluable in the processing of my raw data. I've since learned that I had an R package that does the same thing installed the whole time...
+Lastly in addition to the academic and commercial software and software packages cited in the main text and reference, I would like to thank to thank Chris West, who produced a batch Excel worksheet to .csv converter which was invaluable in the processing of my raw data. I've since learned that I had an R package that does the same thing installed the whole time...
 
 \section{References}
 \label{S:7}
