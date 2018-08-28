@@ -142,7 +142,8 @@ for (i in 1:8)
 
 dummy_legend <- get_legend(
   temp_plot +
-    theme(legend.position = "right") +
+    theme(legend.position = "right", 
+          legend.key.size = unit(1.1, "cm")) +
     labs(fill = 'Emergent Interaction') 
 )
 

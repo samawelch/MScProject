@@ -39,7 +39,7 @@ for (i in 1:8)
   assign(temp_plot_name, plot_i_temp)
 }
 
-dummy_legend <- get_legend(p1 + theme(legend.position="right"))
+dummy_legend <- get_legend(p1 + theme(legend.position="right", legend.key.size = unit(1.1, "cm")))
 
 # Plot together, aligned by species
 pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 9, height = 9)
