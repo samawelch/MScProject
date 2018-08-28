@@ -180,7 +180,7 @@ setwd(here("Scripts"))
 
 pdf("Results/Final_Pipeline/histogram_interaction_basic.pdf", width = 9, height = 9)
 annotate_figure(ggarrange(p1, p2, p3, p4, p5, p6, p7, p8, dummy_legend),
-left = text_grob("Count", rot = 90),
+left = text_grob("Interaction Count", rot = 90),
 bottom = text_grob("Mixture Complexity"))
 dev.off()
 dev.off()

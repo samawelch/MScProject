@@ -33,7 +33,7 @@ for (i in 1:8)
     axis.title.x = element_blank(),
     axis.title.y = element_blank()) +
     annotate("text", x = -12.5, y = 6, label = "Synergy", colour = "darkgrey") +
-    annotate("text", x = 11.5, y = -6, label = "Antagonism", colour = "darkgrey")
+    annotate("text", x = 11.25, y = -6, label = "Antagonism", colour = "darkgrey")
   
   temp_plot_name <- paste("p", i , sep = "")
   assign(temp_plot_name, plot_i_temp)
@@ -44,6 +44,6 @@ dummy_legend <- get_legend(p1 + theme(legend.position="right"))
 # Plot together, aligned by species
 pdf("Results/Final_Pipeline/ObservedXPredicted.pdf", width = 9, height = 9)
 annotate_figure(ggarrange(p2, p4, p1, p7, p6, p5, p3, p8, dummy_legend, ncol = 3, nrow = 3),
-                bottom = text_grob("Mean Predicted Additive Growth"),
-                left = text_grob("Mean Observed Growth", rot = 90))
+                bottom = text_grob("Mean Predicted Additive Area under Growth Curve"),
+                left = text_grob("Mean Observed Area under Growth Curve", rot = 90))
 dev.off()
