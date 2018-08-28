@@ -165,7 +165,7 @@ August 2018
 %% \address{Address\fnref{label3}}
 %% \fntext[label3]{}
 
-\section{Declaration}
+\noindent \textbf{Declaration} 
 
 Drs Emma Ransome (ER), Tom Bell (TB) and Shorok Mombrikotb (SM) assisted in the design of experimental protocols and parts of the design of the statistical analysis. SM also assisted with the design of the worklists for the Hamilton STARlet, and provided Nash's Field soil isolates for experimental use.
 
@@ -408,7 +408,7 @@ Effect type was classified according to the definitions found in Piggott, Townse
 
 Eight nested multiple linear regressions were fitted to the data using a nested set of combinations of stressors. The simplest model (Complexity = 1) attempted to explain variation using only an intercept and the effects of eight individual stressors. The next simplest model (Complexity = 2) included the previous model's explanatory variables, but added all possible two-way stressor combinations as additional variables, and so forth, to the most complex model (Complexity = 8). This permitted us to determine statistically what level of interaction was predominant in the observed results. Linear regressions were compared using both a one-way ANOVA to F-test nested models, to apply an F-test to models, and Akaike Information Criteria test (AIC), to compare models with a penalty for number of estimated parameters \cite{Akaike1974}. 
 
-A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean (eq. \ref{E:pred_mean}, standard deviation (eq. \ref{E:pred_sd}) and sample size (eq. \ref{E:pred_n} were calculated per isolate as follows: 
+A variation of the protocol used in Beppler \textit{et al.} \cite{Beppler2016} was applied to the data to detect 'emergent interactions', observed effects for an c-complexity stressor mixture that could not be predicted from the combined effects of their component ($c-1$)-complexity mixture observations. Predicted mean (eq. \ref{E:pred_mean}), standard deviation (eq. \ref{E:pred_sd}) and sample size (eq. \ref{E:pred_n} were calculated per isolate as follows: 
 \begin{equation}[ht]
     m_c = \sum_{i = 1}^{c_n}\Big(\frac{m_c-1}{c_n}\Big)
 \label{E:pred_mean}    
@@ -498,7 +498,7 @@ Modelling mean growth as either isolate or species versus mixture complexity did
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/growthXrichness.pdf}
-    \caption{Mean Area under Growth Curve at $\lambda$ = 590 nm versus complexity of 256 mixtures of 1-8 chemical stressors. Individual data points are included as a measure of variance, and are displayed horizontally to reduce overlap.}
+    \caption{Mean Area under Growth Curve at $\lambda$ = 590 nm versus complexity of 256 mixtures of 1-8 chemical stressors. Individual data points, which represent a single mixture and isolate, are included as a measure of variance, and are displayed horizontally to reduce overlap.}
     \label{fig:growthXcomplex}
 \end{figure}
 
@@ -511,7 +511,7 @@ Patterns of observed versus predicted mean effect varied considerably among the 
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/ObservedXPredicted.pdf}
-    \caption{Scatterplots of observed stressor mixture effect on mean area under growth curve compared to predicted additive mixture effect on area under growth curve, colour coded by mixture complexity.}
+    \caption{Scatter plots of observed mixture stressor effect on mean area under growth curve (\ref{E:effect_calc}) compared to predicted mixture stressor effect on area under growth curve (\ref{E:pred_effect_calc}), colour coded by mixture complexity. Each point represents a single mixture of stressors. A grey line across the plot represents equality between predicted and observed result (accept the additive null hypothesis). Under basic definitions \cite{Bliss1939}, observed results higher than predicted are synergistic, and those lower results are antagonistic. \textit{Note that due to small sample sizes (\cref{tab:samples}), interactions that appear non-additive here may be rejected as not statistically significant in later graphics.}}
     \label{fig:obsXpred}
 \end{figure}
 
@@ -519,7 +519,7 @@ Patterns of observed versus predicted mean effect varied considerably among the 
 \subsection{Comparison of Linear Models of Higher-Order Mixtures}
 \label{S:3:6}
 
-A comparison of linear models of varying complexity (\cref{tab:lmodels}) showed F-values higher than the critical F-statistic (1.08 at p = 0.05) at p $<$ 0.05 for the, 2-, 3- and 6-complexity models. Penalised for number of parameters, the 2-complexity model had a significantly lower AIC than other models. We can thus infer that a model of two-way interations and single stressor effects best explains the variation seen in our data.
+A comparison of linear models of varying complexity (\cref{tab:lmodels}) showed F-values higher than the critical F-statistic (1.08 at p = 0.05) at p $<$ 0.05 for the, 2-, 3- and 6-complexity models. Penalised for number of parameters, the 2-complexity model had a significantly lower AIC than other models. We can thus infer that a model of two-way interactions and single stressor effects best explains the variation seen in our data.
 
 \begin{table}[H]
 \centering
@@ -546,12 +546,12 @@ A comparison of linear models of varying complexity (\cref{tab:lmodels}) showed 
 \subsection{Interaction Type Prevalence}
 \label{S:3:7}
 
-The analysis of interaction type showed a relatively high incidence of T-test errors (133 in 1976; ~15\%), due to a correspondingly high incidence of observations with a sample size of one and no standard deviation. For most isolates additive effects prevailed (1744 in 1976; ~88\%), the exception being \textit{E. coli} OP50, where some non-additive effects were seen, especially at a complexity of 4 and above; negative antagonism accounted for slightly under half of the interactions observed (94 in 247; 38\%), while negative synergy was observed only at a complexity of 5 and in low quantities (5 in 247; 2\%).
+The analysis of interaction type showed a relatively high incidence of T-test errors (133 in 1976; ~15\%), where the sample size of one of the compared populations was insufficiently large (n < 3) to calculate a t-score. For most isolates additive effects prevailed (1744 in 1976; ~88\%), the exception being \textit{E. coli} OP50, where some non-additive effects were seen, especially at a complexity of 4 and above; negative antagonism accounted for slightly under half of the interactions observed (94 in 247; 38\%), while negative synergy was observed only at a complexity of 5 and in low quantities (5 in 247; 2\%).
 
 \begin{figure}[hb]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/histogram_interaction_basic.pdf}
-    \caption{Single stressor additive vs observed interaction}
+    \caption{Count of observed interaction types, calculated by comparing observed stressor mixture effect to a predicted stressor effect of summed individual stressor effects (eq. \ref{E:pred_effect_calc}). Interaction direction and magnitude classified according to \citet{Piggott2015} (see \cref{fig:interaction_ranges}). All displayed interactions at p < 0.05, as determined by two-sample independent t-test. Sample size varies considerably between treatments and species (\cref{tab:samples}; cases where sample size was insufficient to calculate a t-score are marked 'T-test error'.}
     \label{fig:histogram_interaction_basic}
 \end{figure}
 
@@ -559,12 +559,12 @@ The analysis of interaction type showed a relatively high incidence of T-test er
 \subsection{Emergent Interaction Type Prevalence}
 \label{S:3:8}
 
-T-test errors represent a similar proportion of emergent effects observed (161 in 1752, ~9\%) . Non-emergent effects – “predicted” – dominate (1589 in 1752, ~91\%). Emergent synergy is non-existent, while two cases of emergent antagonism are present in NUE1\_1: a mixture of copper, nickel, metaldehyde and tebuconazole, and a mixture of copper, nickel, chloramphenicol, metaldehyde, tebuconazole, and azoxystrobin.
+Emergent interactions, effects of complex mixtures of stressors not predictable from their component mixtures at a level of complexity one lower were examined (eq. \ref{E:pred_mean}, \ref{E:pred_sd}, \ref{E:pred_n}) using two-sample independent t-testing. T-test errors represent a similar proportion of emergent effects observed (161 in 1752, ~9\%) . Non-emergent effects – “predicted” – dominate (1589 in 1752, ~91\%). Emergent synergy is non-existent, while two cases of emergent antagonism are present in NUE1\_1: a mixture of copper, nickel, metaldehyde and tebuconazole, and a mixture of copper, nickel, chloramphenicol, metaldehyde, tebuconazole, and azoxystrobin.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width = \textwidth]{Scripts/Results/Final_Pipeline/histogram_interaction_emergent.pdf}
-    \caption{Multiple stressor additive vs observed interaction}
+    \caption{Count of emergent interactions by complex mixture and isolate, as calculated by comparing observed mixture stressor effect (eq. \ref{E:pred_effect_calc}) to an additive prediction from component mixtures at a level of complexity one lower (eq. \ref{E:pred_mean}) using a two-sample independent t-test at p < 0.05. Sample size varies considerably between treatments and species (\cref{tab:samples}; cases where sample size was insufficient to calculate a t-score are marked 'T-test error'.}
     \label{fig:histogram_interaction_emergent}
 \end{figure}
 
@@ -591,7 +591,8 @@ Although the majority of the stressors used in this study have well-documents im
 
 A number of limitations apply to this study if overcome could affect the significance of detected interactions considerably.  Due to a combination of mistakes during the lab work phase of the study and the reticence of the strains KUB5\_13 and NUF1\_3 (\textit{V. paradoxus}) to grow directly in liquid media from cryogenic storage (perhaps unsurprising as the strains in question were sources from soil samples), the sample size in the case of a number of combinations (Table \ref{tab:samples}) was insufficiently large to detect non-additive effects at all but the highest p-values.  Greater replication of a smaller number of isolates would have permitted results to be declared with a greater degree of certainty. 
 
-Another issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density across 
+Another issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density across ???
+
 Additionally, due to the long preparation times for exposures, and experimental durations (96 hours from first the addition of media to plates to experiment end), well evaporation posed a non-random but difficult to account for influence on bacterial growth conditions, an additional stressor not part of the experimental design. Evaporation was most evident in peripheral wells (A1-–12, H1-–12, all X1 and X12 wells), and as stressor combination layout on the plates was not randomised between isolates or runs, it is probably that evaporation played a not-insignificant role in the observed effects of various treatments. Were a simpler level of treatment/isolate complexity used in simpler work, it would be possible to mitigate this effect by using only the inner wells of the 96 well plate, and by reduce experimental set-up time. 
 
 Lastly, the incorporation of varying concentrations of stressors would have allowed the construction of dose response curves, calculation of inhibitory concentrations (ICs), and correspondingly the modelling of Bliss Independence \cite{Bliss1939} of stressors, which has been applied with some success to the issue of higher-order and emergent interactions in complex mixtures of antibiotics \cite{Beppler2016,Tekin2017a} 
