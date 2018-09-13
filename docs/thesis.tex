@@ -162,7 +162,7 @@
 \textbf{1.} Department of Life Sciences, Silwood Park, Imperial College London, United Kingdom
 \bigskip
 \end{flushleft}
-\vspace{1.0cm}
+\vspace{0.5cm}
 
 \begin{center}
 \includegraphics[scale = 0.15]{docs/badnews8ways.png}
@@ -180,13 +180,13 @@ Submitted for the MSc in Ecological Applications
 \section*{Abstract}
 Ecotoxicological convention has long held that in a complex mixtures of (3+) chemical stressors, the effects of higher order (3-way and greater) interactions are negligible compared to two-way interactions. Recent studies exposing \textit{Escherichia coli} to complex mixtures of antibacterials, however, have suggested this is not always the case. This study set out to determine if this new evidence is applicable to wild soil bacteria and communities, by exposing them to 255 unique 1 to 8-component mixtures assembled from a panel of copper, nickel, chloramphenicol, ampicillin, metaldehyde, atrazine, tebuconazole, and azoxystrobin, and measuring optical density over a 48h period.
 
-Our findings suggest that experimental results from exposures of model species and isolates may not be applicable to wild species. Of the seven isolates and one soil community studied, although many non-significant non-additive effects were detected, only \textit{E. coli} OP50, a lab strain, showed significantly non-additive effects (\textit{n} = 777, $p < 0.05$). Additionally, almost no emergent effects -- higher-order mixture effects not predictable from their component lower-order mixtures -- were detected. A comparison of nested linear models suggested that across the studied isolates, two-way interactions were the most significant in determining the effect of mixtures on growth (\textit{F} = 6.41, \textit{F-critical} = 1.04, $p < 0.05$).  
+Our findings suggest that experimental results from exposures of model species and isolates may not be applicable to wild species. Of the seven isolates and one soil community studied, although many non-significant non-additive effects were detected, only \textit{E. coli} OP50, a lab strain, showed significantly non-additive effects (\textit{n} = 777, $p < 0.05$). Additionally, almost no emergent effects -- higher-order mixture effects not predictable from their component lower-order mixtures -- were detected. A comparison of nested linear models suggested that across the studied isolates, two-way interactions were the most significant in determining the effect of mixtures on growth (\textit{F} = 6.41, \textit{F-critical} = 1.04, $p < 0.05$, d.f. = 28).  
 
 Based on these results, we conclude that current regulatory limits on pollutant concentrations in the environment are sufficiently conservative to protect bacteria from mixture effects over short exposures. Further research is needed to determine if these finding extend to longer time periods, more complex communities, and other environmental stressors.
 
 \newpage
 
-\begin{spacing}{0.05}
+\begin{spacing}{0.01}
 \tableofcontents
 \end{spacing}
 \vspace{0.5cm}
@@ -201,6 +201,8 @@ Drs Emma Ransome (ER), Tom Bell (TB) and Shorok Mombrikotb (SM) assisted in the 
 Nilita Mukjang assisted with the sampling and preparation of soil microbial communities.
 
 I conducted all aspects of the data collection, cleaning and analysis, and wrote all code used in cleaning and analysis. As part of this process I made use of a number of R packages, which are cited in Methods (\cref{S:3}).
+
+Word Count: 5674
 
 \linenumbers
 
@@ -217,6 +219,7 @@ A further criticism of ecotoxicology remains the difficulty of integrating its f
 Constrained by practical limitations, ecotoxicological experiments have always tended towards over-simplification. Studies have traditionally consider the effects of a single stressor on a single species, and where stressor interaction has been examined, it has been largely limited to binary mixtures of stressors \cite{Peterson2017}. In brief summary, a binary mixture experiment takes two chemicals or environmental factors, known to have a positive or negative effect on some aspect of a species' fitness, and mixes them at various concentrations. By comparing their observed effect to a null hypothesis prediction of effect, calculated from the sum or product of individual effects, it is possible to determine the nature of the interaction between the mixed stressors. A result not significantly different from the null hypothesis is considered additive, a result significantly larger is synergistic, and a result significantly smaller is antagonistic (\cref{tab:simple_interactions}). 
 
 \begin{table}[ht]
+\caption{Conventional definitions of interactions between stressors, based on Bliss \cite{Bliss1939}}
 \centering
 \begin{tabular}{l l}
 \toprule 
@@ -227,15 +230,14 @@ Constrained by practical limitations, ecotoxicological experiments have always t
 \rowcolor{gggrey}   Antagonism      &   \textit{Observed effect $<$ sum of individual effects} \\
 \bottomrule
 \end{tabular}
-\caption{Conventional definitions of interactions between stressors, based on Bliss \cite{Bliss1939}}
 \label{tab:simple_interactions}
 \end{table}
 
-Though easy to understand and employ, this model is not without its issues. Confusion over definitions abound. For instance, the term 'stressor' is often used as a synonym for 'pollutant', 'toxicant', or 'pressure' -- a substance or treatment that produces a negative fitness effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that 'the dose makes the poison'\cite{OGParacelsus} –- as true for a rise in temperature or in nutrient availability as it is for toxic pollutants -- but also that \textit{the species makes the poison}. Many organisms, particularly bacteria, are are able to tolerate or even thrive on substances that are harmful to others \cite{Malik2004,Gadd2009}. 
+Though easy to understand and employ, this model is not without its issues. Confusion over definitions abound. For instance, the term 'stressor' is often used as a synonym for `pollutant', `toxicant', or `pressure' -- a substance or treatment that produces a negative fitness effect in the species of interest \cite{Piggott2015}. However, not only does this fail to account for the well-known adage that 'the dose makes the poison'\cite{OGParacelsus} –- as true for a rise in temperature or in nutrient availability as it is for toxic pollutants -- but also that \textit{the species makes the poison}. Many organisms, particularly bacteria, are are able to tolerate or even thrive on substances that are harmful to others \cite{Malik2004,Gadd2009}. 
 
-Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- 'higher order interactions' –- has remained low \cite{Beppler2016}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017a}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects: three-way interactions not predictable from component two-way effects. This suggested that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}. Within ecology, research on complex combinations of stressors –- including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators - Multiple Predator Effects (MPEs). One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than species-poor mixtures, although a considerable number of component studies found no significant relationship between richness and suppression. 
+Due to the geometrically-increasing complexity of adding additional stressors to interaction experiments, the number of studies that have experimentally examined the interactions of mixtures of three or more chemicals –- `higher order interactions' –- has remained low \cite{Beppler2016}. This has been justified by a long-held assumption that higher-order interactions are negligible compared to lower-order interactions \cite{Tekin2017a}, but recent studies examining complex mixtures of antibiotics have shown emergent higher-order effects: three-way interactions not predictable from component two-way effects. This suggested that the existing body of binary-interaction based literature may not be scalable over more complex mixtures to understand the effects on ecosystems \cite{Tekin2016, Zimmer2016, Tekin2017}. Within ecology, research on complex combinations of stressors –- including chemicals –- is more common, and suffers from similar uncertainty and confusion in defining synergy and antagonism \cite{Cote2016}.  Beppler \textit{et al.} also highlight the study of emergent interactions between higher-order mixtures of predators - Multiple Predator Effects (MPEs). One recent review of the literature \cite{Griffin2013EffectsMeta-analysis} found overall that species-rich mixtures of predators were more effective at suppressing prey than species-poor mixtures, although a considerable number of component studies found no significant relationship between richness and suppression. 
 
-Parallels can also be drawn with research on inter-species interactions in the vein of food webs, where the presence of a species has a positive or negative effect on the fitness of other species, similar to a chemical stressor. Considerable research has explored interaction across food webs and trophic levels, and the  cascading shifts in biotic interactions caused by abiotic environmental change \cite{Hooper2005,Parmesan2006,Chesson2000}. Research has shown that chemical stressors such as pesticides can cause large scale changes to ecosystems over short timescales, mediated through complex webs of interactions \cite{Thompson2016}. The effect of species interaction on evolutionary responses has also been examined \cite{Lawrence2012}, research showing that in bacteria, these interactions can cause considerable shifts in both communities and the phenotypes and genotypes of component species over time.
+Parallels can also be drawn with research on inter-species interactions in the vein of food webs, where the presence of a species has a positive or negative effect on the fitness of other species, similar to a chemical stressor. Considerable research has explored interaction across food webs and trophic levels, and the  cascading shifts in biotic interactions caused by abiotic environmental change \cite{Hooper2005,Parmesan2006,Chesson2000}. Research has shown that chemical stressors such as pesticides can cause large scale changes to ecosystems over short timescales, mediated through complex webs of interactions \cite{Thompson2016}. The effect of species interaction on evolutionary responses has also been examined, research showing that in bacteria, these interactions can cause considerable shifts in both communities and the phenotypes and genotypes of component species over time \cite{Lawrence2012}.
 
 In the Anthropocene, an era where pollution is a greater pressure on ecosystems than ever before, it is vital that we improve our understanding of how a diverse range of wild bacteria respond to different stressors. Greater understanding of these stressors and interactions will enable more targeted and cost-efficient legislation and interventions –- for instance, where one stressor has a disproportionate effect on overall response, and therefore should produce the greatest positive effect when removed. 
 
@@ -250,6 +252,7 @@ Eight bacterial isolates were selected, sourced principally from the Nash's Fiel
 
 \begin{table}[ht]
 \begin{small}
+\caption{Bacterial species, strains, and sources.}
 \centering
 \begin{tabular}{c p{3.1cm} l p{5.2cm}}
 \toprule 
@@ -265,7 +268,6 @@ Eight bacterial isolates were selected, sourced principally from the Nash's Fiel
 {KUA5 Sample} & Soil Community & Control & \\
 \bottomrule
 \end{tabular}
-\caption{Bacterial species, strains, and sources.}
 \label{tab:isolates}
 \end{small}
 \end{table}
@@ -293,6 +295,7 @@ Limited data are available on the prevalence and composition of chemical mixture
 \begin{landscape}
 \begin{table}[h]
 \begin{threeparttable}
+\caption{Summary of stressors including type, target concentration, product information and bacterial interactions.}
 \small
 \setlength{\tabcolsep}{4pt}
 \setlength{\extrarowheight}{3pt}
@@ -311,12 +314,11 @@ Limited data are available on the prevalence and composition of chemical mixture
 
                     \textbf{Metaldehyde} & Pesticide \break (Molluscicide) & 0.5\tnote{t} & Powder, analytical, Sigma Aldrich 63990 & Toxicity unknown, possible nutrient & Biodegradation & \cite{Kay2014,Castle2017,Thomas2017} \\
 
-\rowcolor{gggrey}   \textbf{Tebuconazole} & Antibacterial & 1\tnote{r} & Powder, analytical, Sigma Aldrich 32013 &                     Unknown & Biodegradation & \cite{Sehnem2010,Artigas2014ComparativeEcosystems} \\
+\rowcolor{gggrey}   \textbf{Tebuconazole} & Pesticide (Antifungal) & 1\tnote{r} & Powder, analytical, Sigma                           Aldrich 32013 &  Unknown & Biodegradation & \cite{Sehnem2010,Artigas2014ComparativeEcosystems} \\
 
-                    \textbf{Azoxystrobin} & Antibacterial & 3\tnote{r} & Powder, Analytical, Sigma Aldrich 31697 & Unknown & Biodegradation & \cite{Battaglin2011Occurrence20052006,Rodrigues2013,Loos2010,Bacmaga2015MicrobialAzoxystrobin} \\
+                    \textbf{Azoxystrobin} & Pesticide (Antifungal) & 3\tnote{r} & Powder, Analytical, Sigma Aldrich 31697 & Unknown & Biodegradation & \cite{Battaglin2011Occurrence20052006,Rodrigues2013,Loos2010,Bacmaga2015MicrobialAzoxystrobin} \\
 \bottomrule
 \end{tabular}
-\caption{Summary of stressors including type, target concentration, product information and bacterial interactions.}
 \label{tab:stressors}
 \begin{tablenotes}
 \item [t] UK drinking water regulatory limit, Water Framework Directive
@@ -356,6 +358,7 @@ A typical bacterial growth curve \cite{Monod1949} offers a number of potential p
 \begin{table}[ht]
 \centering
 \scriptsize
+\caption{Potential metrics of bacterial growth}
 \renewcommand{\arraystretch}{1.8}
 \begin{tabular}{P M L L N}
 \toprule 
@@ -369,7 +372,6 @@ A typical bacterial growth curve \cite{Monod1949} offers a number of potential p
 {Growth Score (GS)} & Simplified and refined interpretation of GL & Easier to interpret, less heavily affected by experiment length & New and untested, complex implementation & \cite{Cuevas2018}\\
 \bottomrule
 \end{tabular}
-\caption{Potential metrics of bacterial growth}
 \label{tab:metrics}
 \end{table}
 
@@ -462,6 +464,7 @@ Due to a number of issues with isolate growth in liquid media and manual pipetti
 \begin{table}[ht]
 \centering
 \small
+\caption{Experimental issues caused sample sizes (n) to vary across isolates and stressor mixtures. This table gives mean sample size $\pm$ a standard deviation calculated on a per-isolate basis.}
 \begin{tabular}{l c c}
 \toprule 
 \textbf{Isolate} & \textbf{n Mean} & \textbf{n SD}  \\
@@ -476,7 +479,6 @@ Due to a number of issues with isolate growth in liquid media and manual pipetti
 {Soil Community} & 3.1 & 1.7\\
 \bottomrule
 \end{tabular}
-\caption{Experimental issues caused sample sizes (n) to vary across isolates and stressor mixtures. This table gives mean sample size $\pm$ a standard deviation calculated on a per-isolate basis.}
 \label{tab:samples}
 \end{table}
 
@@ -525,24 +527,25 @@ Patterns of observed versus predicted mean effect varied considerably among the 
 
 A comparison of linear models of varying complexity (\cref{tab:lmodels}) showed F-values higher than the critical F-statistic (1.08 at $p = 0.05$) at $p < 0.05$ for the, 2-, 3- and 6-complexity models. Penalised for number of parameters, the 2-complexity model had a significantly lower AIC than other models. We can thus infer that a model of two-way interactions and single stressor effects best explains the variation seen in our data.
 
-\begin{table}[H]
+\begin{table}[ht]
 \centering
-\tiny
-\begin{tabular}{N N O P O N O O O N}
+\small
+\addtolength{\tabcolsep}{-3pt}
+\caption{Comparison of the ANOVA and AIC parameters of eight nested multiple linear models of 1 to 8-way interactions, rounded to 5 s.f. Calculated critical F-statistic of 1.04 at \textit{p} = 0.05. C = Complexity, P = Predictors.}
+\begin{tabular}{c c N P O P c N N N}
 \toprule 
-\textbf{Complexity} & \textbf{Number of Predictors} & \textbf{Residual Df} & \textbf{Residual Sum of Squares} & \textbf{Df} & \textbf{Sum of Squares} & \textbf{F-value} & \textbf{Pr($>$F)} & \textbf{AIC Df} & \textbf{AIC Score} \\
+\textbf{C} & \textbf{P} & \textbf{Resid. Df} & \textbf{Resid. Sum of Squares} & \textbf{Df} & \textbf{Sum of Squares} & \textbf{F-value} & \textbf{Pr($>$F)} & \textbf{AIC Df} & \textbf{AIC Score} \\
 \midrule
-\rowcolor{gggrey}   1 & 8   & 6362 & 24990.99 & NA  & NA        & NA   & NA   & 10  & 26807.74 \\
-                    2 & 36  & 6334 & 24310.99 & 28  & 679.99    & 6.41 & 0.00 & 38  & 26840.72 \\
-\rowcolor{gggrey}   3 & 92  & 6278 & 24110.00 & 56  & 200.99    & 0.95 & 0.59 & 94  & 26894.15 \\
-                    4 & 162 & 6208 & 23565.70 & 70  & 544.29    & 2.05 & 0.00 & 164 & 26909.64 \\
-\rowcolor{gggrey}   5 & 218 & 6152 & 23441.87 & 56  & 123.83    & 0.58 & 0.99 & 220 & 26984.55 \\
-                    6 & 246 & 6124 & 23210.18 & 28  & 231.68    & 2.19 & 0.00 & 248 & 26991.55 \\
-\rowcolor{gggrey}   7 & 254 & 6116 & 23159.13 & 8   & 51.05     & 1.69 & 0.09 & 256 & 26991.97 \\
-                    8 & 255 & 6115 & 23155.15 & 1   & 3.99      & 1.05 & 0.30 & 257 & 26992.38 \\     
+\rowcolor{gggrey}   1 & 8   & 6362 & 24990 & NA  & NA        & NA   & NA   & 10  & 26807 \\
+                    2 & 36  & 6334 & 24310 & 28  & 679.99    & 6.41 & 0.00 & 38  & 26840 \\
+\rowcolor{gggrey}   3 & 92  & 6278 & 24110 & 56  & 200.99    & 0.95 & 0.59 & 94  & 26894 \\
+                    4 & 162 & 6208 & 23565 & 70  & 544.29    & 2.05 & 0.00 & 164 & 26909 \\
+\rowcolor{gggrey}   5 & 218 & 6152 & 23441 & 56  & 123.83    & 0.58 & 0.99 & 220 & 26984 \\
+                    6 & 246 & 6124 & 23210 & 28  & 231.68    & 2.19 & 0.00 & 248 & 26991 \\
+\rowcolor{gggrey}   7 & 254 & 6116 & 23159 & 8   & 51.05     & 1.69 & 0.09 & 256 & 26991 \\
+                    8 & 255 & 6115 & 23155 & 1   & 3.99      & 1.05 & 0.30 & 257 & 26992 \\     
 \bottomrule
 \end{tabular}
-\caption{Comparison of the ANOVA and AIC parameters of eight nested multiple linear models of 1 to 8-way interactions, rounded to 2 decimal places. Calculated critical F-statistic of 1.04 at \textit{p} = 0.05.}
 \label{tab:lmodels}
 \end{table}
 
@@ -579,22 +582,28 @@ Emergent interactions, effects of complex mixtures of stressors not predictable 
 \subsection{Novel Findings}
 \label{S:4:1}
 
-The aims of this study were a) to determine if it was possible to predict the effects of complex mixtures of chemical stressors on a diverse range bacteria from their component single stressors and stressor mixtures, and b) to determine how prediction ability and mixture effects varied across isolates.
+The aims of this study were a) to determine if it was possible to predict the effects of complex mixtures of chemical stressors on a diverse of range bacteria from their component single stressors and stressor mixtures, and b) to determine how prediction ability and mixture effects varied across isolates.
 
-Although Figure 4 shows a relatively high incidence of observed effects deviating from the additive prediction, very few of these deviations are significant at $p < 0.05$ (Figure \ref{fig:histogram_interaction_basic}), the few cases of synergy and antagonism being limited to \textit{E. coli} OP50, where they were relatively common. A similar lack of emergent interactions (Figure \ref{fig:histogram_interaction_emergent}) was detected. 
+Figure \ref{fig:growthXcomplex}, which examined the relationship between growth and complexity found no significant relationship between the complexity of stressor mixtures an isolate was exposed to. This is perhaps unsurprisingly for a number of reasons: opposed negative and positive stressor effects in more complex mixtures may mask each others effects, and the relatively high variance and low sample sizes available for many unique combinations of stressors and isolates reduce the significance of any relationship detected. The graphical technique applied here is not usually a feature of ecotoxicological research, and was adapted from biodiversity and ecosystem functioning to determine its suitability for mixtures of chemical, rather than physical stressors.
+
+Although Figure \ref{fig:obsXpred} shows a relatively high incidence of observed effects deviating from the additive prediction, very few of these deviations are significant at $p < 0.05$ (Figure \ref{fig:histogram_interaction_basic}), the few cases of synergy and antagonism being limited to \textit{E. coli} OP50, where they were relatively common. A similar lack of emergent interactions (Figure \ref{fig:histogram_interaction_emergent}) was detected. 
 
 However, a degree of inter-species variation at various levels of significance in response and interactive effect was present. The effects of individual stressors on growth varied considerably and frequently reversed between species, and different patterns of clustering between observed and predicted effects were observed in Figure 4. As discussed above, \textit{E. coli} OP50 showed the only significant non-additive interactions detected, although no similar pattern was observed at the emergent level. 
 
-The study found interactive effects are limited to \textit{E. coli} and were not present in wild bacterial species. The strain used in this study, OP50, has a long history of use as a food source for \textit{C. elegans}. OP50 was likely selected as a feeder stock due to its rapid growth, and it is possible that mutations acquired over its recent history as a feeder species \cite{Tenaillon2016} have, in response to a lack of selection pressures unrelated to competition, led it to become both a faster grower in nutrient media and less tolerant to chemical stressors. Regardless, this finding does raise questions about the suitability of multiple stressor experiments that only consider effects of higher-order mixtures on lab-adapted model species, as their responses may not accurately reflect the response of more stress-tolerant wild species.  
+We found interactive effects were limited to \textit{E. coli} and were not present in wild bacterial species. The strain used in this study, OP50, has a long history of use as a food source for \textit{C. elegans}. OP50 was likely selected as a feeder stock due to its rapid growth, and it is possible that mutations acquired over its recent history as a feeder species \cite{Tenaillon2016} have, in response to a lack of selection pressures unrelated to competition, led it to become both a faster grower in nutrient media and less tolerant of chemical stress. Regardless, this finding does raise questions about the suitability of multiple stressor experiments that only consider effects of higher-order mixtures on lab-adapted model species, as their responses may not accurately reflect the response of more stress-tolerant wild species.
 
-At a regulatory and risk-assessment level, this study suggests that existing regulatory limits on common heavy metals, fungicides, insecticides and herbicides may be sufficient to protect bacteria from addition mixture effects, even at high levels of mixture complexity in the environment. More research is, however, required to determine how these mixtures affect communities over the long term, and in combination with other-non chemical stressors, such as temperature and land use change.  
+At a regulatory and risk-assessment level, this study suggests that existing regulatory limits on common heavy metals, fungicides, molluscicides and herbicides are sufficient to protect bacteria from addition mixture effects, even at high levels of mixture complexity in the environment. More research is, however, required to determine how these mixtures affect communities over the long term, and in combination with other-non chemical stressors, such as temperature and land use change.  
 
 \subsection{Caveats and Limitations}
 \label{S:4:3}
 
-A number of limitations apply to this study if overcome could affect the significance of detected interactions considerably.  Due to a combination of mistakes during the lab work phase of the study and the reticence of the strains KUB5\_13 and NUF1\_3 (\textit{V. paradoxus}) to grow directly in liquid media from cryogenic storage (perhaps unsurprising as the strains in question were sources from soil samples), the sample size in the case of a number of combinations (Table \ref{tab:samples}) was insufficiently large to detect non-additive effects at all but the highest p-values.  Greater replication of a smaller number of isolates would have permitted results to be declared with a greater degree of certainty. A further issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density. 
+A number of limitations apply to this study, which, if overcome could affect the significance of detected interactions considerably.  Due to a combination of mistakes during the lab work phase of the study and the inability of the strains KUB5\_13 and NUF1\_3 (\textit{V. paradoxus}) to grow directly in liquid media from cryogenic storage -- perhaps due to the terrestrial origin of the isolates -- the sample size in the case of a number of combinations (Table \ref{tab:samples}) was insufficiently large to detect non-additive effects at all but the highest \textit{p}-values.  Greater replication of a smaller number of isolates would have permitted results to be declared with a greater degree of certainty. A further issue that may have affected OD readings for strains KUE4\_4 and NUE1\_1 (\textit{B. simplex}) is the tendency of \textit{Bacillus spp.} to aggregate within the well, creating considerable local variation in optical density. 
 
-Additionally, due to the long preparation times for exposures, and experimental durations (96 hours from first the addition of media to plates to experiment end), well evaporation posed a non-random but difficult to account for influence on bacterial growth conditions, an additional stressor not part of the experimental design. Evaporation was most evident in peripheral wells (A1-–12, H1-–12, all X1 and X12 wells), and as stressor combination layout on the plates was not randomised between isolates or runs, it is probably that evaporation played a not-insignificant role in the observed effects of various treatments. Were a simpler level of treatment/isolate complexity used in simpler work, it would be possible to mitigate this effect by using only the inner wells of the 96 well plate, and by reduce experimental set-up time. 
+On a logistical level, due to the long preparation times for exposures, and experimental durations (96 hours between the first addition of media and the experiment's end), well evaporation posed a non-random but difficult to account for influence on bacterial growth conditions, an additional stressor not part of the experimental design. Evaporation was most evident in peripheral wells (rows A and H, columns 1 and 12), and as stressor combination layout on the plates was not randomised between isolates or runs, it is probable that evaporation played a not-insignificant role in the observed effects of various treatments. Were a simpler level of treatment/isolate complexity used, it would be possible to mitigate this effect by using only the inner wells of the 96 well plate, and by reducing experimental set-up time. 
+
+The use of both wild, stressor-tolerant bacterial isolates, and intrinsically conservative regulatory limits proved both an advantage and disadvantage. While higher concentrations and model species with lower tolerance to multiple environmental stressors would likely show more pronounced responses to exposures, such experimental design would raise the ever-present criticism that findings were not relevant to real-world environmental conditions. That said, the similarity of 96h exposures in microcosms to real world environments should not be overstated, and directly applying the findings of this study to such environments would be somewhat disingenuous. 
+
+A new approach to growth curve construction and parameter extraction may also have improved the accuracy of findings. Logistic curves fitted to raw growth data by \textit{growthcurver} had a tendency to underestimate the optical density of a culture during the lag phase. While the selection of area under the empirical curve as the metric of growth (table \ref{tab:metrics}) wholly mitigated the impact of this issue, the more refined and better-automated approaches for extracting growth parameters from a Zwietering curve \cite{Cuevas2017,Cuevas2018} may have made for more distinct growth data.
 
 Lastly, the incorporation of varying concentrations of stressors would have allowed the construction of dose response curves, calculation of inhibitory concentrations (ICs), and correspondingly the modelling of Bliss Independence \cite{Bliss1939} of stressors, which has been applied with some success to the issue of higher-order and emergent interactions in complex mixtures of antibiotics \cite{Beppler2016,Tekin2017a} 
 
